@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FİRE: ÖZGÜRLÜK MİMARİSİ V6.0 | Anadolu Network</title>
+    <title>FİRE: ÖZGÜRLÜK MİMARİSİ V7.0 | PROFESYONEL</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <style>
@@ -11,27 +11,28 @@
         body { background-color: var(--sky-blue); color: var(--deep-blue); font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
         .gold-text { color: #b8860b !important; font-weight: 900; }
         .glass { background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(15px); border: 2px solid rgba(255, 255, 255, 0.5); border-radius: 1.5rem; box-shadow: 0 8px 32px rgba(0,0,0,0.1); }
-        .admin-box { display: none; background: #1a1a1a; color: white !important; border-radius: 1rem; padding: 20px; margin-top: 50px; }
+        .admin-box { display: none; background: #0f172a; color: white !important; border-radius: 1rem; padding: 25px; margin-top: 30px; border: 2px solid var(--gold); }
         .admin-box * { color: white !important; }
-        .admin-box input, .admin-box select { background: #333; border: 1px solid #555; padding: 5px; border-radius: 4px; color: white; }
+        .admin-box input, .admin-box select { background: #1e293b; border: 1px solid #334155; padding: 8px; border-radius: 6px; width: 100%; }
         .nav-link { font-weight: 800; text-transform: uppercase; color: var(--deep-blue) !important; font-size: 11px; }
+        .stat-card { border-left: 5px solid #b8860b; }
     </style>
 </head>
-<body class="pb-10">
+<body class="pb-20">
 
-    <nav class="sticky top-0 z-50 px-8 py-4 bg-white/70 backdrop-blur-md border-b-2 border-white mb-10 shadow-sm">
+    <nav class="sticky top-0 z-50 px-8 py-4 bg-white/80 backdrop-blur-md border-b-2 border-white mb-6 shadow-sm">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center gap-4">
-                <div class="w-10 h-10 bg-[#003366] rounded-xl flex items-center justify-center shadow-lg"><span class="text-white font-black text-lg">AN</span></div>
+                <div class="w-10 h-10 bg-[#003366] rounded-xl flex items-center justify-center shadow-lg text-white font-black">AN</div>
                 <div>
-                    <h1 class="font-black text-lg tracking-tighter leading-none uppercase text-[#003366]">Anadolu Network</h1>
-                    <span class="text-[9px] font-bold opacity-70">FİRE & DİJİTAL EKOSİSTEM</span>
+                    <h1 class="font-black text-lg tracking-tighter leading-none uppercase">Anadolu Network</h1>
+                    <span class="text-[9px] font-bold opacity-70">CFO ORHAN BOYRAZ</span>
                 </div>
             </div>
             <div class="hidden lg:flex gap-6 items-center">
-                <a href="#calc" class="nav-link">HESAPLAYICI</a>
-                <a href="#portfolio" class="nav-link">PORTFÖY</a>
-                <a href="#report" class="nav-link text-red-600">DURUM RAPORU</a>
+                <a href="#calc" class="nav-link">FİRE HESAPLA</a>
+                <a href="#portfolio" class="nav-link">VARLIKLAR</a>
+                <a href="#report" class="nav-link text-red-600 italic">DURUM RAPORU</a>
                 <a href="#academy" class="nav-link">AKADEMİ</a>
             </div>
         </div>
@@ -39,173 +40,205 @@
 
     <div class="max-w-7xl mx-auto px-6">
         
-        <section id="calc" class="mb-20 text-center">
-            <h2 class="text-5xl md:text-6xl font-black italic tracking-tighter mb-4 gold-text uppercase">FİRE; ÖZGÜRLÜK MİMARİSİ</h2>
-            <p class="font-black uppercase tracking-[0.3em] text-sm text-[#003366]">CFO.MÜH: ORHAN BOYRAZ</p>
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-12 text-left">
+        <div id="report" class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-10">
+            <div class="glass p-6 stat-card">
+                <p class="text-[10px] font-black opacity-60">NET SERVET</p>
+                <div id="netWealth" class="text-2xl font-black gold-text">0 ₺</div>
+            </div>
+            <div class="glass p-6 stat-card">
+                <p class="text-[10px] font-black opacity-60">NET AYLIK GELİR</p>
+                <div id="netIncome" class="text-2xl font-black text-green-700">0 ₺</div>
+            </div>
+            <div class="glass p-6 stat-card">
+                <p class="text-[10px] font-black opacity-60">ACİL DURUM FONU</p>
+                <div id="emergencyFund" class="text-2xl font-black">--</div>
+            </div>
+            <div class="glass p-6 stat-card">
+                <p class="text-[10px] font-black opacity-60">BORÇ ORANI</p>
+                <div id="debtRatio" class="text-2xl font-black text-red-700">%0</div>
+            </div>
+        </div>
+
+        <section id="calc" class="mb-16">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
                 <div class="lg:col-span-5 glass p-8 space-y-6">
-                    <h3 class="font-black border-b-2 border-black/10 pb-2 uppercase text-sm">GİRİŞ PARAMETRELERİ</h3>
-                    <div class="space-y-4 font-bold uppercase text-[10px]">
-                        <div>YAŞ: <span id="vAge" class="text-sm gold-text">30</span><input type="range" id="inAge" min="18" max="65" value="30" oninput="run()"></div>
-                        <div>MEVCUT SERMAYE (₺): <span id="vAssets" class="text-sm gold-text">50k</span><input type="range" id="inAssets" min="0" max="5000000" step="10000" value="50000" oninput="run()"></div>
-                        <div>HEDEF AYLIK GELİR (₺): <span id="vExpense" class="text-sm gold-text">50k</span><input type="range" id="inExpense" min="10000" max="500000" step="5000" value="50000" oninput="run()"></div>
+                    <h3 class="font-black border-b border-black/10 pb-2 uppercase text-xs italic">FİRE STRATEJİ PARAMETRELERİ</h3>
+                    <div class="space-y-4 font-bold text-[10px] uppercase">
+                        <div>AYLIK TASARRUF: <span id="vSav" class="gold-text">5k</span><input type="range" id="inSav" min="0" max="100000" step="1000" value="5000" oninput="run()"></div>
+                        <div>PASİF GELİRLER (AYLIK): <span id="vPas" class="gold-text">0k</span><input type="range" id="inPas" min="0" max="50000" step="500" value="0" oninput="run()"></div>
+                        <div>ENFLASYON ETKİSİ: <span id="vInf" class="gold-text">%50</span><input type="range" id="inInf" min="0" max="100" value="50" oninput="run()"></div>
+                        <div>DÖVİZ GETİRİ ETKİSİ: <span id="vCyc" class="gold-text">%10</span><input type="range" id="inCyc" min="0" max="50" value="10" oninput="run()"></div>
                     </div>
                 </div>
-                <div class="lg:col-span-7 grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div class="glass p-6 text-center"><span class="text-[9px] font-black opacity-60 uppercase">FIRE YAŞI</span><div id="rAge" class="text-4xl font-black gold-text italic">--</div></div>
-                    <div class="glass p-6 text-center"><span class="text-[9px] font-black opacity-60 uppercase">KALAN YIL</span><div id="rYears" class="text-4xl font-black gold-text italic">--</div></div>
-                    <div class="glass p-6 text-center"><span class="text-[9px] font-black opacity-60 uppercase">HEDEF VARLIK</span><div id="rTarget" class="text-2xl font-black gold-text italic">--</div></div>
+                <div class="lg:col-span-7 glass p-10 flex flex-col justify-center text-center">
+                    <p class="text-xs font-black opacity-50 mb-2">FİRE ÖZGÜRLÜK YAŞINIZ</p>
+                    <div id="rAge" class="text-8xl font-black gold-text italic mb-4">--</div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="p-4 bg-white/30 rounded-xl"><p class="text-[9px] font-black">KALAN SÜRE</p><p id="rYears" class="text-xl font-black">--</p></div>
+                        <div class="p-4 bg-white/30 rounded-xl"><p class="text-[9px] font-black">HEDEF PORTFÖY</p><p id="rTarget" class="text-xl font-black">--</p></div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="portfolio" class="mb-20">
-            <h3 class="text-xl font-black mb-6 border-l-8 border-[#003366] pl-4 uppercase italic text-[#003366]">PORTFÖY VE VARLIK DAĞILIMI</h3>
+        <div id="portfolio" class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-16">
             <div class="glass p-6">
+                <h3 class="font-black mb-4 uppercase text-sm italic">VARLIK PORTFÖYÜ</h3>
                 <div class="overflow-x-auto">
-                    <table class="w-full text-left font-bold uppercase text-xs">
-                        <thead class="border-b border-black/10 text-[10px] opacity-60">
-                            <tr><th class="p-3">KATEGORİ</th><th class="p-3">DETAY / ADET</th><th class="p-3">DEĞER (₺)</th><th class="p-3">ORAN</th><th class="admin-only hidden p-3 text-red-600">SİL</th></tr>
-                        </thead>
-                        <tbody id="portfolioList"></tbody>
-                        <tr class="bg-white/20 font-black"><td colspan="2" class="p-3">TOPLAM PORTFÖY:</td><td id="totalValue" class="p-3 gold-text text-lg">0 ₺</td><td>%100</td><td class="admin-only hidden"></td></tr>
+                    <table class="w-full text-[10px] font-bold uppercase">
+                        <tbody id="assetList"></tbody>
                     </table>
                 </div>
             </div>
-        </section>
-
-        <section id="report" class="mb-20">
-            <h3 class="text-xl font-black mb-6 border-l-8 border-red-600 pl-4 uppercase italic text-red-600">FİNANSAL DURUM RAPORU</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="glass p-8 bg-white/40 border-l-8 border-green-600">
-                    <h4 class="font-black mb-4 uppercase text-sm underline">Varlık Analizi</h4>
-                    <p id="assetHealth" class="text-sm italic leading-relaxed">Veri bekleniyor...</p>
-                </div>
-                <div class="glass p-8 bg-white/40 border-l-8 border-gold">
-                    <h4 class="font-black mb-4 uppercase text-sm underline">CFO Strateji Notu</h4>
-                    <p id="cfoNote" class="text-sm italic leading-relaxed text-[#003366]">Lütfen portföy verilerinizi girin.</p>
+            <div class="glass p-6 border-l-8 border-red-600">
+                <h3 class="font-black mb-4 uppercase text-sm italic">BORÇLAR VE YÜKÜMLÜLÜKLER</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-[10px] font-bold uppercase text-red-700">
+                        <tbody id="debtList"></tbody>
+                    </table>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <div id="academy" class="mb-20">
-            <h3 class="text-xl font-black mb-6 border-l-8 border-[#003366] pl-4 uppercase italic">AKADEMİ</h3>
-            <div id="list-items" class="grid grid-cols-1 md:grid-cols-4 gap-4"></div>
+        <div id="academy" class="mb-10">
+            <h3 class="text-xl font-black mb-6 border-l-8 border-[#003366] pl-4 uppercase italic">ANADOLU AKADEMİ</h3>
+            <div id="listItems" class="grid grid-cols-2 md:grid-cols-5 gap-4"></div>
         </div>
 
         <div id="adminPanel" class="admin-box">
-            <h4 class="font-black mb-4 gold-text uppercase">⚙️ CFO YÖNETİM MERKEZİ</h4>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="space-y-4">
-                    <p class="text-[10px] font-black opacity-60">VARLIK EKLE (TAHVİL, KRİPTO, NAKİT VB.)</p>
-                    <div class="flex gap-2">
-                        <select id="pCat" class="flex-1"><option>HİSSE</option><option>KRİPTO</option><option>TAHVİL</option><option>NAKİT</option><option>ALTIN</option><option>DİĞER</option></select>
-                        <input type="text" id="pName" placeholder="Detay" class="flex-1">
-                        <input type="number" id="pValue" placeholder="₺" class="w-1/4">
-                        <button onclick="addP()" class="bg-blue-600 px-4 rounded font-black">EKLE</button>
-                    </div>
+            <h4 class="font-black mb-6 gold-text italic">⚙️ CFO YÖNETİM PANELİ (ORHAN BOYRAZ)</h4>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-[10px]">
+                <div class="space-y-3">
+                    <p class="font-black gold-text">VARLIK/BORÇ EKLE</p>
+                    <select id="pType"><option value="asset">VARLIK (+)</option><option value="debt">BORÇ (-)</option></select>
+                    <select id="pCat">
+                        <option>HİSSE</option><option>EMLAK</option><option>TAHVİL</option>
+                        <option>FON/ETF</option><option>ALTIN/GÜMÜŞ</option><option>KRİPTO</option>
+                        <option>NAKİT</option><option>KREDİ/BORÇ</option>
+                    </select>
+                    <input type="text" id="pName" placeholder="Detay (Örn: BTC, Konut Kredisi)">
+                    <input type="number" id="pValue" placeholder="Değer (₺)">
+                    <button onclick="addEntry()" class="bg-green-600 w-full p-2 rounded font-black">SİSTEME İŞLE</button>
                 </div>
-                <div class="space-y-4">
-                    <p class="text-[10px] font-black opacity-60">AKADEMİ ÜRÜNÜ EKLE</p>
-                    <div class="flex gap-2">
-                        <input type="text" id="itemName" placeholder="Eğitim Adı" class="flex-1">
-                        <input type="number" id="itemPrice" placeholder="₺" class="w-1/4">
-                        <button onclick="addI()" class="bg-green-600 px-4 rounded font-black">EKLE</button>
-                    </div>
+                <div class="space-y-3">
+                    <p class="font-black gold-text">GELİR/GİDER AYARI</p>
+                    <input type="number" id="admInc" placeholder="Aylık Toplam Gelir (₺)">
+                    <input type="number" id="admExp" placeholder="Aylık Toplam Gider (₺)">
+                    <button onclick="updateCashflow()" class="bg-blue-600 w-full p-2 rounded font-black">NAKİT AKIŞINI GÜNCELLE</button>
+                </div>
+                <div class="space-y-3">
+                    <p class="font-black gold-text">AKADEMİ ÜRÜNÜ</p>
+                    <input type="text" id="itemName" placeholder="Eğitim Adı">
+                    <input type="number" id="itemPrice" placeholder="Fiyat (₺)">
+                    <button onclick="addItem()" class="bg-gold w-full p-2 rounded font-black text-black">YAYINLA</button>
                 </div>
             </div>
-            <button onclick="logout()" class="mt-6 text-[9px] underline opacity-40">GÜVENLİ ÇIKIŞ</button>
+            <button onclick="logout()" class="mt-8 text-[9px] underline opacity-50">GÜVENLİ ÇIKIŞ</button>
         </div>
     </div>
 
-    <footer class="mt-20 border-t-2 border-white/30 py-10 text-center">
+    <footer class="mt-20 border-t-2 border-white/20 py-10 text-center">
         <h4 id="footer-logo" ondblclick="login()" class="font-black text-xl gold-text uppercase cursor-pointer select-none">ANADOLU NETWORK</h4>
-        <p class="text-[9px] font-bold opacity-50 uppercase mt-2 italic">© 2026 CFO Orhan Boyraz - Özgürlük Mimarisi</p>
+        <p class="text-[9px] font-bold opacity-50 uppercase mt-2">© 2026 PROFESYONEL FİRE DASHBOARD</p>
     </footer>
 
     <script>
         let IS_ADMIN = false;
         const PASS = "orhan123";
 
-        let DATA = JSON.parse(localStorage.getItem('fire_v6_data')) || {
-            items: [{name: "F.I.R.E Eğitimi", price: 4500}],
-            p: [
-                {cat: "NAKİT", name: "TL Mevduat", value: 10000},
-                {cat: "KRİPTO", name: "Bitcoin/ETH", value: 5000}
-            ]
+        let DB = JSON.parse(localStorage.getItem('fire_pro_v7')) || {
+            income: 60000,
+            expense: 30000,
+            assets: [{cat: "NAKİT", name: "Banka", value: 50000}],
+            debts: [{cat: "KREDİ", name: "İhtiyaç", value: 5000}],
+            items: [{name: "V5.0 Eğitim", price: 5000}]
         };
 
         function render() {
-            localStorage.setItem('fire_v6_data', JSON.stringify(DATA));
+            localStorage.setItem('fire_pro_v7', JSON.stringify(DB));
             
-            // Portföy ve Raporlama
-            let total = 0;
-            DATA.p.forEach(x => total += x.value);
-            document.getElementById('totalValue').innerText = total.toLocaleString() + " ₺";
+            let totalA = 0; DB.assets.forEach(x => totalA += x.value);
+            let totalD = 0; DB.debts.forEach(x => totalD += x.value);
+            
+            // Stats
+            document.getElementById('netWealth').innerText = (totalA - totalD).toLocaleString() + " ₺";
+            document.getElementById('netIncome').innerText = (DB.income - DB.expense).toLocaleString() + " ₺";
+            document.getElementById('debtRatio').innerText = "%" + (totalA > 0 ? ((totalD/totalA)*100).toFixed(1) : 0);
+            
+            let ef = totalA / (DB.expense || 1);
+            document.getElementById('emergencyFund').innerText = ef >= 6 ? "GÜVENLİ ("+ef.toFixed(1)+" Ay)" : "KRİTİK ("+ef.toFixed(1)+" Ay)";
 
-            const pList = document.getElementById('portfolioList');
-            pList.innerHTML = DATA.p.map((x, i) => `
+            // Portfolio Lists
+            document.getElementById('assetList').innerHTML = DB.assets.map((x,i) => `
                 <tr class="border-b border-black/5">
-                    <td class="p-3">${x.cat}</td><td class="p-3">${x.name}</td><td class="p-3">${x.value.toLocaleString()} ₺</td>
-                    <td class="p-3">%${total > 0 ? ((x.value/total)*100).toFixed(1) : 0}</td>
-                    <td class="admin-only ${IS_ADMIN?'':'hidden'} p-3"><button onclick="delP(${i})" class="text-red-600">✖</button></td>
-                </tr>
-            `).join('');
-
-            // Raporlama Mantığı
-            const cryptoRatio = DATA.p.filter(x => x.cat === "KRİPTO").reduce((a,b) => a + b.value, 0) / (total || 1);
-            const cashRatio = DATA.p.filter(x => x.cat === "NAKİT").reduce((a,b) => a + b.value, 0) / (total || 1);
+                    <td class="p-2">${x.cat}</td><td class="p-2">${x.name}</td><td class="p-2 text-right">${x.value.toLocaleString()} ₺</td>
+                    ${IS_ADMIN ? `<td class="p-2 text-right text-red-600 cursor-pointer" onclick="delE('assets',${i})">✖</td>` : ''}
+                </tr>`).join('');
             
-            document.getElementById('assetHealth').innerText = `Şu an toplam ${total.toLocaleString()} ₺ değerinde bir varlık yönetiyorsunuz. Portföyünüzün %${(cryptoRatio*100).toFixed(1)}'i yüksek riskli (Kripto), %${(cashRatio*100).toFixed(1)}'i ise likit (Nakit) varlıklardan oluşuyor.`;
-            
-            let note = "CFO Notu: ";
-            if(cryptoRatio > 0.4) note += "Kripto ağırlığınız çok yüksek, volatiliteye dikkat edin.";
-            else if(cashRatio > 0.5) note += "Nakit oranınız yüksek, enflasyona karşı koruma amaçlı yatırıma yönelin.";
-            else note += "Dengeli bir portföy yapınız var. FİRE stratejinize sadık kalın.";
-            document.getElementById('cfoNote').innerText = note;
+            document.getElementById('debtList').innerHTML = DB.debts.map((x,i) => `
+                <tr class="border-b border-black/5 text-red-800">
+                    <td class="p-2">${x.cat}</td><td class="p-2">${x.name}</td><td class="p-2 text-right">${x.value.toLocaleString()} ₺</td>
+                    ${IS_ADMIN ? `<td class="p-2 text-right text-red-600 cursor-pointer" onclick="delE('debts',${i})">✖</td>` : ''}
+                </tr>`).join('');
 
-            // Akademi Listesi
-            document.getElementById('list-items').innerHTML = DATA.items.map((x, i) => `
-                <div class="glass p-4">
-                    <p class="font-black text-[10px] mb-1 uppercase">${x.name}</p>
-                    <p class="gold-text font-black text-lg">${x.price.toLocaleString()} ₺</p>
-                    ${IS_ADMIN ? `<button onclick="delI(${i})" class="text-[8px] bg-red-500 text-white px-2 rounded mt-2">SİL</button>` : ''}
-                </div>
-            `).join('');
-
-            // Admin UI kontrol
-            document.querySelectorAll('.admin-only').forEach(el => el.classList.toggle('hidden', !IS_ADMIN));
+            // Academy
+            document.getElementById('listItems').innerHTML = DB.items.map((x,i) => `
+                <div class="glass p-4 text-center">
+                    <p class="font-black text-[9px] uppercase mb-1">${x.name}</p>
+                    <p class="gold-text font-black">${x.price.toLocaleString()} ₺</p>
+                    ${IS_ADMIN ? `<button onclick="delI(${i})" class="text-[8px] text-red-600 mt-2">SİL</button>` : ''}
+                </div>`).join('');
         }
 
-        // Fonksiyonlar
-        function login() { if(prompt("CFO Giriş Şifresi:") === PASS) { IS_ADMIN = true; document.getElementById('adminPanel').style.display='block'; render(); } }
+        // Admin & Actions
+        function login() { if(prompt("Şifre:") === PASS) { IS_ADMIN = true; document.getElementById('adminPanel').style.display='block'; render(); } }
         function logout() { IS_ADMIN = false; document.getElementById('adminPanel').style.display='none'; render(); }
         
-        function addP() {
-            const cat = document.getElementById('pCat').value;
-            const name = document.getElementById('pName').value;
-            const val = parseInt(document.getElementById('pValue').value);
-            if(name && val) { DATA.p.push({cat, name, value: val}); render(); }
+        function addEntry() {
+            const type = document.getElementById('pType').value;
+            const data = {cat: document.getElementById('pCat').value, name: document.getElementById('pName').value, value: parseInt(document.getElementById('pValue').value)};
+            if(data.name && data.value) { DB[type === 'asset' ? 'assets' : 'debts'].push(data); render(); run(); }
         }
-        function delP(i) { DATA.p.splice(i, 1); render(); }
+        function delE(list, i) { DB[list].splice(i,1); render(); run(); }
 
-        function addI() {
+        function updateCashflow() {
+            DB.income = parseInt(document.getElementById('admInc').value) || DB.income;
+            DB.expense = parseInt(document.getElementById('admExp').value) || DB.expense;
+            render(); run();
+        }
+
+        function addItem() {
             const name = document.getElementById('itemName').value;
             const price = parseInt(document.getElementById('itemPrice').value);
-            if(name && price) { DATA.items.push({name, price}); render(); }
+            if(name && price) { DB.items.push({name, price}); render(); }
         }
-        function delI(i) { DATA.items.splice(i, 1); render(); }
+        function delI(i) { DB.items.splice(i,1); render(); }
 
         function run() {
-            const age = parseInt(document.getElementById('inAge').value);
-            const assets = parseInt(document.getElementById('inAssets').value);
-            const expense = parseInt(document.getElementById('inExpense').value);
-            document.getElementById('vAge').innerText = age;
-            document.getElementById('vAssets').innerText = (assets/1000) + "k";
-            document.getElementById('vExpense').innerText = (expense/1000) + "k";
-            const target = (expense * 12) / 0.04;
-            const rY = (Math.log(target / (assets + 1)) / Math.log(1.08)).toFixed(1);
-            document.getElementById('rAge').innerText = (age + parseFloat(rY)).toFixed(1);
+            const sav = parseInt(document.getElementById('inSav').value);
+            const pas = parseInt(document.getElementById('inPas').value);
+            const inf = parseInt(document.getElementById('inInf').value) / 100;
+            const cyc = parseInt(document.getElementById('inCyc').value) / 100;
+
+            document.getElementById('vSav').innerText = (sav/1000).toFixed(0) + "k";
+            document.getElementById('vPas').innerText = (pas/1000).toFixed(0) + "k";
+            document.getElementById('vInf').innerText = "%" + (inf*100);
+            document.getElementById('vCyc').innerText = "%" + (cyc*100);
+
+            // Mevcut Net Varlık
+            let totalA = 0; DB.assets.forEach(x => totalA += x.value);
+            let totalD = 0; DB.debts.forEach(x => totalD += x.value);
+            let currentNet = totalA - totalD;
+
+            const monthlyNeed = DB.expense;
+            const target = (monthlyNeed * 12) / 0.04; // %4 kuralı
+            
+            // Reel Getiri Hesaplama (Basitleştirilmiş)
+            const realReturn = (0.08 + cyc) - (inf * 0.5); 
+            const years = Math.log(target / (currentNet + 1)) / Math.log(1 + realReturn);
+            const rY = isNaN(years) || years <= 0 ? 0 : years.toFixed(1);
+
+            document.getElementById('rAge').innerText = (30 + parseFloat(rY)).toFixed(1);
             document.getElementById('rYears').innerText = rY + " YIL";
             document.getElementById('rTarget').innerText = (target/1000000).toFixed(1) + "M ₺";
         }
