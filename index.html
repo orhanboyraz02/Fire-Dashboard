@@ -259,31 +259,7 @@
                 { name: "Yatırım Takip Excel", price: 450 }
             ]
         };
-     <script>
-        // VERİLER
-        let APP_DATA = JSON.parse(localStorage.getItem('anadolu_v55')) || {
-            academy: [{name: "Master FIRE Eğitimi", price: 5000}],
-            market: [{name: "Yatırım Exceli", price: 500}],
-            portfolio: [
-                { id: 0, name: "Nakit / Mevduat", percent: 10, color: "bg-gray-500" },
-                { id: 1, name: "Altın / Gümüş", percent: 20, color: "bg-yellow-600" },
-                { id: 2, name: "Hisse Senetleri", percent: 25, color: "bg-blue-600" },
-                { id: 3, name: "Kripto Varlıklar", percent: 15, color: "bg-orange-500" },
-                { id: 4, name: "Gayrimenkul", percent: 15, color: "bg-green-700" },
-                { id: 5, name: "Döviz (USD/EUR)", percent: 10, color: "bg-indigo-600" },
-                { id: 6, name: "Tahvil/Bono", percent: 5, color: "bg-pink-600" }
-                { id: 6, name: "Yatırım Fonları", percent: 5, color: "bg-pink-600" }
-            ]
-        };
-
-        // GÜVENLİK
-        function auth() {
-            const pw = document.getElementById('admin-pw').value;
-            if(pw === "orhan123") {
-                document.getElementById('login-screen').classList.add('admin-hidden');
-                document.getElementById('admin-panel').classList.remove('admin-hidden');
-            } else alert("Yanlış Şifre!");
-
+ 
         let cart = [];
  
         function renderAll() {
@@ -420,9 +396,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
