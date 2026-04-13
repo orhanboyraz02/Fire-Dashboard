@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>ANADOLU NETWORK;  FİRE ÖZGÜRLÜK MİMARİSİ V1.0 |</title>
+    <title>ANADOLU NETWORK; FİRE ÖZGÜRLÜK MİMARİSİ V1.0 |</title>
     <!-- Tailwind + Font Awesome + Chart.js -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
@@ -69,6 +69,12 @@
             padding: 0.2rem 0.7rem;
             font-weight: bold;
         }
+        .contact-info {
+            font-size: 0.7rem;
+            line-height: 1.4;
+            margin-top: 0.25rem;
+            color: #F5B81BCC;
+        }
     </style>
 </head>
 <body>
@@ -81,7 +87,7 @@
         <p class="text-gray-300 text-sm mb-6">Fire Finansal Özgürlük Platformu • Yönetim Paneli</p>
         <input type="password" id="adminPassword" placeholder="Şifre" class="w-full p-3 text-center">
         <button id="loginBtn" class="btn-gold w-full mt-5 py-2 rounded-full">Giriş Yap</button>
-        <p class="text-xs text-gray-400 mt-4">Demo şifre: <span class="gold-text">altin2025</span></p>
+        <!-- Demo şifre yazısı kaldırıldı -->
     </div>
 </div>
 
@@ -199,14 +205,21 @@
             </div>
         </div>
 
-        <!-- Footer -->
-        <footer class="mt-12 border-t border-gold/30 pt-6 pb-4 flex flex-col md:flex-row justify-between items-center text-sm text-gold/70">
-            <div class="flex gap-6 flex-wrap">
+        <!-- Footer - İletişim bilgileri eklendi -->
+        <footer class="mt-12 border-t border-gold/30 pt-6 pb-4 flex flex-col md:flex-row justify-between items-start md:items-center text-sm text-gold/70 gap-4">
+            <div class="flex flex-wrap gap-6 items-center">
                 <a href="https://anadolunetwork.tr" target="_blank">Anadolu Network</a>
                 <a href="https://www.odakdijital.com.tr" target="_blank">Odak Dijital</a>
                 <a href="https://www.ortakmarkets.com.tr" target="_blank">Ortak Markets</a>
                 <a href="#" class="hover:text-gold">Hızlı Menü</a>
-                <a href="#" class="hover:text-gold">İletişim</a>
+                <div class="flex flex-col">
+                    <span class="gold-text font-semibold text-sm">İletişim</span>
+                    <div class="contact-info">
+                        CFO.MÜH. Orhan BOYRAZ<br>
+                        Mail: orhanboyraz0216@gmail.com<br>
+                        WhatsApp/Telf: 0541 866 0202
+                    </div>
+                </div>
             </div>
             <p>© 2025 Anadolu Network Fire Platformu | Altın Destekli Finans</p>
         </footer>
@@ -248,7 +261,7 @@
 
 <script>
     // ---------- Şifre girişi ----------
-    const correctPassword = "odak-2026";
+    const correctPassword = "altin2025";
     const loginPanel = document.getElementById('loginPanel');
     const dashboard = document.getElementById('dashboardContent');
     document.getElementById('loginBtn').onclick = () => {
@@ -280,10 +293,10 @@
     let marketProducts = {
         danismanlik: [
             { name: "Kişisel FIRE Danışmanlığı", price: 1500 },
-            { name: "Liderlik Danışmanlığı", price: 1500 }
-            { name: "Mental Sağlık Danışmanlığı", price: 1500 }
-            { name: "Girişim/Yatırım Danışmanlığı", price: 2500 }
-            { name: "CFO Finansal Yönetim", price: 2500 }
+            { name: "Liderlik Danışmanlığı", price: 1500 },
+            { name: "Mental Sağlık Danışmanlığı", price: 1500 },
+            { name: "Girişim/Yatırım Danışmanlığı", price: 2500 },
+            { name: "CFO Finansal Yönetim", price: 2500 },
             { name: "Yaşam Tasarımı/Koçluğu", price: 1500 }
         ],
         dijital: [
@@ -311,21 +324,17 @@
         if(membership === 'free') {
             portfoyWrapper.classList.add('relative');
             lockDiv.classList.remove('hidden');
-            // portföy içeriğini pasif yap
             document.querySelectorAll('#portfoyWrapper input, #portfoyWrapper button, #portfoyWrapper canvas, #portfoyWrapper table').forEach(el => el.style.pointerEvents = 'none');
         } else {
             lockDiv.classList.add('hidden');
             document.querySelectorAll('#portfoyWrapper input, #portfoyWrapper button, #portfoyWrapper canvas, #portfoyWrapper table').forEach(el => el.style.pointerEvents = 'auto');
         }
-        // Pro ve Premium: AI önerileri tam, portföy oluşturma aktif; zaten AI kısmı herkese açık fakat premium ekstra
-        // Yönetim paneli butonu sadece premium göstersin
         const adminBtn = document.getElementById('adminPanelBtn');
         if(membership !== 'premium') {
             adminBtn.style.display = 'none';
         } else {
             adminBtn.style.display = 'inline-flex';
         }
-        // Portföy güncelleme butonu pro/premium için aktif
         if(membership === 'free') document.getElementById('refreshPricesBtn').disabled = true;
         else document.getElementById('refreshPricesBtn').disabled = false;
     }
@@ -399,7 +408,7 @@
     }
 
     // Portföy işlemleri
-    function updatePortfolioUI() { let total=0, html=''; portfolioData.forEach(i=>{ let t=i.qty*i.price; total+=t; html+=`<tr class="border-b"><td>${i.name}</td><td>${i.qty}</td><td>₺${i.price.toFixed(2)}</td><td class="gold-text">₺${t.toFixed(0)}</td><td><span class="text-xs bg-gold/10 px-2 py-0.5 rounded-full">${i.class}</span></td></tr>`; }); document.getElementById('portfolioTableBody').innerHTML=html; document.getElementById('portfolioTotalVal').innerHTML=formatMoney(total); return total; }
+    function updatePortfolioUI() { let total=0, html=''; portfolioData.forEach(i=>{ let t=i.qty*i.price; total+=t; html+=`<tr class="border-b"><td>${i.name}</td><td>${i.qty}</td><td>₺${i.price.toFixed(2)}</td><td class="gold-text">₺${t.toFixed(0)}</td><td><span class="text-xs bg-gold/10 px-2 py-0.5 rounded-full">${i.class}</span></td>`; }); document.getElementById('portfolioTableBody').innerHTML=html; document.getElementById('portfolioTotalVal').innerHTML=formatMoney(total); return total; }
     function getPortfolioTotal(){ return portfolioData.reduce((s,i)=>s+(i.qty*i.price),0); }
     function updateAssetChart() {
         let classMap = new Map(); portfolioData.forEach(a=>{ let v=a.qty*a.price; classMap.set(a.class, (classMap.get(a.class)||0)+v); });
@@ -441,7 +450,7 @@
         currentMembership = tier;
         localStorage.setItem('fireMembership', tier);
         applyMembershipRestrictions();
-        updateFinancialHealth(); // AI önerileri güncelle
+        updateFinancialHealth();
         alert(`${tier.toUpperCase()} üyeliğe geçtiniz! Tüm özellikler aktif.`);
         document.getElementById('upgradeModal').classList.add('hidden');
     }
@@ -451,11 +460,9 @@
         document.getElementById('refreshPricesBtn')?.addEventListener('click', refreshMockPrices);
         ['monthlyIncome','monthlyExpense','currentAge','currentCapital','investmentReturn','inflationRate','forexEffect','baristaIncome','otherAssets','totalLiabilities','emergencyFund','extraIncome'].forEach(id=>{ document.getElementById(id)?.addEventListener('input',()=>{ computeFire(); updateFinancialHealth(); }); });
         document.querySelectorAll('.add-to-cart-btn').forEach(btn=>{ btn.addEventListener('click',()=>{ addToCart(btn.dataset.name, parseInt(btn.dataset.price)); }); });
-        // Sepet modal
         document.getElementById('cartButton').onclick = ()=>{ let m=document.getElementById('cartModal'); m.style.display='block'; setTimeout(()=> m.style.transform='translateX(0%)',10); };
         document.getElementById('closeCartBtn').onclick = ()=>{ let m=document.getElementById('cartModal'); m.style.transform='translateX(100%)'; setTimeout(()=> m.style.display='none',300); };
-        document.getElementById('whatsappOrderBtn').onclick = ()=>{ if(cart.length===0){ alert("Sepet boş"); return; } let msg="Merhaba, Fire Platformu sipariş:%0A"; cart.forEach(i=>msg+=`- ${i.name} : ${formatMoney(i.price)}%0A`); msg+=`Toplam: ${formatMoney(cart.reduce((a,b)=>a+b.price,0))}`; window.open(`https://wa.me/905555555555?text=${msg}`,'_blank'); };
-        // Admin modal
+        document.getElementById('whatsappOrderBtn').onclick = ()=>{ if(cart.length===0){ alert("Sepet boş"); return; } let msg="Merhaba, Fire Platformu sipariş:%0A"; cart.forEach(i=>msg+=`- ${i.name} : ${formatMoney(i.price)}%0A`); msg+=`Toplam: ${formatMoney(cart.reduce((a,b)=>a+b.price,0))}`; window.open(`https://wa.me/905055555555?text=${msg}`,'_blank'); };
         const adminModal = document.getElementById('adminModal');
         document.getElementById('adminPanelBtn').onclick = ()=>{ if(currentMembership!=='premium'){ alert("Bu özellik sadece Premium üyelere özeldir."); return; } renderAdminProductList(); adminModal.classList.remove('hidden'); };
         document.getElementById('quickAdminBtn').onclick = ()=>{ if(currentMembership!=='premium'){ alert("Ürün yönetimi için Premium üye olmalısınız."); return; } renderAdminProductList(); adminModal.classList.remove('hidden'); };
@@ -471,7 +478,6 @@
             document.getElementById('newProductName').value=''; document.getElementById('newProductPrice').value='';
         };
         window.onclick = (e)=> { if(e.target === adminModal) adminModal.classList.add('hidden'); };
-        // Üyelik Modülü
         const upgradeModal = document.getElementById('upgradeModal');
         document.getElementById('upgradeBtn').onclick = ()=> upgradeModal.classList.remove('hidden');
         document.getElementById('closeUpgradeBtn').onclick = ()=> upgradeModal.classList.add('hidden');
@@ -484,7 +490,6 @@
     }
 
     function initApp() {
-        // LocalStorage'dan ürünleri yükle
         let savedProducts = localStorage.getItem('fireMarketProducts');
         if(savedProducts) marketProducts = JSON.parse(savedProducts);
         updatePortfolioUI(); updateAssetChart(); computeFire(); updateFinancialHealth(); renderMarketProducts(); applyMembershipRestrictions(); bindEvents();
