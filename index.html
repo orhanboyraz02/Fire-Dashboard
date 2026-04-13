@@ -73,6 +73,7 @@ FİRE DASHBOARD PANELİ:
                 <a href="#calc" class="nav-link">HESAPLAYICI</a>
                 <a href="#academy" class="nav-link">AKADEMİ</a>
                 <a href="#services" class="nav-link">DANIŞMANLIK</a>
+                <a href="#market" class="nav-link">PORTFÖY</a>
                 <a href="#market" class="nav-link">MARKET</a>
                 <button onclick="openCart()" class="bg-white px-4 py-2 rounded-full border-2 border-[#003366] font-black">🛒 <span id="cartCount">0</span></button>
             </div>
@@ -82,7 +83,7 @@ FİRE DASHBOARD PANELİ:
     <div class="max-w-7xl mx-auto px-6">
         
         <section id="calc" class="mb-20 text-center">
-            <h2 class="text-5xl md:text-7xl font-black italic tracking-tighter mb-4 gold-text uppercase">FİRE; ÖZGÜRLÜK MİMARİSİ V5.0</h2>
+            <h2 class="text-5xl md:text-7xl font-black italic tracking-tighter mb-4 gold-text uppercase">FİRE; ÖZGÜRLÜK MİMARİSİ V12.0</h2>
             <p class="font-black uppercase tracking-[0.3em] text-lg text-[#003366]">CFO.MÜH: ORHAN BOYRAZ</p>
             
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 mt-16">
@@ -93,7 +94,7 @@ FİRE DASHBOARD PANELİ:
                         <div>Sermaye (₺): <span id="vAssets" class="text-lg gold-text">50k</span><input type="range" id="inAssets" min="0" max="5000000" step="10000" value="50000" oninput="run()"></div>
                         <div>Aylık Birikim (₺): <span id="vSavings" class="text-lg gold-text">10k</span><input type="range" id="inSavings" min="0" max="150000" step="1000" value="10000" oninput="run()"></div>
                         <div>Hedef Gelir (₺): <span id="vExpense" class="text-lg gold-text">50k</span><input type="range" id="inExpense" min="10000" max="500000" step="5000" value="50000" oninput="run()"></div>
-                        <div>AI Kaldıraç: <span id="vAi" class="text-lg gold-text">%30</span><input type="range" id="inAi" min="0" max="100" value="30" oninput="run()"></div>
+                        <div>AI Kaldıraç/Enflasyon: <span id="vAi" class="text-lg gold-text">%30</span><input type="range" id="inAi" min="0" max="100" value="30" oninput="run()"></div>
                     </div>
                 </div>
                 <div class="lg:col-span-7 space-y-6">
@@ -120,7 +121,7 @@ FİRE DASHBOARD PANELİ:
         </div>
 
         <div id="content-market" class="mb-20">
-            <h3 class="text-2xl font-black mb-8 border-l-8 border-[#003366] pl-4 uppercase">MARKET</h3>
+            <h3 class="text-2xl font-black mb-8 border-l-8 border-[#003366] pl-4 uppercase"> ODAK DİJİTAL MARKET</h3>
             <div id="list-market" class="grid grid-cols-2 md:grid-cols-4 gap-6"></div>
         </div>
 
@@ -132,7 +133,9 @@ FİRE DASHBOARD PANELİ:
                     <select id="admCat" class="w-full text-black">
                         <option value="academy">Akademi</option>
                         <option value="services">Danışmanlık</option>
-                        <option value="market">Market</option>
+                        <option value="services">Valık(+)</option>
+                        <option value="services">Borç(-)</option>
+                        <option value="market">Odak Market</option>
                     </select>
                 </div>
                 <div>
@@ -153,9 +156,10 @@ FİRE DASHBOARD PANELİ:
     <footer class="mt-20 border-t-4 border-[#b8860b] py-20 px-8">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20">
             <div class="space-y-6">
-                <h4 class="font-black text-3xl gold-text uppercase">ANADOLU NETWORK</h4>
-                <p class="text-xl font-bold uppercase text-[#003366]">ADRES: ODAK AŞ: Nilüfer/BURSA</p>
+                <h4 class="font-black text-3xl gold-text uppercase">ANADOLU NETWORK</h2>
+                <p class="text-xl font-bold uppercase text-[#003366]">ADRES: ODAK FİNANCE: Nilüfer/BURSA</p>
                 <div class="space-y-2 opacity-80">
+                    <a href="https://anadolunetwork.tr" target="_blank" class="block font-bold">🛒 ANADOLU NETWORK ↗</a>
                     <a href="https://www.ortakmarkets.com.tr" target="_blank" class="block font-bold">🛒 ORTAK MARKETS ↗</a>
                     <a href="https://www.odakdijital.com.tr" target="_blank" class="block font-bold">🚀 ODAK DİJİTAL ↗</a>
                 </div>
@@ -181,13 +185,15 @@ FİRE DASHBOARD PANELİ:
                 { name: "AI & Gelir Otomasyonu", price: 6000 }
             ],
             services: [
-                { name: "CFO Finansal Yönetim", price: 8500 },
-                { name: "Liderlik Danışmanlığı", price: 5000 },
-                { name: "Yatırım Danışmanlığı", price: 7500 }
+                { name: "CFO Finansal Yönetim", price: 4500 },
+                { name: "Girişim Danışmanlığı", price: 4500 },
+                { name: "Liderlik Danışmanlığı", price: 4500 },
+                { name: "Mental Sağlık Danışmanlığı", price: 4500 },
+                { name: "Yatırım/Portföy Danışmanlığı", price: 4500 }
             ],
             market: [
-                { name: "FİRE Rehberi E-Kitap", price: 290 },
-                { name: "Yatırım Takip Excel", price: 450 }
+                { name: "FİRE Rehberi E-Kitap", price: 150 },
+                { name: "Yatırım Takip Excel", price: 150 }
             ]
         };
 
