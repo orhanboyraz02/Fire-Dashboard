@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FİRE: ÖZGÜRLÜK MİMARİSİ V5.0 | Anadolu Network</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root { 
+            --gold: #f5c842; 
+            --sky-blue: #87CEEB; /* Hava Mavisi */
+            --deep-blue: #003366; 
+        }
+        
+        body { 
+            background-color: var(--sky-blue); 
+            color: var(--deep-blue); 
+            font-family: 'Inter', sans-serif; 
+            scroll-behavior: smooth; 
+        }
+        
+        .gold-text { color: #b8860b !important; font-weight: 900; }
+        .glass { 
+            background: rgba(255, 255, 255, 0.4); 
+            backdrop-filter: blur(15px); 
+            border: 2px solid rgba(255, 255, 255, 0.5); 
+            border-radius: 1.5rem; 
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        
+        .admin-box { background: #1a1a1a; color: white !important; border-radius: 1rem; padding: 20px; margin-top: 50px; }
+        .admin-box * { color: white !important; }
+        .admin-box input, .admin-box select { background: #333; border: 1px solid #555; padding: 5px; border-radius: 4px; }
+
+        input[type=range] { accent-color: var(--deep-blue); width: 100%; }
+        
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 10000; align-items: center; justify-content: center; }
+        
+        .nav-link { font-weight: 800; text-transform: uppercase; color: var(--deep-blue) !important; }
+        .nav-link:hover { color: #b8860b !important; }
+    </style>
+</head>
+<body class="pb-10">
+
+    <div id="cartModal" class="modal">
+        <div class="glass p-10 max-w-lg w-full text-center">
+            <h2 class="text-2xl font-black mb-6 uppercase italic">SİPARİŞ ÖZETİ</h2>
+            <div id="cartItemsList" class="space-y-4 mb-6"></div>
+            <div class="border-t border-black/10 pt-4 mb-6 flex justify-between font-bold text-xl">
+                <span>TOPLAM:</span><span id="cartTotal">0 ₺</span>
+            </div>
+            <div class="space-y-4">
+                <input type="text" id="custName" placeholder="Ad Soyad" class="w-full p-3 rounded-lg border">
+                <input type="text" id="custTel" placeholder="Telefon" class="w-full p-3 rounded-lg border">
+                <button onclick="completeOrder()" class="w-full bg-[#b8860b] text-white py-4 rounded-xl font-black uppercase shadow-lg">WHATSAPP İLE GÖNDER</button>
+                <button onclick="closeCart()" class="w-full text-xs font-bold opacity-50 uppercase">KAPAT</button>
+            </div>
+        </div>
+    </div>
+
+    <nav class="sticky top-0 z-50 px-8 py-4 bg-white/70 backdrop-blur-md border-b-2 border-white mb-10 shadow-sm">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-[#003366] rounded-xl flex items-center justify-center shadow-lg"><span class="text-white font-black text-xl">AN</span></div>
+                <div>
+                    <h1 class="font-black text-xl tracking-tighter leading-none uppercase">Anadolu Network</h1>
+                    <span class="text-[10px] font-bold opacity-70">FİRE & DİJİTAL EKOSİSTEM</span>
+                </div>
+            </div>
+            <div class="hidden lg:flex gap-8 items-center">
+                <a href="#calc" class="nav-link">HESAPLAYICI</a>
+                <a href="#academy" class="nav-link">AKADEMİ</a>
+                <a href="#services" class="nav-link">DANIŞMANLIK</a>
+                <a href="#market" class="nav-link">MARKET</a>
+                <button onclick="openCart()" class="bg-white px-4 py-2 rounded-full border-2 border-[#003366] font-black">🛒 <span id="cartCount">0</span></button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto px-6">
+        
+        <section id="calc" class="mb-20 text-center">
+            <h2 class="text-5xl md:text-7xl font-black italic tracking-tighter mb-4 gold-text uppercase">FİRE; ÖZGÜRLÜK MİMARİSİ V5.0</h2>
+            <p class="font-black uppercase tracking-[0.3em] text-lg text-[#003366]">CFO.MÜH: ORHAN BOYRAZ</p>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 mt-16">
+                <div class="lg:col-span-5 glass p-10 space-y-8 text-left">
+                    <h3 class="font-black border-b-2 border-black/10 pb-2 uppercase">STRATEJİ GİRİŞLERİ</h3>
+                    <div class="space-y-6 font-bold uppercase text-xs">
+                        <div>Mevcut Yaş: <span id="vAge" class="text-lg gold-text">30</span><input type="range" id="inAge" min="18" max="65" value="30" oninput="run()"></div>
+                        <div>Sermaye (₺): <span id="vAssets" class="text-lg gold-text">50k</span><input type="range" id="inAssets" min="0" max="5000000" step="10000" value="50000" oninput="run()"></div>
+                        <div>Aylık Birikim (₺): <span id="vSavings" class="text-lg gold-text">10k</span><input type="range" id="inSavings" min="0" max="150000" step="1000" value="10000" oninput="run()"></div>
+                        <div>Hedef Gelir (₺): <span id="vExpense" class="text-lg gold-text">50k</span><input type="range" id="inExpense" min="10000" max="500000" step="5000" value="50000" oninput="run()"></div>
+                        <div>AI Kaldıraç: <span id="vAi" class="text-lg gold-text">%30</span><input type="range" id="inAi" min="0" max="100" value="30" oninput="run()"></div>
+                    </div>
+                </div>
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="glass p-8 text-center"><span class="text-[10px] font-black opacity-60 uppercase">FIRE YAŞI</span><div id="rAge" class="text-5xl font-black gold-text italic">--</div></div>
+                        <div class="glass p-8 text-center"><span class="text-[10px] font-black opacity-60 uppercase">KALAN SÜRE</span><div id="rYears" class="text-5xl font-black gold-text italic">--</div></div>
+                        <div class="glass p-8 text-center"><span class="text-[10px] font-black opacity-60 uppercase">HEDEF VARLIK</span><div id="rTarget" class="text-3xl font-black gold-text italic">--</div></div>
+                    </div>
+                    <div class="glass p-10 flex items-center min-h-[150px] border-l-8 border-[#b8860b]">
+                        <p id="rText" class="text-xl font-bold italic leading-relaxed">Verileri girin, Orhan BOYRAZ mentorluğunda yol haritanızı çizin...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div id="content-academy" class="mb-20">
+            <h3 class="text-2xl font-black mb-8 border-l-8 border-[#003366] pl-4 uppercase">AKADEMİ & EĞİTİMLER</h3>
+            <div id="list-academy" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+        </div>
+
+        <div id="content-services" class="mb-20">
+            <h3 class="text-2xl font-black mb-8 border-l-8 border-[#003366] pl-4 uppercase">DANIŞMANLIK HİZMETLERİ</h3>
+            <div id="list-services" class="grid grid-cols-2 md:grid-cols-4 gap-6"></div>
+        </div>
+
+        <div id="content-market" class="mb-20">
+            <h3 class="text-2xl font-black mb-8 border-l-8 border-[#003366] pl-4 uppercase">MARKET</h3>
+            <div id="list-market" class="grid grid-cols-2 md:grid-cols-4 gap-6"></div>
+        </div>
+
+        <div class="admin-box">
+            <h3 class="text-xl font-black mb-4 gold-text underline uppercase">⚙️ YÖNETİM PANELİ (Sadece Siz Görürsünüz)</h3>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
+                <div>
+                    <label class="block text-[10px] mb-1">Bölüm Seçin</label>
+                    <select id="admCat" class="w-full text-black">
+                        <option value="academy">Akademi</option>
+                        <option value="services">Danışmanlık</option>
+                        <option value="market">Market</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-[10px] mb-1">Ürün/Hizmet Adı</label>
+                    <input type="text" id="admName" class="w-full text-black">
+                </div>
+                <div>
+                    <label class="block text-[10px] mb-1">Fiyat (₺)</label>
+                    <input type="number" id="admPrice" class="w-full text-black">
+                </div>
+                <button onclick="addItem()" class="bg-green-600 p-2 font-black rounded uppercase">Ekle / Güncelle</button>
+            </div>
+            <p class="text-[9px] mt-4 opacity-50 italic">* Eklediğiniz ürünler yukarıdaki ilgili bölüme anında yansır.</p>
+        </div>
+
+    </div>
+
+    <footer class="mt-20 border-t-4 border-[#b8860b] py-20 px-8">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20">
+            <div class="space-y-6">
+                <h4 class="font-black text-3xl gold-text uppercase">ANADOLU NETWORK</h4>
+                <p class="text-xl font-bold uppercase text-[#003366]">ADRES: ODAK AŞ: Nilüfer/BURSA</p>
+                <div class="space-y-2 opacity-80">
+                    <a href="https://www.ortakmarkets.com.tr" target="_blank" class="block font-bold">🛒 ORTAK MARKETS ↗</a>
+                    <a href="https://www.odakdijital.com.tr" target="_blank" class="block font-bold">🚀 ODAK DİJİTAL ↗</a>
+                </div>
+            </div>
+            
+            <div class="space-y-8 bg-white/30 p-10 rounded-3xl border-2 border-white">
+                <h4 class="font-black text-xl border-b-2 border-[#003366] pb-2 uppercase">İLETİŞİM BİLGİLERİ</h4>
+                <div class="space-y-6">
+                    <p class="text-2xl font-black">👤 CFO.MÜH: ORHAN BOYRAZ</p>
+                    <p class="text-4xl font-black gold-text">📞 <a href="tel:05418660202">0541 866 02 02</a></p>
+                    <p class="text-2xl font-black text-[#003366]">📧 <a href="mailto:orhanboyraz0216@gmail.com">orhanboyraz0216@gmail.com</a></p>
+                    <p class="text-3xl font-black underline italic">🌐 <a href="https://anadolunetwork.tr" target="_blank">anadolunetwork.tr</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // VERİ YÖNETİMİ (LocalStorage ile kalıcı hale getirildi)
+        let APP_DATA = JSON.parse(localStorage.getItem('anadolu_data')) || {
+            academy: [
+                { name: "F.I.R.E Eğitimi (Full)", price: 4500 },
+                { name: "AI & Gelir Otomasyonu", price: 6000 }
+            ],
+            services: [
+                { name: "CFO Finansal Yönetim", price: 8500 },
+                { name: "Liderlik Danışmanlığı", price: 5000 },
+                { name: "Yatırım Danışmanlığı", price: 7500 }
+            ],
+            market: [
+                { name: "FİRE Rehberi E-Kitap", price: 290 },
+                { name: "Yatırım Takip Excel", price: 450 }
+            ]
+        };
+
+        let cart = [];
+
+        function renderAll() {
+            localStorage.setItem('anadolu_data', JSON.stringify(APP_DATA));
+            
+            ['academy', 'services', 'market'].forEach(cat => {
+                const container = document.getElementById(`list-${cat}`);
+                container.innerHTML = APP_DATA[cat].map((item, idx) => `
+                    <div class="glass p-6 border-b-4 border-[#b8860b] flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-black uppercase text-sm mb-2">${item.name}</h4>
+                            <div class="text-xl font-black gold-text mb-4">${item.price.toLocaleString()} ₺</div>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="addToCart('${item.name}', ${item.price})" class="flex-1 bg-[#003366] text-white py-2 rounded font-bold text-[10px] uppercase">SEPETE EKLE</button>
+                            <button onclick="deleteItem('${cat}', ${idx})" class="bg-red-500 text-white px-2 rounded text-[10px]">🗑️</button>
+                        </div>
+                    </div>
+                `).join('');
+            });
+        }
+
+        // ADMIN FONKSİYONLARI
+        function addItem() {
+            const cat = document.getElementById('admCat').value;
+            const name = document.getElementById('admName').value;
+            const price = parseInt(document.getElementById('admPrice').value);
+            
+            if(name && price) {
+                APP_DATA[cat].push({ name, price });
+                renderAll();
+                document.getElementById('admName').value = '';
+                document.getElementById('admPrice').value = '';
+            }
+        }
+
+        function deleteItem(cat, idx) {
+            if(confirm('Bu öğeyi silmek istediğinize emin misiniz?')) {
+                APP_DATA[cat].splice(idx, 1);
+                renderAll();
+            }
+        }
+
+        // SEPET VE HESAPLAMA (Önceki mantıkla aynı, optimize edilmiş)
+        function addToCart(name, price) { cart.push({name, price}); updateCartUI(); }
+        function updateCartUI() {
+            document.getElementById('cartCount').innerText = cart.length;
+            let total = 0;
+            document.getElementById('cartItemsList').innerHTML = cart.map((i, idx) => {
+                total += i.price;
+                return `<div class="flex justify-between font-bold text-xs uppercase"><span>${i.name}</span><span>${i.price} ₺</span></div>`;
+            }).join('');
+            document.getElementById('cartTotal').innerText = total.toLocaleString() + " ₺";
+        }
+        function openCart() { document.getElementById('cartModal').style.display = 'flex'; }
+        function closeCart() { document.getElementById('cartModal').style.display = 'none'; }
+
+        function completeOrder() {
+            const name = document.getElementById('custName').value;
+            const tel = document.getElementById('custTel').value;
+            let msg = `YENİ SİPARİŞ (Anadolu Network)\n\n👤 ${name}\n📞 ${tel}\n\n🛒 Ürünler:\n` + cart.map(i => `- ${i.name}`).join('\n') + `\n\n💰 Toplam: ${document.getElementById('cartTotal').innerText}`;
+            window.open(`https://wa.me/905418660202?text=${encodeURIComponent(msg)}`);
+        }
+
+        function run() {
+            const age = parseInt(document.getElementById('inAge').value);
+            const assets = parseInt(document.getElementById('inAssets').value);
+            const savings = parseInt(document.getElementById('inSavings').value);
+            const expense = parseInt(document.getElementById('inExpense').value);
+            const ai = parseInt(document.getElementById('inAi').value);
+
+            document.getElementById('vAge').innerText = age;
+            document.getElementById('vAssets').innerText = (assets/1000).toFixed(0) + "k";
+            document.getElementById('vSavings').innerText = (savings/1000).toFixed(0) + "k";
+            document.getElementById('vExpense').innerText = (expense/1000).toFixed(0) + "k";
+            document.getElementById('vAi').innerText = "%" + ai;
+
+            const target = (expense * 12) / 0.04;
+            const years = Math.log(target / (assets + 1)) / Math.log(1.08 + (ai/200));
+            const rY = isNaN(years) || years < 0 ? 0 : years.toFixed(1);
+
+            document.getElementById('rAge').innerText = (age + parseFloat(rY)).toFixed(1);
+            document.getElementById('rYears').innerText = rY + " YIL";
+            document.getElementById('rTarget').innerText = (target/1000000).toFixed(1) + "M ₺";
+            document.getElementById('rText').innerText = `Analiz: Aylık ${expense.toLocaleString()} ₺ pasif gelir için ${(target/1000000).toFixed(2)} Milyon ₺ sermaye gerekiyor. Orhan BOYRAZ mentorluğunda bu hedefe ${rY} yılda ulaşabilirsiniz.`;
+        }
+
+        window.onload = () => { renderAll(); run(); };
+    </script>
+</body>
+</html>
