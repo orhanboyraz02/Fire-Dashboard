@@ -1,205 +1,310 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANADOLU NETWORK | ODAK FİNANCE</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root { --parlament: #001F3F; --gold: #FFD700; }
-        body { background-color: var(--parlament); color: white; font-family: 'Montserrat', sans-serif; }
-        .gold-title { font-family: 'Oswald', sans-serif; color: var(--gold); text-transform: uppercase; }
-        .card { background: rgba(255, 255, 255, 0.05); border: 2px solid var(--gold); border-radius: 1.5rem; padding: 2rem; }
-        input, select { background: #00152b; border: 1px solid var(--gold); padding: 12px; border-radius: 8px; color: white; width: 100%; outline: none; }
-        input[type=range] { accent-color: var(--gold); }
-        .gold-bg { background-color: var(--gold); color: var(--parlament); }
-        #adminPanel { display: none; }
-        .nav-link { font-weight: 900; font-size: 13px; text-transform: uppercase; color: white; transition: 0.3s; }
-        .nav-link:hover { color: var(--gold); }
-    </style>
-</head>
-<body>
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'dart:math';
 
-    <nav class="bg-[#000d1a] border-b-4 border-gold p-6 sticky top-0 z-50 shadow-2xl">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-4">
-                <div class="w-12 h-12 gold-bg rounded flex items-center justify-center font-black text-xl shadow-lg italic">AN</div>
-                <h1 class="text-2xl font-black gold-title italic">ANADOLU NETWORK</h1>
-            </div>
-            <div class="hidden md:flex gap-8 items-center">
-                <a href="#fire" class="nav-link">F.I.R.E</a>
-                <a href="#portfoy" class="nav-link">Portföy</a>
-                <a href="#market" class="nav-link text-gold">ODAK MARKET</a>
-                <a href="https://www.anadolunetwork.tr" target="_blank" class="gold-bg px-4 py-2 rounded font-black text-[10px]">WWW.ANADOLUNETWORK.TR</a>
-            </div>
-        </div>
-    </nav>
+void main() {
+  runApp(const OdakFinanceApp());
+}
 
-    <main class="max-w-7xl mx-auto px-6 py-12 space-y-16">
-        
-        <div class="text-center max-w-4xl mx-auto space-y-4">
-            <h2 class="text-3xl md:text-5xl font-black gold-title italic">FİNANSAL ÖZGÜRLÜK MERKEZİ</h2>
-            <p class="text-sm md:text-lg font-bold text-white/70 italic leading-relaxed">
-                AnadoluNetwork; Bir Eğitim, Kültür, Haber, Network, Finans ve FİRE Danışmanlık Websitesidir.
-            </p>
-        </div>
+class OdakFinanceApp extends StatelessWidget {
+  const OdakFinanceApp({super.key});
 
-        <section id="fire" class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-            <div class="card border-l-[15px]">
-                <h2 class="text-3xl font-black gold-title mb-8 italic border-b border-gold/20 pb-2">STRATEJİ VERİLERİ</h2>
-                <div class="space-y-6 font-bold text-[11px] uppercase tracking-wider">
-                    <div><label>Yaşınız: <span id="lAge" class="text-gold text-lg">30</span></label><input type="range" id="iAge" min="18" max="75" value="30" oninput="run()"></div>
-                    <div><label>Sermaye: <span id="lCap" class="text-gold text-lg">100.000 ₺</span></label><input type="range" id="iCap" min="0" max="10000000" step="50000" value="100000" oninput="run()"></div>
-                    <div><label>Aylık Tasarruf: <span id="lSav" class="text-gold text-lg">10.000 ₺</span></label><input type="range" id="iSav" min="0" max="250000" step="1000" value="10000" oninput="run()"></div>
-                    <div><label>Ek Pasif Gelir: <span id="lPas" class="text-gold text-lg">0 ₺</span></label><input type="range" id="iPas" min="0" max="100000" step="1000" value="0" oninput="run()"></div>
-                    <div><label>Hedef Gider: <span id="lExp" class="text-gold text-lg">50.000 ₺</span></label><input type="range" id="iExp" min="10000" max="500000" step="5000" value="50000" oninput="run()"></div>
-                    <div><label>AI Getiri Oranı: <span id="lAi" class="text-gold text-lg">%30</span></label><input type="range" id="iAi" min="5" max="100" value="30" oninput="run()"></div>
-                </div>
-            </div>
-            <div class="card flex flex-col justify-center text-center bg-white/5 border-dashed">
-                <p class="text-[10px] font-bold opacity-50 uppercase mb-4 tracking-[0.3em]">Özgürlük Analizi</p>
-                <h3 id="resAge" class="text-[110px] font-black gold-title italic leading-none">--</h3>
-                <div class="grid grid-cols-2 gap-4 mt-8">
-                    <div class="p-6 bg-black/30 rounded-2xl"><p class="text-[10px] uppercase">Kalan Yıl</p><p id="resYears" class="text-4xl font-black">--</p></div>
-                    <div class="p-6 bg-black/30 rounded-2xl"><p class="text-[10px] uppercase">Hedef Varlık</p><p id="resTarget" class="text-4xl font-black text-gold">--</p></div>
-                </div>
-            </div>
-        </section>
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'ANADOLU NETWORK | ODAK FİNANCE',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        scaffoldBackgroundColor: const Color(0xFF001F3F),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFFFFD700), brightness: Brightness.dark),
+        textTheme: GoogleFonts.montserratTextTheme(Theme.of(context).textTheme).apply(bodyColor: Colors.white),
+      ),
+      home: const DashboardScreen(),
+    );
+  }
+}
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="card border-t-8 border-green-500">
-                <h3 class="text-xl font-black gold-title mb-4 italic">VARLIKLAR (+)</h3>
-                <div id="vList" class="space-y-2 text-sm"></div>
-            </div>
-            <div class="card border-t-8 border-red-500">
-                <h3 class="text-xl font-black gold-title mb-4 italic">BORÇLAR (-)</h3>
-                <div id="bList" class="space-y-2 text-sm opacity-60"></div>
-            </div>
-            <div class="card border-t-8 border-gold">
-                <h3 class="text-xl font-black gold-title mb-4 italic">DANIŞMANLIKLAR</h3>
-                <div id="dList" class="space-y-2 text-sm text-gold font-bold"></div>
-            </div>
-        </div>
+class DashboardScreen extends StatefulWidget {
+  const DashboardScreen({super.key});
 
-        <section id="market" class="space-y-10">
-            <h2 class="text-4xl font-black gold-title italic text-center underline underline-offset-8">ODAK MARKET</h2>
-            <div id="mList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
-        </section>
+  @override
+  State<DashboardScreen> createState() => _DashboardScreenState();
+}
 
-        <section class="card border-4 border-gold shadow-2xl">
-            <div id="login" class="text-center">
-                <h3 class="text-xl font-black gold-title mb-6 italic">ADMİN KONTROL</h3>
-                <div class="flex flex-col md:flex-row justify-center gap-4 italic">
-                    <input type="password" id="pw" placeholder="Şifre" class="max-w-xs text-center font-black">
-                    <button onclick="auth()" class="gold-bg px-12 py-3 rounded font-black uppercase">GİRİŞ</button>
-                </div>
-            </div>
-            <div id="adminPanel" class="space-y-6">
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 italic font-bold">
-                    <select id="aCat">
-                        <option value="v">VARLIK (+)</option>
-                        <option value="b">BORÇ (-)</option>
-                        <option value="d">DANIŞMANLIK</option>
-                        <option value="m">MARKET ÜRÜNÜ</option>
-                    </select>
-                    <input type="text" id="aName" placeholder="Kalem İsmi">
-                    <input type="number" id="aVal" placeholder="Tutar (₺)">
-                    <button onclick="add()" class="gold-bg font-black rounded uppercase">SİSTEME EKLE</button>
-                </div>
-            </div>
-        </section>
-    </main>
+class _DashboardScreenState extends State<DashboardScreen> {
+  // F.I.R.E Değişkenleri
+  double age = 30;
+  double capital = 100000;
+  double savings = 10000;
+  double expenses = 50000;
+  double aiReturn = 30;
 
-    <footer class="bg-[#000d1a] border-t-8 border-gold pt-20 pb-12 px-8 mt-20 italic">
-        <div class="max-w-7xl mx-auto text-center">
-            <h2 class="text-5xl md:text-8xl font-black gold-title italic mb-12">ANADOLU NETWORK</h2>
+  // Admin Kontrol
+  bool isAdmin = false;
+  final TextEditingController _pwController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _valController = TextEditingController();
+  String selectedCategory = 'v';
+
+  // Veri Listeleri (Varlık, Borç, Ürün, Danışmanlık)
+  List<Map<String, dynamic>> assets = [];
+  List<Map<String, dynamic>> liabilities = [];
+  List<Map<String, dynamic>> products = [];
+  List<Map<String, dynamic>> consulting = [];
+
+  final Color gold = const Color(0xFFFFD700);
+  final Color darkBlue = const Color(0xFF000D1A);
+
+  // Link Açıcı (WhatsApp & Web)
+  Future<void> _launchURL(String url) async {
+    final Uri uri = Uri.parse(url);
+    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+      debugPrint("Link açılamadı: $url");
+    }
+  }
+
+  // F.I.R.E Hesaplama
+  Map<String, String> get calc {
+    double target = (expenses * 12) / 0.04;
+    double years = log(target / (capital + 1)) / log(1 + (aiReturn / 100));
+    if (years.isNaN || years < 0) years = 0;
+    return {
+      'age': (age + years).toStringAsFixed(1),
+      'years': years.toStringAsFixed(1),
+      'target': (target / 1000000).toStringAsFixed(1),
+    };
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: darkBlue,
+        centerTitle: false,
+        title: Text('ANADOLU NETWORK', style: GoogleFonts.oswald(color: gold, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic)),
+        actions: [
+          TextButton(
+            onPressed: () => _launchURL("https://www.anadolunetwork.tr"),
+            child: Text("WWW.ANADOLUNETWORK.TR", style: TextStyle(color: gold, fontSize: 10, fontWeight: FontWeight.bold)),
+          )
+        ],
+        bottom: PreferredSize(preferredSize: const Size.fromHeight(4), child: Container(color: gold, height: 4)),
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // ODAK FİNANCE BAŞLIK
+            _headerSection(),
+            const SizedBox(height: 30),
+
+            // F.I.R.E HESAPLAYICI
+            _sectionTitle("F.I.R.E STRATEJİSİ"),
+            _fireCard(),
+            const SizedBox(height: 30),
+
+            // DANIŞMANLIKLAR & ÜRÜNLER (Dinamik Liste)
+            if (consulting.isNotEmpty) ...[
+              _sectionTitle("DANIŞMANLIK HİZMETLERİ"),
+              _buildHorizontalList(consulting, "Danışmanlık"),
+            ],
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 border-t border-white/10 pt-16 text-left font-bold">
-                <div class="space-y-6">
-                    <h5 class="text-gold font-black text-xs uppercase tracking-[0.3em]">RESMİ WEB SİTEMİZ</h5>
-                    <a href="https://www.anadolunetwork.tr" target="_blank" class="block text-3xl font-black text-white hover:text-gold transition underline">WWW.ANADOLUNETWORK.TR</a>
-                    <p class="text-xs text-white/40 uppercase leading-relaxed">Eğitim, Kültür, Haber, Network, Finans ve FİRE Danışmanlık Platformu.</p>
-                </div>
+            if (products.isNotEmpty) ...[
+              _sectionTitle("ÜRÜNLER & HİZMETLER"),
+              _buildHorizontalList(products, "Ürün"),
+            ],
 
-                <div class="md:text-right space-y-6">
-                    <h5 class="text-gold font-black text-xs uppercase tracking-[0.3em]">ODAK FİNANCE MERKEZİ</h5>
-                    <p class="text-2xl font-black text-white italic">Nilüfer / BURSA</p>
-                    <div class="flex flex-col md:items-end gap-4">
-                        <a href="https://wa.me/905418660202" target="_blank" class="bg-green-600 text-white px-8 py-4 rounded-full font-black text-sm shadow-xl hover:scale-105 transition">
-                            <i class="fab fa-whatsapp text-xl mr-2"></i> whatsapp: 0541 866 02 02
-                        </a>
-                        <p class="text-lg font-bold text-gold">orhanboyraz0216@gmail.com</p>
-                        <p class="text-[10px] font-bold text-white/30 uppercase tracking-widest leading-none">CFO.MÜH: ORHAN BOYRAZ</p>
-                    </div>
-                </div>
-            </div>
-            <p class="mt-20 text-[9px] font-black opacity-5 tracking-[2em]">ANADOLU NETWORK 2026</p>
-        </div>
-    </footer>
+            const SizedBox(height: 30),
 
-    <script>
-        let DATA = JSON.parse(localStorage.getItem('AN_V17')) || { v: [], b: [], m: [], d: [] };
+            // YÖNETİM PANELİ
+            _sectionTitle("SİSTEM YÖNETİMİ"),
+            _adminSection(),
 
-        function auth() {
-            if(document.getElementById('pw').value === "orhan123") {
-                document.getElementById('login').style.display = 'none';
-                document.getElementById('adminPanel').style.display = 'block';
-            } else alert("Hatalı Şifre!");
-        }
+            const SizedBox(height: 50),
+            _footerSection(),
+          ],
+        ),
+      ),
+    );
+  }
 
-        function add() {
-            const c = document.getElementById('aCat').value, n = document.getElementById('aName').value, v = parseInt(document.getElementById('aVal').value);
-            if(n && v) { DATA[c].push({n, v}); render(); }
-        }
+  Widget _headerSection() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text("ODAK FİNANCE", style: GoogleFonts.oswald(fontSize: 40, color: Colors.white, fontWeight: FontWeight.black)),
+        Text("NİLÜFER / BURSA", style: TextStyle(color: gold, letterSpacing: 4, fontWeight: FontWeight.bold)),
+      ],
+    );
+  }
 
-        function del(c, i) { DATA[c].splice(i, 1); render(); }
+  Widget _sectionTitle(String title) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 15),
+      child: Text(title, style: GoogleFonts.oswald(color: gold, fontSize: 22, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic)),
+    );
+  }
 
-        function run() {
-            const age = parseInt(document.getElementById('iAge').value);
-            const cap = parseInt(document.getElementById('iCap').value);
-            const sav = parseInt(document.getElementById('iSav').value);
-            const pas = parseInt(document.getElementById('iPas').value);
-            const exp = parseInt(document.getElementById('iExp').value);
-            const ai = parseInt(document.getElementById('iAi').value);
+  Widget _fireCard() {
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.05),
+        border: Border(left: BorderSide(color: gold, width: 10)),
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: Column(
+        children: [
+          _sliderRow("Yaşınız", age, 18, 75, (v) => setState(() => age = v), ""),
+          _sliderRow("Sermaye", capital, 0, 5000000, (v) => setState(() => capital = v), "₺"),
+          _sliderRow("Hedef Gider", expenses, 5000, 200000, (v) => setState(() => expenses = v), "₺"),
+          _sliderRow("Getiri Oranı", aiReturn, 5, 100, (v) => setState(() => aiReturn = v), "%"),
+          const Divider(color: Colors.white10, height: 40),
+          Text("FİNANSAL ÖZGÜRLÜK YAŞI", style: TextStyle(fontSize: 10, letterSpacing: 2, color: gold)),
+          Text(calc['age']!, style: GoogleFonts.oswald(fontSize: 80, fontWeight: FontWeight.bold, color: gold)),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              _resBox("KALAN YIL", calc['years']!),
+              _resBox("HEDEF SERVET", "${calc['target']} M₺"),
+            ],
+          )
+        ],
+      ),
+    );
+  }
 
-            document.getElementById('lAge').innerText = age;
-            document.getElementById('lCap').innerText = cap.toLocaleString() + " ₺";
-            document.getElementById('lSav').innerText = sav.toLocaleString() + " ₺";
-            document.getElementById('lPas').innerText = pas.toLocaleString() + " ₺";
-            document.getElementById('lExp').innerText = exp.toLocaleString() + " ₺";
-            document.getElementById('lAi').innerText = "%" + ai;
+  Widget _sliderRow(String label, double val, double min, double max, Function(double) onChg, String unit) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [Text(label, style: const TextStyle(fontSize: 12)), Text("${val.toInt()} $unit", style: TextStyle(color: gold, fontWeight: FontWeight.bold))],
+        ),
+        Slider(value: val, min: min, max: max, activeColor: gold, onChanged: onChg),
+      ],
+    );
+  }
 
-            const target = (exp * 12) / 0.04;
-            const years = Math.log(target / (cap + 1)) / Math.log(1 + (ai/100));
-            const rY = isNaN(years) || years < 0 ? 0 : years.toFixed(1);
+  Widget _resBox(String label, String val) {
+    return Column(
+      children: [
+        Text(label, style: const TextStyle(fontSize: 9, opacity: 0.6)),
+        Text(val, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+      ],
+    );
+  }
 
-            document.getElementById('resAge').innerText = (age + parseFloat(rY)).toFixed(1);
-            document.getElementById('resYears').innerText = rY + " YIL";
-            document.getElementById('resTarget').innerText = (target/1000000).toFixed(1) + " M₺";
-        }
+  Widget _buildHorizontalList(List<Map<String, dynamic>> items, String type) {
+    return SizedBox(
+      height: 150,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: items.length,
+        itemBuilder: (context, i) {
+          return Container(
+            width: 200,
+            margin: const EdgeInsets.only(right: 15),
+            padding: const EdgeInsets.all(15),
+            decoration: BoxDecoration(color: Colors.white.withOpacity(0.05), border: Border.all(color: gold.withOpacity(0.3)), borderRadius: BorderRadius.circular(15)),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(items[i]['n'], textAlign: TextAlign.center, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
+                Text("${items[i]['v'].toString()} ₺", style: TextStyle(color: gold, fontSize: 18, fontWeight: FontWeight.black)),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(backgroundColor: gold, foregroundColor: Colors.black, minimumSize: const Size.fromHeight(30)),
+                  onPressed: () => _launchURL("https://wa.me/905418660202?text=${items[i]['n']} hakkında bilgi almak istiyorum."),
+                  child: const Text("İLETİŞİME GEÇ", style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold)),
+                )
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
 
-        function render() {
-            localStorage.setItem('AN_V17', JSON.stringify(DATA));
-            document.getElementById('vList').innerHTML = DATA.v.map((x,i)=>`<div class="flex justify-between border-b border-white/5 py-2 font-bold"><span>${x.n}</span><span class="text-gold">${x.v.toLocaleString()} ₺ <button onclick="del('v',${i})" class="text-red-500 ml-2">×</button></span></div>`).join('');
-            document.getElementById('bList').innerHTML = DATA.b.map((x,i)=>`<div class="flex justify-between border-b border-white/5 py-2 italic"><span>${x.n}</span><span>${x.v.toLocaleString()} ₺ <button onclick="del('b',${i})" class="text-red-500 ml-2">×</button></span></div>`).join('');
-            document.getElementById('dList').innerHTML = DATA.d.map((x,i)=>`<div class="flex justify-between border-b border-gold/10 py-2"><span>${x.n}</span><span>${x.v.toLocaleString()} ₺ <button onclick="del('d',${i})" class="text-red-500 ml-2">×</button></span></div>`).join('');
-            
-            document.getElementById('mList').innerHTML = DATA.m.map((x,i)=>`
-                <div class="card bg-white/5 text-center flex flex-col justify-between hover:border-white transition">
-                    <div>
-                        <h4 class="text-xs font-black gold-title mb-2 italic">${x.n}</h4>
-                        <p class="text-2xl font-black mb-6">${x.v.toLocaleString()} ₺</p>
-                    </div>
-                    <div>
-                        <a href="https://wa.me/905418660202?text=${encodeURIComponent(x.n + ' hakkında bilgi/satın alma için yazıyorum.')}" target="_blank" class="gold-bg block w-full py-2 rounded font-black text-[10px] uppercase shadow-lg">WHATSAPP İLE SİPARİŞ</a>
-                        <button onclick="del('m',${i})" class="text-[8px] opacity-10 mt-3">SİL</button>
-                    </div>
-                </div>`).join('');
-            run();
-        }
-        window.onload = render;
-    </script>
-</body>
-</html>
+  Widget _adminSection() {
+    if (!isAdmin) {
+      return Container(
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(border: Border.all(color: gold), borderRadius: BorderRadius.circular(15)),
+        child: Column(
+          children: [
+            TextField(controller: _pwController, obscureText: true, decoration: const InputDecoration(hintText: "Yönetici Şifresi"), textAlign: TextAlign.center),
+            const SizedBox(height: 15),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: gold, foregroundColor: Colors.black),
+              onPressed: () { if (_pwController.text == "orhan123") setState(() => isAdmin = true); },
+              child: const Text("PANELİ AÇ"),
+            )
+          ],
+        ),
+      );
+    }
+    return Column(
+      children: [
+        DropdownButton<String>(
+          value: selectedCategory,
+          isExpanded: true,
+          items: const [
+            DropdownMenuItem(value: 'v', child: Text("Varlık (+)")),
+            DropdownMenuItem(value: 'b', child: Text("Borç (-)")),
+            DropdownMenuItem(value: 'm', child: Text("Ürün/Hizmet")),
+            DropdownMenuItem(value: 'd', child: Text("Danışmanlıklar")),
+          ],
+          onChanged: (v) => setState(() => selectedCategory = v!),
+        ),
+        TextField(controller: _nameController, decoration: const InputDecoration(hintText: "İsim")),
+        TextField(controller: _valController, decoration: const InputDecoration(hintText: "Tutar"), keyboardType: TextInputType.number),
+        const SizedBox(height: 10),
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(backgroundColor: Colors.green, foregroundColor: Colors.white, minimumSize: const Size.fromHeight(45)),
+          onPressed: () {
+            setState(() {
+              var item = {'n': _nameController.text, 'v': _valController.text};
+              if (selectedCategory == 'v') assets.add(item);
+              if (selectedCategory == 'b') liabilities.add(item);
+              if (selectedCategory == 'm') products.add(item);
+              if (selectedCategory == 'd') consulting.add(item);
+              _nameController.clear(); _valController.clear();
+            });
+          },
+          child: const Text("SİSTEME EKLE"),
+        )
+      ],
+    );
+  }
+
+  Widget _footerSection() {
+    return Column(
+      children: [
+        const Divider(color: Colors.white24),
+        const SizedBox(height: 20),
+        Text("ODAK FİNANCE MERKEZİ", style: TextStyle(color: gold, fontWeight: FontWeight.bold, fontSize: 12)),
+        const Text("Nilüfer / BURSA", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        const SizedBox(height: 20),
+        Wrap(
+          spacing: 10,
+          children: [
+            _linkBtn("ANADOLU NETWORK", "https://www.anadolunetwork.tr"),
+            _linkBtn("WHATSAPP", "https://wa.me/905418660202"),
+          ],
+        ),
+        const SizedBox(height: 40),
+        const Text("ANADOLU NETWORK © 2026", style: TextStyle(fontSize: 9, opacity: 0.3, letterSpacing: 5)),
+      ],
+    );
+  }
+
+  Widget _linkBtn(String txt, String url) {
+    return ActionChip(
+      backgroundColor: Colors.white10,
+      label: Text(txt, style: TextStyle(color: gold, fontSize: 10)),
+      onPressed: () => _launchURL(url),
+    );
+  }
+}
