@@ -42,10 +42,10 @@
         .btn-outline-gold:hover { background: rgba(245,184,27,0.1); }
         .product-item:hover { background: rgba(245,184,27,0.1); }
         .contact-info {
-            font-size: 0.7rem;
-            line-height: 1.4;
+            font-size: 0.8rem;
+            line-height: 1.5;
             margin-top: 0.25rem;
-            color: #F5B81BCC;
+            color: #F5B81B !important;
         }
         input[type=range] {
             -webkit-appearance: none;
@@ -82,6 +82,14 @@
             font-weight: 600;
             color: #F5B81B;
         }
+        footer a {
+            color: #F5B81B !important;
+            font-size: 1rem;
+        }
+        footer p {
+            color: #F5B81B !important;
+            font-size: 0.95rem;
+        }
     </style>
 </head>
 <body>
@@ -107,7 +115,7 @@
         </div>
     </div>
 
-    <!-- KPI Kartları (beyaz yazı) -->
+    <!-- KPI Kartları -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
         <div class="card-premium p-5"><div class="flex justify-between"><span class="white-text">Hedef Sermaye (₺)</span><i class="fa-solid fa-bullseye gold-text"></i></div><p class="text-2xl font-bold gold-text mt-2" id="targetCapitalDisplay">₺0</p></div>
         <div class="card-premium p-5"><div class="flex justify-between"><span class="white-text">Tahmini FIRE Yaşı</span><i class="fa-regular fa-calendar gold-text"></i></div><p class="text-2xl font-bold gold-text mt-2" id="fireAgeDisplay">--</p></div>
@@ -117,7 +125,7 @@
 
     <!-- Ana Grid -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-        <!-- SOL: FIRE Simülatörü (kayar çubuklu, tüm yazılar beyaz/altın) -->
+        <!-- SOL: FIRE Simülatörü -->
         <div id="hesapla" class="card-premium p-6">
             <h2 class="text-xl font-bold gold-text mb-4"><i class="fa-solid fa-calculator"></i> FIRE Simülatörü (Kayar Çubuk)</h2>
             <div class="space-y-4">
@@ -130,7 +138,7 @@
                 <div><label class="white-text text-sm">Enflasyon (%) : <span id="inflationVal" class="gold-text font-bold">6.0%</span></label><input type="range" id="inflationRate" min="0" max="15" step="0.5" value="6.0" class="w-full"></div>
             </div>
             
-            <!-- FIRE Türleri (Lean, Fat, Barista, Coast) -->
+            <!-- FIRE Türleri -->
             <div class="mt-5">
                 <p class="white-text text-sm font-semibold mb-2">🔥 FIRE Türleri (Hedef Sermaye & Yaş)</p>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
@@ -146,11 +154,14 @@
             <canvas id="fireProjectionChart" height="130" class="mt-3"></canvas>
         </div>
 
-        <!-- SAĞ: Portföy (Pro modül, şifre korumalı) -->
+        <!-- SAĞ: Portföy (Pro) - Şifre butonun yanında -->
         <div id="portfoy" class="card-premium p-6 relative-card" style="min-height: 520px;">
-            <div class="flex justify-between items-center mb-3">
+            <div class="flex justify-between items-center mb-3 flex-wrap gap-2">
                 <h2 class="text-xl font-bold gold-text"><i class="fa-solid fa-chart-simple"></i> Portföy Takibi (Pro)</h2>
-                <button id="unlockPortfolioBtn" class="btn-gold text-xs px-4 py-1 rounded-full"><i class="fa-solid fa-key"></i> Pro Giriş</button>
+                <div class="flex items-center gap-2">
+                    <button id="unlockPortfolioBtn" class="btn-gold text-xs px-4 py-1 rounded-full"><i class="fa-solid fa-key"></i> Pro Giriş</button>
+                    <span class="text-gold/80 text-xs">(şifre: pro2026)</span>
+                </div>
             </div>
             <div id="portfolioLockOverlay" class="lock-overlay">
                 <i class="fa-solid fa-crown text-5xl gold-text mb-3"></i>
@@ -186,23 +197,23 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="mt-12 border-t border-gold/30 pt-6 pb-4 flex flex-col md:flex-row justify-between items-start md:items-center text-sm text-gold/70 gap-4">
+    <!-- Footer - büyük ve altın sarısı -->
+    <footer class="mt-12 border-t border-gold/30 pt-6 pb-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div class="flex flex-wrap gap-6 items-center">
-            <a href="https://anadolunetwork.tr" target="_blank">Anadolu Network</a>
-            <a href="https://www.odakdijital.com.tr" target="_blank">Odak Dijital</a>
-            <a href="https://www.ortakmarkets.com.tr" target="_blank">Ortak Markets</a>
-            <a href="#" class="hover:text-gold">Hızlı Menü</a>
+            <a href="https://anadolunetwork.tr" target="_blank" class="gold-text text-base hover:underline">Anadolu Network</a>
+            <a href="https://www.odakdijital.com.tr" target="_blank" class="gold-text text-base hover:underline">Odak Dijital</a>
+            <a href="https://www.ortakmarkets.com.tr" target="_blank" class="gold-text text-base hover:underline">Ortak Markets</a>
+            <a href="#" class="gold-text text-base hover:underline">Hızlı Menü</a>
             <div class="flex flex-col">
-                <span class="gold-text font-semibold text-sm">İletişim</span>
-                <div class="contact-info">
+                <span class="gold-text font-semibold text-base">İletişim</span>
+                <div class="contact-info text-gold text-base">
                     CFO.MÜH. Orhan BOYRAZ<br>
                     Mail: orhanboyraz0216@gmail.com<br>
                     WhatsApp/Telf: 0541 866 0202
                 </div>
             </div>
         </div>
-        <p>© 2025 Anadolu Network Fire Platformu | Altın Destekli Finans</p>
+        <p class="gold-text text-base">© 2025 Anadolu Network Fire Platformu | Altın Destekli Finans</p>
     </footer>
 </div>
 
@@ -215,7 +226,7 @@
     </div>
 </div>
 
-<!-- Pro Şifre Modalı -->
+<!-- Pro Şifre Modalı (yedek) -->
 <div id="proPasswordModal" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 hidden">
     <div class="card-premium p-6 w-96 text-center">
         <i class="fa-solid fa-lock text-4xl gold-text mb-3"></i>
@@ -284,11 +295,10 @@
     };
     let allocationChart, fireChart;
 
-    // Yardımcı fonksiyonlar
     function formatMoney(val) { return new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY' }).format(val); }
     function formatNumber(val) { return new Intl.NumberFormat('tr-TR').format(Math.round(val)); }
 
-    // FIRE Hesaplama (pasif gelir eklendi, 4 tür)
+    // FIRE Hesaplama
     function computeFire() {
         let income = parseInt(document.getElementById('monthlyIncome').value);
         let expense = parseInt(document.getElementById('monthlyExpense').value);
@@ -298,7 +308,6 @@
         let ret = parseFloat(document.getElementById('investmentReturn').value) / 100;
         let inf = parseFloat(document.getElementById('inflationRate').value) / 100;
         
-        // UI güncelleme
         document.getElementById('incomeVal').innerText = formatNumber(income) + ' ₺';
         document.getElementById('expenseVal').innerText = formatNumber(expense) + ' ₺';
         document.getElementById('passiveIncomeVal').innerText = formatNumber(passiveIncomeMonthly) + ' ₺';
@@ -313,14 +322,13 @@
         let annualExpense = expense * 12;
         let annualPassive = passiveIncomeMonthly * 12;
         let netAnnualExpense = Math.max(0, annualExpense - annualPassive);
-        let targetCapitalLean = netAnnualExpense * 25;      // 4% kuralı
-        let targetCapitalFat = netAnnualExpense * 35;       // Fat FIRE daha yüksek
-        let targetCapitalBarista = netAnnualExpense * 20;    // Barista kısmi çalışma
-        let targetCapitalCoast = netAnnualExpense * 15;      // Coast: daha düşük hedef
+        let targetCapitalLean = netAnnualExpense * 25;
+        let targetCapitalFat = netAnnualExpense * 35;
+        let targetCapitalBarista = netAnnualExpense * 20;
+        let targetCapitalCoast = netAnnualExpense * 15;
         
         document.getElementById('targetCapitalDisplay').innerHTML = formatMoney(targetCapitalLean);
         
-        // Gerçek getiri
         let realReturn = (1+ret)/(1+inf)-1;
         if(realReturn < 0) realReturn = 0;
         
@@ -356,7 +364,6 @@
         let fireAge = age + mainYears;
         document.getElementById('fireAgeDisplay').innerHTML = (mainYears < 60) ? fireAge : '>90';
         
-        // Grafik
         if(fireChart) fireChart.destroy();
         let points = [capital];
         let simBal = capital;
@@ -462,7 +469,6 @@
     }
     function refreshMockPrices(){ portfolioData.forEach(a=>{ let ch=(Math.random()*0.08)-0.03; a.price=a.price*(1+ch); if(a.price<1) a.price=1; }); updatePortfolioUI(); updateAssetChart(); }
 
-    // Pro modülünü aç
     function unlockPortfolio() {
         const overlay = document.getElementById('portfolioLockOverlay');
         const content = document.getElementById('portfolioContent');
@@ -474,7 +480,6 @@
         }
     }
 
-    // Eventler
     function bindEvents() {
         const sliders = ['monthlyIncome', 'monthlyExpense', 'passiveIncome', 'currentAge', 'currentCapital', 'investmentReturn', 'inflationRate'];
         sliders.forEach(id => document.getElementById(id).addEventListener('input', computeFire));
@@ -486,7 +491,6 @@
         document.getElementById('closeCartBtn').onclick = ()=>{ let m=document.getElementById('cartModal'); m.style.transform='translateX(100%)'; setTimeout(()=> m.style.display='none',300); };
         document.getElementById('whatsappOrderBtn').onclick = ()=>{ if(cart.length===0){ alert("Sepet boş"); return; } let msg="Merhaba, Fire Platformu sipariş:%0A"; cart.forEach(i=>msg+=`- ${i.name} : ${formatMoney(i.price)}%0A`); msg+=`Toplam: ${formatMoney(cart.reduce((a,b)=>a+b.price,0))}`; window.open(`https://wa.me/905054445555?text=${msg}`,'_blank'); };
         
-        // Pro şifre
         const proModal = document.getElementById('proPasswordModal');
         document.getElementById('unlockPortfolioBtn').onclick = () => proModal.classList.remove('hidden');
         document.getElementById('verifyProBtn').onclick = () => {
@@ -499,7 +503,6 @@
         };
         document.getElementById('closeProModal').onclick = () => { proModal.classList.add('hidden'); document.getElementById('proPassword').value = ''; };
         
-        // Yönetim paneli şifre
         const adminPwdModal = document.getElementById('adminPasswordModal');
         const adminModal = document.getElementById('adminModal');
         document.getElementById('adminPanelBtn').onclick = () => adminPwdModal.classList.remove('hidden');
