@@ -3,238 +3,249 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anadolu Network | Finansal Özgürlük Mimarisi</title>
+    <title>Anadolu Network | Finansal Özgürlük</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --gold: #FFD700; --soft-blue: #E3F2FD; --deep-blue: #0056b3; }
-        body { background-color: #f0f4f8; color: #2d3436; font-family: 'Montserrat', sans-serif; scroll-behavior: smooth; }
+        :root { --gold: #FFD700; --light-blue: #00A8E8; --navy: #002B5B; }
+        body { background-color: #f4f7f9; color: #1a1a1a; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
         
-        /* Dashboard Kartları */
-        .glass-card { 
+        /* Kurumsal Renkler */
+        .gold-bg { background-color: var(--gold); }
+        .gold-text { color: var(--gold); }
+        .blue-text { color: var(--light-blue); }
+        .blue-border { border-color: var(--light-blue); }
+        
+        .fire-card { 
             background: white; 
-            border-top: 5px solid var(--gold);
-            border-left: 2px solid var(--soft-blue);
-            border-radius: 1.25rem;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
+            border: 3px solid var(--light-blue); 
+            border-radius: 2rem;
+            box-shadow: 0 15px 35px rgba(0, 168, 232, 0.1);
         }
-        .glass-card:hover { transform: translateY(-5px); }
         
-        /* Inputlar */
+        .nav-item { font-weight: 900; font-size: 13px; color: var(--navy); text-transform: uppercase; border-bottom: 2px solid transparent; }
+        .nav-item:hover { color: var(--gold); border-bottom: 2px solid var(--gold); }
+        
         input[type=range] { accent-color: var(--gold); cursor: pointer; }
         
-        /* Panel Bölümü */
-        #adminSection { display: none; border: 3px solid var(--gold); background: #fff; }
-        
-        .nav-link { font-weight: 800; font-size: 13px; color: #003366; text-transform: uppercase; }
-        .nav-link:hover { color: var(--gold); }
+        #adminPanel { display: none; }
     </style>
 </head>
 <body>
 
-    <nav class="sticky top-0 z-50 bg-white shadow-md border-b-4 border-gold px-4 md:px-12 py-4">
+    <nav class="sticky top-0 z-50 bg-white border-b-4 border-gold shadow-lg px-6 py-4">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-4">
-                <div class="w-12 h-12 bg-gold rounded-lg flex items-center justify-center font-black text-white text-2xl shadow-inner">AN</div>
-                <div class="leading-none">
-                    <h1 class="text-xl font-black text-blue-900 uppercase">Anadolu Network</h1>
-                    <span class="text-[9px] font-bold text-gray-400 tracking-widest uppercase italic">Finansal Özgürlük Mimarisi</span>
+            <div class="flex items-center gap-3">
+                <div class="w-14 h-14 gold-bg rounded-2xl flex items-center justify-center font-black text-navy text-3xl shadow-md">AN</div>
+                <div>
+                    <h1 class="text-xl font-black text-navy uppercase leading-none">Anadolu Network</h1>
+                    <span class="text-[10px] font-bold text-light-blue tracking-widest uppercase">Finansal Özgürlük Mimarisi</span>
                 </div>
             </div>
             <div class="hidden md:flex gap-8">
-                <a href="#hesapla" class="nav-link">Hesapla</a>
-                <a href="#rapor" class="nav-link">Rapor</a>
-                <a href="#portfoy" class="nav-link">Portföy</a>
-                <a href="#akademi" class="nav-link">Akademi</a>
+                <a href="#fire" class="nav-item">Hesapla</a>
+                <a href="#rapor" class="nav-item">Rapor</a>
+                <a href="#akademi" class="nav-item">Akademi</a>
+                <a href="#portfoy" class="nav-item">Portföy</a>
+                <a href="#market" class="nav-item">Market</a>
             </div>
         </div>
     </nav>
 
     <main class="max-w-7xl mx-auto px-6 py-12 space-y-16">
         
-        <div class="text-center space-y-4">
-            <h1 class="text-5xl md:text-7xl font-black italic text-blue-900 uppercase">F.I.R.E <span class="text-gold">V10.0</span></h1>
-            <p class="text-lg font-bold text-gray-500 uppercase tracking-widest">Finansal Özgürlük Yolculuğu</p>
+        <div class="text-center space-y-2">
+            <h1 class="text-5xl md:text-7xl font-black italic gold-text uppercase drop-shadow-sm">F.I.R.E HESAPLAMA</h1>
+            <p class="text-xl font-bold blue-text tracking-[0.3em] uppercase">Finansa Özgürlük Yolculuğu</p>
         </div>
 
-        <section id="hesapla" class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div class="glass-card p-8 space-y-8 bg-blue-50/50">
-                <h2 class="text-xl font-black text-blue-900 border-b-2 border-gold pb-2 uppercase italic">1. Strateji Merkezi</h2>
-                <div class="space-y-6">
+        <section id="fire" class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <div class="fire-card p-8 space-y-8 bg-white border-l-[12px] blue-border">
+                <h3 class="text-2xl font-black text-navy border-b-2 border-gold pb-2 uppercase italic">Strateji Girişleri</h3>
+                
+                <div class="space-y-8 font-bold text-xs uppercase">
                     <div>
-                        <div class="flex justify-between font-black text-xs uppercase"><span>Mevcut Varlık:</span> <span id="val1" class="text-blue-600 text-lg">100.000 ₺</span></div>
-                        <input type="range" id="in1" min="0" max="10000000" step="50000" value="100000" oninput="calculate()" class="w-full h-3 bg-gray-200 rounded-lg appearance-none mt-2">
+                        <div class="flex justify-between mb-2"><span>Mevcut Sermaye:</span> <span id="txt1" class="text-xl gold-text">100.000 ₺</span></div>
+                        <input type="range" id="in1" min="0" max="10000000" step="50000" value="100000" oninput="fireCalc()" class="w-full h-3 bg-gray-200 rounded-lg appearance-none">
                     </div>
                     <div>
-                        <div class="flex justify-between font-black text-xs uppercase"><span>Aylık Birikim:</span> <span id="val2" class="text-blue-600 text-lg">10.000 ₺</span></div>
-                        <input type="range" id="in2" min="0" max="250000" step="1000" value="10000" oninput="calculate()" class="w-full h-3 bg-gray-200 rounded-lg appearance-none mt-2">
+                        <div class="flex justify-between mb-2"><span>Aylık Birikim:</span> <span id="txt2" class="text-xl gold-text">10.000 ₺</span></div>
+                        <input type="range" id="in2" min="0" max="250000" step="1000" value="10000" oninput="fireCalc()" class="w-full h-3 bg-gray-200 rounded-lg appearance-none">
                     </div>
                     <div>
-                        <div class="flex justify-between font-black text-xs uppercase"><span>AI (Yapay Zeka) Kaldıracı:</span> <span id="val3" class="text-gold text-lg">%30</span></div>
-                        <input type="range" id="in3" min="0" max="100" value="30" oninput="calculate()" class="w-full h-3 bg-gray-200 rounded-lg appearance-none mt-2">
+                        <div class="flex justify-between mb-2"><span>Pasif Gelir:</span> <span id="txt3" class="text-xl gold-text">0 ₺</span></div>
+                        <input type="range" id="in3" min="0" max="100000" step="1000" value="0" oninput="fireCalc()" class="w-full h-3 bg-gray-200 rounded-lg appearance-none">
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2"><span>AI & Yapay Zeka Kaldıracı:</span> <span id="txt4" class="text-xl gold-text">%30</span></div>
+                        <input type="range" id="in4" min="0" max="100" value="30" oninput="fireCalc()" class="w-full h-3 bg-gray-200 rounded-lg appearance-none">
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2"><span>Hedef Aylık Gider:</span> <span id="txt5" class="text-xl gold-text">50.000 ₺</span></div>
+                        <input type="range" id="in5" min="10000" max="500000" step="5000" value="50000" oninput="fireCalc()" class="w-full h-3 bg-gray-200 rounded-lg appearance-none">
                     </div>
                 </div>
             </div>
-            <div class="glass-card p-10 flex flex-col justify-center items-center text-center bg-white border-gold border-dashed border-2">
-                <div class="grid grid-cols-2 gap-8 w-full mb-8">
-                    <div><p class="text-xs font-bold text-gray-400 uppercase">Özgürlük Yaşı</p><p id="resAge" class="text-6xl font-black text-blue-900 italic">--</p></div>
-                    <div><p class="text-xs font-bold text-gray-400 uppercase">Kalan Yıl</p><p id="resYears" class="text-6xl font-black text-gold italic">--</p></div>
+
+            <div class="fire-card p-10 flex flex-col justify-center items-center text-center bg-white border-gold border-dashed border-4">
+                <p class="text-sm font-black tracking-widest text-navy uppercase mb-8">Özgürlük Analiz Sonucu</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 w-full mb-10">
+                    <div class="bg-blue-50 p-6 rounded-3xl border-2 blue-border">
+                        <p class="text-[10px] font-bold opacity-60 uppercase mb-2">Özgürlük Yaşı</p>
+                        <p id="resAge" class="text-7xl font-black gold-text italic">--</p>
+                    </div>
+                    <div class="bg-blue-50 p-6 rounded-3xl border-2 blue-border">
+                        <p class="text-[10px] font-bold opacity-60 uppercase mb-2">Kalan Süre</p>
+                        <p id="resYears" class="text-7xl font-black text-navy italic">--</p>
+                    </div>
                 </div>
-                <div class="w-full pt-6 border-t border-gray-100 italic font-bold text-blue-800" id="resText">Hesaplamak için sürgüleri hareket ettirin.</div>
+                <div class="w-full pt-8 border-t-2 border-gray-100">
+                    <p class="text-[10px] font-bold opacity-60 uppercase mb-2">Gereken Toplam Varlık (FİRE Sayısı)</p>
+                    <p id="resTarget" class="text-4xl font-black blue-text italic">--</p>
+                </div>
             </div>
         </section>
 
-        <section id="rapor" class="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div class="glass-card p-6 text-center"><p class="text-[10px] font-black uppercase text-gray-400">Net Varlık</p><div id="repNet" class="text-2xl font-black text-blue-900">0 ₺</div></div>
-            <div class="glass-card p-6 text-center"><p class="text-[10px] font-black uppercase text-gray-400">Nakit Akışı</p><div id="repCash" class="text-2xl font-black text-green-600">0 ₺</div></div>
-            <div class="glass-card p-6 text-center"><p class="text-[10px] font-black uppercase text-gray-400">Borç Oranı</p><div id="repDebt" class="text-2xl font-black text-red-500">%0</div></div>
-            <div class="glass-card p-6 text-center"><p class="text-[10px] font-black uppercase text-gray-400">Finansal Güven</p><div id="repSafe" class="text-2xl font-black text-blue-400">--</div></div>
+        <section id="rapor" class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center font-black uppercase italic">
+            <div class="fire-card p-6 blue-border border-b-[6px]"><p class="text-[10px] gold-text">Net Servet</p><div id="repNet" class="text-2xl">0 ₺</div></div>
+            <div class="fire-card p-6 blue-border border-b-[6px]"><p class="text-[10px] gold-text">Nakit Akışı</p><div id="repCash" class="text-2xl text-green-600">0 ₺</div></div>
+            <div class="fire-card p-6 blue-border border-b-[6px]"><p class="text-[10px] gold-text">Borç Oranı</p><div id="repDebt" class="text-2xl text-red-500">%0</div></div>
+            <div class="fire-card p-6 blue-border border-b-[6px]"><p class="text-[10px] gold-text">Acil Fonu</p><div id="repSafe" class="text-2xl blue-text">--</div></div>
         </section>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div id="portfoy" class="lg:col-span-2 glass-card p-8">
-                <h3 class="text-lg font-black text-blue-900 mb-6 uppercase italic">Portföy Dağılımı</h3>
-                <div id="pList" class="space-y-4 text-sm font-bold"></div>
-            </div>
-            <div id="akademi" class="glass-card p-8 bg-gold/5">
-                <h3 class="text-lg font-black text-gold mb-6 uppercase italic">Akademi & Market</h3>
-                <div id="mList" class="space-y-6"></div>
-            </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div id="portfoy" class="md:col-span-2 fire-card p-8"><h3 class="text-xl font-black text-navy mb-6 uppercase italic">Portföy Varlıkları</h3><div id="pList" class="space-y-4 font-bold text-sm"></div></div>
+            <div id="market" class="fire-card p-8 bg-blue-900 text-white"><h3 class="text-xl font-black gold-text mb-6 uppercase italic">Akademi / Market</h3><div id="mList" class="space-y-6"></div></div>
         </div>
 
-        <section class="glass-card p-8 border-gold border-2">
-            <div id="loginArea" class="text-center space-y-4">
-                <h3 class="text-sm font-black uppercase">Yönetici Girişi</h3>
-                <div class="flex justify-center gap-2">
-                    <input type="password" id="passInput" placeholder="Şifre" class="border-2 border-gray-200 p-2 rounded-lg text-sm outline-none focus:border-gold">
-                    <button onclick="checkPass()" class="bg-blue-900 text-white px-6 py-2 rounded-lg font-black text-xs uppercase">Giriş Yap</button>
+        <section class="fire-card p-8 border-gold border-4 bg-white">
+            <div id="panelLogin" class="text-center space-y-4">
+                <h3 class="text-xl font-black uppercase text-navy italic">SİSTEM YÖNETİMİ</h3>
+                <div class="flex flex-col md:flex-row justify-center gap-4">
+                    <input type="password" id="pass" placeholder="Yönetici Şifresi" class="border-2 blue-border p-4 rounded-xl font-bold outline-none focus:border-gold">
+                    <button onclick="checkPass()" class="gold-bg text-navy px-10 py-4 rounded-xl font-black uppercase shadow-lg hover:scale-105 transition">Giriş Yap</button>
                 </div>
             </div>
 
-            <div id="adminSection" class="mt-6 p-6 rounded-xl space-y-6">
-                <h3 class="text-xl font-black text-gold uppercase italic">Sistem Yönetimi</h3>
+            <div id="adminPanel" class="mt-8 p-6 space-y-6">
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                    <select id="admCat" class="border-2 p-3 rounded-lg font-bold text-xs"><option value="asset">VARLIK (+)</option><option value="debt">BORÇ (-)</option><option value="market">ÜRÜN/AKADEMİ</option></select>
-                    <input type="text" id="admName" placeholder="Kalem İsmi" class="border-2 p-3 rounded-lg text-xs">
-                    <input type="number" id="admVal" placeholder="Tutar (₺)" class="border-2 p-3 rounded-lg text-xs">
-                    <button onclick="saveToData()" class="bg-gold text-white font-black rounded-lg text-xs uppercase shadow-lg">Ekle</button>
+                    <select id="aCat" class="border-2 p-4 rounded-xl font-bold"><option value="a">VARLIK (+)</option><option value="d">BORÇ (-)</option><option value="m">MARKET ÜRÜNÜ</option></select>
+                    <input type="text" id="aName" placeholder="Kalem Adı" class="border-2 p-4 rounded-xl">
+                    <input type="number" id="aVal" placeholder="Tutar (₺)" class="border-2 p-4 rounded-xl">
+                    <button onclick="addData()" class="bg-navy text-white font-black rounded-xl uppercase">Sisteme Ekle</button>
                 </div>
-                <button onclick="location.reload()" class="text-[10px] font-black opacity-30 uppercase">Sistemi Kapat ve Kilitle</button>
+                <button onclick="location.reload()" class="text-xs font-bold opacity-30 underline uppercase">Çıkış Yap ve Sistemi Kilitle</button>
             </div>
         </section>
-
     </main>
 
-    <footer class="bg-white border-t-8 border-gold pt-16 pb-12 px-8">
+    <footer class="mt-20 border-t-8 border-gold bg-white pt-16 pb-12 px-8">
         <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 border-b-2 border-gray-100 pb-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-16 border-b-2 border-gray-100 pb-12">
                 <div>
-                    <h5 class="text-2xl font-black text-blue-900 mb-4">ANADOLU NETWORK</h5>
-                    <p class="text-xs font-bold text-gray-500 leading-relaxed uppercase">Bir Eğitim, Kültür, Haber, Network, Finans ve FİRE Danışmanlık Platformu. CFO.MÜH: ORHAN BOYRAZ</p>
+                    <h5 class="text-2xl font-black text-navy mb-4 italic">ANADOLU NETWORK</h5>
+                    <p class="text-xs font-bold text-gray-400 leading-relaxed uppercase">Eğitim, Kültür, Haber, Network, Finans ve FİRE Danışmanlık Platformu. CFO.MÜH: ORHAN BOYRAZ</p>
                 </div>
                 <div class="space-y-4">
-                    <h5 class="text-gold font-black text-xs uppercase tracking-widest">Web Sitelerimiz</h5>
-                    <a href="https://www.anadolunetwork.tr" target="_blank" class="block font-black text-blue-800 hover:text-gold transition">www.anadolunetwork.tr</a>
-                    <a href="https://www.ortakmarkets.com.tr" target="_blank" class="block font-black text-blue-800 hover:text-gold transition">www.ortakmarkets.com.tr</a>
-                    <a href="https://www.odakdijital.com.tr" target="_blank" class="block font-black text-blue-800 hover:text-gold transition">www.odakdijital.com.tr</a>
+                    <h5 class="gold-text font-black text-xs uppercase tracking-widest italic">Web Sitelerimiz</h5>
+                    <a href="https://www.anadolunetwork.tr" target="_blank" class="block font-black text-navy hover:text-light-blue transition italic underline">www.anadolunetwork.tr</a>
+                    <a href="https://www.ortakmarkets.com.tr" target="_blank" class="block font-black text-navy hover:text-light-blue transition italic underline">www.ortakmarkets.com.tr</a>
+                    <a href="https://www.odakdijital.com.tr" target="_blank" class="block font-black text-navy hover:text-light-blue transition italic underline">www.odakdijital.com.tr</a>
                 </div>
                 <div class="md:text-right space-y-4">
-                    <h5 class="text-gold font-black text-xs uppercase tracking-widest italic">İLETİŞİM BİLGİLERİ</h5>
-                    <a href="https://wa.me/905418660202" target="_blank" class="inline-block bg-green-500 text-white px-4 py-2 rounded-full font-bold text-sm">
+                    <h5 class="gold-text font-black text-xs uppercase tracking-widest italic border-b-2 border-gold pb-2">İLETİŞİM BİLGİLERİ</h5>
+                    <a href="https://wa.me/905418660202" target="_blank" class="inline-flex items-center gap-2 font-bold text-sm text-green-600 bg-green-50 px-4 py-2 rounded-full border border-green-200">
                         <i class="fab fa-whatsapp"></i> whatsapp: 0541 866 02 02
                     </a>
-                    <p class="text-lg font-black text-blue-900 italic">orhanboyraz0216@gmail.com</p>
-                    <p class="text-sm font-black text-gray-800 uppercase italic">
-                        <i class="fas fa-map-marker-alt text-gold"></i> ADRES: ODAK AŞ: NİLÜFER / BURSA
+                    <p class="text-xl font-black text-navy italic">orhanboyraz0216@gmail.com</p>
+                    <p class="text-lg font-black text-gray-800 uppercase italic">
+                        <i class="fas fa-map-marker-alt gold-text"></i> ODAK AŞ: NİLÜFER / BURSA
                     </p>
                 </div>
             </div>
-            <p class="text-center mt-8 text-[10px] font-black opacity-30 uppercase tracking-[0.5em]">© 2026 Anadolu Network - Gelecek Burada Başlar</p>
+
+            <div class="flex justify-center gap-8 py-8 text-[10px] font-black uppercase text-gray-400 tracking-widest">
+                <a href="#fire">Hesapla</a><a href="#rapor">Rapor</a><a href="#portfoy">Portföy</a><a href="#akademi">Akademi</a><a href="#market">Market</a>
+            </div>
+            
+            <p class="text-center text-[10px] font-black opacity-30 uppercase tracking-[0.5em]">© 2026 Anadolu Network - Finansal Mühendislik</p>
         </div>
     </footer>
 
     <script>
-        let DATA = JSON.parse(localStorage.getItem('an_v10_full')) || {
-            assets: [{n: "Banka Mevduat", v: 100000}],
-            debts: [{n: "Kredi Kartları", v: 20000}],
-            market: [{n: "F.I.R.E Özel Eğitim", v: 15000, c: "Akademi"}]
+        let DATA = JSON.parse(localStorage.getItem('an_v10_final')) || {
+            assets: [{n: "Banka Nakit", v: 100000}],
+            debts: [{n: "Kredi Kartı", v: 15000}],
+            market: [{n: "F.I.R.E Başlangıç", v: 7500, c: "Eğitim"}]
         };
 
         function checkPass() {
-            const p = document.getElementById('passInput').value;
-            if(p === "orhan123") {
-                document.getElementById('loginArea').style.display = 'none';
-                document.getElementById('adminSection').style.display = 'block';
+            if(document.getElementById('pass').value === "orhan123") {
+                document.getElementById('panelLogin').style.display = 'none';
+                document.getElementById('adminPanel').style.display = 'block';
             } else { alert("Hatalı Şifre!"); }
         }
 
-        function saveToData() {
-            const cat = document.getElementById('admCat').value;
-            const name = document.getElementById('admName').value;
-            const val = parseInt(document.getElementById('admVal').value);
+        function addData() {
+            const cat = document.getElementById('aCat').value;
+            const name = document.getElementById('aName').value;
+            const val = parseInt(document.getElementById('aVal').value);
             if(name && val) {
-                if(cat === 'asset') DATA.assets.push({n: name, v: val});
-                else if(cat === 'debt') DATA.debts.push({n: name, v: val});
-                else DATA.market.push({n: name, v: val, c: "Sistem"});
-                render();
-                alert("Başarıyla Eklendi!");
+                if(cat === 'a') DATA.assets.push({n: name, v: val});
+                else if(cat === 'd') DATA.debts.push({n: name, v: val});
+                else DATA.market.push({n: name, v: val, c: "Akademi"});
+                render(); alert("Başarıyla Sisteme İşlendi!");
             }
         }
 
         function del(c, i) { DATA[c].splice(i,1); render(); }
 
-        function calculate() {
+        function fireCalc() {
             const a = parseInt(document.getElementById('in1').value);
             const s = parseInt(document.getElementById('in2').value);
-            const ai = parseInt(document.getElementById('in3').value);
+            const p = parseInt(document.getElementById('in3').value);
+            const ai = parseInt(document.getElementById('in4').value);
+            const e = parseInt(document.getElementById('in5').value);
 
-            document.getElementById('val1').innerText = a.toLocaleString() + " ₺";
-            document.getElementById('val2').innerText = s.toLocaleString() + " ₺";
-            document.getElementById('val3').innerText = "%" + ai;
+            document.getElementById('txt1').innerText = a.toLocaleString() + " ₺";
+            document.getElementById('txt2').innerText = s.toLocaleString() + " ₺";
+            document.getElementById('txt3').innerText = p.toLocaleString() + " ₺";
+            document.getElementById('txt4').innerText = "%" + ai;
+            document.getElementById('txt5').innerText = e.toLocaleString() + " ₺";
 
-            const target = 15000000;
-            const ret = 1.08 + (ai/500);
-            const y = Math.log(target / (a + 1)) / Math.log(ret);
+            const target = (e * 12) / 0.04;
+            const annualReturn = 1.08 + (ai / 500); 
+            const y = Math.log(target / (a + 1)) / Math.log(annualReturn);
             const resY = isNaN(y) || y < 0 ? 0 : y.toFixed(1);
 
             document.getElementById('resAge').innerText = (30 + parseFloat(resY)).toFixed(1);
-            document.getElementById('resYears').innerText = resY;
-            document.getElementById('resText').innerText = `Mevcut hızınızla ${(target/1000000).toFixed(0)} Milyon ₺ hedefine ${resY} yılda ulaşacaksınız.`;
+            document.getElementById('resYears').innerText = resY + " YIL";
+            document.getElementById('resTarget').innerText = (target/1000000).toFixed(1) + " MİLYON ₺";
             
-            document.getElementById('repCash').innerText = s.toLocaleString() + " ₺";
-            document.getElementById('repSafe').innerText = (a / 50000).toFixed(1) + " AY";
+            document.getElementById('repCash').innerText = (s + p).toLocaleString() + " ₺";
+            document.getElementById('repSafe').innerText = (a / e).toFixed(1) + " AY";
         }
 
         function render() {
-            localStorage.setItem('an_v10_full', JSON.stringify(DATA));
+            localStorage.setItem('an_v10_final', JSON.stringify(DATA));
             let tA = 0, tD = 0;
             
-            document.getElementById('pList').innerHTML = `
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="space-y-2 border-r pr-4">
-                        <p class="text-blue-900 underline">VARLIKLAR</p>
-                        ${DATA.assets.map((x,i) => { tA += x.v; return `<div class="flex justify-between text-xs border-b pb-1"><span>${x.n}</span><span>${x.v.toLocaleString()} ₺ <button onclick="del('assets',${i})" class="text-red-500 ml-1">×</button></span></div>`}).join('')}
-                    </div>
-                    <div class="space-y-2">
-                        <p class="text-red-600 underline">BORÇLAR</p>
-                        ${DATA.debts.map((x,i) => { tD += x.v; return `<div class="flex justify-between text-xs border-b pb-1"><span>${x.n}</span><span>${x.v.toLocaleString()} ₺ <button onclick="del('debts',${i})" class="text-red-500 ml-1">×</button></span></div>`}).join('')}
-                    </div>
-                </div>`;
+            document.getElementById('pList').innerHTML = DATA.assets.map((x,i) => { tA += x.v; return `<div class="flex justify-between border-b-2 py-3"><span>${x.n}</span><span class="gold-text">${x.v.toLocaleString()} ₺ <button onclick="del('assets',${i})" class="text-red-500 ml-2 opacity-20 hover:opacity-100">×</button></span></div>`}).join('') +
+            DATA.debts.map((x,i) => { tD += x.v; return `<div class="flex justify-between border-b-2 py-3 text-red-600 italic"><span>${x.n} (-)</span><span>${x.v.toLocaleString()} ₺ <button onclick="del('debts',${i})" class="text-red-500 ml-2">×</button></span></div>`}).join('');
 
             document.getElementById('mList').innerHTML = DATA.market.map((x,i) => `
-                <div class="bg-white p-4 rounded-xl shadow-sm border border-gold/20 text-center">
-                    <p class="text-[8px] font-black text-gold uppercase italic">${x.c}</p>
-                    <h4 class="text-[11px] font-bold uppercase mb-2 h-6">${x.n}</h4>
-                    <p class="text-lg font-black text-blue-900 mb-3">${x.v.toLocaleString()} ₺</p>
-                    <button onclick="window.open('https://wa.me/905418660202')" class="w-full bg-blue-900 text-white py-2 rounded-lg text-[9px] font-black uppercase">Satın Al / Bilgi</button>
-                    <button onclick="del('market',${i})" class="text-[7px] text-gray-200 mt-2">Sistemden Sil</button>
+                <div class="bg-white/10 p-4 rounded-2xl border border-white/20 text-center">
+                    <p class="text-[8px] gold-text uppercase font-black tracking-widest mb-1">${x.c}</p>
+                    <h4 class="text-[10px] font-bold uppercase mb-2 h-6">${x.n}</h4>
+                    <p class="text-lg font-black gold-text mb-3">${x.v.toLocaleString()} ₺</p>
+                    <button onclick="window.open('https://wa.me/905418660202')" class="w-full gold-bg text-navy py-2 rounded-xl text-[10px] font-black uppercase shadow-inner">Hemen Bilgi Al</button>
+                    <button onclick="del('market',${i})" class="text-[7px] opacity-10 mt-2">SİL</button>
                 </div>`).join('');
 
             document.getElementById('repNet').innerText = (tA - tD).toLocaleString() + " ₺";
             document.getElementById('repDebt').innerText = "%" + (tA > 0 ? ((tD/tA)*100).toFixed(1) : 0);
-            calculate();
+            fireCalc();
         }
         window.onload = render;
     </script>
