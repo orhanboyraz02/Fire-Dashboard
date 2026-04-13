@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>ANADOLU NETWORK | FIRE ÖZGÜRLÜK MİMARİSİ V1.0</title>
+    <title>ANADOLU NETWORK | FIRE ÖZGÜRLÜK MİMARİSİ</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -42,171 +42,150 @@
         .badge-risk { background: #F5B81B20; color: #F5B81B; border-radius: 40px; padding: 0.25rem 0.85rem; }
         .table-portfolio th, .table-portfolio td { border-color: #2a456b; color: #f0e6c5; }
         footer a { color: #F5B81B; transition: 0.2s; }
-        .login-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #0a1a3a; z-index: 1000; display: flex;
-            align-items: center; justify-content: center;
-        }
         .product-item:hover { background: rgba(245,184,27,0.1); }
-        .upgrade-badge {
-            background: #F5B81B;
-            color: #0a1a3a;
-            font-size: 0.7rem;
-            border-radius: 30px;
-            padding: 0.2rem 0.7rem;
-            font-weight: bold;
-        }
         .contact-info {
             font-size: 0.7rem;
             line-height: 1.4;
             margin-top: 0.25rem;
             color: #F5B81BCC;
         }
+        /* Slider styling */
+        input[type=range] {
+            -webkit-appearance: none;
+            background: #2a456b;
+            height: 4px;
+            border-radius: 5px;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #F5B81B;
+            cursor: pointer;
+        }
+        .lock-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            border-radius: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            backdrop-filter: blur(2px);
+            z-index: 10;
+        }
+        .relative-card { position: relative; }
     </style>
 </head>
 <body>
 
-<!-- Şifreli Giriş Paneli -->
-<div id="loginPanel" class="login-overlay">
-    <div class="card-premium p-8 w-96 text-center">
-        <i class="fa-solid fa-shield-hooded text-5xl gold-text mb-3"></i>
-        <h2 class="text-2xl font-bold gold-text">Anadolu Network</h2>
-        <p class="text-gray-300 text-sm mb-6">Fire Finansal Özgürlük Platformu • Yönetim Paneli</p>
-        <input type="password" id="adminPassword" placeholder="Şifre" class="w-full p-3 text-center">
-        <button id="loginBtn" class="btn-gold w-full mt-5 py-2 rounded-full">Giriş Yap</button>
-        <!-- Demo şifre yazısı yok -->
+<!-- Ana Dashboard (herkese açık) -->
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+    <!-- Başlık -->
+    <div class="text-center mb-6 border-b border-gold/30 pb-3">
+        <h1 class="text-2xl md:text-3xl font-extrabold gold-text tracking-wide">🔥 AND: ANADOLU NETWORK; FİRE FİNANSAL ÖZGÜRLÜK PLATFORMU</h1>
     </div>
-</div>
 
-<!-- Ana Dashboard -->
-<div id="dashboardContent" style="display: none;">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
-        <!-- Başlık -->
-        <div class="text-center mb-6 border-b border-gold/30 pb-3">
-            <h1 class="text-2xl md:text-3xl font-extrabold gold-text tracking-wide">🔥 AND: ANADOLU NETWORK; FİRE FİNANSAL ÖZGÜRLÜK PLATFORMU</h1>
-            <div class="flex justify-center items-center gap-3 mt-2">
-                <span class="text-gold/80 text-sm">Üyelik Seviyen:</span>
-                <span id="membershipBadge" class="upgrade-badge">Ücretsiz</span>
-                <button id="upgradeBtn" class="btn-outline-gold text-xs px-3 py-1 rounded-full">Üyeliği Yükselt</button>
-            </div>
+    <!-- Hızlı Menü -->
+    <div class="flex flex-wrap justify-between items-center mb-6">
+        <div class="flex gap-5 text-md font-semibold">
+            <a href="#hesapla" class="gold-text hover:bg-gold/10 px-3 py-1 rounded-full">📊 FIRE Hesapla</a>
+            <a href="#portfoy" class="gold-text hover:bg-gold/10 px-3 py-1 rounded-full">📈 Portföy (Pro)</a>
+            <a href="#akademi" class="gold-text hover:bg-gold/10 px-3 py-1 rounded-full">📚 Akademi/Eğitim</a>
+            <a href="#odakmarket" class="gold-text hover:bg-gold/10 px-3 py-1 rounded-full">🛒 Odak Market</a>
         </div>
-
-        <!-- Hızlı Menü -->
-        <div class="flex flex-wrap justify-between items-center mb-6">
-            <div class="flex gap-5 text-md font-semibold">
-                <a href="#hesapla" class="gold-text hover:bg-gold/10 px-3 py-1 rounded-full">📊 Hesapla</a>
-                <a href="#portfoy" class="gold-text hover:bg-gold/10 px-3 py-1 rounded-full">📈 Portföy</a>
-                <a href="#akademi" class="gold-text hover:bg-gold/10 px-3 py-1 rounded-full">📚 Akademi/Eğitim</a>
-                <a href="#odakmarket" class="gold-text hover:bg-gold/10 px-3 py-1 rounded-full">🛒 Odak Market</a>
-            </div>
-            <div class="flex gap-3">
-                <button id="adminPanelBtn" class="btn-outline-gold px-3 py-1 rounded-full text-sm"><i class="fa-solid fa-sliders-h"></i> Yönetim Paneli</button>
-                <button id="cartButton" class="relative btn-outline-gold px-4 py-2 rounded-full text-sm"><i class="fa-solid fa-cart-shopping"></i> Sepet <span id="cartCount">0</span></button>
-                <button id="logoutBtn" class="text-gold/80 text-sm hover:text-gold"><i class="fa-solid fa-arrow-right-from-bracket"></i> Çıkış</button>
-            </div>
+        <div class="flex gap-3">
+            <button id="adminPanelBtn" class="btn-outline-gold px-3 py-1 rounded-full text-sm"><i class="fa-solid fa-sliders-h"></i> Yönetim Paneli</button>
+            <button id="cartButton" class="relative btn-outline-gold px-4 py-2 rounded-full text-sm"><i class="fa-solid fa-cart-shopping"></i> Sepet <span id="cartCount">0</span></button>
         </div>
-
-        <!-- KPI Kartları -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
-            <div class="card-premium p-5"><div class="flex justify-between"><span class="text-gold/80">Net Worth</span><i class="fa-solid fa-coins gold-text"></i></div><p class="text-2xl font-bold gold-text mt-2" id="netWorthDisplay">₺0</p></div>
-            <div class="card-premium p-5"><div class="flex justify-between"><span class="text-gold/80">Pasif Gelir (Aylık)</span><i class="fa-regular fa-credit-card gold-text"></i></div><p class="text-2xl font-bold gold-text mt-2" id="passiveIncomeDisplay">₺0</p></div>
-            <div class="card-premium p-5"><div class="flex justify-between"><span class="text-gold/80">FIRE İlerleme</span><i class="fa-regular fa-circle-check gold-text"></i></div><p class="text-2xl font-bold gold-text mt-2" id="fireProgressPercent">0%</p><div class="w-full bg-blue-900 rounded-full h-2 mt-2"><div class="bg-gold h-2 rounded-full" id="fireProgressBar" style="width:0%"></div></div></div>
-            <div class="card-premium p-5"><div class="flex justify-between"><span class="text-gold/80">Kalan Süre</span><i class="fa-regular fa-clock gold-text"></i></div><p class="text-2xl font-bold gold-text mt-2" id="remainingYearsDisplay">-- yıl</p></div>
-        </div>
-
-        <!-- Ana Grid -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-            <!-- SOL -->
-            <div class="space-y-8">
-                <div id="hesapla" class="card-premium p-6">
-                    <h2 class="text-xl font-bold gold-text"><i class="fa-solid fa-calculator"></i> FIRE Simülatörü</h2>
-                    <div class="grid grid-cols-2 gap-3 mt-3">
-                        <div><label class="text-xs text-gold/80">Aylık Gelir</label><input type="number" id="monthlyIncome" value="45000" class="w-full p-2"></div>
-                        <div><label class="text-xs text-gold/80">Aylık Gider</label><input type="number" id="monthlyExpense" value="25000" class="w-full p-2"></div>
-                        <div><label class="text-xs text-gold/80">Yaş</label><input type="number" id="currentAge" value="32" class="w-full p-2"></div>
-                        <div><label class="text-xs text-gold/80">Mevcut Sermaye</label><input type="number" id="currentCapital" value="450000" class="w-full p-2"></div>
-                        <div><label class="text-xs text-gold/80">Yıllık Getiri %</label><input type="number" id="investmentReturn" value="9.5" step="0.5" class="w-full p-2"></div>
-                        <div><label class="text-xs text-gold/80">Enflasyon %</label><input type="number" id="inflationRate" value="6.0" step="0.5" class="w-full p-2"></div>
-                        <div><label class="text-xs text-gold/80">Döviz Etkisi</label><input type="number" id="forexEffect" value="1.0" step="0.05" class="w-full p-2"></div>
-                        <div><label class="text-xs text-gold/80">Barista Ek Gelir</label><input type="number" id="baristaIncome" value="8000" class="w-full p-2"></div>
-                    </div>
-                    <div class="flex gap-2 mt-2"><span class="text-gold text-sm">Senaryolar:</span><button data-scenario="lean" class="scenario-btn px-3 py-1 rounded-full text-xs bg-gold/20 gold-text">Lean</button><button data-scenario="fat" class="scenario-btn px-3 py-1 rounded-full text-xs bg-gold/40 gold-text font-bold">Fat</button><button data-scenario="barista" class="scenario-btn px-3 py-1 rounded-full text-xs bg-gold/20 gold-text">Barista</button></div>
-                    <div class="grid grid-cols-3 gap-2 mt-3">
-                        <div class="bg-blue-950 p-2 rounded-2xl"><p class="text-xs">Lean Hedef</p><p class="text-md font-bold gold-text" id="leanTarget">₺0</p><p class="text-xs" id="leanAge">-</p></div>
-                        <div class="bg-blue-950 p-2 rounded-2xl"><p class="text-xs">Fat Hedef</p><p class="text-md font-bold gold-text" id="fatTarget">₺0</p><p class="text-xs" id="fatAge">-</p></div>
-                        <div class="bg-blue-950 p-2 rounded-2xl"><p class="text-xs">Barista Hedef</p><p class="text-md font-bold gold-text" id="baristaTarget">₺0</p><p class="text-xs" id="baristaAge">-</p></div>
-                    </div>
-                    <canvas id="fireProjectionChart" height="130" class="mt-3"></canvas>
-                </div>
-
-                <div class="card-premium p-6">
-                    <h2 class="text-xl font-bold gold-text"><i class="fa-solid fa-chart-pie"></i> Finansal Sağlık & AI</h2>
-                    <div class="grid grid-cols-2 gap-3 mt-3">
-                        <div><label class="text-xs">Diğer Varlıklar</label><input type="number" id="otherAssets" value="150000" class="w-full p-2"></div>
-                        <div><label class="text-xs">Toplam Borç</label><input type="number" id="totalLiabilities" value="80000" class="w-full p-2"></div>
-                        <div><label class="text-xs">Acil Durum Fonu</label><input type="number" id="emergencyFund" value="75000" class="w-full p-2"></div>
-                        <div><label class="text-xs">Ek Gelir (aylık)</label><input type="number" id="extraIncome" value="5000" class="w-full p-2"></div>
-                    </div>
-                    <div class="flex flex-wrap justify-between mt-4 pt-3 border-t border-gold/20">
-                        <div><span class="text-gold/70 text-xs">Sağlık Skoru</span><div class="text-3xl font-bold gold-text" id="healthScore">78</div></div>
-                        <div><span class="text-gold/70 text-xs">Risk Profili</span><div class="badge-risk mt-1" id="riskProfileLabel">Orta Risk</div></div>
-                        <div><span class="text-gold/70 text-xs">Nakit Akışı</span><div class="font-semibold gold-text" id="cashFlowDisplay">+₺25.000</div></div>
-                    </div>
-                    <div class="mt-4 bg-blue-950/60 p-4 rounded-2xl border border-gold/20">
-                        <p class="text-sm font-semibold gold-text"><i class="fa-regular fa-lightbulb"></i> Yapay Zeka Önerileri</p>
-                        <p id="aiSuggestionsText" class="text-sm text-gold/80">Analiz ediliyor...</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SAĞ -->
-            <div class="space-y-8">
-                <div id="portfoy" class="card-premium p-6">
-                    <div class="flex justify-between"><h2 class="text-xl font-bold gold-text"><i class="fa-solid fa-chart-simple"></i> Portföy Takibi</h2><button id="refreshPricesBtn" class="text-xs bg-gold/20 gold-text px-3 py-1 rounded-full"><i class="fa-solid fa-rotate"></i> Güncelle</button></div>
-                    <div class="overflow-x-auto mt-3"><table class="w-full text-sm table-portfolio"><thead><tr class="border-b border-gold/30"><th class="gold-text">Varlık</th><th class="gold-text">Miktar</th><th class="gold-text">Fiyat</th><th class="gold-text">Toplam</th><th class="gold-text">Sınıf</th></tr></thead><tbody id="portfolioTableBody"></tbody></table></div>
-                    <div class="flex justify-between mt-4"><span class="gold-text">Toplam: <strong id="portfolioTotalVal">₺0</strong></span><span class="gold-text">Sharpe: <strong id="sharpeRatio">1.12</strong></span></div>
-                    <div class="grid grid-cols-2 gap-3 mt-3"><canvas id="assetAllocationChart" height="150"></canvas><div><p class="gold-text font-semibold">🔄 Dengeleme:</p><p id="rebalanceSuggestion" class="text-gold/80 text-xs">Analiz ediliyor</p></div></div>
-                </div>
-
-                <div id="akademi" class="card-premium p-6">
-                    <h2 class="text-xl font-bold gold-text"><i class="fa-solid fa-graduation-cap"></i> Akademi & Eğitim</h2>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
-                        <div class="border border-gold/30 rounded-2xl p-3"><i class="fa-solid fa-chalkboard-user gold-text"></i><p class="font-semibold gold-text">FIRE Başlangıç Eğitimi</p><p class="text-xs">Video dersler + PDF</p><button class="add-to-cart-btn mt-2 btn-outline-gold w-full py-1 rounded-full text-xs" data-name="FIRE Başlangıç Eğitimi" data-price="499">₺499 Sepete Ekle</button></div>
-                        <div class="border border-gold/30 rounded-2xl p-3"><i class="fa-solid fa-chart-line gold-text"></i><p class="font-semibold gold-text">Yatırım Psikolojisi Kursu</p><p class="text-xs">Davranışsal finans</p><button class="add-to-cart-btn mt-2 btn-outline-gold w-full py-1 rounded-full text-xs" data-name="Yatırım Psikolojisi Kursu" data-price="349">₺349 Sepete Ekle</button></div>
-                    </div>
-                </div>
-
-                <div id="odakmarket" class="card-premium p-6">
-                    <h2 class="text-xl font-bold gold-text flex justify-between items-center"><span><i class="fa-solid fa-store"></i> ODAK MARKET</span><button id="quickAdminBtn" class="btn-outline-gold text-xs px-3 py-1 rounded-full">✏️ Yönet</button></h2>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-4">
-                        <div class="bg-blue-950/40 rounded-2xl p-3 border border-gold/20"><h3 class="gold-text font-bold text-md"><i class="fa-regular fa-comments"></i> Danışmanlıklar</h3><div id="danismanlikList" class="space-y-2 mt-2 min-h-[120px]"></div></div>
-                        <div class="bg-blue-950/40 rounded-2xl p-3 border border-gold/20"><h3 class="gold-text font-bold text-md"><i class="fa-solid fa-database"></i> Dijital Ürünler</h3><div id="dijitalList" class="space-y-2 mt-2 min-h-[120px]"></div></div>
-                        <div class="bg-blue-950/40 rounded-2xl p-3 border border-gold/20"><h3 class="gold-text font-bold text-md"><i class="fa-solid fa-leaf"></i> Doğal Ürünler</h3><div id="dogalList" class="space-y-2 mt-2 min-h-[120px]"></div></div>
-                    </div>
-                    <p class="text-center text-gold/50 text-[11px] mt-4"><i class="fa-brands fa-whatsapp"></i> Sepete ekleyip WhatsApp ile sipariş verebilirsiniz.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <footer class="mt-12 border-t border-gold/30 pt-6 pb-4 flex flex-col md:flex-row justify-between items-start md:items-center text-sm text-gold/70 gap-4">
-            <div class="flex flex-wrap gap-6 items-center">
-                <a href="https://anadolunetwork.tr" target="_blank">Anadolu Network</a>
-                <a href="https://www.odakdijital.com.tr" target="_blank">Odak Dijital</a>
-                <a href="https://www.ortakmarkets.com.tr" target="_blank">Ortak Markets</a>
-                <a href="#" class="hover:text-gold">Hızlı Menü</a>
-                <div class="flex flex-col">
-                    <span class="gold-text font-semibold text-sm">İletişim</span>
-                    <div class="contact-info">
-                        CFO.MÜH. Orhan BOYRAZ<br>
-                        Mail: orhanboyraz0216@gmail.com<br>
-                        WhatsApp/Telf: 0541 866 0202
-                    </div>
-                </div>
-            </div>
-            <p>© 2025 Anadolu Network Fire Platformu | Altın Destekli Finans</p>
-        </footer>
     </div>
+
+    <!-- KPI Kartları (sadece gösterge) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
+        <div class="card-premium p-5"><div class="flex justify-between"><span class="text-gold/80">Hedef Sermaye (₺)</span><i class="fa-solid fa-bullseye gold-text"></i></div><p class="text-2xl font-bold gold-text mt-2" id="targetCapitalDisplay">₺0</p></div>
+        <div class="card-premium p-5"><div class="flex justify-between"><span class="text-gold/80">Tahmini FIRE Yaşı</span><i class="fa-regular fa-calendar gold-text"></i></div><p class="text-2xl font-bold gold-text mt-2" id="fireAgeDisplay">--</p></div>
+        <div class="card-premium p-5"><div class="flex justify-between"><span class="text-gold/80">Kalan Süre (Yıl)</span><i class="fa-regular fa-clock gold-text"></i></div><p class="text-2xl font-bold gold-text mt-2" id="remainingYearsDisplay">--</p></div>
+        <div class="card-premium p-5"><div class="flex justify-between"><span class="text-gold/80">Aylık Tasarruf</span><i class="fa-solid fa-piggy-bank gold-text"></i></div><p class="text-2xl font-bold gold-text mt-2" id="monthlySavingsDisplay">₺0</p></div>
+    </div>
+
+    <!-- Ana Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+        <!-- SOL: FIRE Simülatörü (kayar çubuklu) -->
+        <div id="hesapla" class="card-premium p-6">
+            <h2 class="text-xl font-bold gold-text mb-4"><i class="fa-solid fa-calculator"></i> FIRE Simülatörü (Kayar Çubuk)</h2>
+            <div class="space-y-4">
+                <div><label class="text-gold/80 text-sm">Aylık Gelir: <span id="incomeVal" class="gold-text font-bold">45.000 ₺</span></label><input type="range" id="monthlyIncome" min="0" max="200000" step="1000" value="45000" class="w-full"><div class="flex justify-between text-xs text-gold/50"><span>0₺</span><span>200.000₺</span></div></div>
+                <div><label class="text-gold/80 text-sm">Aylık Gider: <span id="expenseVal" class="gold-text font-bold">25.000 ₺</span></label><input type="range" id="monthlyExpense" min="0" max="150000" step="1000" value="25000" class="w-full"><div class="flex justify-between text-xs text-gold/50"><span>0₺</span><span>150.000₺</span></div></div>
+                <div><label class="text-gold/80 text-sm">Mevcut Yaş: <span id="ageVal" class="gold-text font-bold">32</span></label><input type="range" id="currentAge" min="18" max="80" step="1" value="32" class="w-full"></div>
+                <div><label class="text-gold/80 text-sm">Mevcut Birikim: <span id="capitalVal" class="gold-text font-bold">450.000 ₺</span></label><input type="range" id="currentCapital" min="0" max="5000000" step="10000" value="450000" class="w-full"><div class="flex justify-between text-xs text-gold/50"><span>0₺</span><span>5.000.000₺</span></div></div>
+                <div><label class="text-gold/80 text-sm">Yıllık Getiri (%) : <span id="returnVal" class="gold-text font-bold">9.5%</span></label><input type="range" id="investmentReturn" min="0" max="20" step="0.5" value="9.5" class="w-full"></div>
+                <div><label class="text-gold/80 text-sm">Enflasyon (%) : <span id="inflationVal" class="gold-text font-bold">6.0%</span></label><input type="range" id="inflationRate" min="0" max="15" step="0.5" value="6.0" class="w-full"></div>
+            </div>
+            <div class="mt-4 p-3 bg-blue-950/50 rounded-2xl text-center">
+                <p class="text-gold/80 text-sm">🔥 4% Kuralı ile hesaplanmıştır. Hedef sermaye = Yıllık Gider × 25</p>
+            </div>
+            <canvas id="fireProjectionChart" height="140" class="mt-4"></canvas>
+        </div>
+
+        <!-- SAĞ: Portföy (Pro modül, şifre korumalı) -->
+        <div id="portfoy" class="card-premium p-6 relative-card" style="min-height: 480px;">
+            <div class="flex justify-between items-center mb-2">
+                <h2 class="text-xl font-bold gold-text"><i class="fa-solid fa-chart-simple"></i> Portföy Takibi (Pro)</h2>
+                <button id="unlockPortfolioBtn" class="btn-outline-gold text-xs px-3 py-1 rounded-full"><i class="fa-solid fa-lock"></i> Pro Giriş</button>
+            </div>
+            <div id="portfolioLockOverlay" class="lock-overlay">
+                <i class="fa-solid fa-crown text-4xl gold-text mb-2"></i>
+                <p class="text-gold text-center">Bu modül Pro üyelere özeldir.<br>Giriş yapmak için butona tıklayın.</p>
+            </div>
+            <div id="portfolioContent" style="display: none;">
+                <div class="overflow-x-auto mt-3"><table class="w-full text-sm table-portfolio"><thead><tr class="border-b border-gold/30"><th class="gold-text">Varlık</th><th class="gold-text">Miktar</th><th class="gold-text">Fiyat</th><th class="gold-text">Toplam</th><th class="gold-text">Sınıf</th></tr></thead><tbody id="portfolioTableBody"></tbody></table></div>
+                <div class="flex justify-between mt-4"><span class="gold-text">Toplam: <strong id="portfolioTotalVal">₺0</strong></span><span class="gold-text">Sharpe: <strong id="sharpeRatio">1.12</strong></span></div>
+                <div class="grid grid-cols-2 gap-3 mt-3"><canvas id="assetAllocationChart" height="150"></canvas><div><p class="gold-text font-semibold">🔄 Dengeleme:</p><p id="rebalanceSuggestion" class="text-gold/80 text-xs">Analiz ediliyor</p></div></div>
+                <button id="refreshPricesBtn" class="mt-3 w-full btn-outline-gold text-xs py-1 rounded-full"><i class="fa-solid fa-rotate"></i> Fiyatları Güncelle</button>
+            </div>
+        </div>
+
+        <!-- Akademi / Eğitim (herkese açık) -->
+        <div id="akademi" class="card-premium p-6">
+            <h2 class="text-xl font-bold gold-text"><i class="fa-solid fa-graduation-cap"></i> Akademi & Eğitim</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
+                <div class="border border-gold/30 rounded-2xl p-3"><i class="fa-solid fa-chalkboard-user gold-text"></i><p class="font-semibold gold-text">FIRE Başlangıç Eğitimi</p><p class="text-xs">Video dersler + PDF</p><button class="add-to-cart-btn mt-2 btn-outline-gold w-full py-1 rounded-full text-xs" data-name="FIRE Başlangıç Eğitimi" data-price="499">₺499 Sepete Ekle</button></div>
+                <div class="border border-gold/30 rounded-2xl p-3"><i class="fa-solid fa-chart-line gold-text"></i><p class="font-semibold gold-text">Yatırım Psikolojisi Kursu</p><p class="text-xs">Davranışsal finans</p><button class="add-to-cart-btn mt-2 btn-outline-gold w-full py-1 rounded-full text-xs" data-name="Yatırım Psikolojisi Kursu" data-price="349">₺349 Sepete Ekle</button></div>
+            </div>
+        </div>
+
+        <!-- ODAK MARKET (herkese açık) -->
+        <div id="odakmarket" class="card-premium p-6">
+            <h2 class="text-xl font-bold gold-text"><span><i class="fa-solid fa-store"></i> ODAK MARKET</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-4">
+                <div class="bg-blue-950/40 rounded-2xl p-3 border border-gold/20"><h3 class="gold-text font-bold text-md"><i class="fa-regular fa-comments"></i> Danışmanlıklar</h3><div id="danismanlikList" class="space-y-2 mt-2 min-h-[120px]"></div></div>
+                <div class="bg-blue-950/40 rounded-2xl p-3 border border-gold/20"><h3 class="gold-text font-bold text-md"><i class="fa-solid fa-database"></i> Dijital Ürünler</h3><div id="dijitalList" class="space-y-2 mt-2 min-h-[120px]"></div></div>
+                <div class="bg-blue-950/40 rounded-2xl p-3 border border-gold/20"><h3 class="gold-text font-bold text-md"><i class="fa-solid fa-leaf"></i> Doğal Ürünler</h3><div id="dogalList" class="space-y-2 mt-2 min-h-[120px]"></div></div>
+            </div>
+            <p class="text-center text-gold/50 text-[11px] mt-4"><i class="fa-brands fa-whatsapp"></i> Sepete ekleyip WhatsApp ile sipariş verebilirsiniz.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-12 border-t border-gold/30 pt-6 pb-4 flex flex-col md:flex-row justify-between items-start md:items-center text-sm text-gold/70 gap-4">
+        <div class="flex flex-wrap gap-6 items-center">
+            <a href="https://anadolunetwork.tr" target="_blank">Anadolu Network</a>
+            <a href="https://www.odakdijital.com.tr" target="_blank">Odak Dijital</a>
+            <a href="https://www.ortakmarkets.com.tr" target="_blank">Ortak Markets</a>
+            <a href="#" class="hover:text-gold">Hızlı Menü</a>
+            <div class="flex flex-col">
+                <span class="gold-text font-semibold text-sm">İletişim</span>
+                <div class="contact-info">
+                    CFO.MÜH. Orhan BOYRAZ<br>
+                    Mail: orhanboyraz0216@gmail.com<br>
+                    WhatsApp/Telf: 0541 866 0202
+                </div>
+            </div>
+        </div>
+        <p>© 2025 Anadolu Network Fire Platformu | Altın Destekli Finans</p>
+    </footer>
 </div>
 
 <!-- Sepet Modal -->
@@ -218,7 +197,31 @@
     </div>
 </div>
 
-<!-- Yönetim Paneli (Herkes kullanabilir - demo) -->
+<!-- Şifre Modalı (Pro Portföy) -->
+<div id="proPasswordModal" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 hidden">
+    <div class="card-premium p-6 w-96 text-center">
+        <i class="fa-solid fa-lock text-4xl gold-text mb-3"></i>
+        <h2 class="text-xl gold-text font-bold">Pro Modül Girişi</h2>
+        <p class="text-gold/70 text-sm mb-4">Portföy takibine erişmek için şifrenizi girin.</p>
+        <input type="password" id="proPassword" placeholder="Şifre" class="w-full p-2 mb-4">
+        <button id="verifyProBtn" class="btn-gold w-full py-2 rounded-full">Giriş Yap</button>
+        <button id="closeProModal" class="mt-3 text-gold/60 text-sm">İptal</button>
+    </div>
+</div>
+
+<!-- Yönetim Paneli Şifre Modalı -->
+<div id="adminPasswordModal" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 hidden">
+    <div class="card-premium p-6 w-96 text-center">
+        <i class="fa-solid fa-lock text-4xl gold-text mb-3"></i>
+        <h2 class="text-xl gold-text font-bold">Yönetim Paneli Girişi</h2>
+        <p class="text-gold/70 text-sm mb-4">Ürün yönetimi için şifreyi girin.</p>
+        <input type="password" id="adminAccessPassword" placeholder="Şifre" class="w-full p-2 mb-4">
+        <button id="verifyAdminBtn" class="btn-gold w-full py-2 rounded-full">Giriş Yap</button>
+        <button id="closeAdminPasswordModal" class="mt-3 text-gold/60 text-sm">İptal</button>
+    </div>
+</div>
+
+<!-- Yönetim Paneli (Ürün Ekle/Sil) -->
 <div id="adminModal" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 hidden">
     <div class="card-premium w-full max-w-2xl p-6 mx-4 max-h-[80vh] overflow-auto">
         <div class="flex justify-between"><h2 class="text-2xl gold-text font-bold">Yönetim Paneli - Ürün Yönetimi</h2><button id="closeAdminBtn" class="text-gold text-2xl">&times;</button></div>
@@ -230,36 +233,8 @@
     </div>
 </div>
 
-<!-- Üyelik Yükseltme Modalı -->
-<div id="upgradeModal" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 hidden">
-    <div class="card-premium p-6 w-96 text-center">
-        <h2 class="text-2xl gold-text font-bold">Üyelik Seviyeni Yükselt</h2>
-        <div class="mt-4 space-y-3">
-            <button data-tier="pro" class="upgrade-tier-btn w-full btn-outline-gold py-2 rounded-full">Pro Üyelik - $19/ay (AI + Portföy)</button>
-            <button data-tier="premium" class="upgrade-tier-btn w-full btn-gold py-2 rounded-full">Premium Üyelik - $49/ay (Tüm Özellikler + Yönetim)</button>
-        </div>
-        <button id="closeUpgradeBtn" class="mt-4 text-gold/60 text-sm">Kapat</button>
-    </div>
-</div>
-
 <script>
-    // Giriş şifresi
-    const correctPassword = "odak-2026";
-    const loginPanel = document.getElementById('loginPanel');
-    const dashboard = document.getElementById('dashboardContent');
-    document.getElementById('loginBtn').onclick = () => {
-        if(document.getElementById('adminPassword').value === correctPassword) {
-            loginPanel.style.display = 'none';
-            dashboard.style.display = 'block';
-            sessionStorage.setItem('firestack_auth', 'true');
-            initApp();
-        } else alert("Şifre hatalı!");
-    };
-    document.getElementById('logoutBtn')?.addEventListener('click',()=>{ sessionStorage.removeItem('firestack_auth'); location.reload(); });
-    if(sessionStorage.getItem('firestack_auth') === 'true') { loginPanel.style.display = 'none'; dashboard.style.display = 'block'; initApp(); }
-
-    // Global değişkenler
-    let currentMembership = localStorage.getItem('fireMembership') || 'free';
+    // ---------- Global Değişkenler ----------
     let cart = [];
     let portfolioData = [
         { name: "BIST Hisse", qty: 1250, price: 42.5, class: "Hisse" },
@@ -290,16 +265,73 @@
         ]
     };
     let allocationChart, fireChart;
+    let portfolioUnlocked = false;
 
+    // Yardımcı fonksiyonlar
     function formatMoney(val) { return new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY' }).format(val); }
+    function formatNumber(val) { return new Intl.NumberFormat('tr-TR').format(Math.round(val)); }
 
-    // Üyelik görünümü (sadece badge için)
-    function updateMembershipUI() {
-        document.getElementById('membershipBadge').innerText = currentMembership === 'free' ? 'Ücretsiz' : (currentMembership === 'pro' ? 'Pro' : 'Premium');
-        // Premium'a özel bir kısıtlama yok, herkes yönetim panelini görebilir (demo)
+    // FIRE Hesaplama (kayar çubuklarla)
+    function computeFire() {
+        let income = parseInt(document.getElementById('monthlyIncome').value);
+        let expense = parseInt(document.getElementById('monthlyExpense').value);
+        let age = parseInt(document.getElementById('currentAge').value);
+        let capital = parseInt(document.getElementById('currentCapital').value);
+        let ret = parseFloat(document.getElementById('investmentReturn').value) / 100;
+        let inf = parseFloat(document.getElementById('inflationRate').value) / 100;
+        
+        // UI update
+        document.getElementById('incomeVal').innerText = formatNumber(income) + ' ₺';
+        document.getElementById('expenseVal').innerText = formatNumber(expense) + ' ₺';
+        document.getElementById('ageVal').innerText = age;
+        document.getElementById('capitalVal').innerText = formatNumber(capital) + ' ₺';
+        document.getElementById('returnVal').innerText = (ret*100).toFixed(1) + '%';
+        document.getElementById('inflationVal').innerText = (inf*100).toFixed(1) + '%';
+        
+        let monthlySave = income - expense;
+        document.getElementById('monthlySavingsDisplay').innerHTML = formatMoney(monthlySave);
+        let annualExpense = expense * 12;
+        let targetCapital = annualExpense * 25; // 4% rule
+        document.getElementById('targetCapitalDisplay').innerHTML = formatMoney(targetCapital);
+        
+        // Gerçek getiri (enflasyon düzeltilmiş)
+        let realReturn = (1+ret)/(1+inf)-1;
+        if(realReturn < 0) realReturn = 0;
+        
+        let yearsToTarget = 0;
+        let balance = capital;
+        if (targetCapital > capital && monthlySave > 0) {
+            let monthlyRate = realReturn / 12;
+            while (balance < targetCapital && yearsToTarget < 60) {
+                balance = balance * (1 + monthlyRate) + monthlySave * ((Math.pow(1+monthlyRate,12)-1)/monthlyRate);
+                yearsToTarget++;
+            }
+        } else if (capital >= targetCapital) {
+            yearsToTarget = 0;
+        } else {
+            yearsToTarget = 999;
+        }
+        let fireAge = age + yearsToTarget;
+        document.getElementById('fireAgeDisplay').innerHTML = (yearsToTarget < 60) ? fireAge : '>90';
+        document.getElementById('remainingYearsDisplay').innerHTML = (yearsToTarget < 60) ? Math.round(yearsToTarget) : '60+';
+        
+        // Grafik
+        if(fireChart) fireChart.destroy();
+        let points = [capital];
+        let simBal = capital;
+        for(let y=1; y<=40; y++) {
+            simBal = simBal * (1 + realReturn) + monthlySave * 12;
+            points.push(simBal);
+        }
+        let ctx = document.getElementById('fireProjectionChart').getContext('2d');
+        fireChart = new Chart(ctx, {
+            type: 'line',
+            data: { labels: points.map((_,i)=>i), datasets: [{ label: 'Portföy Büyüklüğü (₺)', data: points, borderColor: '#F5B81B', fill: true, backgroundColor: '#F5B81B20' }] },
+            options: { responsive: true, maintainAspectRatio: true, plugins: { tooltip: { callbacks: { label: (ctx) => formatMoney(ctx.raw) } } } }
+        });
     }
 
-    // Sepet
+    // Sepet işlemleri
     function renderCart() {
         const container = document.getElementById('cartItemsList');
         if(!container) return;
@@ -383,57 +415,70 @@
         let labels = Array.from(classMap.keys()), data = Array.from(classMap.values());
         if(allocationChart) allocationChart.destroy();
         let ctx = document.getElementById('assetAllocationChart').getContext('2d');
-        allocationChart = new Chart(ctx, { type: 'pie', data: { labels, datasets: [{ data, backgroundColor: ['#F5B81B', '#3B82F6', '#10B981', '#F97316', '#A855F7', '#EC489A', '#EAB308'] }] }, options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { labels: { color: '#F5B81B' } } } } });
+        allocationChart = new Chart(ctx, { type: 'pie', data: { labels, datasets: [{ data, backgroundColor: ['#F5B81B', '#3B82F6', '#10B981', '#F97316', '#A855F7', '#EC489A'] }] }, options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { labels: { color: '#F5B81B' } } } } });
         let eqRatio = (classMap.get('Hisse')||0)/getPortfolioTotal();
         let riskText = eqRatio>0.6 ? 'Yüksek Risk' : (eqRatio>0.3 ? 'Orta Risk' : 'Düşük Risk');
-        document.getElementById('riskProfileLabel').innerHTML = riskText;
         document.getElementById('rebalanceSuggestion').innerHTML = eqRatio>0.55 ? 'Hisse azalt, tahvil ekle' : (eqRatio<0.2 ? 'Hisse oranını artır' : 'Dağılım dengeli');
     }
-    function computeFire() {
-        let income=+document.getElementById('monthlyIncome').value, expense=+document.getElementById('monthlyExpense').value, age=+document.getElementById('currentAge').value, capital=+document.getElementById('currentCapital').value, ret=+document.getElementById('investmentReturn').value/100, inf=+document.getElementById('inflationRate').value/100, forex=+document.getElementById('forexEffect').value, baristaExtra=+document.getElementById('baristaIncome').value;
-        let monthlySave=income-expense, annualExp=expense*12, realRet=(1+ret)/(1+inf)-1, effRet=realRet*forex;
-        let calcYears=(target)=>{ if(target<=capital) return 0; let bal=capital, y=0, mr=effRet/12; while(bal<target && y<60){ bal=bal*(1+mr)+monthlySave*((Math.pow(1+mr,12)-1)/mr); y++; } return y; };
-        let leanTarget=annualExp*25, fatTarget=annualExp*35, baristaAdj=Math.max(0, annualExp-(baristaExtra*12))*25;
-        let leanY=calcYears(leanTarget), fatY=calcYears(fatTarget), barY=calcYears(baristaAdj);
-        document.getElementById('leanTarget').innerHTML=formatMoney(leanTarget); document.getElementById('fatTarget').innerHTML=formatMoney(fatTarget); document.getElementById('baristaTarget').innerHTML=formatMoney(baristaAdj);
-        document.getElementById('leanAge').innerHTML=leanY<60?`${age+leanY} yaş`:'>90'; document.getElementById('fatAge').innerHTML=fatY<60?`${age+fatY} yaş`:'>90'; document.getElementById('baristaAge').innerHTML=barY<60?`${age+barY} yaş`:'>90';
-        let mainYears=leanY; document.getElementById('remainingYearsDisplay').innerHTML=mainYears<60?`${Math.round(mainYears)} yıl`:'60+ yıl';
-        let progress=Math.min(100,(capital/leanTarget)*100); document.getElementById('fireProgressPercent').innerHTML=`${Math.round(progress)}%`; document.getElementById('fireProgressBar').style.width=`${progress}%`;
-        if(fireChart) fireChart.destroy(); let points=[], balSim=capital; for(let y=0; y<=35; y++){ points.push(balSim); balSim=balSim*(1+effRet)+monthlySave*12; }
-        fireChart = new Chart(document.getElementById('fireProjectionChart').getContext('2d'), { type:'line', data:{ labels:points.map((_,i)=>i), datasets:[{ label:'Portföy (₺)', data:points, borderColor:'#F5B81B', fill:true, backgroundColor:'#F5B81B20' }] }, options:{ responsive:true } });
-    }
-    function updateFinancialHealth() {
-        let other=+document.getElementById('otherAssets').value, liabilities=+document.getElementById('totalLiabilities').value, emergency=+document.getElementById('emergencyFund').value, extra=+document.getElementById('extraIncome').value, port=getPortfolioTotal();
-        let netWorth=port+other+emergency-liabilities; document.getElementById('netWorthDisplay').innerHTML=formatMoney(netWorth);
-        let income=+document.getElementById('monthlyIncome').value, expense=+document.getElementById('monthlyExpense').value, cashFlow=(income-expense)+extra; document.getElementById('cashFlowDisplay').innerHTML=cashFlow>=0?`+₺${cashFlow.toFixed(0)}`:`-₺${Math.abs(cashFlow).toFixed(0)}`;
-        let passiveYear=port*0.02; document.getElementById('passiveIncomeDisplay').innerHTML=formatMoney(passiveYear/12);
-        let savingsRate=income?((income-expense)/income)*100:0, emergencyMonths=expense?emergency/expense:0, score=40+Math.min(30,savingsRate*0.8)+Math.min(20,(emergencyMonths/6)*20)-Math.min(25,(liabilities/(income*12||1))*25); score=Math.min(100,Math.max(0,score)); document.getElementById('healthScore').innerHTML=Math.floor(score);
-        let sugg=[]; if(savingsRate<30) sugg.push("📉 Tasarruf oranınız düşük."); if(emergencyMonths<6) sugg.push("🛡️ Acil fonu büyütün."); if(currentMembership==='pro'||currentMembership==='premium') sugg.push("✨ AI önerisi: Portföy çeşitlendirmesi yapın."); if(sugg.length===0) sugg.push("💡 Finansal sağlığınız iyi, pasif gelir kanallarını artırın.");
-        document.getElementById('aiSuggestionsText').innerHTML=sugg.join(' ');
-    }
-    function refreshMockPrices(){ portfolioData.forEach(a=>{ let ch=(Math.random()*0.08)-0.03; a.price=a.price*(1+ch); if(a.price<1) a.price=1; }); updatePortfolioUI(); updateAssetChart(); updateFinancialHealth(); computeFire(); }
+    function refreshMockPrices(){ portfolioData.forEach(a=>{ let ch=(Math.random()*0.08)-0.03; a.price=a.price*(1+ch); if(a.price<1) a.price=1; }); updatePortfolioUI(); updateAssetChart(); }
 
-    function upgradeMembership(tier) {
-        currentMembership = tier;
-        localStorage.setItem('fireMembership', tier);
-        updateMembershipUI();
-        updateFinancialHealth();
-        alert(`${tier.toUpperCase()} üyeliğe geçtiniz!`);
-        document.getElementById('upgradeModal').classList.add('hidden');
+    // Portföy kilidi
+    function unlockPortfolio() {
+        const overlay = document.getElementById('portfolioLockOverlay');
+        const content = document.getElementById('portfolioContent');
+        overlay.style.display = 'none';
+        content.style.display = 'block';
+        updatePortfolioUI();
+        updateAssetChart();
+        portfolioUnlocked = true;
     }
 
+    // Event bağlamaları
     function bindEvents() {
-        document.getElementById('refreshPricesBtn')?.addEventListener('click', refreshMockPrices);
-        ['monthlyIncome','monthlyExpense','currentAge','currentCapital','investmentReturn','inflationRate','forexEffect','baristaIncome','otherAssets','totalLiabilities','emergencyFund','extraIncome'].forEach(id=>{ document.getElementById(id)?.addEventListener('input',()=>{ computeFire(); updateFinancialHealth(); }); });
+        // Slider eventleri
+        const sliders = ['monthlyIncome', 'monthlyExpense', 'currentAge', 'currentCapital', 'investmentReturn', 'inflationRate'];
+        sliders.forEach(id => {
+            document.getElementById(id).addEventListener('input', computeFire);
+        });
+        computeFire(); // ilk hesaplama
+        
+        // Sepet ürünleri (akademi)
         document.querySelectorAll('.add-to-cart-btn').forEach(btn=>{ btn.addEventListener('click',()=>{ addToCart(btn.dataset.name, parseInt(btn.dataset.price)); }); });
+        
+        // Sepet modal
         document.getElementById('cartButton').onclick = ()=>{ let m=document.getElementById('cartModal'); m.style.display='block'; setTimeout(()=> m.style.transform='translateX(0%)',10); };
         document.getElementById('closeCartBtn').onclick = ()=>{ let m=document.getElementById('cartModal'); m.style.transform='translateX(100%)'; setTimeout(()=> m.style.display='none',300); };
-        document.getElementById('whatsappOrderBtn').onclick = ()=>{ if(cart.length===0){ alert("Sepet boş"); return; } let msg="Merhaba, Fire Platformu sipariş:%0A"; cart.forEach(i=>msg+=`- ${i.name} : ${formatMoney(i.price)}%0A`); msg+=`Toplam: ${formatMoney(cart.reduce((a,b)=>a+b.price,0))}`; window.open(`https://wa.me/905055555555?text=${msg}`,'_blank'); };
+        document.getElementById('whatsappOrderBtn').onclick = ()=>{ if(cart.length===0){ alert("Sepet boş"); return; } let msg="Merhaba, Fire Platformu sipariş:%0A"; cart.forEach(i=>msg+=`- ${i.name} : ${formatMoney(i.price)}%0A`); msg+=`Toplam: ${formatMoney(cart.reduce((a,b)=>a+b.price,0))}`; window.open(`https://wa.me/905054445555?text=${msg}`,'_blank'); };
+        
+        // Pro modül şifre
+        const proModal = document.getElementById('proPasswordModal');
+        document.getElementById('unlockPortfolioBtn').onclick = () => proModal.classList.remove('hidden');
+        document.getElementById('verifyProBtn').onclick = () => {
+            const pwd = document.getElementById('proPassword').value;
+            if(pwd === 'pro2026') {
+                proModal.classList.add('hidden');
+                unlockPortfolio();
+                document.getElementById('proPassword').value = '';
+            } else alert("Şifre hatalı! Pro üyelik gereklidir.");
+        };
+        document.getElementById('closeProModal').onclick = () => { proModal.classList.add('hidden'); document.getElementById('proPassword').value = ''; };
+        
+        // Yönetim Paneli şifre
+        const adminPwdModal = document.getElementById('adminPasswordModal');
         const adminModal = document.getElementById('adminModal');
-        document.getElementById('adminPanelBtn').onclick = ()=>{ renderAdminProductList(); adminModal.classList.remove('hidden'); };
-        document.getElementById('quickAdminBtn').onclick = ()=>{ renderAdminProductList(); adminModal.classList.remove('hidden'); };
-        document.getElementById('closeAdminBtn').onclick = ()=> adminModal.classList.add('hidden');
-        document.getElementById('addProductBtn').onclick = ()=>{
+        document.getElementById('adminPanelBtn').onclick = () => adminPwdModal.classList.remove('hidden');
+        document.getElementById('verifyAdminBtn').onclick = () => {
+            const pwd = document.getElementById('adminAccessPassword').value;
+            if(pwd === 'admin2026') {
+                adminPwdModal.classList.add('hidden');
+                renderAdminProductList();
+                adminModal.classList.remove('hidden');
+                document.getElementById('adminAccessPassword').value = '';
+            } else alert("Şifre hatalı!");
+        };
+        document.getElementById('closeAdminPasswordModal').onclick = () => { adminPwdModal.classList.add('hidden'); document.getElementById('adminAccessPassword').value = ''; };
+        document.getElementById('closeAdminBtn').onclick = () => adminModal.classList.add('hidden');
+        document.getElementById('addProductBtn').onclick = () => {
             let name = document.getElementById('newProductName').value.trim();
             let price = parseInt(document.getElementById('newProductPrice').value);
             let cat = document.getElementById('newProductCategory').value;
@@ -443,20 +488,22 @@
             localStorage.setItem('fireMarketProducts', JSON.stringify(marketProducts));
             document.getElementById('newProductName').value=''; document.getElementById('newProductPrice').value='';
         };
-        window.onclick = (e)=> { if(e.target === adminModal) adminModal.classList.add('hidden'); };
-        const upgradeModal = document.getElementById('upgradeModal');
-        document.getElementById('upgradeBtn').onclick = ()=> upgradeModal.classList.remove('hidden');
-        document.getElementById('closeUpgradeBtn').onclick = ()=> upgradeModal.classList.add('hidden');
-        document.querySelectorAll('.upgrade-tier-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => { upgradeMembership(btn.dataset.tier); });
-        });
+        window.onclick = (e)=> { if(e.target === adminModal) adminModal.classList.add('hidden'); if(e.target === adminPwdModal) adminPwdModal.classList.add('hidden'); if(e.target === proModal) proModal.classList.add('hidden'); };
+        
+        // Portföy yenileme butonu (sadece açıldıysa)
+        document.getElementById('refreshPricesBtn')?.addEventListener('click', refreshMockPrices);
     }
 
     function initApp() {
         let savedProducts = localStorage.getItem('fireMarketProducts');
         if(savedProducts) marketProducts = JSON.parse(savedProducts);
-        updatePortfolioUI(); updateAssetChart(); computeFire(); updateFinancialHealth(); renderMarketProducts(); updateMembershipUI(); bindEvents();
+        renderMarketProducts();
+        bindEvents();
+        // Portföy başlangıçta kilitli
+        document.getElementById('portfolioLockOverlay').style.display = 'flex';
+        document.getElementById('portfolioContent').style.display = 'none';
     }
+    initApp();
 </script>
 </body>
 </html>
