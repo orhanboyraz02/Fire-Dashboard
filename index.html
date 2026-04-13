@@ -3,230 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anadolu Network | Finansal Özgürlük Yolculuğu</title>
+    <title>Anadolu Network | Finansal Özgürlük Karargahı</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { 
-            --light-blue: #00A8E8; 
-            --gold: #FFD700; 
-            --deep-navy: #000D1A;
-        }
-        body { 
-            background: var(--deep-navy); 
-            color: white; 
-            font-family: 'Poppins', sans-serif;
-            scroll-behavior: smooth;
-        }
-        .gold-text { color: var(--gold); }
+        :root { --gold: #FFD700; --light-blue: #00A8E8; --navy: #000D1A; }
+        body { background: var(--navy); color: white; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
+        .gold-txt { color: var(--gold); }
         .blue-box { 
-            background: rgba(0, 168, 232, 0.1); 
+            background: rgba(0, 168, 232, 0.08); 
             border: 2px solid var(--light-blue); 
-            border-radius: 1.25rem;
+            border-radius: 1.5rem; 
             transition: 0.3s;
         }
-        .blue-box:hover { background: rgba(0, 168, 232, 0.2); }
-        .gold-border { border-color: var(--gold); }
+        .blue-box:hover { border-color: var(--gold); background: rgba(0, 168, 232, 0.15); }
         input[type=range] { accent-color: var(--gold); }
         
-        /* Panel Tasarımı */
+        /* PANEL AKTİF TASARIM */
         #adminPanel {
             display: none;
             position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: #001a33;
-            border: 3px solid var(--gold);
-            z-index: 1000;
-            width: 90%;
-            max-width: 500px;
-            padding: 2rem;
-            border-radius: 2rem;
-            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+            background: #001a33; border: 2px solid var(--gold);
+            z-index: 9999; width: 95%; max-width: 450px; padding: 2rem;
+            border-radius: 20px; box-shadow: 0 0 100px rgba(0,0,0,0.9);
         }
-        .nav-link { font-weight: 700; font-size: 13px; color: white; transition: 0.3s; }
-        .nav-link:hover { color: var(--gold); }
+        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9998; }
     </style>
 </head>
 <body class="antialiased">
 
-    <nav class="sticky top-0 z-50 bg-black/50 backdrop-blur-md border-b border-gold/30 px-6 py-4">
+    <div id="panelOverlay" class="overlay" onclick="toggleAdmin()"></div>
+
+    <nav class="sticky top-0 z-50 bg-black/60 backdrop-blur-lg border-b border-gold/40 px-6 py-4">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div class="w-12 h-12 bg-gold rounded-xl flex items-center justify-center font-black text-black text-2xl shadow-lg">AN</div>
+            <div class="flex items-center gap-4">
+                <div class="w-14 h-14 bg-gold rounded-xl flex items-center justify-center font-black text-black text-3xl shadow-lg">AN</div>
                 <div>
-                    <h1 class="text-lg font-black uppercase tracking-tighter leading-none gold-text">Anadolu Network</h1>
-                    <span class="text-[10px] text-white font-bold uppercase tracking-[0.3em]">Finansal Özgürlük</span>
+                    <h1 class="text-xl font-black uppercase gold-txt leading-none tracking-tighter">Anadolu Network</h1>
+                    <span class="text-[10px] text-white/70 font-bold uppercase tracking-[0.2em]">Finansal Özgürlük Mimarisi</span>
                 </div>
             </div>
-            <div class="hidden md:flex gap-8 uppercase">
-                <a href="#section1" class="nav-link">Hesapla</a>
-                <a href="#section2" class="nav-link">Rapor</a>
-                <a href="#section3" class="nav-link">Portföy</a>
-                <a href="#section4" class="nav-link">Akademi</a>
-                <a href="#section4" class="nav-link">Market</a>
+            <div class="hidden md:flex gap-8 text-xs font-black uppercase italic">
+                <a href="#section1" class="hover:text-gold transition">Hesapla</a>
+                <a href="#section2" class="hover:text-gold transition">Rapor</a>
+                <a href="#section3" class="hover:text-gold transition">Portföy</a>
+                <a href="#section4" class="hover:text-gold transition">Akademi</a>
+                <a href="#section4" class="hover:text-gold transition">Market</a>
             </div>
         </div>
     </nav>
 
-    <main class="max-w-7xl mx-auto px-6 py-12 space-y-16">
+    <main class="max-w-7xl mx-auto px-6 py-12 space-y-20">
         
         <div class="text-center space-y-4">
-            <h1 class="text-5xl md:text-7xl font-black italic gold-text uppercase">F.I.R.E: ÖZGÜRLÜK MİMARİSİ</h1>
-            <p class="text-xl text-white/80 font-semibold tracking-wide">Finansal Özgürlük Yolculuğu</p>
+            <h1 class="text-5xl md:text-8xl font-black italic gold-txt uppercase">F.I.R.E: V10.0 ULTRA</h1>
+            <p class="text-xl text-white font-semibold tracking-widest uppercase">Finansal Özgürlük Yolculuğu</p>
         </div>
 
         <section id="section1" class="space-y-6">
-            <h2 class="text-2xl font-black gold-text italic uppercase">1. BÖLÜM: FİRE HESAPLAMA</h2>
+            <h2 class="text-2xl font-black gold-txt italic uppercase border-l-4 border-gold pl-4">1. BÖLÜM: FİRE HESAPLAMA</h2>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <div class="blue-box p-8 space-y-6">
-                    <h3 class="text-sm font-bold text-white uppercase mb-4 border-b border-gold/20 pb-2">Strateji Girişleri</h3>
                     <div class="space-y-6 font-bold text-xs uppercase">
-                        <div>Mevcut Varlık: <span id="vAssets" class="gold-text text-xl ml-2">0 ₺</span><input type="range" id="inAssets" min="0" max="10000000" step="50000" value="100000" oninput="run()" class="w-full mt-2"></div>
-                        <div>Aylık Tasarruf: <span id="vSav" class="gold-text text-xl ml-2">0 ₺</span><input type="range" id="inSav" min="0" max="250000" step="1000" value="10000" oninput="run()" class="w-full mt-2"></div>
-                        <div>Aylık Pasif Gelir: <span id="vPas" class="gold-text text-xl ml-2">0 ₺</span><input type="range" id="inPas" min="0" max="100000" step="1000" value="0" oninput="run()" class="w-full mt-2"></div>
-                        <div>AI & Yapay Zeka Kaldıracı: <span id="vAi" class="gold-text text-xl ml-2">%30</span><input type="range" id="inAi" min="0" max="100" value="30" oninput="run()" class="w-full mt-2"></div>
-                        <div>Hedef Yaşam Gideri: <span id="vExp" class="gold-text text-xl ml-2">50k</span><input type="range" id="inExp" min="10000" max="500000" step="5000" value="50000" oninput="run()" class="w-full mt-2"></div>
+                        <div>Varlık: <span id="vAssets" class="gold-txt text-xl ml-2">0 ₺</span><input type="range" id="inAssets" min="0" max="10000000" step="50000" value="100000" oninput="run()" class="w-full mt-2"></div>
+                        <div>Birikim: <span id="vSav" class="gold-txt text-xl ml-2">0 ₺</span><input type="range" id="inSav" min="0" max="250000" step="1000" value="10000" oninput="run()" class="w-full mt-2"></div>
+                        <div>Pasif Gelir: <span id="vPas" class="gold-txt text-xl ml-2">0 ₺</span><input type="range" id="inPas" min="0" max="100000" step="1000" value="0" oninput="run()" class="w-full mt-2"></div>
+                        <div>AI Kaldıracı: <span id="vAi" class="gold-txt text-xl ml-2">%30</span><input type="range" id="inAi" min="0" max="100" value="30" oninput="run()" class="w-full mt-2"></div>
                     </div>
                 </div>
-                <div class="blue-box p-10 flex flex-col justify-center items-center text-center bg-white/5 gold-border border-dashed">
-                    <p class="text-xs font-black tracking-widest text-gold uppercase mb-6">Emeklilik Analizi</p>
+                <div class="blue-box p-10 flex flex-col justify-center items-center text-center border-dashed">
                     <div class="grid grid-cols-2 gap-8 w-full">
-                        <div><p class="text-[10px] opacity-60 uppercase mb-2">Özgürlük Yaşı</p><p id="rAge" class="text-6xl font-black gold-text">--</p></div>
-                        <div><p class="text-[10px] opacity-60 uppercase mb-2">Kalan Yıl</p><p id="rYears" class="text-6xl font-black gold-text">--</p></div>
-                    </div>
-                    <div class="mt-10 pt-6 border-t border-gold/20 w-full">
-                        <p class="text-[10px] opacity-60 uppercase mb-2">Gereken Toplam Portföy</p>
-                        <p id="rTarget" class="text-4xl font-black text-white italic">--</p>
+                        <div><p class="text-[10px] opacity-60 uppercase mb-2">Özgürlük Yaşı</p><p id="rAge" class="text-6xl font-black gold-txt">--</p></div>
+                        <div><p class="text-[10px] opacity-60 uppercase mb-2">Kalan Yıl</p><p id="rYears" class="text-6xl font-black gold-txt">--</p></div>
                     </div>
                 </div>
             </div>
         </section>
 
         <section id="section2" class="space-y-6">
-            <h2 class="text-2xl font-black gold-text italic uppercase">2. FİNANSAL DURUM RAPORU</h2>
+            <h2 class="text-2xl font-black gold-txt italic uppercase border-l-4 border-gold pl-4">2. FİNANSAL DURUM RAPORU</h2>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="blue-box p-6 text-center border-b-4 border-gold"><p class="text-[10px] uppercase font-bold mb-1">Net Servet</p><div id="netW" class="text-xl font-black gold-text">0 ₺</div></div>
-                <div class="blue-box p-6 text-center border-b-4 border-green-500"><p class="text-[10px] uppercase font-bold mb-1">Aylık Nakit Akışı</p><div id="netC" class="text-xl font-black">0 ₺</div></div>
-                <div class="blue-box p-6 text-center border-b-4 border-red-500"><p class="text-[10px] uppercase font-bold mb-1">Borç Oranı</p><div id="debtR" class="text-xl font-black text-red-400">%0</div></div>
-                <div class="blue-box p-6 text-center border-b-4 border-blue-400"><p class="text-[10px] uppercase font-bold mb-1">Acil Fonu</p><div id="emerF" class="text-xl font-black text-blue-300">--</div></div>
+                <div class="blue-box p-6 text-center"><p class="text-[10px] uppercase font-bold gold-txt">Net Servet</p><div id="netW" class="text-xl font-black">0 ₺</div></div>
+                <div class="blue-box p-6 text-center"><p class="text-[10px] uppercase font-bold gold-txt">Nakit Akışı</p><div id="netC" class="text-xl font-black">0 ₺</div></div>
+                <div class="blue-box p-6 text-center"><p class="text-[10px] uppercase font-bold gold-txt">Borç Oranı</p><div id="debtR" class="text-xl font-black text-red-400">%0</div></div>
+                <div class="blue-box p-6 text-center"><p class="text-[10px] uppercase font-bold gold-txt">Acil Fonu</p><div id="emerF" class="text-xl font-black text-blue-300">--</div></div>
             </div>
         </section>
 
         <section id="section3" class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div class="blue-box p-8">
-                <h4 class="text-sm font-black gold-text mb-6 uppercase italic underline">Varlık Listesi (+)</h4>
-                <div id="assetList" class="space-y-3 text-xs font-bold uppercase"></div>
+            <div class="blue-box p-8 border-t-4 border-gold">
+                <h4 class="text-sm font-black gold-txt mb-6 uppercase italic underline">Varlıklar (+)</h4>
+                <div id="assetList" class="space-y-3 text-xs font-bold uppercase italic"></div>
             </div>
-            <div class="blue-box p-8 border-red-900">
+            <div class="blue-box p-8 border-t-4 border-red-500">
                 <h4 class="text-sm font-black text-red-500 mb-6 uppercase italic underline">Borçlar (-)</h4>
                 <div id="debtList" class="space-y-3 text-xs font-bold uppercase text-red-200"></div>
             </div>
         </section>
 
         <section id="section4" class="space-y-6">
-            <h2 class="text-2xl font-black gold-text italic uppercase">4. AKADEMİ, EĞİTİM VE MARKET</h2>
-            <div id="productGrid" class="grid grid-cols-2 md:grid-cols-4 gap-6 pb-20"></div>
+            <h2 class="text-2xl font-black gold-txt italic uppercase border-l-4 border-gold pl-4">4. AKADEMİ, EĞİTİM VE MARKET</h2>
+            <div id="productGrid" class="grid grid-cols-2 md:grid-cols-4 gap-6 pb-24"></div>
         </section>
     </main>
 
-    <footer class="mt-20 border-t-2 border-gold bg-black/80 pt-16 pb-10 px-8">
+    <footer class="border-t-4 border-gold bg-black/90 pt-16 pb-12 px-8">
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
                 <div class="md:col-span-4">
-                    <div class="flex items-center gap-3 mb-6">
-                        <div class="w-10 h-10 bg-gold rounded flex items-center justify-center font-black text-black">AN</div>
-                        <span class="text-2xl font-black gold-text uppercase">Anadolu Network</span>
-                    </div>
-                    <p class="text-sm font-bold text-white/60 leading-relaxed italic uppercase">CFO Orhan Boyraz yönetiminde Türkiye'nin Finansal Özgürlük ve Dijital Strateji Karargahı.</p>
+                    <h5 class="gold-txt font-black text-lg uppercase mb-4 tracking-tighter italic">ANADOLU NETWORK</h5>
+                    <p class="text-xs font-bold text-white/60 leading-relaxed uppercase">Eğitim, Kültür, Haber, Network, Finans ve FİRE Danışmanlık Platformu. CFO.MÜH: ORHAN BOYRAZ</p>
                 </div>
                 
                 <div class="md:col-span-3">
-                    <h5 class="gold-text font-black text-sm uppercase mb-6 tracking-widest">WEB SİTELERİMİZ</h5>
-                    <ul class="text-xs font-bold space-y-4">
-                        <li><a href="https://www.anadolunetwork.tr" target="_blank" class="hover:text-gold transition">🌐 anadolunetwork.tr</a></li>
-                        <li><a href="https://www.ortakmarkets.com.tr" target="_blank" class="hover:text-gold transition">🛒 ortakmarkets.com.tr</a></li>
-                        <li><a href="https://www.odakdijital.com.tr" target="_blank" class="hover:text-gold transition">🚀 odakdijital.com.tr</a></li>
+                    <h5 class="gold-txt font-black text-xs uppercase mb-6 italic">Web Sitelerimiz</h5>
+                    <ul class="text-[11px] font-bold space-y-4">
+                        <li><a href="https://www.anadolunetwork.tr" target="_blank" class="hover:text-white transition underline italic tracking-widest">www.anadolunetwork.tr</a></li>
+                        <li><a href="https://www.ortakmarkets.com.tr" target="_blank" class="hover:text-white transition underline italic tracking-widest">www.ortakmarkets.com.tr</a></li>
+                        <li><a href="https://www.odakdijital.com.tr" target="_blank" class="hover:text-white transition underline italic tracking-widest">www.odakdijital.com.tr</a></li>
                     </ul>
                 </div>
 
-                <div class="md:col-span-2">
-                    <h5 class="gold-text font-black text-sm uppercase mb-6 tracking-widest">HIZLI GİRİŞ</h5>
-                    <ul class="text-xs font-bold space-y-4 opacity-70">
-                        <li><a href="#section1">HESAPLA</a></li>
-                        <li><a href="#section2">RAPOR</a></li>
-                        <li><a href="#section4">AKADEMİ</a></li>
-                        <li><a href="#section3">PORTFÖY</a></li>
-                        <li><a href="#section4">MARKET</a></li>
-                    </ul>
-                </div>
-
-                <div class="md:col-span-3 text-left md:text-right">
-                    <h5 class="gold-text font-black text-sm uppercase mb-6 tracking-widest">İLETİŞİM HATTIMIZ</h5>
-                    <div class="space-y-6">
-                        <a href="https://wa.me/905418660202" target="_blank" class="block text-3xl font-black text-green-400 hover:scale-105 transition-transform">WhatsApp: 0541 866 02 02</a>
-                        <a href="mailto:orhanboyraz0216@gmail.com" class="block text-lg font-bold gold-text underline">orhanboyraz0216@gmail.com</a>
-                        <p class="text-xs font-black opacity-40 uppercase tracking-tighter">Bursa / Nilüfer - Odak AŞ</p>
+                <div class="md:col-span-5 text-left md:text-right space-y-6">
+                    <h5 class="gold-txt font-black text-xs uppercase italic tracking-widest">İLETİŞİM BİLGİLERİ</h5>
+                    <div class="space-y-4">
+                        <a href="https://wa.me/905418660202" target="_blank" class="block text-lg font-black text-green-400">
+                            <i class="fab fa-whatsapp mr-2"></i>whatsapp: 0541 866 02 02
+                        </a>
+                        <a href="mailto:orhanboyraz0216@gmail.com" class="block text-2xl font-black gold-txt underline">orhanboyraz0216@gmail.com</a>
+                        <div class="text-lg font-black text-white uppercase mt-4">
+                            <i class="fas fa-map-marker-alt gold-txt mr-2"></i>ADRES: ODAK AŞ: NİLÜFER / BURSA
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <div class="text-center pt-8 border-t border-white/10">
-                <p class="text-[10px] font-black opacity-30 uppercase tracking-[0.6em]">© 2026 ANADOLU NETWORK | Finansal Özgürlük Mimarisi</p>
+            <div class="text-center pt-8 border-t border-white/5 opacity-40 text-[9px] font-black uppercase tracking-[0.5em]">
+                © 2026 Anadolu Network - Geleceği İnşa Ediyoruz
             </div>
         </div>
     </footer>
 
-    <div class="fixed bottom-10 left-10 z-50">
-        <button onclick="toggleAdmin()" class="w-14 h-14 bg-gold rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition active:scale-90">
-            <span class="text-black font-black text-xl">⚙️</span>
+    <div class="fixed bottom-10 left-10 z-[10000]">
+        <button onclick="toggleAdmin()" class="w-16 h-16 bg-gold rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition border-4 border-black">
+            <span class="text-black font-black text-2xl">⚙️</span>
         </button>
     </div>
 
     <div id="adminPanel">
-        <h3 class="text-xl font-black gold-text mb-6 uppercase border-b border-gold/30 pb-2">⚙️ YÖNETİM PANELİ</h3>
+        <h3 class="text-xl font-black gold-txt mb-4 uppercase italic border-b border-gold pb-2">YÖNETİM PANELİ</h3>
         <div class="space-y-4">
-            <div class="grid grid-cols-2 gap-4">
-                <div class="col-span-2">
-                    <label class="text-[10px] gold-text font-bold">KATEGORİ</label>
-                    <select id="admCat" class="w-full bg-black/50 p-3 rounded-lg border border-gold/30 text-white text-sm">
-                        <option value="assets">VARLIK EKLE (+)</option>
-                        <option value="debts">BORÇ EKLE (-)</option>
-                        <option value="market">AKADEMİ / MARKET ÜRÜNÜ</option>
-                    </select>
-                </div>
-                <div class="col-span-2">
-                    <label class="text-[10px] gold-text font-bold">KALEM ADI</label>
-                    <input type="text" id="admName" placeholder="Örn: BTC, Emlak, Eğitim" class="w-full bg-black/50 p-3 rounded-lg border border-gold/30 text-white text-sm">
-                </div>
-                <div class="col-span-2">
-                    <label class="text-[10px] gold-text font-bold">TUTAR (₺)</label>
-                    <input type="number" id="admVal" placeholder="Tutar" class="w-full bg-black/50 p-3 rounded-lg border border-gold/30 text-white text-sm">
-                </div>
-            </div>
-            <button onclick="saveAdmin()" class="w-full bg-gold text-black font-black py-4 rounded-xl text-xs uppercase tracking-widest mt-4">SİSTEME KAYDET</button>
-            <button onclick="toggleAdmin()" class="w-full text-[10px] font-bold text-white/40 uppercase mt-4">PANELİ KAPAT</button>
+            <select id="admCat" class="w-full bg-black/50 p-3 rounded-lg border border-gold/30 text-white text-sm outline-none">
+                <option value="assets">VARLIK EKLE (+)</option>
+                <option value="debts">BORÇ EKLE (-)</option>
+                <option value="market">AKADEMİ/MARKET ÜRÜNÜ</option>
+            </select>
+            <input type="text" id="admName" placeholder="İsim (Örn: BTC, Eğitim Paketi)" class="w-full bg-black/50 p-3 rounded-lg border border-gold/30 text-white text-sm outline-none">
+            <input type="number" id="admVal" placeholder="Tutar (₺)" class="w-full bg-black/50 p-3 rounded-lg border border-gold/30 text-white text-sm outline-none">
+            <button onclick="saveAdmin()" class="w-full bg-gold text-black font-black py-4 rounded-xl text-xs uppercase tracking-widest">SİSTEME İŞLE</button>
+            <button onclick="toggleAdmin()" class="w-full text-[10px] font-bold text-white/40 uppercase">VAZGEÇ / KAPAT</button>
         </div>
     </div>
 
     <script>
-        let DATA = JSON.parse(localStorage.getItem('anadolu_v10_final_fix')) || {
-            income: 100000,
-            expense: 50000,
-            assets: [{n: "Hisse Portföyü", v: 250000}],
-            debts: [{n: "Ticari Kredi", v: 50000}],
-            market: [{n: "CFO Mentorluk", p: 15000, c: "Akademi"}]
+        let DATA = JSON.parse(localStorage.getItem('an_fire_v10_final')) || {
+            assets: [{n: "Banka", v: 50000}],
+            debts: [{n: "Kredi", v: 10000}],
+            market: [{n: "F.I.R.E Eğitimi", p: 10000, c: "Akademi"}]
         };
 
         function toggleAdmin() {
             const p = document.getElementById('adminPanel');
+            const o = document.getElementById('panelOverlay');
             if(p.style.display === 'block') {
-                p.style.display = 'none';
+                p.style.display = 'none'; o.style.display = 'none';
             } else {
-                const pass = prompt("Güvenlik Şifresini Giriniz:");
-                if(pass === "orhan123") p.style.display = 'block';
-                else alert("Hatalı Şifre!");
+                if(prompt("Yetkili Şifresi:") === "orhan123") {
+                    p.style.display = 'block'; o.style.display = 'block';
+                } else { alert("Hatalı Giriş!"); }
             }
         }
 
@@ -234,13 +190,11 @@
             const cat = document.getElementById('admCat').value;
             const name = document.getElementById('admName').value;
             const val = parseInt(document.getElementById('admVal').value);
-            
             if(name && val) {
                 if(cat === 'assets') DATA.assets.push({n: name, v: val});
                 else if(cat === 'debts') DATA.debts.push({n: name, v: val});
-                else DATA.market.push({n: name, p: val, c: "Market"});
-                render();
-                alert("Başarıyla Eklendi!");
+                else DATA.market.push({n: name, p: val, c: "Hizmet"});
+                render(); alert("Başarıyla Sisteme Kaydedildi!");
             }
         }
 
@@ -251,58 +205,42 @@
             const savings = parseInt(document.getElementById('inSav').value);
             const passive = parseInt(document.getElementById('inPas').value);
             const ai = parseInt(document.getElementById('inAi').value);
-            const exp = parseInt(document.getElementById('inExp').value);
-
+            
             document.getElementById('vAssets').innerText = assets.toLocaleString() + " ₺";
             document.getElementById('vSav').innerText = savings.toLocaleString() + " ₺";
             document.getElementById('vPas').innerText = passive.toLocaleString() + " ₺";
             document.getElementById('vAi').innerText = "%" + ai;
-            document.getElementById('vExp').innerText = (exp/1000) + "k";
 
-            const target = (exp * 12) / 0.04;
+            const target = (50000 * 12) / 0.04; // Örn hedef
             const ret = 1.08 + (ai / 500); 
             const years = Math.log(target / (assets + 1)) / Math.log(ret);
             const rY = isNaN(years) || years < 0 ? 0 : years.toFixed(1);
 
             document.getElementById('rAge').innerText = (30 + parseFloat(rY)).toFixed(1);
             document.getElementById('rYears').innerText = rY;
-            document.getElementById('rTarget').innerText = (target/1000000).toFixed(1) + " MİLYON ₺";
             
             document.getElementById('netC').innerText = (savings + passive).toLocaleString() + " ₺";
-            document.getElementById('emerF').innerText = (assets / exp).toFixed(1) + " AY";
         }
 
         function render() {
-            localStorage.setItem('anadolu_v10_final_fix', JSON.stringify(DATA));
-            
-            let tA = 0;
-            document.getElementById('assetList').innerHTML = DATA.assets.map((x,i) => {
-                tA += x.v;
-                return `<div class="flex justify-between border-b border-white/5 pb-2"><span>${x.n}</span><span class="gold-text">${x.v.toLocaleString()} ₺ <button onclick="del('assets',${i})" class="ml-2 text-red-500 opacity-20 hover:opacity-100">×</button></span></div>`;
-            }).join('');
-
-            let tD = 0;
-            document.getElementById('debtList').innerHTML = DATA.debts.map((x,i) => {
-                tD += x.v;
-                return `<div class="flex justify-between border-b border-white/5 pb-2"><span>${x.n}</span><span class="text-red-400">${x.v.toLocaleString()} ₺ <button onclick="del('debts',${i})" class="ml-2 text-red-500 opacity-20 hover:opacity-100">×</button></span></div>`;
-            }).join('');
-
+            localStorage.setItem('an_fire_v10_final', JSON.stringify(DATA));
+            let tA = 0, tD = 0;
+            document.getElementById('assetList').innerHTML = DATA.assets.map((x,i) => { tA += x.v; return `<div class="flex justify-between border-b border-white/5 pb-2"><span>${x.n}</span><span class="gold-txt">${x.v.toLocaleString()} ₺ <button onclick="del('assets',${i})" class="ml-2 text-red-500 opacity-20 hover:opacity-100">×</button></span></div>`; }).join('');
+            document.getElementById('debtList').innerHTML = DATA.debts.map((x,i) => { tD += x.v; return `<div class="flex justify-between border-b border-white/5 pb-2"><span>${x.n}</span><span class="text-red-400">${x.v.toLocaleString()} ₺ <button onclick="del('debts',${i})" class="ml-2 text-red-500 opacity-20 hover:opacity-100">×</button></span></div>`; }).join('');
             document.getElementById('productGrid').innerHTML = DATA.market.map((x,i) => `
-                <div class="blue-box p-6 flex flex-col justify-between border-t-2 gold-border text-center">
+                <div class="blue-box p-6 flex flex-col justify-between border-t-2 border-gold text-center">
                     <div>
-                        <p class="text-[8px] font-black gold-text uppercase mb-2 tracking-widest">${x.c}</p>
-                        <h4 class="text-[10px] font-black uppercase mb-4 h-8">${x.n}</h4>
+                        <p class="text-[8px] font-black gold-txt uppercase mb-2 tracking-widest">${x.c}</p>
+                        <h4 class="text-[10px] font-black uppercase mb-4 h-8 italic">${x.n}</h4>
                         <div class="text-xl font-black text-white italic">${x.p.toLocaleString()} ₺</div>
                     </div>
-                    <button onclick="window.open('https://wa.me/905418660202?text=Sipariş:${x.n}')" class="mt-6 bg-gold text-black py-3 rounded-xl font-black text-[10px] uppercase">Hemen Al</button>
-                    <button onclick="del('market',${i})" class="mt-2 text-[7px] opacity-10 uppercase font-black">Sil</button>
+                    <button onclick="window.open('https://wa.me/905418660202?text=Sipariş:${x.n}')" class="mt-6 bg-gold text-black py-3 rounded-xl font-black text-[10px] uppercase">Hemen İncele</button>
+                    <button onclick="del('market',${i})" class="mt-2 text-[7px] opacity-10 uppercase">Sil</button>
                 </div>`).join('');
-
             document.getElementById('netW').innerText = (tA - tD).toLocaleString() + " ₺";
             document.getElementById('debtR').innerText = "%" + (tA > 0 ? ((tD/tA)*100).toFixed(1) : 0);
             run();
         }
-
         window.onload = render;
     </script>
 </body>
