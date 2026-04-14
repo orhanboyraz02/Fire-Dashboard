@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>ANADOLU NETWORK | FIRE ÖZGÜRLÜK MİMARİSİ</title>
+    <title>ANADOLU NETWORK | FIRE ÖZGÜRLÜK MİMARİSİ: V1.0</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body { background: #0a1a3a; font-family: 'Inter', system-ui, sans-serif; }
         .gold-text { color: #F5B81B !important; }
-        .white-text { color: #f0f0f0 !important; }
         .border-gold { border-color: #F5B81B; }
         .bg-gold { background-color: #F5B81B; }
         .card-premium {
@@ -87,7 +86,7 @@
             line-height: 1.3;
             color: #F5B81BCC;
         }
-        label, span, p, h1, h2, h3, h4, .text-gold, .white-text, .gold-text, .text-gold\/80, .text-gold\/70, .text-gold\/60, .text-gold\/50, .text-gold\/40 {
+        .white-text, label, span, p, h1, h2, h3, h4, .text-gold, .text-gold\/80, .text-gold\/70, .text-gold\/60 {
             color: #f0f0f0 !important;
         }
         .gold-text, .gold-text * {
@@ -96,8 +95,8 @@
         input, select, textarea {
             color: #F5B81B;
         }
-        input::placeholder {
-            color: #F5B81B80;
+        .contact-info a, .contact-info span, .contact-info div {
+            color: #f0f0f0 !important;
         }
     </style>
 </head>
@@ -126,10 +125,10 @@
 
     <!-- KPI Kartları -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
-        <div class="card-premium p-5"><div class="flex justify-between"><span>Hedef Sermaye (₺)</span><i class="fa-solid fa-bullseye gold-text"></i></div><p class="text-2xl font-bold gold-text mt-2" id="targetCapitalDisplay">₺0</p></div>
-        <div class="card-premium p-5"><div class="flex justify-between"><span>Tahmini FIRE Yaşı</span><i class="fa-regular fa-calendar gold-text"></i></div><p class="text-2xl font-bold gold-text mt-2" id="fireAgeDisplay">--</p></div>
+        <div class="card-premium p-5"><div class="flex justify-between"><span>Net Servet (₺)</span><i class="fa-solid fa-chart-line gold-text"></i></div><p class="text-2xl font-bold gold-text mt-2" id="netWorthDisplay">₺0</p></div>
+        <div class="card-premium p-5"><div class="flex justify-between"><span>Portföy Değeri (₺)</span><i class="fa-solid fa-coins gold-text"></i></div><p class="text-2xl font-bold gold-text mt-2" id="portfolioTotalDisplay">₺0</p></div>
+        <div class="card-premium p-5"><div class="flex justify-between"><span>FIRE İlerleme</span><i class="fa-regular fa-circle-check gold-text"></i></div><p class="text-2xl font-bold gold-text mt-2" id="fireProgressPercent">0%</p><div class="w-full bg-blue-900 rounded-full h-2 mt-2"><div class="bg-gold h-2 rounded-full" id="fireProgressBar" style="width:0%"></div></div></div>
         <div class="card-premium p-5"><div class="flex justify-between"><span>Kalan Süre (Yıl)</span><i class="fa-regular fa-clock gold-text"></i></div><p class="text-2xl font-bold gold-text mt-2" id="remainingYearsDisplay">--</p></div>
-        <div class="card-premium p-5"><div class="flex justify-between"><span>Aylık Tasarruf</span><i class="fa-solid fa-piggy-bank gold-text"></i></div><p class="text-2xl font-bold gold-text mt-2" id="monthlySavingsDisplay">₺0</p></div>
     </div>
 
     <!-- Ana Grid -->
@@ -163,20 +162,23 @@
                 <canvas id="fireProjectionChart" height="130" class="mt-3"></canvas>
             </div>
 
-            <!-- Finansal Durum (Fire bölümüne eklendi) -->
+            <!-- Finansal Durum Analizi -->
             <div class="card-premium p-6">
-                <h2 class="text-xl font-bold gold-text mb-3"><i class="fa-solid fa-chart-line"></i> Finansal Durum Özeti</h2>
+                <h2 class="text-xl font-bold gold-text mb-3"><i class="fa-solid fa-chart-line"></i> Finansal Durum Analizi</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div><label class="text-sm">Borç (₺)</label><input type="number" id="debtAmount" value="80000" class="w-full p-2"></div>
                     <div><label class="text-sm">Alacak (₺)</label><input type="number" id="receivablesAmount" value="25000" class="w-full p-2"></div>
                     <div><label class="text-sm">Acil Durum Fonu (₺)</label><input type="number" id="emergencyFundNew" value="75000" class="w-full p-2"></div>
                     <div><label class="text-sm">Net Gelir (Aylık ₺)</label><input type="number" id="netIncomeMonthly" value="5000" class="w-full p-2"></div>
                 </div>
-                <p class="text-xs mt-3 opacity-80">Bu bilgiler Net Worth hesaplamasına eklenir.</p>
+                <div class="mt-3 p-3 bg-blue-950/30 rounded-2xl">
+                    <p class="text-sm"><strong class="gold-text">Net Servet:</strong> <span id="netWorthDetail" class="gold-text">₺0</span></p>
+                    <p class="text-sm mt-1"><strong class="gold-text">Portföy Değeri:</strong> <span id="portfolioValueDetail" class="gold-text">₺0</span></p>
+                </div>
             </div>
         </div>
 
-        <!-- SAĞ: Portföy + Akademi + ODAK MARKET (alt kısımda) -->
+        <!-- SAĞ: Portföy + Akademi + ODAK MARKET -->
         <div class="space-y-8">
             <!-- Portföy Kartı -->
             <div id="portfoy" class="card-premium p-6">
@@ -209,7 +211,7 @@
                 </div>
             </div>
 
-            <!-- ODAK MARKET (alt kısma eklendi) -->
+            <!-- ODAK MARKET -->
             <div id="odakmarket" class="card-premium p-6">
                 <h2 class="text-xl font-bold gold-text"><span><i class="fa-solid fa-store"></i> ODAK MARKET</span></h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-4">
@@ -224,7 +226,6 @@
 
     <!-- Footer -->
     <footer class="mt-12 border-t border-gold/30 pt-6 pb-4 flex flex-col md:flex-row justify-between gap-6">
-        <!-- Sol: Ekosistem -->
         <div class="flex-1">
             <h3 class="gold-text font-bold text-lg mb-2">ANADOLU NETWORK EKOSİSTEMİ</h3>
             <div class="space-y-1">
@@ -233,7 +234,6 @@
                 <a href="https://www.ortakmarkets.com.tr" target="_blank" class="footer-icon-link"><i class="fa-solid fa-chart-simple w-5"></i> ortakmarkets.com.tr</a>
             </div>
         </div>
-        <!-- Orta: Hızlı Menü + İletişim -->
         <div class="flex-1">
             <div class="flex flex-col gap-2">
                 <div>
@@ -255,7 +255,6 @@
                 </div>
             </div>
         </div>
-        <!-- Sağ: Uyarı metni + Küçük Portföy Pastası -->
         <div class="flex-1 flex flex-col items-end gap-2">
             <div class="disclaimer-text text-right">
                 Bu Fire Platformu; eğitim ve bilgi amaçlıdır,<br>
@@ -293,7 +292,7 @@
     </div>
 </div>
 
-<!-- Yönetim Paneli (Ürün Yönetimi + Portföy Yönetimi) -->
+<!-- Yönetim Paneli -->
 <div id="adminModal" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 hidden">
     <div class="card-premium w-full max-w-3xl p-6 mx-4 max-h-[85vh] overflow-auto">
         <div class="flex justify-between items-center mb-4">
@@ -327,6 +326,8 @@
     let portfolioData = [
         { name: "BIST Hisse", qty: 1250, price: 42.5, class: "Hisse" },
         { name: "Altın (Gram)", qty: 45, price: 2450, class: "Emltia" },
+        { name: "Fon", qty: 0.085, price: 1850000, class: "Fon" },
+        { name: "BES", qty: 0.085, price: 1850000, class: "BES" },
         { name: "Kripto (BTC)", qty: 0.085, price: 1850000, class: "Kripto" },
         { name: "Eurobond", qty: 5000, price: 19.2, class: "Tahvil" },
         { name: "Emlak Yatırım", qty: 1, price: 2500000, class: "Emlak" },
@@ -357,7 +358,7 @@
     function formatMoney(val) { return new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY' }).format(val); }
     function formatNumber(val) { return new Intl.NumberFormat('tr-TR').format(Math.round(val)); }
 
-    // Net Worth (KPI'da gösterilen)
+    // Net Servet ve Portföy Değeri Hesaplama
     function updateNetWorth() {
         let portfolioTotal = getPortfolioTotal();
         let debt = parseFloat(document.getElementById('debtAmount')?.value) || 0;
@@ -365,6 +366,9 @@
         let emergency = parseFloat(document.getElementById('emergencyFundNew')?.value) || 0;
         let netWorth = portfolioTotal + receivables + emergency - debt;
         document.getElementById('netWorthDisplay').innerHTML = formatMoney(netWorth);
+        document.getElementById('netWorthDetail').innerHTML = formatMoney(netWorth);
+        document.getElementById('portfolioTotalDisplay').innerHTML = formatMoney(portfolioTotal);
+        document.getElementById('portfolioValueDetail').innerHTML = formatMoney(portfolioTotal);
         return netWorth;
     }
 
@@ -431,8 +435,9 @@
         
         let mainYears = leanY;
         document.getElementById('remainingYearsDisplay').innerHTML = (mainYears < 60) ? Math.round(mainYears) : '60+';
-        let fireAge = age + mainYears;
-        document.getElementById('fireAgeDisplay').innerHTML = (mainYears < 60) ? fireAge : '>90';
+        let progress = Math.min(100, (capital / targetCapitalLean) * 100);
+        document.getElementById('fireProgressPercent').innerHTML = Math.round(progress) + '%';
+        document.getElementById('fireProgressBar').style.width = progress + '%';
         
         if(fireChart) fireChart.destroy();
         let points = [capital];
@@ -547,7 +552,6 @@
         }
         document.getElementById('percentageList').innerHTML = percentHtml;
         
-        // Footer pastasını güncelle
         if(footerChart) footerChart.destroy();
         let footerCtx = document.getElementById('footerPieChart').getContext('2d');
         footerChart = new Chart(footerCtx, {
@@ -556,7 +560,7 @@
             options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { display: false } } }
         });
     }
-    function refreshMockPrices(){ portfolioData.forEach(a=>{ let ch=(Math.random()*0.08)-0.03; a.price=a.price*(1+ch); if(a.price<1) a.price=1; }); updatePortfolioUI(); updateAssetChart(); }
+    function refreshMockPrices(){ portfolioData.forEach(a=>{ let ch=(Math.random()*0.08)-0.03; a.price=a.price*(1+ch); if(a.price<1) a.price=1; }); updatePortfolioUI(); updateAssetChart(); computeFire(); }
 
     // Admin portföy varlık listeleme
     function renderAdminAssetList() {
@@ -572,7 +576,7 @@
             btn.addEventListener('click', (e) => {
                 let idx = parseInt(btn.dataset.idx);
                 portfolioData.splice(idx,1);
-                updatePortfolioUI(); updateAssetChart();
+                updatePortfolioUI(); updateAssetChart(); computeFire();
                 renderAdminAssetList();
                 localStorage.setItem('firePortfolioData', JSON.stringify(portfolioData));
             });
@@ -582,11 +586,11 @@
     // Eventler
     function bindEvents() {
         const sliders = ['monthlyIncome', 'monthlyExpense', 'passiveIncome', 'currentAge', 'currentCapital', 'investmentReturn', 'inflationRate'];
-        sliders.forEach(id => document.getElementById(id).addEventListener('input', computeFire));
+        sliders.forEach(id => document.getElementById(id).addEventListener('input', () => { computeFire(); updateNetWorth(); }));
         computeFire();
         
         const financeInputs = ['debtAmount', 'receivablesAmount', 'emergencyFundNew', 'netIncomeMonthly'];
-        financeInputs.forEach(id => document.getElementById(id)?.addEventListener('input', updateNetWorth));
+        financeInputs.forEach(id => document.getElementById(id)?.addEventListener('input', () => { updateNetWorth(); computeFire(); }));
         
         document.querySelectorAll('.add-to-cart-btn').forEach(btn=> btn.addEventListener('click',()=> addToCart(btn.dataset.name, parseInt(btn.dataset.price))));
         
@@ -628,7 +632,7 @@
             let assetClass = document.getElementById('newAssetClass').value.trim();
             if(!name || isNaN(qty) || isNaN(price) || !assetClass){ alert("Tüm alanları doldurun"); return; }
             portfolioData.push({ name, qty, price, class: assetClass });
-            updatePortfolioUI(); updateAssetChart();
+            updatePortfolioUI(); updateAssetChart(); computeFire();
             renderAdminAssetList();
             localStorage.setItem('firePortfolioData', JSON.stringify(portfolioData));
             document.getElementById('newAssetName').value=''; document.getElementById('newAssetQty').value=''; document.getElementById('newAssetPrice').value=''; document.getElementById('newAssetClass').value='';
@@ -660,6 +664,7 @@
         updatePortfolioUI();
         updateAssetChart();
         updateNetWorth();
+        computeFire();
         bindEvents();
     }
     initApp();
