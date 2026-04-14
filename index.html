@@ -88,7 +88,8 @@
             color: #F5B81BCC;
         }
         label, .label-white { color: #f0f0f0 !important; }
-        .text-white-custom { color: #f0f0f0 !important; }
+        .white-text-custom { color: #f0f0f0 !important; }
+        .contact-gold a, .contact-gold span, .contact-gold div { color: #F5B81B !important; }
     </style>
 </head>
 <body>
@@ -105,7 +106,7 @@
         <div class="flex gap-5 text-md font-semibold">
             <a href="#hesapla" class="gold-text hover:bg-gold/10 px-3 py-1 rounded-full">📊 FIRE Hesapla</a>
             <a href="#portfoy" class="gold-text hover:bg-gold/10 px-3 py-1 rounded-full">📈 Portföy</a>
-            <a href="#finansal" class="gold-text hover:bg-gold/10 px-3 py-1 rounded-full">💰 Finansal Durum</a>
+            <a href="#strateji" class="gold-text hover:bg-gold/10 px-3 py-1 rounded-full">🎯 Fire Strateji</a>
             <a href="#akademi" class="gold-text hover:bg-gold/10 px-3 py-1 rounded-full">📚 Akademi</a>
             <a href="#odakmarket" class="gold-text hover:bg-gold/10 px-3 py-1 rounded-full">🛒 Market</a>
         </div>
@@ -123,9 +124,9 @@
         <div class="card-premium p-5"><div class="flex justify-between"><span class="white-text">Aylık Tasarruf</span><i class="fa-solid fa-piggy-bank gold-text"></i></div><p class="text-2xl font-bold gold-text mt-2" id="monthlySavingsDisplay">₺0</p></div>
     </div>
 
-    <!-- FIRE Simülatörü (Ana Bölüm) -->
+    <!-- FIRE Simülatörü + Finansal Durum (Fire Strateji Kısmı) -->
     <div id="hesapla" class="card-premium p-6 mb-8">
-        <h2 class="text-xl font-bold gold-text mb-4"><i class="fa-solid fa-calculator"></i> FIRE Simülatörü (Kayar Çubuk)</h2>
+        <h2 class="text-xl font-bold gold-text mb-4"><i class="fa-solid fa-calculator"></i> FIRE Simülatörü</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="space-y-4">
                 <div><label class="white-text text-sm">Aylık Gelir (₺)</label><input type="range" id="monthlyIncome" min="0" max="200000" step="1000" value="45000" class="w-full"><span id="incomeVal" class="gold-text font-bold ml-2">45.000 ₺</span></div>
@@ -155,7 +156,7 @@
         <canvas id="fireProjectionChart" height="140" class="mt-4"></canvas>
     </div>
 
-    <!-- Portföy Bölümü -->
+    <!-- Portföy Bölümü (yazılar beyaz) -->
     <div id="portfoy" class="card-premium p-6 mb-8">
         <div class="flex justify-between items-center mb-4 flex-wrap gap-2">
             <h2 class="text-xl font-bold gold-text"><i class="fa-solid fa-chart-pie"></i> Yatırım Portföyü</h2>
@@ -165,7 +166,7 @@
         <div class="overflow-x-auto mb-4">
             <table class="w-full text-sm">
                 <thead><tr class="border-b border-gold/30"><th class="gold-text text-left">Varlık</th><th class="gold-text">Miktar</th><th class="gold-text">Fiyat (₺)</th><th class="gold-text">Toplam (₺)</th><th class="gold-text">Sınıf</th></tr></thead>
-                <tbody id="portfolioTableBody"></tbody>
+                <tbody id="portfolioTableBody" class="white-text"></tbody>
             </table>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -177,9 +178,9 @@
         </div>
     </div>
 
-    <!-- Finansal Durum Analizi + Akademi/Eğitim + ODAK MARKET (Arka arkaya) -->
-    <div id="finansal" class="card-premium p-6 mb-8">
-        <h2 class="text-xl font-bold gold-text mb-4"><i class="fa-solid fa-chart-line"></i> Finansal Durum Analizi</h2>
+    <!-- Fire Strateji Kısmı (Finansal Durum bilgileri burada) -->
+    <div id="strateji" class="card-premium p-6 mb-8">
+        <h2 class="text-xl font-bold gold-text mb-4"><i class="fa-solid fa-chart-line"></i> Fire Strateji & Finansal Durum</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="space-y-4">
                 <div><label class="white-text text-sm">Borç (₺)</label><input type="number" id="debtAmount" value="80000" class="w-full p-2"></div>
@@ -200,7 +201,7 @@
         </div>
     </div>
 
-    <!-- Akademi / Eğitim (Finansal Durum'un altında) -->
+    <!-- Akademi / Eğitim -->
     <div id="akademi" class="card-premium p-6 mb-8">
         <h2 class="text-xl font-bold gold-text mb-4"><i class="fa-solid fa-graduation-cap"></i> Akademi & Eğitim</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -209,7 +210,7 @@
         </div>
     </div>
 
-    <!-- ODAK MARKET (En altta) -->
+    <!-- ODAK MARKET -->
     <div id="odakmarket" class="card-premium p-6 mb-8">
         <h2 class="text-xl font-bold gold-text mb-4"><i class="fa-solid fa-store"></i> ODAK MARKET</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -220,7 +221,7 @@
         <p class="text-center text-xs mt-4 opacity-70 white-text"><i class="fa-brands fa-whatsapp"></i> Sepete ekleyip WhatsApp ile sipariş verebilirsiniz.</p>
     </div>
 
-    <!-- Footer -->
+    <!-- Footer (iletişim bilgileri altın sarısı) -->
     <footer class="mt-8 border-t border-gold/30 pt-6 pb-4 flex flex-col md:flex-row justify-between gap-6">
         <div class="flex-1">
             <h3 class="gold-text font-bold text-lg mb-2">ANADOLU NETWORK EKOSİSTEMİ</h3>
@@ -230,10 +231,10 @@
                 <a href="https://www.ortakmarkets.com.tr" target="_blank" class="footer-icon-link"><i class="fa-solid fa-chart-simple w-5"></i> ortakmarkets.com.tr</a>
             </div>
         </div>
-        <div class="flex-1">
+        <div class="flex-1 contact-gold">
             <div class="flex flex-col gap-2">
-                <div><span class="gold-text font-semibold">Hızlı Menü</span><div class="flex gap-3 mt-1"><a href="#hesapla" class="text-sm hover:underline white-text">Hesapla</a><a href="#portfoy" class="text-sm hover:underline white-text">Portföy</a><a href="#finansal" class="text-sm hover:underline white-text">Finans</a><a href="#akademi" class="text-sm hover:underline white-text">Akademi</a><a href="#odakmarket" class="text-sm hover:underline white-text">Market</a></div></div>
-                <div class="mt-2"><span class="gold-text font-semibold">İletişim</span><div class="text-sm white-text">CFO.MÜH. Orhan BOYRAZ<br>Mail: orhanboyraz0216@gmail.com<br>WhatsApp/Telf: 0541 866 0202</div></div>
+                <div><span class="gold-text font-semibold">Hızlı Menü</span><div class="flex gap-3 mt-1"><a href="#hesapla" class="text-sm hover:underline gold-text">Hesapla</a><a href="#portfoy" class="text-sm hover:underline gold-text">Portföy</a><a href="#strateji" class="text-sm hover:underline gold-text">Strateji</a><a href="#akademi" class="text-sm hover:underline gold-text">Akademi</a><a href="#odakmarket" class="text-sm hover:underline gold-text">Market</a></div></div>
+                <div class="mt-2"><span class="gold-text font-semibold">İletişim</span><div class="text-sm gold-text">CFO.MÜH. Orhan BOYRAZ<br>Mail: orhanboyraz0216@gmail.com<br>WhatsApp/Telf: 0541 866 0202</div></div>
             </div>
         </div>
         <div class="flex-1 flex flex-col items-end gap-2">
@@ -363,7 +364,7 @@
     function getPortfolioTotal() { return portfolioData.reduce((s,i)=>s+(i.qty*i.price),0); }
     function updatePortfolioUI() {
         let total = 0, html = '';
-        portfolioData.forEach(i => { let t = i.qty * i.price; total += t; html += `<tr class="border-b"><td class="py-1">${i.name}</td><td>${i.qty}</td><td>₺${i.price.toFixed(2)}</td><td class="gold-text">₺${t.toFixed(0)}</td><td><span class="text-xs bg-gold/10 px-2 py-0.5 rounded-full">${i.class}</span></td></tr>`; });
+        portfolioData.forEach(i => { let t = i.qty * i.price; total += t; html += `<tr class="border-b"><td class="py-1 white-text">${i.name}</td><td class="white-text">${i.qty}</td><td class="white-text">₺${i.price.toFixed(2)}</td><td class="gold-text">₺${t.toFixed(0)}</td><td class="white-text"><span class="text-xs bg-gold/10 px-2 py-0.5 rounded-full">${i.class}</span></td></tr>`; });
         document.getElementById('portfolioTableBody').innerHTML = html;
         document.getElementById('portfolioTotalVal').innerHTML = formatMoney(total);
         document.getElementById('portfolioValueDisplay').innerHTML = formatMoney(total);
@@ -387,7 +388,7 @@
         let ctx = document.getElementById('assetAllocationChart').getContext('2d');
         allocationChart = new Chart(ctx, { type: 'pie', data: { labels, datasets: [{ data, backgroundColor: ['#F5B81B', '#3B82F6', '#10B981', '#F97316', '#A855F7', '#EC489A'] }] }, options: { responsive: true, plugins: { tooltip: { callbacks: { label: (ctx) => `${ctx.label}: ${ctx.raw.toFixed(0)}₺ (${((ctx.raw/total)*100).toFixed(1)}%)` } }, legend: { labels: { color: '#F5B81B' } } } } });
         let percentHtml = '';
-        for(let [cls, val] of classMap.entries()) { let p = (val/total)*100; percentHtml += `<div class="flex justify-between"><span>${cls}</span><span>${p.toFixed(1)}% (${formatMoney(val)})</span></div>`; }
+        for(let [cls, val] of classMap.entries()) { let p = (val/total)*100; percentHtml += `<div class="flex justify-between"><span class="white-text">${cls}</span><span class="white-text">${p.toFixed(1)}% (${formatMoney(val)})</span></div>`; }
         document.getElementById('percentageList').innerHTML = percentHtml;
         if(footerChart) footerChart.destroy();
         let footerCtx = document.getElementById('footerPieChart').getContext('2d');
