@@ -152,52 +152,66 @@
             <canvas id="fireProjectionChart" height="130" class="mt-3"></canvas>
         </div>
 
-        <!-- SAĞ: Portföy -->
-        <div id="portfoy" class="card-premium p-6">
-            <div class="flex justify-between items-center mb-3 flex-wrap gap-2">
-                <h2 class="text-xl font-bold gold-text"><i class="fa-solid fa-chart-pie"></i> Yatırım Portföyü</h2>
-                <span class="text-gold/80 text-xs">Toplam Değer: <strong id="portfolioTotalVal">₺0</strong></span>
+        <!-- SAĞ: Portföy + Finansal Durum -->
+        <div class="space-y-8">
+            <!-- Portföy Kartı -->
+            <div id="portfoy" class="card-premium p-6">
+                <div class="flex justify-between items-center mb-3 flex-wrap gap-2">
+                    <h2 class="text-xl font-bold gold-text"><i class="fa-solid fa-chart-pie"></i> Yatırım Portföyü</h2>
+                    <span class="text-gold/80 text-xs">Toplam Değer: <strong id="portfolioTotalVal">₺0</strong></span>
+                </div>
+                <div class="overflow-x-auto mt-2">
+                    <table class="w-full text-sm table-portfolio">
+                        <thead><tr class="border-b border-gold/30"><th class="gold-text">Varlık</th><th class="gold-text">Miktar</th><th class="gold-text">Fiyat (₺)</th><th class="gold-text">Toplam (₺)</th><th class="gold-text">Sınıf</th></tr></thead>
+                        <tbody id="portfolioTableBody"></tbody>
+                    </table>
+                </div>
+                <div class="grid grid-cols-2 gap-3 mt-4">
+                    <canvas id="assetAllocationChart" height="160"></canvas>
+                    <div>
+                        <p class="gold-text font-semibold text-sm mb-2">📊 Dağılım Yüzdeleri</p>
+                        <div id="percentageList" class="text-xs text-gold/80 space-y-1"></div>
+                    </div>
+                </div>
+                <button id="refreshPricesBtn" class="mt-4 w-full btn-outline-gold text-sm py-1 rounded-full"><i class="fa-solid fa-rotate"></i> Fiyatları Güncelle</button>
             </div>
-            <div class="overflow-x-auto mt-2">
-                <table class="w-full text-sm table-portfolio">
-                    <thead><tr class="border-b border-gold/30"><th class="gold-text">Varlık</th><th class="gold-text">Miktar</th><th class="gold-text">Fiyat (₺)</th><th class="gold-text">Toplam (₺)</th><th class="gold-text">Sınıf</th></tr></thead>
-                    <tbody id="portfolioTableBody"></tbody>
-                </table>
+
+            <!-- Yeni: Finansal Durum Özeti (Borç, Alacak, Acil Durum Fonu, Net Gelir) -->
+            <div class="card-premium p-6">
+                <h2 class="text-xl font-bold gold-text mb-3"><i class="fa-solid fa-chart-line"></i> Finansal Durum Özeti</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div><label class="white-text text-sm">Borç (₺)</label><input type="number" id="debtAmount" value="80000" class="w-full p-2"></div>
+                    <div><label class="white-text text-sm">Alacak (₺)</label><input type="number" id="receivablesAmount" value="25000" class="w-full p-2"></div>
+                    <div><label class="white-text text-sm">Acil Durum Fonu (₺)</label><input type="number" id="emergencyFundNew" value="75000" class="w-full p-2"></div>
+                    <div><label class="white-text text-sm">Net Gelir (Aylık ₺)</label><input type="number" id="netIncomeMonthly" value="5000" class="w-full p-2"></div>
+                </div>
+                <p class="text-gold/70 text-xs mt-3">Bu bilgiler Net Worth hesaplamasına eklenir.</p>
             </div>
-            <div class="grid grid-cols-2 gap-3 mt-4">
-                <canvas id="assetAllocationChart" height="160"></canvas>
-                <div>
-                    <p class="gold-text font-semibold text-sm mb-2">📊 Dağılım Yüzdeleri</p>
-                    <div id="percentageList" class="text-xs text-gold/80 space-y-1"></div>
+
+            <!-- Akademi / Eğitim -->
+            <div id="akademi" class="card-premium p-6">
+                <h2 class="text-xl font-bold gold-text"><i class="fa-solid fa-graduation-cap"></i> Akademi & Eğitim</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
+                    <div class="border border-gold/30 rounded-2xl p-3"><i class="fa-solid fa-chalkboard-user gold-text"></i><p class="font-semibold gold-text">FIRE Başlangıç Eğitimi</p><p class="text-xs white-text">Video dersler + PDF</p><button class="add-to-cart-btn mt-2 btn-outline-gold w-full py-1 rounded-full text-xs" data-name="FIRE Başlangıç Eğitimi" data-price="499">₺499 Sepete Ekle</button></div>
+                    <div class="border border-gold/30 rounded-2xl p-3"><i class="fa-solid fa-chart-line gold-text"></i><p class="font-semibold gold-text">Yatırım Psikolojisi Kursu</p><p class="text-xs white-text">Davranışsal finans</p><button class="add-to-cart-btn mt-2 btn-outline-gold w-full py-1 rounded-full text-xs" data-name="Yatırım Psikolojisi Kursu" data-price="349">₺349 Sepete Ekle</button></div>
                 </div>
             </div>
-            <button id="refreshPricesBtn" class="mt-4 w-full btn-outline-gold text-sm py-1 rounded-full"><i class="fa-solid fa-rotate"></i> Fiyatları Güncelle</button>
-        </div>
 
-        <!-- Akademi / Eğitim -->
-        <div id="akademi" class="card-premium p-6">
-            <h2 class="text-xl font-bold gold-text"><i class="fa-solid fa-graduation-cap"></i> Akademi & Eğitim</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
-                <div class="border border-gold/30 rounded-2xl p-3"><i class="fa-solid fa-chalkboard-user gold-text"></i><p class="font-semibold gold-text">FIRE Başlangıç Eğitimi</p><p class="text-xs white-text">Video dersler + PDF</p><button class="add-to-cart-btn mt-2 btn-outline-gold w-full py-1 rounded-full text-xs" data-name="FIRE Başlangıç Eğitimi" data-price="499">₺499 Sepete Ekle</button></div>
-                <div class="border border-gold/30 rounded-2xl p-3"><i class="fa-solid fa-chart-line gold-text"></i><p class="font-semibold gold-text">Yatırım Psikolojisi Kursu</p><p class="text-xs white-text">Davranışsal finans</p><button class="add-to-cart-btn mt-2 btn-outline-gold w-full py-1 rounded-full text-xs" data-name="Yatırım Psikolojisi Kursu" data-price="349">₺349 Sepete Ekle</button></div>
+            <!-- ODAK MARKET -->
+            <div id="odakmarket" class="card-premium p-6">
+                <h2 class="text-xl font-bold gold-text"><span><i class="fa-solid fa-store"></i> ODAK MARKET</span></h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-4">
+                    <div class="bg-blue-950/40 rounded-2xl p-3 border border-gold/20"><h3 class="gold-text font-bold text-md"><i class="fa-regular fa-comments"></i> Danışmanlıklar</h3><div id="danismanlikList" class="space-y-2 mt-2 min-h-[120px]"></div></div>
+                    <div class="bg-blue-950/40 rounded-2xl p-3 border border-gold/20"><h3 class="gold-text font-bold text-md"><i class="fa-solid fa-database"></i> Dijital Ürünler</h3><div id="dijitalList" class="space-y-2 mt-2 min-h-[120px]"></div></div>
+                    <div class="bg-blue-950/40 rounded-2xl p-3 border border-gold/20"><h3 class="gold-text font-bold text-md"><i class="fa-solid fa-leaf"></i> Doğal Ürünler</h3><div id="dogalList" class="space-y-2 mt-2 min-h-[120px]"></div></div>
+                </div>
+                <p class="text-center text-gold/50 text-[11px] mt-4"><i class="fa-brands fa-whatsapp"></i> Sepete ekleyip WhatsApp ile sipariş verebilirsiniz.</p>
             </div>
-        </div>
-
-        <!-- ODAK MARKET -->
-        <div id="odakmarket" class="card-premium p-6">
-            <h2 class="text-xl font-bold gold-text"><span><i class="fa-solid fa-store"></i> ODAK MARKET</span></h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-4">
-                <div class="bg-blue-950/40 rounded-2xl p-3 border border-gold/20"><h3 class="gold-text font-bold text-md"><i class="fa-regular fa-comments"></i> Danışmanlıklar</h3><div id="danismanlikList" class="space-y-2 mt-2 min-h-[120px]"></div></div>
-                <div class="bg-blue-950/40 rounded-2xl p-3 border border-gold/20"><h3 class="gold-text font-bold text-md"><i class="fa-solid fa-database"></i> Dijital Ürünler</h3><div id="dijitalList" class="space-y-2 mt-2 min-h-[120px]"></div></div>
-                <div class="bg-blue-950/40 rounded-2xl p-3 border border-gold/20"><h3 class="gold-text font-bold text-md"><i class="fa-solid fa-leaf"></i> Doğal Ürünler</h3><div id="dogalList" class="space-y-2 mt-2 min-h-[120px]"></div></div>
-            </div>
-            <p class="text-center text-gold/50 text-[11px] mt-4"><i class="fa-brands fa-whatsapp"></i> Sepete ekleyip WhatsApp ile sipariş verebilirsiniz.</p>
         </div>
     </div>
 
-    <!-- Footer - Yeni düzen -->
+    <!-- Footer -->
     <footer class="mt-12 border-t border-gold/30 pt-6 pb-4 flex flex-col md:flex-row justify-between gap-6">
-        <!-- Sol: Ekosistem ve web siteleri -->
         <div class="flex-1">
             <h3 class="gold-text font-bold text-lg mb-2">ANADOLU NETWORK EKOSİSTEMİ</h3>
             <div class="space-y-1">
@@ -206,7 +220,6 @@
                 <a href="https://www.ortakmarkets.com.tr" target="_blank" class="footer-icon-link"><i class="fa-solid fa-chart-simple w-5"></i> ortakmarkets.com.tr</a>
             </div>
         </div>
-        <!-- Orta: Hızlı Menü ve İletişim -->
         <div class="flex-1">
             <div class="flex flex-col gap-2">
                 <div>
@@ -228,7 +241,6 @@
                 </div>
             </div>
         </div>
-        <!-- Sağ: Uyarı metni -->
         <div class="flex-1 flex justify-end">
             <div class="disclaimer-text text-right">
                 Bu Fire Platformu; eğitim ve bilgi amaçlıdır,<br>
@@ -236,7 +248,6 @@
             </div>
         </div>
     </footer>
-    <!-- Telif hakkı satırı ayrı -->
     <div class="text-center text-gold/60 text-xs pt-4 border-t border-gold/20 mt-4">
         © 2025 Anadolu Network Fire Platformu | Altın Destekli Finans
     </div>
@@ -331,7 +342,22 @@
     function formatMoney(val) { return new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY' }).format(val); }
     function formatNumber(val) { return new Intl.NumberFormat('tr-TR').format(Math.round(val)); }
 
-    // FIRE Hesaplama
+    // Net Worth hesaplamasını güncelle (KPI'da gösterilen Net Worth)
+    function updateNetWorth() {
+        let portfolioTotal = getPortfolioTotal();
+        let otherAssets = parseFloat(document.getElementById('otherAssets')?.value) || 0;
+        let existingLiabilities = parseFloat(document.getElementById('totalLiabilities')?.value) || 0;
+        let debt = parseFloat(document.getElementById('debtAmount')?.value) || 0;
+        let receivables = parseFloat(document.getElementById('receivablesAmount')?.value) || 0;
+        let emergency = parseFloat(document.getElementById('emergencyFundNew')?.value) || 0;
+        let totalAssets = portfolioTotal + otherAssets + receivables + emergency;
+        let totalLiabilities = existingLiabilities + debt;
+        let netWorth = totalAssets - totalLiabilities;
+        document.getElementById('netWorthDisplay').innerHTML = formatMoney(netWorth);
+        return netWorth;
+    }
+
+    // FIRE Hesaplama (aynı)
     function computeFire() {
         let income = parseInt(document.getElementById('monthlyIncome').value);
         let expense = parseInt(document.getElementById('monthlyExpense').value);
@@ -484,9 +510,10 @@
     // Portföy işlemleri
     function updatePortfolioUI() { 
         let total=0, html=''; 
-        portfolioData.forEach(i=>{ let t=i.qty*i.price; total+=t; html+=`<tr class="border-b"><td>${i.name}</td><td>${i.qty}</td><td>₺${i.price.toFixed(2)}</td><td class="gold-text">₺${t.toFixed(0)}</td><td><span class="text-xs bg-gold/10 px-2 py-0.5 rounded-full">${i.class}</span></td></tr>`; }); 
+        portfolioData.forEach(i=>{ let t=i.qty*i.price; total+=t; html+=`<tr class="border-b"><td>${i.name}</td><td>${i.qty}</td><td>₺${i.price.toFixed(2)}</td><td class="gold-text">₺${t.toFixed(0)}</td><td><span class="text-xs bg-gold/10 px-2 py-0.5 rounded-full">${i.class}</span></td>`; }); 
         document.getElementById('portfolioTableBody').innerHTML=html; 
         document.getElementById('portfolioTotalVal').innerHTML=formatMoney(total); 
+        updateNetWorth();
         return total; 
     }
     function getPortfolioTotal(){ return portfolioData.reduce((s,i)=>s+(i.qty*i.price),0); }
@@ -508,7 +535,6 @@
                 } 
             } 
         });
-        // Yüzdelik listesi
         let percentHtml = '';
         for(let [cls, val] of classMap.entries()) {
             let percent = (val/total)*100;
@@ -546,6 +572,13 @@
         const sliders = ['monthlyIncome', 'monthlyExpense', 'passiveIncome', 'currentAge', 'currentCapital', 'investmentReturn', 'inflationRate'];
         sliders.forEach(id => document.getElementById(id).addEventListener('input', computeFire));
         computeFire();
+        
+        // Finansal durum inputları değişince Net Worth güncelle
+        const financeInputs = ['debtAmount', 'receivablesAmount', 'emergencyFundNew', 'netIncomeMonthly'];
+        financeInputs.forEach(id => document.getElementById(id)?.addEventListener('input', updateNetWorth));
+        // Diğer varlıklar ve borçlar (sağlık kartındaki) değişince de güncelle
+        const extraInputs = ['otherAssets', 'totalLiabilities', 'extraIncome'];
+        extraInputs.forEach(id => document.getElementById(id)?.addEventListener('input', updateNetWorth));
         
         document.querySelectorAll('.add-to-cart-btn').forEach(btn=> btn.addEventListener('click',()=> addToCart(btn.dataset.name, parseInt(btn.dataset.price))));
         
@@ -622,6 +655,7 @@
         renderMarketProducts();
         updatePortfolioUI();
         updateAssetChart();
+        updateNetWorth();
         bindEvents();
     }
     initApp();
