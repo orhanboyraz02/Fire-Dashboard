@@ -87,9 +87,15 @@
             line-height: 1.3;
             color: #F5B81BCC;
         }
-        label, .label-white { color: #f0f0f0 !important; }
-        .white-text-custom { color: #f0f0f0 !important; }
-        .contact-gold a, .contact-gold span, .contact-gold div { color: #F5B81B !important; }
+        .portfolio-table th, .portfolio-table td {
+            color: #F5B81B !important;
+        }
+        .portfolio-table td {
+            color: #F5B81B !important;
+        }
+        .portfolio-table .gold-text {
+            color: #F5B81B !important;
+        }
     </style>
 </head>
 <body>
@@ -156,29 +162,31 @@
         <canvas id="fireProjectionChart" height="140" class="mt-4"></canvas>
     </div>
 
-    <!-- Portföy Bölümü (yazılar beyaz) -->
+    <!-- Portföy Bölümü (yazılar sarı, pasta küçük ve sağda) -->
     <div id="portfoy" class="card-premium p-6 mb-8">
         <div class="flex justify-between items-center mb-4 flex-wrap gap-2">
             <h2 class="text-xl font-bold gold-text"><i class="fa-solid fa-chart-pie"></i> Yatırım Portföyü</h2>
-            <span class="white-text text-sm">Toplam Değer: <strong id="portfolioTotalVal" class="gold-text">₺0</strong></span>
+            <span class="gold-text text-sm">Toplam Değer: <strong id="portfolioTotalVal" class="gold-text">₺0</strong></span>
             <button id="refreshPricesBtn" class="btn-outline-gold text-xs px-3 py-1 rounded-full"><i class="fa-solid fa-rotate"></i> Fiyatları Güncelle</button>
         </div>
         <div class="overflow-x-auto mb-4">
-            <table class="w-full text-sm">
+            <table class="w-full text-sm portfolio-table">
                 <thead><tr class="border-b border-gold/30"><th class="gold-text text-left">Varlık</th><th class="gold-text">Miktar</th><th class="gold-text">Fiyat (₺)</th><th class="gold-text">Toplam (₺)</th><th class="gold-text">Sınıf</th></tr></thead>
-                <tbody id="portfolioTableBody" class="white-text"></tbody>
+                <tbody id="portfolioTableBody"></tbody>
             </table>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <canvas id="assetAllocationChart" height="200"></canvas>
-            <div>
+        <div class="flex flex-col md:flex-row gap-6 items-start">
+            <div class="flex-1">
                 <p class="gold-text font-semibold text-sm mb-2">📊 Dağılım Yüzdeleri</p>
-                <div id="percentageList" class="text-sm space-y-1 white-text"></div>
+                <div id="percentageList" class="text-sm space-y-1 gold-text"></div>
+            </div>
+            <div class="w-48 h-48">
+                <canvas id="assetAllocationChart" width="192" height="192"></canvas>
             </div>
         </div>
     </div>
 
-    <!-- Fire Strateji Kısmı (Finansal Durum bilgileri burada) -->
+    <!-- Fire Strateji Kısmı (Finansal Durum bilgileri) -->
     <div id="strateji" class="card-premium p-6 mb-8">
         <h2 class="text-xl font-bold gold-text mb-4"><i class="fa-solid fa-chart-line"></i> Fire Strateji & Finansal Durum</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -364,7 +372,7 @@
     function getPortfolioTotal() { return portfolioData.reduce((s,i)=>s+(i.qty*i.price),0); }
     function updatePortfolioUI() {
         let total = 0, html = '';
-        portfolioData.forEach(i => { let t = i.qty * i.price; total += t; html += `<tr class="border-b"><td class="py-1 white-text">${i.name}</td><td class="white-text">${i.qty}</td><td class="white-text">₺${i.price.toFixed(2)}</td><td class="gold-text">₺${t.toFixed(0)}</td><td class="white-text"><span class="text-xs bg-gold/10 px-2 py-0.5 rounded-full">${i.class}</span></td></tr>`; });
+        portfolioData.forEach(i => { let t = i.qty * i.price; total += t; html += `<tr class="border-b"><td class="py-1 gold-text">${i.name}</td><td class="gold-text">${i.qty}</td><td class="gold-text">₺${i.price.toFixed(2)}</td><td class="gold-text">₺${t.toFixed(0)}</td><td class="gold-text"><span class="text-xs bg-gold/10 px-2 py-0.5 rounded-full">${i.class}</span></td></tr>`; });
         document.getElementById('portfolioTableBody').innerHTML = html;
         document.getElementById('portfolioTotalVal').innerHTML = formatMoney(total);
         document.getElementById('portfolioValueDisplay').innerHTML = formatMoney(total);
@@ -386,9 +394,9 @@
         let labels = Array.from(classMap.keys()), data = Array.from(classMap.values());
         if(allocationChart) allocationChart.destroy();
         let ctx = document.getElementById('assetAllocationChart').getContext('2d');
-        allocationChart = new Chart(ctx, { type: 'pie', data: { labels, datasets: [{ data, backgroundColor: ['#F5B81B', '#3B82F6', '#10B981', '#F97316', '#A855F7', '#EC489A'] }] }, options: { responsive: true, plugins: { tooltip: { callbacks: { label: (ctx) => `${ctx.label}: ${ctx.raw.toFixed(0)}₺ (${((ctx.raw/total)*100).toFixed(1)}%)` } }, legend: { labels: { color: '#F5B81B' } } } } });
+        allocationChart = new Chart(ctx, { type: 'pie', data: { labels, datasets: [{ data, backgroundColor: ['#F5B81B', '#3B82F6', '#10B981', '#F97316', '#A855F7', '#EC489A'] }] }, options: { responsive: true, maintainAspectRatio: true, plugins: { tooltip: { callbacks: { label: (ctx) => `${ctx.label}: ${ctx.raw.toFixed(0)}₺ (${((ctx.raw/total)*100).toFixed(1)}%)` } }, legend: { display: false } } } });
         let percentHtml = '';
-        for(let [cls, val] of classMap.entries()) { let p = (val/total)*100; percentHtml += `<div class="flex justify-between"><span class="white-text">${cls}</span><span class="white-text">${p.toFixed(1)}% (${formatMoney(val)})</span></div>`; }
+        for(let [cls, val] of classMap.entries()) { let p = (val/total)*100; percentHtml += `<div class="flex justify-between"><span class="gold-text">${cls}</span><span class="gold-text">${p.toFixed(1)}% (${formatMoney(val)})</span></div>`; }
         document.getElementById('percentageList').innerHTML = percentHtml;
         if(footerChart) footerChart.destroy();
         let footerCtx = document.getElementById('footerPieChart').getContext('2d');
