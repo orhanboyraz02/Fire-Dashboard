@@ -17,7 +17,7 @@
         body {
             margin: 0; font-family: 'Segoe UI', Tahoma, sans-serif;
             background-color: var(--mavi); color: var(--koyu);
-            padding-bottom: 140px;
+            padding-bottom: 160px;
         }
         header {
             background: var(--lacivert); padding: 30px 20px;
@@ -61,7 +61,7 @@
         }
         .free { background: #94a3b8; color: white; }
         .pro { background: var(--altin); color: black; }
-        .elite { background: #2d3748; color: var(--altin); }
+        .vip { background: #2d3748; color: var(--altin); }
         table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.8rem; }
         th, td { border: 1px solid #334155; padding: 8px; text-align: left; }
         th { background: #1e293b; color: var(--altin); }
@@ -73,37 +73,49 @@
             font-size: 0.85rem;
         }
         footer a { color: var(--altin); text-decoration: none; font-weight: bold; }
-        .portfolio-table th, .portfolio-table td { color: var(--koyu); }
-        .gold-text { color: var(--altin); font-weight: bold; }
-        .flex-between { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
-        .pie-small { max-width: 180px; margin: 0 auto; }
+        .plan-card {
+            background: #f1f5f9; border-radius: 20px; padding: 12px; margin: 10px 0;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .whatsapp-btn {
+            background: #25D366; color: white; border: none; padding: 6px 12px;
+            border-radius: 40px; font-size: 0.75rem; cursor: pointer;
+        }
+        .whatsapp-btn:hover { background: #128C7E; }
         .product-item { background: #f1f5f9; border-radius: 16px; padding: 10px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
-        .cart-btn { background: var(--lacivert); color: white; width: auto; padding: 6px 12px; margin: 0; font-size: 0.7rem; }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>🔥 ANADOLU NETWORK | FIRE & DANIŞMANLIK MERKEZİ</h1>
-    <p>Finansal Özgürlük • İş Kurma • Liderlik • Yaşam Tasarımı</p>
+    <h1>🔥 ANADOLU NETWORK | FIRE; FİNANS & DANIŞMANLIK MERKEZİ</h1>
+    <p>Finansal Özgürlük • İş Kurma • Liderlik • Yaşam Tasarımı • Mental Sağlık</p>
 </header>
 
 <div class="container">
 
-    <!-- 1. Profil & Abonelik -->
+    <!-- 1. Profil & Abonelik (Ücretler ve WhatsApp Satın Alma) -->
     <div class="card">
         <h3>👤 Danışman Profili & Abonelik</h3>
         <input type="text" id="userName" placeholder="Adınız Soyadınız">
         <select id="userPlan">
-            <option value="Free">Standart (Ücretsiz)</option>
-            <option value="Pro">Pro Danışman (Yıllık)</option>
-            <option value="Elite">Elite Yatırımcı (VIP)</option>
+            <option value="Free">Standart (Ücretsiz) - 0₺</option>
+            <option value="Pro">Pro Danışman - 1.499₺/yıl</option>
+            <option value="VIP">Elite VIP - 3.999₺/yıl</option>
         </select>
-        <button onclick="saveProfile()">Profili Kaydet & Planı Başlat</button>
+        <button onclick="saveProfile()">Profili Kaydet</button>
         <div id="profileStatus" class="analysis-box">Profil oluşturulmadı.</div>
+        <div class="plan-card">
+            <div><strong>🚀 Pro Plan (1.499₺/yıl)</strong><br>Tüm analizler + Özel raporlar</div>
+            <button class="whatsapp-btn" onclick="buyPlan('Pro', 1499)">📲 WhatsApp'tan Satın Al</button>
+        </div>
+        <div class="plan-card">
+            <div><strong>👑 Elite VIP Plan (3.999₺/yıl)</strong><br>Birebir koçluk + Öncelikli destek</div>
+            <button class="whatsapp-btn" onclick="buyPlan('VIP', 3999)">📲 WhatsApp'tan Satın Al</button>
+        </div>
     </div>
 
-    <!-- 2. FIRE Hesaplama Modülü (GELİŞMİŞ) -->
+    <!-- 2. FIRE Hesaplama -->
     <div class="card">
         <h3>🔥 FIRE Hesaplama (Finansal Özgürlük)</h3>
         <label>Aylık Gelir (₺)</label><input type="number" id="fire_income" value="45000">
@@ -117,7 +129,7 @@
         <div id="fireResult" class="analysis-box"></div>
     </div>
 
-    <!-- 3. Finansal Sağlık & Net Worth -->
+    <!-- 3. Finansal Sağlık -->
     <div class="card">
         <h3>💰 Finansal Sağlık Analizi</h3>
         <label>Borç (₺)</label><input type="number" id="debt" value="80000">
@@ -129,10 +141,10 @@
         <div id="healthScore" class="analysis-box">Finansal Sağlık Skoru: --</div>
     </div>
 
-    <!-- 4. Yatırım Portföy Yönetimi (Dinamik) -->
+    <!-- 4. Yatırım Portföyü -->
     <div class="card">
         <h3>📈 Yatırım Portföyü (Varlık Takibi)</h3>
-        <div class="flex-between">
+        <div style="display: flex; justify-content: space-between;">
             <span>Toplam Değer: <strong id="portfolioTotal">0 ₺</strong></span>
             <button onclick="refreshPrices()" style="width: auto; padding: 5px 12px;">🔄 Güncelle</button>
         </div>
@@ -146,7 +158,53 @@
         <div id="allocationPercent" class="analysis-box"></div>
     </div>
 
-    <!-- 5. İş & Girişim Danışmanlığı -->
+    <!-- 5. Mental Sağlık Danışmanı (Detaylı) -->
+    <div class="card">
+        <h3>🧠 Mental Sağlık Danışmanı</h3>
+        <label>1. Son 1 ayda stres seviyeniz (1-10):</label>
+        <input type="range" id="mental_stress" min="1" max="10">
+        <label>2. Uyku kaliteniz (1-10):</label>
+        <input type="range" id="mental_sleep" min="1" max="10">
+        <label>3. Motivasyon seviyeniz (1-10):</label>
+        <input type="range" id="mental_motivation" min="1" max="10">
+        <label>4. iş-Yaşam Dengesi (1-10):</label>
+        <input type="range" id="mental_motivation" min="1" max="10">
+        <label>5. Kaygı/anksiyete hissetme sıklığı (1-10, 10=çok sık):</label>
+        <input type="range" id="mental_anxiety" min="1" max="10">
+        <label>6. Sosyal destek alabiliyor musunuz?</label>
+        <select id="mental_support">
+            <option value="Evet, yeterli">Evet, yeterli</option><option value="Kısmen">Kısmen</option><option value="Hayır, yalnız hissediyorum">Hayır, yalnız hissediyorum</option>
+        </select>
+        <button onclick="analyzeMentalHealth()">Mental Sağlık Değerlendirmesi Yap</button>
+        <div id="mentalHealthOut" class="analysis-box"></div>
+    </div>
+
+    <!-- 6. Liderlik & Yönetim Danışmanı -->
+    <div class="card">
+        <h3>🧭 Liderlik & Yönetim Danışmanı</h3>
+        <label>1. Ekip büyüklüğünüz:</label>
+        <input type="number" id="lead_teamSize" placeholder="Kişi sayısı">
+        <label>2. Karar alma stiliniz (1-10, 1=otokratik, 10=tam katılımcı):</label>
+        <input type="range" id="lead_style" min="1" max="10">
+        <label>3. Değişime açıklık dereceniz (1-10):</label>
+        <input type="range" id="lead_change" min="1" max="10">
+        <label>4. Kriz Yönetimi (1-10):</label>
+        <input type="range" id="lead_change" min="1" max="10">
+        <label>5. Zaman Yönetimi (1-10):</label>
+        <input type="range" id="lead_change" min="1" max="10">
+        <label>6. Performans Değerlendirme (1-10):</label>
+        <input type="range" id="lead_change" min="1" max="10">
+        <label>7. Ekip içi çatışma sıklığı (1-10, 10=sık):</label>
+        <input type="range" id="lead_conflict" min="1" max="10">
+        <label>8. Vizyon oluşturma becerinizi nasıl değerlendirirsiniz?</label>
+        <select id="lead_vision">
+            <option value="Zayıf">Zayıf</option><option value="Orta">Orta</option><option value="Güçlü">Güçlü</option>
+        </select>
+        <button onclick="analyzeLeadership()">Liderlik Raporu Al</button>
+        <div id="leadershipOut" class="analysis-box"></div>
+    </div>
+
+    <!-- 7. İş Kurma & Girişim Danışmanlığı -->
     <div class="card">
         <h3>🚀 İş Kurma & Girişim Danışmanlığı</h3>
         <label>İş Fikri / Sektör:</label><input type="text" id="biz_sector">
@@ -155,8 +213,31 @@
         <button onclick="analyzeBusiness()">Girişim Analizi Yap</button>
         <div id="bizOut" class="analysis-box"></div>
     </div>
-
-    <!-- 6. Yaşam Tasarımı & Koçluk -->
+    <!-- 8. HEDEF KİTLE ANALİZİ (YENİ MODÜL) -->
+    <div class="card">
+        <h3>🎯 Hedef Kitle Analizi (Pazarlama Stratejisi)</h3>
+        <label>Ürün/Hizmet Kategorisi:</label>
+        <select id="target_category">
+            <option value="Teknoloji">Teknoloji / Yazılım</option><option value="Eğitim">Eğitim / Danışmanlık</option>
+            <option value="Sağlık">Sağlık / Wellness</option><option value="Gıda">Gıda / İçecek</option>
+            <option value="Moda">Moda / Aksesuar</option><option value="Finans">Finans / Yatırım</option>
+        </select>
+        <label>Hedef Yaş Aralığı:</label>
+        <select id="target_age">
+            <option value="18-25">18-25 (Genç yetişkin)</option><option value="26-35">26-35 (Genç profesyonel)</option>
+            <option value="36-50">36-50 (Orta yaş)</option><option value="50+">50+ (Olgun)</option>
+        </select>
+        <label>Gelir Seviyesi (TL/ay):</label>
+        <select id="target_income">
+            <option value="Düşük">0-15.000</option><option value="Orta">15.001-40.000</option>
+            <option value="Yüksek">40.001-100.000</option><option value="Çok Yüksek">100.000+</option>
+        </select>
+        <label>Coğrafi Bölge (isteğe bağlı):</label>
+        <input type="text" id="target_region" placeholder="Örn: Marmara, İstanbul, Ege">
+        <button onclick="analyzeTargetAudience()">Hedef Kitle Raporu Oluştur</button>
+        <div id="targetOut" class="analysis-box"></div>
+    </div>
+    <!-- 8. Yaşam Tasarımı & Koçluk -->
     <div class="card">
         <h3>🎯 Yaşam Tasarımı & Koçluk</h3>
         <label>Hayatınızın en büyük odağı nedir?</label>
@@ -169,27 +250,10 @@
         <div id="lifeOut" class="analysis-box"></div>
     </div>
 
-    <!-- 7. Kurumsal Liderlik -->
-    <div class="card">
-        <h3>🧭 Kurumsal Liderlik Analizi</h3>
-        <label>Ekip Sayısı:</label><input type="number" id="l_count">
-        <label>Karar Verme Hızı (1-10):</label><input type="range" id="l_speed" min="1" max="10">
-        <button onclick="analyzeLead()">Liderlik Raporu</button>
-        <div id="leadOut" class="analysis-box"></div>
-    </div>
-
-    <!-- 8. Mental Sağlık&Performans -->
-    <div class="card">
-        <h3>🧠 Mental Performans</h3>
-        <label>Odaklanma Süresi (Dakika):</label><input type="number" id="m_focus">
-        <button onclick="analyzeMental()">Zihin Check-up</button>
-        <div id="mentalOut" class="analysis-box"></div>
-    </div>
-
-    <!-- 9. Dijital Market (Ürün Sepeti + WhatsApp) -->
+    <!-- 9. Dijital Market (Eğitim & Danışmanlık & Dijital Ürünleri) -->
     <div class="card">
         <h3>🛒 Dijital Market (Eğitim & Danışmanlık Ürünleri)</h3>
-        <div id="marketProductsList" style="margin-bottom: 10px;"></div>
+        <div id="marketProductsList"></div>
         <button onclick="showCart()">🛍️ Sepetim (<span id="cartCount">0</span>)</button>
         <div id="cartModal" style="display: none; background: white; border-radius: 20px; padding: 15px; margin-top: 10px; border: 2px solid var(--altin);">
             <h4>Sepet İçeriği</h4>
@@ -204,7 +268,7 @@
     <div class="card" style="grid-column: 1 / -1; background: #f1f5f9;">
         <h3>🔐 Yönetim Paneli (Veri & Ürün Yönetimi)</h3>
         <div style="display: flex; gap: 10px; max-width: 500px;">
-            <input type="password" id="adminPass" placeholder="Yönetici Şifresi (admin2026)">
+            <input type="password" id="adminPass" placeholder="Şifre">
             <button onclick="accessAdmin()" style="width: 150px; background: var(--lacivert); color: white;">Giriş</button>
         </div>
         <div id="adminPanel" class="hidden">
@@ -240,12 +304,17 @@
 </div>
 
 <footer>
+    <div>
+        <a href="https://anadolunetwork.tr" target="_blank">Anadolu Network</a> | 
+        <a href="https://www.odakdijital.com.tr" target="_blank">Odak Dijital</a> | 
+        <a href="https://www.ortakmarkets.com.tr" target="_blank">Ortak Markets</a>
+    </div>
     <div>📲 Kurumsal İletişim: <a href="https://wa.me/905418660202">0541 866 02 02</a> | 📍 Nilüfer / BURSA</div>
-    <div style="font-size: 0.7rem; margin-top: 5px;">Anadolu Network Ekosistemi | Bu platform eğitim ve bilgi amaçlıdır, yatırım tavsiyesi değildir.</div>
+    <div style="font-size: 0.7rem; margin-top: 5px;">Bu platform eğitim ve bilgi amaçlıdır, yatırım tavsiyesi değildir. © 2025</div>
 </footer>
 
 <script>
-    // ---------- GLOBAL STATE ----------
+    // ---------- GLOBAL ----------
     let portfolioData = [
         { name: "BIST Hisse", qty: 1250, price: 42.5, class: "Hisse" },
         { name: "Altın (Gram)", qty: 45, price: 2450, class: "Emltia" },
@@ -261,7 +330,7 @@
     let cart = [];
     let chartInstance = null;
 
-    // Yardımcı fonksiyonlar
+    // Yardımcı
     function formatMoney(val) { return new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY' }).format(val); }
     function logAction(name, plan, action) {
         let logs = JSON.parse(localStorage.getItem("anadolu_logs") || "[]");
@@ -279,8 +348,13 @@
         document.getElementById("profileStatus").innerHTML = `<span class="sub-badge ${plan.toLowerCase()}">${plan} Planı Aktif</span><br>Hoş geldiniz ${name}. Tüm analizleriniz kaydediliyor.`;
         logAction(name, plan, "Profil oluşturuldu");
     }
+    function buyPlan(plan, price) {
+        let name = document.getElementById("userName").value || "Misafir";
+        let msg = `Merhaba, Anadolu Network ${plan} planını satın almak istiyorum. Ücret: ${formatMoney(price)}. İsim: ${name}`;
+        window.open(`https://wa.me/905418660202?text=${encodeURIComponent(msg)}`, '_blank');
+    }
 
-    // FIRE Hesaplama
+    // FIRE
     function calculateFIRE() {
         let income = +document.getElementById("fire_income").value;
         let expense = +document.getElementById("fire_expense").value;
@@ -293,7 +367,7 @@
         let annualExp = expense * 12;
         let annualPassive = passive * 12;
         let netAnnual = Math.max(0, annualExp - annualPassive);
-        let target = netAnnual * 25; // 4% kuralı
+        let target = netAnnual * 25;
         let realReturn = (1+ret)/(1+inf)-1;
         if(realReturn < 0) realReturn = 0;
         let years = 0, bal = capital;
@@ -355,7 +429,43 @@
         renderPortfolioTable();
     }
 
-    // İş, Yaşam, Liderlik, Mental (gelişmiş)
+    // Mental Sağlık Danışmanı
+    function analyzeMentalHealth() {
+        let stress = +document.getElementById("mental_stress").value;
+        let sleep = +document.getElementById("mental_sleep").value;
+        let motivation = +document.getElementById("mental_motivation").value;
+        let anxiety = +document.getElementById("mental_anxiety").value;
+        let support = document.getElementById("mental_support").value;
+        let score = (stress + (10-sleep) + (10-motivation) + anxiety) / 4;
+        let advice = "";
+        if(score > 7) advice = "⚠️ Yüksek mental yük tespit edildi. Profesyonel destek almanız önerilir. Düzenli, Dengeli Beslen, Düzenli egzersiz ve nefes egzersizleri faydalı olabilir.";
+        else if(score > 4) advice = "📉 Orta düzeyde stres var. Günlük 10 dakika meditasyon ve uyku düzeninizi iyileştirmeye odaklanın.";
+        else advice = "✅ Mental sağlığınız iyi durumda. Mevcut rutininizi koruyun ve sosyal bağlarınızı güçlendirin.";
+        if(support.includes("Hayır")) advice += " Sosyal destek ağınızı genişletmek için bir destek grubuna katılmayı düşünün.";
+        document.getElementById("mentalHealthOut").innerHTML = `🧠 Değerlendirme Sonucu:\nStres: ${stress}/10, Uyku: ${sleep}/10, Motivasyon: ${motivation}/10, Kaygı: ${anxiety}/10\n📝 Öneri: ${advice}`;
+        logAction(localStorage.getItem("current_user"), localStorage.getItem("current_plan"), "Mental Sağlık Analizi");
+    }
+
+    // Liderlik & Yönetim Danışmanı
+    function analyzeLeadership() {
+        let team = +document.getElementById("lead_teamSize").value || 0;
+        let style = +document.getElementById("lead_style").value;
+        let change = +document.getElementById("lead_change").value;
+        let conflict = +document.getElementById("lead_conflict").value;
+        let vision = document.getElementById("lead_vision").value;
+        let styleDesc = style <= 3 ? "Otokratik liderlik" : (style <= 7 ? "Demokratik liderlik" : "Katılımcı/Transformasyonel liderlik");
+        let advice = `🧭 Liderlik Stiliniz: ${styleDesc}. `;
+        if(team > 0 && team < 5) advice += "Küçük ekiplerde birebir iletişim önemli. Haftalık birebir toplantılar ekleyin.";
+        else if(team >= 5) advice += "Büyüyen ekipte delegasyon ve süreç yönetimi kritik. Scrum veya Kanban metodlarını değerlendirin.";
+        if(change < 4) advice += " Değişime direnç yüksek olabilir. Değişim yönetimi eğitimi almanız faydalı.";
+        if(conflict > 6) advice += " Ekip içi çatışmalar sık. Arabuluculuk teknikleri öğrenin ve düzenli geri bildirim oturumları yapın.";
+        if(vision === "Zayıf") advice += " Vizyon oluşturma becerinizi geliştirmek için stratejik planlama atölyelerine katılın.";
+        else if(vision === "Güçlü") advice += " Vizyonunuzu ekip üyelerine daha iyi anlatmak için hikaye anlatıcılığını kullanın.";
+        document.getElementById("leadershipOut").innerHTML = advice;
+        logAction(localStorage.getItem("current_user"), localStorage.getItem("current_plan"), "Liderlik Analizi");
+    }
+
+    // İş, Yaşam, Diğer analizler
     function analyzeBusiness() {
         let sector = document.getElementById("biz_sector").value || "Belirtilmemiş";
         let capital = +document.getElementById("biz_capital").value;
@@ -369,16 +479,8 @@
         let comfort = +document.getElementById("life_comfort").value;
         document.getElementById("lifeOut").innerText = `🎯 Strateji: ${focus} odaklı. Konfor skoru ${comfort}/10 -> ${comfort>7 ? 'Konfor alanından çıkış planı şart.' : 'Dengeli ilerliyorsunuz.'}`;
     }
-    function analyzeLead() {
-        let ekip = +document.getElementById("l_count").value;
-        document.getElementById("leadOut").innerText = `🧭 ${ekip} kişilik ekip için delegasyon ve vizyon toplantıları önerilir.`;
-    }
-    function analyzeMental() {
-        let focusMin = +document.getElementById("m_focus").value;
-        document.getElementById("mentalOut").innerText = focusMin < 30 ? "🧠 Dikkat dağınıklığı riski. Pomodoro tekniği uygulayın." : "🧠 Odaklanma seviyeniz iyi, düzenli molalar verin.";
-    }
 
-    // Dijital Market (Sepet & WhatsApp)
+    // Dijital Market
     function renderMarketProducts() {
         let container = document.getElementById("marketProductsList");
         if(!container) return;
@@ -401,17 +503,17 @@
         document.getElementById("cartItems").innerHTML = itemsHtml || "Sepet boş";
     }
     function removeFromCart(idx) { cart.splice(idx,1); updateCartUI(); }
-    function showCart() { let modal = document.getElementById("cartModal"); modal.style.display = modal.style.display === 'none' ? 'block' : 'block'; }
+    function showCart() { document.getElementById("cartModal").style.display = 'block'; }
     function closeCart() { document.getElementById("cartModal").style.display = 'none'; }
     function sendWhatsAppOrder() {
         if(cart.length === 0) { alert("Sepet boş"); return; }
         let msg = "Merhaba, Anadolu Network ürün siparişi:%0A";
         cart.forEach(i => msg += `- ${i.name} : ${formatMoney(i.price)}%0A`);
         msg += `Toplam: ${formatMoney(cart.reduce((s,i)=>s+i.price,0))}`;
-        window.open(`https://wa.me/905418660202?text=${msg}`, '_blank');
+        window.open(`https://wa.me/905418660202?text=${encodeURIComponent(msg)}`, '_blank');
     }
 
-    // Admin Paneli (şifre: admin2026)
+    // Admin Paneli
     function accessAdmin() {
         let pwd = document.getElementById("adminPass").value;
         if(pwd === "admin2026") {
