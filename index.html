@@ -19,6 +19,7 @@
             background: #0f2a4a;
             border-radius: 24px;
             padding: 18px;
+            margin-bottom: 20px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
             border: 1px solid rgba(212, 175, 55, 0.3);
             transition: 0.2s;
@@ -113,8 +114,8 @@
         <h1 style="color: #d4af37; font-size: 1.8rem;">🔥 ANADOLU NETWORK | FIRE FİNANS & DANIŞMANLIK MERKEZİ</h1>
         <p style="color: #e0e0e0;">Finansal Özgürlük • Yaşam Tasarımı • Liderlik • Mental Sağlık • CFO Danışmanlığı</p>
         <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
-            <a href="https://wa.me/905418660202" target="_blank" class="whatsapp-btn" style="display: inline-block; text-decoration: none; background: #25D366; color: white; padding: 8px 16px; border-radius: 40px;">📲 WhatsApp İletişim</a>
-            <a href="https://deepseek.com" target="_blank" class="deepseek-btn" style="display: inline-block; text-decoration: none; background: #0c1b33; border: 1px solid #d4af37; color: #d4af37; padding: 8px 16px; border-radius: 40px;">🤖 Deepseek AI Asistan</a>
+            <a href="https://wa.me/905418660202" target="_blank" class="whatsapp-btn" style="display: inline-block; text-decoration: none;">📲 WhatsApp İletişim</a>
+            <a href="https://deepseek.com" target="_blank" class="deepseek-btn" style="display: inline-block; text-decoration: none;">🤖 Deepseek AI Asistan</a>
         </div>
     </header>
 
@@ -124,41 +125,43 @@
             <h3 style="color:#d4af37;">👤 Profil & Abonelik</h3>
             <input type="text" id="userName" placeholder="Adınız Soyadınız">
             <select id="userPlan">
-                <option value="Free">Standart (Ücretsiz)</option><option value="Pro">Pro - 1.499₺/yıl</option><option value="VIP">Elite VIP - 3.999₺/yıl</option>
+                <option value="Free">Standart (Ücretsiz)</option>
+                <option value="Pro">Pro Plan- 1.499₺/yıl</option>
+                <option value="VIP">Elite VIP Plan - 3.999₺/yıl</option>
             </select>
             <button onclick="saveProfile()">Profili Kaydet</button>
             <div id="profileStatus" class="analysis-box">Profil oluşturulmadı.</div>
-            <div class="flex-between"><div><strong>🚀 Pro Plan (1.499₺)</strong></div><button class="whatsapp-btn" onclick="buyPlan('Pro',1499)">📲 Satın Al</button></div>
-            <div class="flex-between"><div><strong>👑Elit/VIP Plan (3.999₺)</strong></div><button class="whatsapp-btn" onclick="buyPlan('VIP',3999)">📲 Satın Al</button></div>
+            <div class="flex-between"><div><strong>🚀 Pro (1.499₺)</strong></div><button class="whatsapp-btn" onclick="buyPlan('Pro',1499)">📲 Satın Al</button></div>
+            <div class="flex-between"><div><strong>👑 VIP (3.999₺)</strong></div><button class="whatsapp-btn" onclick="buyPlan('VIP',3999)">📲 Satın Al</button></div>
         </div>
 
-        <!-- FIRE Hesaplama + 4 Tür -->
+        <!-- FIRE Hesaplama + 4 Tür (ÇALIŞIYOR) -->
         <div class="card">
             <h3 style="color:#d4af37;">🔥 FIRE Hesaplama</h3>
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
                 <div><label>Aylık Gelir</label><input type="number" id="fire_income" value="45000"></div>
                 <div><label>Aylık Gider</label><input type="number" id="fire_expense" value="25000"></div>
                 <div><label>Aylık Pasif Gelir</label><input type="number" id="fire_passive" value="5000"></div>
-                <div><label>Yaş</label><input type="number" id="fire_age" value="32"></div>
-                <div><label>Birikim (₺)</label><input type="number" id="fire_capital" value="450000"></div>
-                <div><label>Getiri %</label><input type="number" id="fire_return" value="9.5"></div>
-                <div><label>Enflasyon %</label><input type="number" id="fire_inflation" value="6.0"></div>
+                <div><label>Mevcut Yaş</label><input type="number" id="fire_age" value="32"></div>
+                <div><label>Mevcut Birikim</label><input type="number" id="fire_capital" value="450000"></div>
+                <div><label>Yıllık Getiri %</label><input type="number" id="fire_return" value="9.5" step="0.5"></div>
+                <div><label>Enflasyon %</label><input type="number" id="fire_inflation" value="6.0" step="0.5"></div>
             </div>
             <button onclick="calculateFIRE()">FIRE Hesapla</button>
             <div id="fireResult" class="analysis-box"></div>
             <button onclick="calculateAllFIRE()" style="margin-top:5px;">4 FIRE Türünü Hesapla</button>
             <div class="fire-types-grid">
-                <div class="fire-type-card"><h4>Lean FIRE</h4><div id="leanTarget" class="target">-</div><div id="leanYears" class="years">-</div></div>
-                <div class="fire-type-card"><h4>Fat FIRE</h4><div id="fatTarget" class="target">-</div><div id="fatYears" class="years">-</div></div>
-                <div class="fire-type-card"><h4>Barista FIRE</h4><div id="baristaTarget" class="target">-</div><div id="baristaYears" class="years">-</div></div>
-                <div class="fire-type-card"><h4>Coast FIRE</h4><div id="coastTarget" class="target">-</div><div id="coastYears" class="years">-</div></div>
+                <div class="fire-type-card"><h4>Lean FIRE(25X)</h4><div id="leanTarget" class="target">-</div><div id="leanYears" class="years">-</div></div>
+                <div class="fire-type-card"><h4>Fat FIRE(35X)</h4><div id="fatTarget" class="target">-</div><div id="fatYears" class="years">-</div></div>
+                <div class="fire-type-card"><h4>Barista FIRE(20X)</h4><div id="baristaTarget" class="target">-</div><div id="baristaYears" class="years">-</div></div>
+                <div class="fire-type-card"><h4>Coast FIRE(15X)</h4><div id="coastTarget" class="target">-</div><div id="coastYears" class="years">-</div></div>
             </div>
             <div id="fireResultDetail" class="analysis-box"></div>
         </div>
 
-        <!-- Finansal Sağlık + AI Öneriler -->
+        <!-- Finansal Sağlık + AI Öneri -->
         <div class="card">
-            <h3 style="color:#d4af37;">💰 Finansal Sağlık & AI Öneriler</h3>
+            <h3 style="color:#d4af37;">💰 Finansal Sağlık & AI Öneri</h3>
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
                 <div><label>Borç</label><input type="number" id="debt" value="80000"></div>
                 <div><label>Alacak</label><input type="number" id="receivables" value="25000"></div>
@@ -181,7 +184,7 @@
             <div id="portfolioAdvice" class="analysis-box">📊 AI Portföy Önerisi: Burada dağılıma göre tavsiye verilecek.</div>
         </div>
 
-        <!-- CFO Danışmanlığı Modülü -->
+        <!-- CFO Danışmanlığı -->
         <div class="card">
             <h3 style="color:#d4af37;">📊 CFO Danışmanlığı (Kurumsal Finans)</h3>
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
@@ -197,7 +200,7 @@
             <div id="cfoAdvice" class="analysis-box">🤖 AI CFO Önerileri: Verilerinizi girin, stratejik tavsiyeler alın.</div>
         </div>
 
-        <!-- Dijital Market (Eğitim, Danışmanlık, Dijital Ürünler) -->
+        <!-- Dijital Market -->
         <div class="card">
             <h3 style="color:#d4af37;">🛒 Dijital Market</h3>
             <div id="digitalMarketList"></div>
@@ -211,68 +214,89 @@
             </div>
         </div>
 
-        <!-- Mental Sağlık Danışmanlığı-->
+        <!-- Mental Sağlık Danışmanı -->
         <div class="card">
-            <h3 style="color:#d4af37;">🧠 Mental Sağlık Danışmanlığı</h3>
-            <label>Stres</label><input type="range" id="mental_stress" min="1" max="10"><span id="stressVal">5</span>
-            <label>Uyku kalitesi</label><input type="range" id="mental_sleep" min="1" max="10"><span id="sleepVal">5</span>
-            <label>Motivasyon</label><input type="range" id="mental_motivation" min="1" max="10"><span id="motivationVal">5</span>
-            <label>Kaygı</label><input type="range" id="mental_anxiety" min="1" max="10"><span id="anxietyVal">5</span>
+            <h3 style="color:#d4af37;">🧠 Mental Sağlık Danışmanı</h3>
+            <label>Stres (1-10)</label><input type="range" id="mental_stress" min="1" max="10"><span id="stressVal">5</span>
+            <label>Uyku kalitesi (1-10)</label><input type="range" id="mental_sleep" min="1" max="10"><span id="sleepVal">5</span>
+            <label>Motivasyon (1-10)</label><input type="range" id="mental_motivation" min="1" max="10"><span id="motivationVal">5</span>
+            <label>Kaygı sıklığı (1-10)</label><input type="range" id="mental_anxiety" min="1" max="10"><span id="anxietyVal">5</span>
             <label>Sosyal destek</label><select id="mental_support"><option>Evet, yeterli</option><option>Kısmen</option><option>Hayır, yalnız</option></select>
-            <button onclick="analyzeMentalHealth()">Değerlendir</button>
+            <button onclick="analyzeMentalHealth()">Değerlendirme Yap</button>
             <div id="mentalHealthOut" class="analysis-box"></div>
         </div>
 
-        <!-- Liderlik & Yönetim Danışmanlığı -->
+        <!-- Liderlik & Yönetim Danışmanı -->
         <div class="card">
-            <h3 style="color:#d4af37;">🧭 Liderlik & Yönetim Danışmanlığı</h3>
-            <label>Ekip büyüklüğü</label><input type="number" id="lead_teamSize" placeholder="Kişi">
-            <label>Karar stili (1-10)</label><input type="range" id="lead_style" min="1" max="10"><span id="styleVal">5</span>
-            <label>Değişime açıklık</label><input type="range" id="lead_change" min="1" max="10"><span id="changeVal">5</span>
-            <label>Çatışma sıklığı</label><input type="range" id="lead_conflict" min="1" max="10"><span id="conflictVal">5</span>
-            <label>Vizyon becerisi</label><select id="lead_vision"><option>Zayıf</option><option>Orta</option><option>Güçlü</option></select>
-            <button onclick="analyzeLeadership()">Rapor Al</button>
+            <h3 style="color:#d4af37;">🧭 Liderlik & Yönetim Danışmanı</h3>
+            <label>Ekip büyüklüğünüz:</label><input type="number" id="lead_teamSize" placeholder="Kişi sayısı">
+            <label>Karar alma stiliniz (1-10, 1=otokratik, 10=tam katılımcı):</label><input type="range" id="lead_style" min="1" max="10"><span id="styleVal">5</span>
+            <label>Değişime açıklık dereceniz (1-10):</label><input type="range" id="lead_change" min="1" max="10"><span id="changeVal">5</span>
+            <label>Ekip içi çatışma sıklığı (1-10):</label><input type="range" id="lead_conflict" min="1" max="10"><span id="conflictVal">5</span>
+            <label>Vizyon oluşturma beceriniz:</label><select id="lead_vision"><option>Zayıf</option><option>Orta</option><option>Güçlü</option></select>
+            <button onclick="analyzeLeadership()">Liderlik Raporu Al</button>
             <div id="leadershipOut" class="analysis-box"></div>
         </div>
 
-        <!-- İş Analizi -->
+        <!-- İş & Girişim Danışmanlığı -->
         <div class="card">
             <h3 style="color:#d4af37;">🚀 İş Kurma & Girişim</h3>
-            <label>Sektör</label><input type="text" id="biz_sector">
+            <label>Sektör</label><input type="text" id="biz_sector" placeholder="Örn: E-ticaret, Yazılım">
             <label>Sermaye (₺)</label><input type="number" id="biz_capital">
-            <label>Pazar bilgisi</label><input type="range" id="biz_market" min="1" max="10"><span id="marketVal">5</span>
+            <label>Pazar bilgisi (1-10)</label><input type="range" id="biz_market" min="1" max="10"><span id="marketVal">5</span>
             <button onclick="analyzeBusiness()">Analiz Yap</button>
             <div id="bizOut" class="analysis-box"></div>
         </div>
 
-        <!-- Hedef Kitle Analizi-->
+        <!-- Hedef Kitle Analizi -->
         <div class="card">
             <h3 style="color:#d4af37;">🎯 Hedef Kitle Analizi</h3>
-            <select id="target_category"><option>Teknoloji</option><option>Eğitim</option><option>Sağlık</option><option>Finans</option></select>
-            <select id="target_age"><option>18-25</option><option>26-35</option><option>36-50</option><option>50+</option></select>
-            <select id="target_income"><option>Düşük</option><option>Orta</option><option>Yüksek</option></select>
-            <input type="text" id="target_region" placeholder="Bölge">
+            <label>Ürün/Hizmet Kategorisi</label><select id="target_category"><option>Teknoloji</option><option>Eğitim/Danışmanlık</option><option>Sağlık/Wellness</option><option>Gıda/İçecek</option><option>Finans/Yatırım</option></select>
+            <label>Yaş Aralığı</label><select id="target_age"><option>18-25</option><option>26-35</option><option>36-50</option><option>50+</option></select>
+            <label>Gelir Seviyesi</label><select id="target_income"><option>Düşük</option><option>Orta</option><option>Yüksek</option><option>Çok Yüksek</option></select>
+            <label>Coğrafi Bölge</label><input type="text" id="target_region" placeholder="Örn: Marmara">
             <button onclick="analyzeTargetAudience()">Rapor Oluştur</button>
             <div id="targetOut" class="analysis-box"></div>
         </div>
 
-        <!-- Yaşam Tasarımı & Mentörlük -->
-        <div class="card">
-            <h3 style="color:#d4af37;">🎯 Yaşam Tasarımı & Mentörlük</h3>
-            <div id="wheelContainer"></div>
-            <button onclick="analyzeLifeWheel()">Analiz Et</button>
-            <div id="lifeWheelOut" class="analysis-box"></div>
-            <label>3 yıl vizyonu</label><textarea id="vision" rows="2"></textarea>
-            <label>Haftalık aksiyon</label><input type="text" id="weeklyAction">
-            <button onclick="saveLifePlan()">Planı Kaydet</button>
-            <div id="lifePlanOut" class="analysis-box"></div>
-        </div>
+         // YAŞAM TASARIMI & MENTÖRLÜK(Wheel of Life)
+    function renderWheel() {
+        let areas = ["Kariyer","Finans","Sağlık","Aile","Kişisel Gelişim","Sosyal Hayat","Hobi","Ruhsal"];
+        let html = `<div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">`;
+        areas.forEach((a,idx)=>{
+            html += `<div class="wheel-input"><label>${a}</label><input type="range" id="wheel_${idx}" min="1" max="10" value="5"><span id="wheelVal_${idx}">5</span></div>`;
+        });
+        html += `</div>`;
+        document.getElementById("wheelContainer").innerHTML = html;
+        for(let i=0;i<areas.length;i++) {
+            let slider = document.getElementById(`wheel_${i}`);
+            let span = document.getElementById(`wheelVal_${i}`);
+            if(slider) slider.oninput = function(){ span.innerText = this.value; };
+        }
+    }
+    function analyzeLifeWheel() {
+        let areas = ["Kariyer","Finans","Sağlık","Aile","Kişisel Gelişim","Sosyal Hayat","Hobi","Ruhsal"];
+        let scores = [];
+        for(let i=0;i<areas.length;i++) scores.push(+document.getElementById(`wheel_${i}`).value);
+        let avg = scores.reduce((a,b)=>a+b,0)/scores.length;
+        let minIdx = scores.indexOf(Math.min(...scores));
+        let advice = `Yaşam Çarkı Ortalama: ${avg.toFixed(1)}/10. En düşük puanlı alan: ${areas[minIdx]}. Bu alana odaklanarak haftalık küçük adımlar belirleyin.`;
+        document.getElementById("lifeWheelOut").innerHTML = advice;
+        logAction(localStorage.getItem("current_user"), localStorage.getItem("current_plan"), "Yaşam Çarkı");
+    }
+    function saveLifePlan() {
+        let vision = document.getElementById("vision").value;
+        let action = document.getElementById("weeklyAction").value;
+        if(vision || action) {
+            document.getElementById("lifePlanOut").innerHTML = `✅ Vizyon ve haftalık aksiyon kaydedildi. Hedeflerinize bir adım daha yaklaştınız.`;
+            logAction(localStorage.getItem("current_user"), localStorage.getItem("current_plan"), "Yaşam Planı");
+        } else alert("Lütfen vizyon veya aksiyon girin");
+    }
 
         <!-- Doğal Ürün Marketi -->
         <div class="card">
             <h3 style="color:#d4af37;">🌿 Doğal Ürün Marketi</h3>
             <div id="naturalProductsList"></div>
-            <button onclick="showCart()">Sepete Git</button>
         </div>
 
         <!-- Referanslar -->
@@ -292,7 +316,7 @@
                     <div><h4>🌿 Doğal Ürün Yönetimi</h4><div id="adminNaturalList"></div><input id="newNaturalName" placeholder="Ürün adı"><input id="newNaturalPrice" type="number" placeholder="Fiyat"><button onclick="addNaturalProduct()">Ekle</button></div>
                     <div><h4>⭐ Referans Yönetimi</h4><div id="adminRefList"></div><textarea id="newRefText" rows="2" placeholder="Yorum"></textarea><input id="newRefName" placeholder="İsim"><button onclick="addReference()">Ekle</button></div>
                 </div>
-                <hr><h4>📋 Danışan Logları</h4><table id="dataTable"><thead><tr><th>Danışan</th><th>Plan</th><th>İşlem</th><th>Tarih</th></tr></thead><tbody id="dataBody"></tbody></table>
+                <hr><h4>📋 Danışan Logları</h4><table id="dataTable"><thead><tr><th>Danışan</th><th>Plan</th><th>İşlem</th><th>Tarih</th></tr></thead><tbody id="dataBody"></tbody>}</table>
                 <button onclick="clearAllData()" style="background:#be123c;">Tüm Logları Sil</button>
             </div>
         </div>
@@ -300,9 +324,9 @@
 </div>
 
 <footer>
-    <div><a href="#">Anadolu Network Websitem</a> | <a href="#">Odak Dijital Yazılım Websitem</a> | <a href="#">Ortak Markets E-Tic.Websitem</a></div>
-    <div>📲 İletişim: Adres: Doğal Gıda Marketi Agora Çarşısı Nilüfer/BURSA <a href="https://wa.me/905418660202">0541 866 02 02</a> | 📧 orhanboyraz0216@gmail.com</div>
-    <div style="font-size:0.7rem;">Bu platformdan danışmanlık alabilirsiniz; eğitim ve bilgi amaçlıdır, yatırım tavsiyesi değildir. © 2025</div>
+    <div><a href="#">Anadolu Network</a> | <a href="#">Odak Dijital</a> | <a href="#">Ortak Markets</a></div>
+    <div>📲 İletişim: <a href="https://wa.me/905418660202">0541 866 02 02</a> | 📧 orhanboyraz0216@gmail.com</div>
+    <div style="font-size:0.7rem;">Bu platform eğitim ve bilgi amaçlıdır, yatırım tavsiyesi değildir. © 2025</div>
 </footer>
 
 <script>
@@ -317,6 +341,21 @@
         { name: "Eurobond", qty: 5000, price: 19.2, class: "Tahvil" },
         { name: "Emlak Yatırım", qty: 1, price: 2500000, class: "Emlak" }
     ];
+    let marketProducts = {
+        danismanlik: [{ name: "Kişisel FIRE Koçluğu", price: 1500 }],
+        egitim: [{ name: "FIRE Başlangıç Eğitimi", price: 499 }],
+        dijital: [{ name: "Excel Planlayıcı", price: 199 }]
+    };
+    let naturalProducts = [
+        { name: "Doğal Zeytinyağı 1L", price: 299 },
+        { name: "Organik Bal 500g", price: 189 }
+    ];
+    let references = [
+        { text: "Harika bir danışmanlık deneyimi!", author: "Ahmet K." },
+        { text: "Liderlik analizi çok faydalıydı.", author: "Zeynep T." }
+    ];
+    let cart = [];
+    let chartInstance = null;
     let marketProducts = {
         danismanlik: [{ name: "Kişisel FIRE Koçluğu", price: 1500 }],
         egitim: [{ name: "FIRE Başlangıç Eğitimi", price: 499 }],
@@ -356,12 +395,77 @@
         window.open(`https://wa.me/905418660202?text=${encodeURIComponent(msg)}`, '_blank');
     }
 
-    // FIRE Hesaplamaları (kısa)
-    function calculateFIRE() { /* mevcut kod */ }
-    function calculateAllFIRE() { /* mevcut */ }
-    // Kısaltmak için ayrıntılar kesildi ama çalışır (önceki sürümdeki gibi)
+    // FIRE Hesaplamaları
+    function calculateFIRE() {
+        let income = +document.getElementById("fire_income").value;
+        let expense = +document.getElementById("fire_expense").value;
+        let passive = +document.getElementById("fire_passive").value;
+        let age = +document.getElementById("fire_age").value;
+        let capital = +document.getElementById("fire_capital").value;
+        let ret = +document.getElementById("fire_return").value / 100;
+        let inf = +document.getElementById("fire_inflation").value / 100;
+        let monthlySave = income - expense;
+        let annualExp = expense * 12;
+        let netAnnual = Math.max(0, annualExp - (passive*12));
+        let target = netAnnual * 25;
+        let realReturn = (1+ret)/(1+inf)-1;
+        if(realReturn<0) realReturn=0;
+        let years=0, bal=capital;
+        if(target>capital && monthlySave>0){
+            let mr = realReturn/12;
+            while(bal<target && years<60){ bal = bal*(1+mr) + monthlySave*((Math.pow(1+mr,12)-1)/mr); years++; }
+        } else if(capital>=target) years=0;
+        else years=99;
+        let fireAge = age+years;
+        document.getElementById("fireResult").innerHTML = `🎯 Hedef: ${formatMoney(target)}\n📆 FIRE Yaşı: ${fireAge>99?'>90':fireAge}\n⏳ Kalan: ${years>60?'60+ yıl':Math.round(years)+' yıl'}\n📈 Aylık Tasarruf: ${formatMoney(monthlySave)}`;
+        logAction(localStorage.getItem("current_user"), localStorage.getItem("current_plan"), "FIRE");
+    }
+    function calculateAllFIRE() {
+        let income = +document.getElementById("fire_income").value;
+        let expense = +document.getElementById("fire_expense").value;
+        let passive = +document.getElementById("fire_passive").value;
+        let age = +document.getElementById("fire_age").value;
+        let capital = +document.getElementById("fire_capital").value;
+        let ret = +document.getElementById("fire_return").value / 100;
+        let inf = +document.getElementById("fire_inflation").value / 100;
+        let monthlySave = income - expense;
+        let annualNetExpense = Math.max(0, (expense * 12) - (passive * 12));
+        let multipliers = { lean: 25, fat: 35, barista: 20, coast: 15 };
+        let targets = {
+            lean: annualNetExpense * multipliers.lean,
+            fat: annualNetExpense * multipliers.fat,
+            barista: annualNetExpense * multipliers.barista,
+            coast: annualNetExpense * multipliers.coast
+        };
+        let realReturn = (1+ret)/(1+inf)-1;
+        if(realReturn < 0) realReturn = 0;
+        function yearsToTarget(target) {
+            if(target <= capital) return 0;
+            let bal = capital, years = 0;
+            let monthlyRate = realReturn / 12;
+            while(bal < target && years < 60) {
+                bal = bal * (1 + monthlyRate) + monthlySave * ((Math.pow(1+monthlyRate,12)-1)/monthlyRate);
+                years++;
+            }
+            return years;
+        }
+        let yLean = yearsToTarget(targets.lean);
+        let yFat = yearsToTarget(targets.fat);
+        let yBarista = yearsToTarget(targets.barista);
+        let yCoast = yearsToTarget(targets.coast);
+        document.getElementById("leanTarget").innerHTML = formatMoney(targets.lean);
+        document.getElementById("fatTarget").innerHTML = formatMoney(targets.fat);
+        document.getElementById("baristaTarget").innerHTML = formatMoney(targets.barista);
+        document.getElementById("coastTarget").innerHTML = formatMoney(targets.coast);
+        document.getElementById("leanYears").innerHTML = yLean < 60 ? `${yLean} yıl (${age+yLean} yaş)` : ">60 yıl";
+        document.getElementById("fatYears").innerHTML = yFat < 60 ? `${yFat} yıl (${age+yFat} yaş)` : ">60 yıl";
+        document.getElementById("baristaYears").innerHTML = yBarista < 60 ? `${yBarista} yıl (${age+yBarista} yaş)` : ">60 yıl";
+        document.getElementById("coastYears").innerHTML = yCoast < 60 ? `${yCoast} yıl (${age+yCoast} yaş)` : ">60 yıl";
+        document.getElementById("fireResultDetail").innerHTML = `📊 Yıllık net harcama: ${formatMoney(annualNetExpense)}. 4% kuralı ile hesaplanmıştır.`;
+        logAction(localStorage.getItem("current_user"), localStorage.getItem("current_plan"), "4 FIRE Hesaplama");
+    }
 
-    // Finansal Sağlık + AI Öneri
+    // Finansal Sağlık
     function getPortfolioTotal() { return portfolioData.reduce((s,i)=>s+(i.qty*i.price),0); }
     function updateFinancialHealth() {
         let debt = +document.getElementById("debt").value;
@@ -387,7 +491,7 @@
         logAction(localStorage.getItem("current_user"), localStorage.getItem("current_plan"), "Finansal Sağlık");
     }
 
-    // Portföy + AI Öneri
+    // Portföy Varlık Yönetimi
     function renderPortfolioTable() {
         let total=0, html='';
         portfolioData.forEach(i=>{ let t=i.qty*i.price; total+=t; html+=`<tr><td>${i.name}</td><td>${i.qty}</td><td>₺${i.price.toFixed(2)}</td><td>₺${t.toFixed(0)}</td><td>${i.class}</td></tr>`; });
@@ -447,7 +551,7 @@
         logAction(localStorage.getItem("current_user"), localStorage.getItem("current_plan"), "CFO Analizi");
     }
 
-    // Dijital Market Render
+    // Dijital Market
     function renderDigitalMarket() {
         let container = document.getElementById("digitalMarketList");
         if(!container) return;
@@ -481,26 +585,185 @@
         window.open(`https://wa.me/905418660202?text=${encodeURIComponent(msg)}`,'_blank');
     }
 
-    // Diğer modüller (Mental, Liderlik, vb.) kısa tutuldu, çalışır.
-    function analyzeMentalHealth() { /* önceki gibi */ document.getElementById("mentalHealthOut").innerHTML = "Mental değerlendirme tamamlandı."; }
-    function analyzeLeadership() { document.getElementById("leadershipOut").innerHTML = "Liderlik raporu hazır."; }
-    function analyzeBusiness() { document.getElementById("bizOut").innerHTML = "İş analizi yapıldı."; }
-    function analyzeTargetAudience() { document.getElementById("targetOut").innerHTML = "Hedef kitle raporu oluşturuldu."; }
-    function analyzeLifeWheel() { document.getElementById("lifeWheelOut").innerHTML = "Yaşam çarkı analizi tamam."; }
-    function saveLifePlan() { document.getElementById("lifePlanOut").innerHTML = "Plan kaydedildi."; }
-    function renderWheel() { /* yaşam çarkı render */ }
-    function renderNaturalProducts() { /* doğal ürünleri göster */ }
-    function renderReferences() { /* referansları göster */ }
+    // Mental Sağlık Danışmanı
+    function analyzeMentalHealth() {
+        let stress=+document.getElementById("mental_stress").value, sleep=+document.getElementById("mental_sleep").value, mot=+document.getElementById("mental_motivation").value, anx=+document.getElementById("mental_anxiety").value, sup=document.getElementById("mental_support").value;
+        let score = (stress + (10-sleep) + (10-mot) + anx)/4;
+        let advice = score>7 ? "⚠️ Yüksek mental yük. Profesyonel destek, dengeli beslenme, egzersiz ve nefes teknikleri önerilir." : (score>4 ? "📉 Orta düzey. Meditasyon ve uyku düzenine odaklanın." : "✅ İyi durumdasınız, rutininizi koruyun.");
+        if(sup.includes("Hayır")) advice += " Sosyal destek ağınızı genişletin.";
+        document.getElementById("mentalHealthOut").innerHTML = `Stres:${stress}, Uyku:${sleep}, Motivasyon:${mot}, Kaygı:${anx}\n📝 ${advice}`;
+        logAction(localStorage.getItem("current_user"), localStorage.getItem("current_plan"), "Mental Sağlık");
+    }
 
-    // Admin Panel (kısa)
-    function accessAdmin() { if(document.getElementById("adminPass").value === "admin2026") { document.getElementById("adminPanel").classList.remove("hidden"); renderAdminLists(); } else alert("Şifre hatalı!"); }
-    function renderAdminLists() { /* admin listelerini doldur */ }
-    function addProduct() { /* ürün ekle */ }
-    function addAsset() { /* varlık ekle */ }
-    function addNaturalProduct() { /* doğal ürün ekle */ }
-    function addReference() { /* referans ekle */ }
-    function clearAllData() { if(confirm("Tüm loglar silinecek?")) localStorage.removeItem("anadolu_logs"); renderLogTable(); }
-    function renderLogTable() { /* log tablosu */ }
+    // Liderlik & Yönetim Danışmanı
+    function analyzeLeadership() {
+        let team=+document.getElementById("lead_teamSize").value||0, style=+document.getElementById("lead_style").value, change=+document.getElementById("lead_change").value, conflict=+document.getElementById("lead_conflict").value, vision=document.getElementById("lead_vision").value;
+        let styleDesc = style<=3?"Otokratik":(style<=7?"Demokratik":"Katılımcı");
+        let advice = `🧭 Liderlik Stiliniz: ${styleDesc}. `;
+        if(team>0 && team<5) advice += "Küçük ekiplerde birebir iletişim önemli. Haftalık birebir toplantılar ekleyin.";
+        else if(team>=5) advice += "Büyüyen ekipte delegasyon ve süreç yönetimi kritik. Scrum veya Kanban metodlarını değerlendirin.";
+        if(change < 4) advice += " Değişime direnç yüksek olabilir. Değişim yönetimi eğitimi almanız faydalı.";
+        if(conflict > 6) advice += " Ekip içi çatışmalar sık. Arabuluculuk teknikleri öğrenin ve düzenli geri bildirim oturumları yapın.";
+        if(vision === "Zayıf") advice += " Vizyon oluşturma becerinizi geliştirmek için stratejik planlama atölyelerine katılın.";
+        else if(vision === "Güçlü") advice += " Vizyonunuzu ekip üyelerine daha iyi anlatmak için hikaye anlatıcılığını kullanın.";
+        document.getElementById("leadershipOut").innerHTML = advice;
+        logAction(localStorage.getItem("current_user"), localStorage.getItem("current_plan"), "Liderlik");
+    }
+
+    // İş Analizi & Girişim Danışmanı
+    function analyzeBusiness() {
+        let sector = document.getElementById("biz_sector").value || "Belirtilmemiş";
+        let capital = +document.getElementById("biz_capital").value;
+        let market = +document.getElementById("biz_market").value;
+        let out = `🚀 Girişim Raporu:\n- Sektör: ${sector}\n- Sermaye: ${formatMoney(capital)}\n- Pazar Skoru: ${market}/10\n📌 Öneri: ${capital<100000 ? 'Mikro yatırım ve hibe araştırın.' : 'Ölçeklenebilir modele odaklanın.'}`;
+        document.getElementById("bizOut").innerText = out;
+        logAction(localStorage.getItem("current_user"), localStorage.getItem("current_plan"), "İş Analizi");
+    }
+
+    // Hedef Kitle Analizi
+    function analyzeTargetAudience() {
+        let cat = document.getElementById("target_category").value;
+        let age = document.getElementById("target_age").value;
+        let inc = document.getElementById("target_income").value;
+        let region = document.getElementById("target_region").value.trim() || "Türkiye geneli";
+        let plan = localStorage.getItem("current_plan") || "Free";
+        let demo = `${age} yaş, ${inc} gelir, ${region}`;
+        let psycho = age.includes("18")?"Dijital yerliler, trend takipçisi":(age.includes("26")?"Kariyer odaklı, kalite arayan":(age.includes("36")?"Aile bütçesine duyarlı, güvenilir":"Sağlık ve konfor ön planda"));
+        let behavior = cat=="Teknoloji"?"Erken benimseyici, inceleme okur":(cat=="Eğitim"?"Kendini geliştirmeye açık, referanslara önem verir":"Alışverişte kampanya takipçisi");
+        let strategy = `🎯 Hedef Kitle Raporu:\n- Kategori: ${cat}\n- Demografik: ${demo}\n- Psikografik: ${psycho}\n- Davranışsal: ${behavior}\n📢 Pazarlama Önerisi: `;
+        if(plan=="Pro"||plan=="VIP") strategy += `Instagram/LinkedIn reklamları, influencer işbirlikleri, içerik pazarlaması yapın. A/B test ile optimize edin.`;
+        else strategy += `Sosyal medyada düzenli paylaşım yapın, müşteri yorumlarını öne çıkarın.`;
+        if(region!="Türkiye geneli") strategy += ` ${region} bölgesinde yerel etkinlikler düzenleyin.`;
+        document.getElementById("targetOut").innerHTML = strategy;
+        logAction(localStorage.getItem("current_user"), localStorage.getItem("current_plan"), "Hedef Kitle");
+    }
+
+    // Yaşam Tasarımı & Mentörlük
+    function renderWheel() {
+        let areas = ["Kariyer","Finans","Sağlık","Aile","Kişisel Gelişim","Sosyal Hayat","Hobi","Ruhsal"];
+        let html = `<div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">`;
+        areas.forEach((a,idx)=>{
+            html += `<div class="wheel-input"><label>${a}</label><input type="range" id="wheel_${idx}" min="1" max="10" value="5"><span id="wheelVal_${idx}">5</span></div>`;
+        });
+        html += `</div>`;
+        document.getElementById("wheelContainer").innerHTML = html;
+        for(let i=0;i<areas.length;i++) {
+            let slider = document.getElementById(`wheel_${i}`);
+            if(slider) slider.oninput = function(){ document.getElementById(`wheelVal_${i}`).innerText = this.value; };
+        }
+    }
+    function analyzeLifeWheel() {
+        let areas = ["Kariyer","Finans","Sağlık","Aile","Kişisel Gelişim","Sosyal Hayat","Hobi","Ruhsal"];
+        let scores = [];
+        for(let i=0;i<areas.length;i++) scores.push(+document.getElementById(`wheel_${i}`).value);
+        let avg = scores.reduce((a,b)=>a+b,0)/scores.length;
+        let minIdx = scores.indexOf(Math.min(...scores));
+        let advice = `🎡 Yaşam Çarkı Ortalama: ${avg.toFixed(1)}/10.\n📉 En düşük puanlı alan: ${areas[minIdx]}.\n💡 Öneri: Bu alana odaklanarak haftalık küçük adımlar belirleyin.`;
+        document.getElementById("lifeWheelOut").innerHTML = advice;
+        logAction(localStorage.getItem("current_user"), localStorage.getItem("current_plan"), "Yaşam Çarkı");
+    }
+    function saveLifePlan() {
+        let vision = document.getElementById("vision").value;
+        let action = document.getElementById("weeklyAction").value;
+        if(vision || action) {
+            document.getElementById("lifePlanOut").innerHTML = `✅ Vizyon ve haftalık aksiyon kaydedildi. Hedeflerinize bir adım daha yaklaştınız.`;
+            logAction(localStorage.getItem("current_user"), localStorage.getItem("current_plan"), "Yaşam Planı");
+        } else alert("Lütfen vizyon veya aksiyon girin");
+    }
+
+    // Doğal Ürün Market
+    function renderNaturalProducts() {
+        let container = document.getElementById("naturalProductsList");
+        if(!container) return;
+        let html = '';
+        naturalProducts.forEach(p=>{
+            html += `<div class="product-item"><span>${p.name}</span><span>${formatMoney(p.price)}</span><button class="whatsapp-btn" onclick="addToCartNatural('${p.name}',${p.price})">Sepete Ekle</button></div>`;
+        });
+        container.innerHTML = html;
+    }
+    function addToCartNatural(name,price){ cart.push({name,price}); updateCartUI(); alert(`${name} sepete eklendi`); }
+
+    // Referanslar
+    function renderReferences() {
+        let container = document.getElementById("referencesList");
+        if(!container) return;
+        let html = '';
+        references.forEach(ref=>{
+            html += `<div class="reference-item"><div><strong>${ref.author}</strong><br>${ref.text}</div></div>`;
+        });
+        container.innerHTML = html || "Henüz referans yok.";
+    }
+
+    // Admin Panel
+    function accessAdmin() {
+        let pwd = document.getElementById("adminPass").value;
+        if(pwd === "admin2026") {
+            document.getElementById("adminPanel").classList.remove("hidden");
+            renderAdminProductList(); renderAdminAssetList(); renderAdminNaturalList(); renderAdminRefList(); renderLogTable();
+        } else alert("Şifre hatalı!");
+    }
+    function renderAdminProductList() {
+        let container = document.getElementById("adminProductList");
+        if(!container) return;
+        let html = '';
+        for(let cat in marketProducts) marketProducts[cat].forEach((p,idx)=>{ html+=`<div>${cat} - ${p.name} (${formatMoney(p.price)}) <button onclick="deleteProduct('${cat}',${idx})">🗑️ Sil</button></div>`; });
+        container.innerHTML = html||"Ürün yok";
+    }
+    function deleteProduct(cat,idx){ marketProducts[cat].splice(idx,1); renderAdminProductList(); localStorage.setItem("anadolu_products",JSON.stringify(marketProducts)); renderDigitalMarket(); }
+    function addProduct() {
+        let name=document.getElementById("newProdName").value.trim(), price=+document.getElementById("newProdPrice").value, cat=document.getElementById("prodCategory").value;
+        if(!name||isNaN(price)){ alert("Geçerli ürün girin"); return; }
+        marketProducts[cat].push({name,price}); renderAdminProductList(); localStorage.setItem("anadolu_products",JSON.stringify(marketProducts)); renderDigitalMarket();
+        document.getElementById("newProdName").value=""; document.getElementById("newProdPrice").value="";
+    }
+    function renderAdminAssetList() {
+        let container = document.getElementById("adminAssetList");
+        if(!container) return;
+        let html = '';
+        portfolioData.forEach((a,idx)=>{ html+=`<div>${a.name} | ${a.qty} | ${formatMoney(a.price)} | ${a.class} <button onclick="deleteAsset(${idx})">🗑️ Sil</button></div>`; });
+        container.innerHTML = html;
+    }
+    function deleteAsset(idx){ portfolioData.splice(idx,1); renderPortfolioTable(); renderAdminAssetList(); localStorage.setItem("anadolu_portfolio",JSON.stringify(portfolioData)); }
+    function addAsset() {
+        let name=document.getElementById("newAssetName").value.trim(), qty=+document.getElementById("newAssetQty").value, price=+document.getElementById("newAssetPrice").value, cls=document.getElementById("newAssetClass").value.trim();
+        if(!name||isNaN(qty)||isNaN(price)||!cls){ alert("Tüm alanları doldurun"); return; }
+        portfolioData.push({name,qty,price,class:cls}); renderPortfolioTable(); renderAdminAssetList(); localStorage.setItem("anadolu_portfolio",JSON.stringify(portfolioData));
+        document.getElementById("newAssetName").value=""; document.getElementById("newAssetQty").value=""; document.getElementById("newAssetPrice").value=""; document.getElementById("newAssetClass").value="";
+    }
+    function renderAdminNaturalList() {
+        let container = document.getElementById("adminNaturalList");
+        if(!container) return;
+        let html = '';
+        naturalProducts.forEach((p,idx)=>{ html+=`<div>${p.name} - ${formatMoney(p.price)} <button onclick="deleteNatural(${idx})">🗑️ Sil</button></div>`; });
+        container.innerHTML = html;
+    }
+    function deleteNatural(idx){ naturalProducts.splice(idx,1); renderNaturalProducts(); renderAdminNaturalList(); localStorage.setItem("anadolu_natural",JSON.stringify(naturalProducts)); }
+    function addNaturalProduct() {
+        let name=document.getElementById("newNaturalName").value.trim(), price=+document.getElementById("newNaturalPrice").value;
+        if(!name||isNaN(price)){ alert("Geçerli ürün girin"); return; }
+        naturalProducts.push({name,price}); renderNaturalProducts(); renderAdminNaturalList(); localStorage.setItem("anadolu_natural",JSON.stringify(naturalProducts));
+        document.getElementById("newNaturalName").value=""; document.getElementById("newNaturalPrice").value="";
+    }
+    function renderAdminRefList() {
+        let container = document.getElementById("adminRefList");
+        if(!container) return;
+        let html = '';
+        references.forEach((ref,idx)=>{ html+=`<div><strong>${ref.author}</strong>: ${ref.text} <button onclick="deleteRef(${idx})">🗑️ Sil</button></div>`; });
+        container.innerHTML = html;
+    }
+    function deleteRef(idx){ references.splice(idx,1); renderReferences(); renderAdminRefList(); localStorage.setItem("anadolu_refs",JSON.stringify(references)); }
+    function addReference() {
+        let text=document.getElementById("newRefText").value.trim(), author=document.getElementById("newRefName").value.trim();
+        if(!text||!author){ alert("Yorum ve isim girin"); return; }
+        references.push({text,author}); renderReferences(); renderAdminRefList(); localStorage.setItem("anadolu_refs",JSON.stringify(references));
+        document.getElementById("newRefText").value=""; document.getElementById("newRefName").value="";
+    }
+    function renderLogTable() {
+        let logs=JSON.parse(localStorage.getItem("anadolu_logs")||"[]");
+        let body=document.getElementById("dataBody");
+        body.innerHTML = logs.reverse().map(l=>`<tr><td>${l.name}</td><td>${l.plan}</td><td>${l.action}</td><td>${l.date}</td></tr>`).join('');
+    }
+    function clearAllData(){ if(confirm("Tüm loglar silinecek?")){ localStorage.removeItem("anadolu_logs"); renderLogTable(); } }
 
     // Load
     function loadSaved() {
@@ -510,6 +773,10 @@
         let savedRefs = localStorage.getItem("anadolu_refs"); if(savedRefs) references = JSON.parse(savedRefs);
         renderPortfolioTable(); renderDigitalMarket(); renderNaturalProducts(); renderReferences(); renderWheel();
         updateFinancialHealth();
+        // range display listeners
+        let ranges = ["mental_stress","mental_sleep","mental_motivation","mental_anxiety","lead_style","lead_change","lead_conflict","biz_market"];
+        ranges.forEach(id=>{ let el=document.getElementById(id); if(el) el.addEventListener("input",function(){ let spanId = id+"Val"; if(document.getElementById(spanId)) document.getElementById(spanId).innerText = this.value; }); });
+        for(let i=0;i<8;i++){ let s=document.getElementById(`wheel_${i}`); if(s) s.oninput = function(){ document.getElementById(`wheelVal_${i}`).innerText = this.value; }; }
     }
     loadSaved();
 </script>
