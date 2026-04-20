@@ -127,7 +127,7 @@
             <select id="userPlan">
                 <option value="Free">Standart (Ücretsiz)</option>
                 <option value="Pro">Pro Plan- 1.499₺/yıl</option>
-                <option value="VIP">Elite VIP Plan - 3.999₺/yıl</option>
+                <option value="VIP">Elite VIP - 3.999₺/yıl</option>
             </select>
             <button onclick="saveProfile()">Profili Kaydet</button>
             <div id="profileStatus" class="analysis-box">Profil oluşturulmadı.</div>
@@ -178,7 +178,7 @@
         <div class="card">
             <h3 style="color:#d4af37;">📈 Yatırım Portföyü</h3>
             <div class="flex-between"><span>Toplam Değer: <strong id="portfolioTotal">0 ₺</strong></span><button onclick="refreshPrices()" style="width:auto;">🔄 Güncelle</button></div>
-            <div style="overflow-x:auto;"><table><thead><tr><th>Varlık</th><th>Miktar</th><th>Fiyat</th><th>Toplam</th><th>Sınıf</th></tr></thead><tbody id="portfolioBody"></tbody></table></div>
+            <div style="overflow-x:auto;"><tr><thead><tr><th>Varlık</th><th>Miktar</th><th>Fiyat</th><th>Toplam</th><th>Sınıf</th></tr></thead><tbody id="portfolioBody"></tbody>}</div>
             <div class="portfolio-chart-container"><canvas id="portfolioChart" width="200" height="200"></canvas></div>
             <div id="allocationPercent" class="analysis-box"></div>
             <div id="portfolioAdvice" class="analysis-box">📊 AI Portföy Önerisi: Burada dağılıma göre tavsiye verilecek.</div>
@@ -214,7 +214,7 @@
             </div>
         </div>
 
-        <!-- Mental Sağlık Danışmanı -->
+        <!-- Mental Sağlık Danışmanı-->
         <div class="card">
             <h3 style="color:#d4af37;">🧠 Mental Sağlık Danışmanı</h3>
             <label>Stres (1-10)</label><input type="range" id="mental_stress" min="1" max="10"><span id="stressVal">5</span>
@@ -226,11 +226,11 @@
             <div id="mentalHealthOut" class="analysis-box"></div>
         </div>
 
-        <!-- Liderlik & Yönetim Danışmanı -->
+        <!-- Liderlik & Yönetim Danışmanı-->
         <div class="card">
             <h3 style="color:#d4af37;">🧭 Liderlik & Yönetim Danışmanı</h3>
             <label>Ekip büyüklüğünüz:</label><input type="number" id="lead_teamSize" placeholder="Kişi sayısı">
-            <label>Karar alma stiliniz (1-10, 1=otokratik, 10=tam katılımcı):</label><input type="range" id="lead_style" min="1" max="10"><span id="styleVal">5</span>
+            <label>Karar alma stiliniz (1-10):</label><input type="range" id="lead_style" min="1" max="10"><span id="styleVal">5</span>
             <label>Değişime açıklık dereceniz (1-10):</label><input type="range" id="lead_change" min="1" max="10"><span id="changeVal">5</span>
             <label>Ekip içi çatışma sıklığı (1-10):</label><input type="range" id="lead_conflict" min="1" max="10"><span id="conflictVal">5</span>
             <label>Vizyon oluşturma beceriniz:</label><select id="lead_vision"><option>Zayıf</option><option>Orta</option><option>Güçlü</option></select>
@@ -259,39 +259,19 @@
             <div id="targetOut" class="analysis-box"></div>
         </div>
 
-         // YAŞAM TASARIMI & MENTÖRLÜK(Wheel of Life)
-    function renderWheel() {
-        let areas = ["Kariyer","Finans","Sağlık","Aile","Kişisel Gelişim","Sosyal Hayat","Hobi","Ruhsal"];
-        let html = `<div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">`;
-        areas.forEach((a,idx)=>{
-            html += `<div class="wheel-input"><label>${a}</label><input type="range" id="wheel_${idx}" min="1" max="10" value="5"><span id="wheelVal_${idx}">5</span></div>`;
-        });
-        html += `</div>`;
-        document.getElementById("wheelContainer").innerHTML = html;
-        for(let i=0;i<areas.length;i++) {
-            let slider = document.getElementById(`wheel_${i}`);
-            let span = document.getElementById(`wheelVal_${i}`);
-            if(slider) slider.oninput = function(){ span.innerText = this.value; };
-        }
-    }
-    function analyzeLifeWheel() {
-        let areas = ["Kariyer","Finans","Sağlık","Aile","Kişisel Gelişim","Sosyal Hayat","Hobi","Ruhsal"];
-        let scores = [];
-        for(let i=0;i<areas.length;i++) scores.push(+document.getElementById(`wheel_${i}`).value);
-        let avg = scores.reduce((a,b)=>a+b,0)/scores.length;
-        let minIdx = scores.indexOf(Math.min(...scores));
-        let advice = `Yaşam Çarkı Ortalama: ${avg.toFixed(1)}/10. En düşük puanlı alan: ${areas[minIdx]}. Bu alana odaklanarak haftalık küçük adımlar belirleyin.`;
-        document.getElementById("lifeWheelOut").innerHTML = advice;
-        logAction(localStorage.getItem("current_user"), localStorage.getItem("current_plan"), "Yaşam Çarkı");
-    }
-    function saveLifePlan() {
-        let vision = document.getElementById("vision").value;
-        let action = document.getElementById("weeklyAction").value;
-        if(vision || action) {
-            document.getElementById("lifePlanOut").innerHTML = `✅ Vizyon ve haftalık aksiyon kaydedildi. Hedeflerinize bir adım daha yaklaştınız.`;
-            logAction(localStorage.getItem("current_user"), localStorage.getItem("current_plan"), "Yaşam Planı");
-        } else alert("Lütfen vizyon veya aksiyon girin");
-    }
+        <!-- YAŞAM TASARIMI & MENTÖRLÜK -->
+        <div class="card">
+            <h3 style="color:#d4af37;">🎯 Yaşam Tasarımı & Mentörlük</h3>
+            <div id="wheelContainer"></div>
+            <button onclick="analyzeLifeWheel()">Yaşam Çarkı Analizi</button>
+            <div id="lifeWheelOut" class="analysis-box"></div>
+            <label>3 yıl sonraki vizyonunuz:</label>
+            <textarea id="vision" rows="2" placeholder="Hayal ettiğiniz yaşam..."></textarea>
+            <label>Bu hafta için 1 adım:</label>
+            <input type="text" id="weeklyAction" placeholder="Küçük bir eylem">
+            <button onclick="saveLifePlan()">Planı Kaydet</button>
+            <div id="lifePlanOut" class="analysis-box"></div>
+        </div>
 
         <!-- Doğal Ürün Marketi -->
         <div class="card">
@@ -299,7 +279,7 @@
             <div id="naturalProductsList"></div>
         </div>
 
-        <!-- Referanslar -->
+        <!-- REFERANSLAR -->
         <div class="card">
             <h3 style="color:#d4af37;">⭐ Referanslarımız</h3>
             <div id="referencesList"></div>
@@ -341,21 +321,6 @@
         { name: "Eurobond", qty: 5000, price: 19.2, class: "Tahvil" },
         { name: "Emlak Yatırım", qty: 1, price: 2500000, class: "Emlak" }
     ];
-    let marketProducts = {
-        danismanlik: [{ name: "Kişisel FIRE Koçluğu", price: 1500 }],
-        egitim: [{ name: "FIRE Başlangıç Eğitimi", price: 499 }],
-        dijital: [{ name: "Excel Planlayıcı", price: 199 }]
-    };
-    let naturalProducts = [
-        { name: "Doğal Zeytinyağı 1L", price: 299 },
-        { name: "Organik Bal 500g", price: 189 }
-    ];
-    let references = [
-        { text: "Harika bir danışmanlık deneyimi!", author: "Ahmet K." },
-        { text: "Liderlik analizi çok faydalıydı.", author: "Zeynep T." }
-    ];
-    let cart = [];
-    let chartInstance = null;
     let marketProducts = {
         danismanlik: [{ name: "Kişisel FIRE Koçluğu", price: 1500 }],
         egitim: [{ name: "FIRE Başlangıç Eğitimi", price: 499 }],
@@ -491,7 +456,7 @@
         logAction(localStorage.getItem("current_user"), localStorage.getItem("current_plan"), "Finansal Sağlık");
     }
 
-    // Portföy Varlık Yönetimi
+    // Portföy Yönetimi
     function renderPortfolioTable() {
         let total=0, html='';
         portfolioData.forEach(i=>{ let t=i.qty*i.price; total+=t; html+=`<tr><td>${i.name}</td><td>${i.qty}</td><td>₺${i.price.toFixed(2)}</td><td>₺${t.toFixed(0)}</td><td>${i.class}</td></tr>`; });
@@ -589,7 +554,7 @@
     function analyzeMentalHealth() {
         let stress=+document.getElementById("mental_stress").value, sleep=+document.getElementById("mental_sleep").value, mot=+document.getElementById("mental_motivation").value, anx=+document.getElementById("mental_anxiety").value, sup=document.getElementById("mental_support").value;
         let score = (stress + (10-sleep) + (10-mot) + anx)/4;
-        let advice = score>7 ? "⚠️ Yüksek mental yük. Profesyonel destek, dengeli beslenme, egzersiz ve nefes teknikleri önerilir." : (score>4 ? "📉 Orta düzey. Meditasyon ve uyku düzenine odaklanın." : "✅ İyi durumdasınız, rutininizi koruyun.");
+        let advice = score>7 ? "⚠️ Yüksek mental yük. Profesyonel destek, egzersiz ve nefes teknikleri önerilir." : (score>4 ? "📉 Orta düzey. Meditasyon ve uyku düzenine odaklanın." : "✅ İyi durumdasınız, rutininizi koruyun.");
         if(sup.includes("Hayır")) advice += " Sosyal destek ağınızı genişletin.";
         document.getElementById("mentalHealthOut").innerHTML = `Stres:${stress}, Uyku:${sleep}, Motivasyon:${mot}, Kaygı:${anx}\n📝 ${advice}`;
         logAction(localStorage.getItem("current_user"), localStorage.getItem("current_plan"), "Mental Sağlık");
