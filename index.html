@@ -135,7 +135,7 @@
             <div class="flex-between"><div><strong>👑 VIP (3.999₺)</strong></div><button class="whatsapp-btn" onclick="buyPlan('VIP',3999)">📲 Satın Al</button></div>
         </div>
 
-        <!-- FIRE Hesaplama + 4 Tür (ÇALIŞIYOR) -->
+        <!-- FIRE Hesaplama + 4 Türde -->
         <div class="card">
             <h3 style="color:#d4af37;">🔥 FIRE Hesaplama</h3>
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
@@ -304,9 +304,9 @@
 </div>
 
 <footer>
-    <div><a href="#">Anadolu Network</a> | <a href="#">Odak Dijital</a> | <a href="#">Ortak Markets</a></div>
-    <div>📲 İletişim: <a href="https://wa.me/905418660202">0541 866 02 02</a> | 📧 orhanboyraz0216@gmail.com</div>
-    <div style="font-size:0.7rem;">Bu platform eğitim ve bilgi amaçlıdır, yatırım tavsiyesi değildir. © 2025</div>
+    <div><a href="#">Anadolu Network Websitem</a> | <a href="#">Odak Dijital Yazılım Websitem</a> | <a href="#">Ortak Markets E-Tic. Websitem</a></div>
+    <div>📲 İletişim: Adres: Doğal Gıda Marketi Agora Çarşısı Nilüfer/BURSA<a href="https://wa.me/905418660202">0541 866 02 02</a> | 📧 orhanboyraz0216@gmail.com</div>
+    <div style="font-size:0.7rem;">Bu platformdan danışmanlık alabilirsiniz, eğitim ve bilgi amaçlıdır, yatırım tavsiyesi değildir. © 2025</div>
 </footer>
 
 <script>
@@ -344,7 +344,7 @@
         localStorage.setItem("anadolu_logs", JSON.stringify(logs));
     }
 
-    // Profil
+    // Profil & Abonelik
     function saveProfile() {
         let name = document.getElementById("userName").value;
         let plan = document.getElementById("userPlan").value;
@@ -430,7 +430,7 @@
         logAction(localStorage.getItem("current_user"), localStorage.getItem("current_plan"), "4 FIRE Hesaplama");
     }
 
-    // Finansal Sağlık
+    // Finansal Sağlık Analizi
     function getPortfolioTotal() { return portfolioData.reduce((s,i)=>s+(i.qty*i.price),0); }
     function updateFinancialHealth() {
         let debt = +document.getElementById("debt").value;
@@ -554,7 +554,7 @@
     function analyzeMentalHealth() {
         let stress=+document.getElementById("mental_stress").value, sleep=+document.getElementById("mental_sleep").value, mot=+document.getElementById("mental_motivation").value, anx=+document.getElementById("mental_anxiety").value, sup=document.getElementById("mental_support").value;
         let score = (stress + (10-sleep) + (10-mot) + anx)/4;
-        let advice = score>7 ? "⚠️ Yüksek mental yük. Profesyonel destek, egzersiz ve nefes teknikleri önerilir." : (score>4 ? "📉 Orta düzey. Meditasyon ve uyku düzenine odaklanın." : "✅ İyi durumdasınız, rutininizi koruyun.");
+        let advice = score>7 ? "⚠️ Yüksek mental yük. Profesyonel destek, dengeli beslen, egzersiz ve nefes teknikleri önerilir." : (score>4 ? "📉 Orta düzey. Meditasyon ve uyku düzenine odaklanın." : "✅ İyi durumdasınız, rutininizi koruyun.");
         if(sup.includes("Hayır")) advice += " Sosyal destek ağınızı genişletin.";
         document.getElementById("mentalHealthOut").innerHTML = `Stres:${stress}, Uyku:${sleep}, Motivasyon:${mot}, Kaygı:${anx}\n📝 ${advice}`;
         logAction(localStorage.getItem("current_user"), localStorage.getItem("current_plan"), "Mental Sağlık");
@@ -603,10 +603,10 @@
         logAction(localStorage.getItem("current_user"), localStorage.getItem("current_plan"), "Hedef Kitle");
     }
 
-    // Yaşam Tasarımı & Mentörlük
+     // YAŞAM TASARIMI & MENTÖRLÜK
     function renderWheel() {
         let areas = ["Kariyer","Finans","Sağlık","Aile","Kişisel Gelişim","Sosyal Hayat","Hobi","Ruhsal"];
-        let html = `<div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">`;
+        let html = `<div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">`;
         areas.forEach((a,idx)=>{
             html += `<div class="wheel-input"><label>${a}</label><input type="range" id="wheel_${idx}" min="1" max="10" value="5"><span id="wheelVal_${idx}">5</span></div>`;
         });
@@ -614,7 +614,8 @@
         document.getElementById("wheelContainer").innerHTML = html;
         for(let i=0;i<areas.length;i++) {
             let slider = document.getElementById(`wheel_${i}`);
-            if(slider) slider.oninput = function(){ document.getElementById(`wheelVal_${i}`).innerText = this.value; };
+            let span = document.getElementById(`wheelVal_${i}`);
+            if(slider) slider.oninput = function(){ span.innerText = this.value; };
         }
     }
     function analyzeLifeWheel() {
@@ -623,7 +624,7 @@
         for(let i=0;i<areas.length;i++) scores.push(+document.getElementById(`wheel_${i}`).value);
         let avg = scores.reduce((a,b)=>a+b,0)/scores.length;
         let minIdx = scores.indexOf(Math.min(...scores));
-        let advice = `🎡 Yaşam Çarkı Ortalama: ${avg.toFixed(1)}/10.\n📉 En düşük puanlı alan: ${areas[minIdx]}.\n💡 Öneri: Bu alana odaklanarak haftalık küçük adımlar belirleyin.`;
+        let advice = `Yaşam Çarkı Ortalama: ${avg.toFixed(1)}/10. En düşük puanlı alan: ${areas[minIdx]}. Bu alana odaklanarak haftalık küçük adımlar belirleyin.`;
         document.getElementById("lifeWheelOut").innerHTML = advice;
         logAction(localStorage.getItem("current_user"), localStorage.getItem("current_plan"), "Yaşam Çarkı");
     }
