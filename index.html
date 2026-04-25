@@ -111,6 +111,13 @@
             padding: 12px;
             margin-top: 8px;
         }
+        .debt-summary {
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 16px;
+            padding: 12px;
+            margin-top: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
     </style>
 </head>
 <body>
@@ -133,15 +140,17 @@
             <select id="userPlan">
                 <option value="Free">Standart (Ücretsiz)</option>
                 <option value="Pro">Pro Plan - 1.499₺/yıl</option>
-                <option value="VIP">Elite VIP - 3.999₺/yıl</option>
+                <option value="Premıum">Premıum Plan - 2.499₺/yıl</option>
+                <option value="VIP">Elite VIP - 4.999₺/yıl</option>
             </select>
             <button onclick="saveProfile()">Profili Kaydet</button>
             <div id="profileStatus" class="analysis-box">Profil oluşturulmadı.</div>
             <div class="flex-between"><div><strong>🚀 Pro (1.499₺)</strong></div><button class="whatsapp-btn" onclick="buyPlan('Pro',1499)">📲 Satın Al</button></div>
-            <div class="flex-between"><div><strong>👑 VIP (3.999₺)</strong></div><button class="whatsapp-btn" onclick="buyPlan('VIP',3999)">📲 Satın Al</button></div>
+ <div class="flex-between"><div><strong>🚀 Premıum (2.499₺)</strong></div><button class="whatsapp-btn" onclick="buyPlan('Premıum',2499)">📲 Satın Al</button></div>
+            <div class="flex-between"><div><strong>👑 VIP (4.999₺)</strong></div><button class="whatsapp-btn" onclick="buyPlan('VIP',4999)">📲 Satın Al</button></div>
         </div>
 
-        <!-- Gemini API Ayarları (YENİ) -->
+        <!-- Gemini API Ayarları -->
         <div class="card">
             <h3 style="color:#d4af37;">🔑 Gemini AI Ayarları</h3>
             <div class="api-settings">
@@ -152,7 +161,7 @@
             </div>
         </div>
 
-        <!-- Gemini AI ile İçerik Üret (YENİ) -->
+        <!-- Gemini AI ile İçerik Üret -->
         <div class="card">
             <h3 style="color:#d4af37;">✨ Gemini AI ile İçerik Üret</h3>
             <label>İçerik Türü</label>
@@ -171,11 +180,13 @@
             <div id="aiOutput" class="analysis-box">İçerik burada görünecek...</div>
             <div class="flex-between" style="margin-top:10px;">
                 <button onclick="copyAiContent()" style="width:auto;">📋 Kopyala</button>
+                <button onclick="downloadAiContent()" style="width:auto;">PDF İndir</button>
+            </div>
                 <button onclick="downloadAiContent()" style="width:auto;">💾 TXT İndir</button>
             </div>
         </div>
 
-        <!-- FIRE Hesaplama + 4 Tür -->
+        <!-- FIRE Hesaplama + Borçlar + 4 Tür -->
         <div class="card">
             <h3 style="color:#d4af37;">🔥 FIRE Hesaplama</h3>
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
@@ -187,9 +198,23 @@
                 <div><label>Yıllık Getiri %</label><input type="number" id="fire_return" value="9.5" step="0.5"></div>
                 <div><label>Enflasyon %</label><input type="number" id="fire_inflation" value="6.0" step="0.5"></div>
             </div>
-            <button onclick="calculateFIRE()">FIRE Hesapla</button>
+            
+            <!-- BORÇLAR BÖLÜMÜ -->
+            <div class="debt-summary">
+                <h4 style="color:#d4af37; margin-bottom:8px;">💳 Borçlar (FIRE Hesaplamasına Dahil)</h4>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+                    <div><label>Kredi Kartı Borcu</label><input type="number" id="debt_creditcard" value="15000" placeholder="0"></div>
+                    <div><label>İhtiyaç Kredisi</label><input type="number" id="debt_personalLoan" value="45000" placeholder="0"></div>
+                    <div><label>Konut Kredisi</label><input type="number" id="debt_mortgage" value="120000" placeholder="0"></div>
+                    <div><label>Araç Kredisi</label><input type="number" id="debt_carLoan" value="0" placeholder="0"></div>
+                    <div><label>Diğer Borçlar</label><input type="number" id="debt_other" value="8000" placeholder="0"></div>
+                    <div><label>Toplam Borç</label><input type="text" id="debt_total" value="188.000 ₺" readonly style="background:#0f2a4a; font-weight:bold;"></div>
+                </div>
+            </div>
+            
+            <button onclick="calculateFIRE()">FIRE Hesapla (Borçlar Dahil)</button>
             <div id="fireResult" class="analysis-box"></div>
-            <button onclick="calculateAllFIRE()" style="margin-top:5px;">4 FIRE Türünü Hesapla</button>
+            <button onclick="calculateAllFIRE()" style="margin-top:5px;">4 FIRE Türünü Hesapla (Borçlar Dahil)</button>
             <div class="fire-types-grid">
                 <div class="fire-type-card"><h4>Lean FIRE (25X)</h4><div id="leanTarget" class="target">-</div><div id="leanYears" class="years">-</div></div>
                 <div class="fire-type-card"><h4>Fat FIRE (35X)</h4><div id="fatTarget" class="target">-</div><div id="fatYears" class="years">-</div></div>
@@ -245,20 +270,6 @@
             <div id="cfoAdvice" class="analysis-box">🤖 AI CFO Önerileri: Verilerinizi girin, stratejik tavsiyeler alın.</div>
         </div>
 
-        <!-- Dijital Market -->
-        <div class="card">
-            <h3 style="color:#d4af37;">🛒 Dijital Market</h3>
-            <div id="digitalMarketList"></div>
-            <button onclick="showCart()">🛍️ Sepetim (<span id="cartCount">0</span>)</button>
-            <div id="cartModal" style="display:none; background:#0f2a4a; border:2px solid #d4af37; border-radius:20px; padding:15px; margin-top:15px;">
-                <h4>Sepet İçeriği</h4>
-                <div id="cartItems"></div>
-                <p><strong>Toplam: <span id="cartTotal">0 ₺</span></strong></p>
-                <button onclick="sendWhatsAppOrder()">WhatsApp ile Sipariş Ver</button>
-                <button onclick="closeCart()">Kapat</button>
-            </div>
-        </div>
-
         <!-- Mental Sağlık Danışmanı -->
         <div class="card">
             <h3 style="color:#d4af37;">🧠 Mental Sağlık Danışmanı</h3>
@@ -283,7 +294,7 @@
             <div id="leadershipOut" class="analysis-box"></div>
         </div>
 
-        <!-- İş & Girişim -->
+        <!-- İş & Girişim Kurmak -->
         <div class="card">
             <h3 style="color:#d4af37;">🚀 İş Kurma & Girişim</h3>
             <label>Sektör</label><input type="text" id="biz_sector" placeholder="Örn: E-ticaret, Yazılım">
@@ -304,7 +315,7 @@
             <div id="targetOut" class="analysis-box"></div>
         </div>
 
-        <!-- Yaşam Tasarımı (Wheel of Life) -->
+        <!-- Yaşam Tasarımı -->
         <div class="card">
             <h3 style="color:#d4af37;">🎯 Yaşam Tasarımı & Mentörlük</h3>
             <div id="wheelContainer"></div>
@@ -317,34 +328,6 @@
             <button onclick="saveLifePlan()">Planı Kaydet</button>
             <div id="lifePlanOut" class="analysis-box"></div>
         </div>
-
-        <!-- Doğal Ürün Marketi -->
-        <div class="card">
-            <h3 style="color:#d4af37;">🌿 Doğal Ürün Marketi</h3>
-            <div id="naturalProductsList"></div>
-        </div>
-
-        <!-- Referanslar -->
-        <div class="card">
-            <h3 style="color:#d4af37;">⭐ Referanslarımız</h3>
-            <div id="referencesList"></div>
-        </div>
-
-        <!-- Yönetim Paneli -->
-        <div class="card" style="grid-column: span 3;">
-            <h3 style="color:#d4af37;">🔐 Yönetim Paneli</h3>
-            <div class="flex-between"><input type="password" id="adminPass" placeholder="Şifre"><button onclick="accessAdmin()" style="width:auto;">Giriş</button></div>
-            <div id="adminPanel" class="hidden">
-                <div style="display:flex; flex-wrap:wrap; gap:15px;">
-                    <div><h4>📦 Ürün Yönetimi</h4><div id="adminProductList"></div><input id="newProdName" placeholder="Ürün adı"><input id="newProdPrice" type="number" placeholder="Fiyat"><select id="prodCategory"><option>danismanlik</option><option>egitim</option><option>dijital</option></select><button onclick="addProduct()">Ekle</button></div>
-                    <div><h4>📈 Portföy Yönetimi</h4><div id="adminAssetList"></div><input id="newAssetName" placeholder="Ad"><input id="newAssetQty" type="number" placeholder="Miktar"><input id="newAssetPrice" type="number" placeholder="Fiyat"><input id="newAssetClass" placeholder="Sınıf"><button onclick="addAsset()">Ekle</button></div>
-                    <div><h4>🌿 Doğal Ürün Yönetimi</h4><div id="adminNaturalList"></div><input id="newNaturalName" placeholder="Ürün adı"><input id="newNaturalPrice" type="number" placeholder="Fiyat"><button onclick="addNaturalProduct()">Ekle</button></div>
-                    <div><h4>⭐ Referans Yönetimi</h4><div id="adminRefList"></div><textarea id="newRefText" rows="2" placeholder="Yorum"></textarea><input id="newRefName" placeholder="İsim"><button onclick="addReference()">Ekle</button></div>
-                </div>
-                <hr><h4>📋 Danışan Logları</h4><table id="dataTable"><thead><tr><th>Danışan</th><th>Plan</th><th>İşlem</th><th>Tarih</th></tr></thead><tbody id="dataBody"></tbody>}</table>
-                <button onclick="clearAllData()" style="background:#be123c;">Tüm Logları Sil</button>
-            </div>
-        </div>
     </div>
 </div>
 
@@ -355,7 +338,7 @@
 </footer>
 
 <script>
-    // ============ GEMINI API ENTEGRASYONU ============
+    // ============ GEMINI API ============
     let geminiApiKey = localStorage.getItem("geminiApiKey") || "";
     let lastAiContent = "";
     
@@ -366,107 +349,49 @@
     }
     
     async function callGeminiAPI(prompt) {
-        if(!geminiApiKey) {
-            return "⚠️ Lütfen önce Gemini API anahtarınızı girin! (Google AI Studio'dan ücretsiz alabilirsiniz)";
-        }
+        if(!geminiApiKey) return "⚠️ Lütfen önce Gemini API anahtarınızı girin!";
         try {
             const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiApiKey}`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    contents: [{ parts: [{ text: prompt }] }],
-                    generationConfig: { temperature: 0.7, maxOutputTokens: 2000 }
-                })
+                method: "POST", headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { temperature: 0.7, maxOutputTokens: 2000 } })
             });
             const data = await response.json();
             if(data.error) throw new Error(data.error.message);
             return data.candidates[0].content.parts[0].text;
-        } catch(e) {
-            console.error("Gemini API Hatası:", e);
-            return `❌ API Hatası: ${e.message}`;
-        }
+        } catch(e) { return `❌ API Hatası: ${e.message}`; }
     }
     
     async function generateWithGemini() {
         const contentType = document.getElementById("aiContentType").value;
         const topic = document.getElementById("aiTopic").value.trim();
         const notes = document.getElementById("aiNotes").value.trim();
-        
-        if(!topic) {
-            alert("Lütfen bir konu girin!");
-            return;
-        }
-        
-        document.getElementById("aiOutput").innerHTML = "<i>⏳ Gemini AI içerik üretiyor, lütfen bekleyin...</i>";
-        
-        const prompt = `Sen bir profesyonel içerik üreticisisin. Aşağıdaki kriterlere göre KALİTELİ ve DETAYLI bir içerik üret:
-        
-        İçerik Türü: ${contentType}
-        Konu: ${topic}
-        Ek Notlar: ${notes || "Yok"}
-        
-        Lütfen Türkçe, akıcı, değerli ve hedef kitleye uygun bir içerik üret.`;
-        
+        if(!topic) { alert("Lütfen bir konu girin!"); return; }
+        document.getElementById("aiOutput").innerHTML = "<i>⏳ Gemini AI içerik üretiyor...</i>";
+        const prompt = `Sen bir profesyonel içerik üreticisisin. Aşağıdaki kriterlere göre KALİTELİ ve DETAYLI bir içerik üret:\nİçerik Türü: ${contentType}\nKonu: ${topic}\nEk Notlar: ${notes || "Yok"}\nLütfen Türkçe, akıcı, değerli ve hedef kitleye uygun bir içerik üret.`;
         let result = await callGeminiAPI(prompt);
-        
-        const finalContent = `✨ **Gemini AI ile Üretildi**
-📌 **Tür:** ${contentType}
-📢 **Konu:** ${topic}
-📝 **Notlar:** ${notes || "—"}
+        lastAiContent = `✨ Gemini AI ile Üretildi\n📌 Tür: ${contentType}\n📢 Konu: ${topic}\n📝 Notlar: ${notes || "—"}\n---\n${result}`;
+        document.getElementById("aiOutput").innerHTML = lastAiContent.replace(/\n/g, '<br>');
+    }
+    function copyAiContent() { if(lastAiContent) { navigator.clipboard.writeText(lastAiContent); alert("Kopyalandı!"); } else alert("Önce içerik üretin!"); }
+    function downloadAiContent() { if(lastAiContent) { const blob = new Blob([lastAiContent], {type:"text/plain"}); const link = document.createElement("a"); link.href = URL.createObjectURL(blob); link.download = `gemini_icerik_${Date.now()}.txt`; link.click(); } else alert("Önce içerik üretin!"); }
 
---- 
-
-${result}`;
-        
-        lastAiContent = finalContent;
-        document.getElementById("aiOutput").innerHTML = finalContent.replace(/\n/g, '<br>');
+    // ============ FIRE HESAPLAMA ============
+    function getTotalDebt() {
+        return (+document.getElementById("debt_creditcard").value || 0) +
+               (+document.getElementById("debt_personalLoan").value || 0) +
+               (+document.getElementById("debt_mortgage").value || 0) +
+               (+document.getElementById("debt_carLoan").value || 0) +
+               (+document.getElementById("debt_other").value || 0);
     }
     
-    function copyAiContent() {
-        if(lastAiContent) {
-            navigator.clipboard.writeText(lastAiContent);
-            alert("Kopyalandı!");
-        } else { alert("Önce içerik üretin!"); }
+    function updateDebtTotal() {
+        const total = getTotalDebt();
+        document.getElementById("debt_total").value = formatMoney(total);
+        return total;
     }
     
-    function downloadAiContent() {
-        if(lastAiContent) {
-            const blob = new Blob([lastAiContent], {type: "text/plain"});
-            const link = document.createElement("a");
-            link.href = URL.createObjectURL(blob);
-            link.download = `gemini_icerik_${Date.now()}.txt`;
-            link.click();
-        } else { alert("Önce içerik üretin!"); }
-    }
-
-    // ============ MEVCUT FIRE DASHBOARD KODLARI ============
-    let portfolioData = [
-        { name: "BIST Hisse", qty: 1250, price: 42.5, class: "Hisse" },
-        { name: "Altın (Gram)", qty: 45, price: 2450, class: "Emltia" },
-        { name: "Fon/ETF", qty: 85, price: 50000, class: "Fon/ETF" },
-        { name: "Girişim", qty: 5, price: 150000, class: "Girişim" },
-        { name: "Kripto (BTC)", qty: 0.085, price: 1850000, class: "Kripto" },
-        { name: "Nakit", qty: 45, price: 5000, class: "Nakit" },
-        { name: "Eurobond", qty: 5000, price: 19.2, class: "Tahvil" },
-        { name: "Emlak Yatırım", qty: 1, price: 2500000, class: "Emlak" }
-    ];
-    let marketProducts = {
-        danismanlik: [{ name: "Kişisel FIRE Koçluğu", price: 1500 }],
-        egitim: [{ name: "FIRE Başlangıç Eğitimi", price: 499 }],
-        dijital: [{ name: "Excel Planlayıcı", price: 199 }]
-    };
-    let naturalProducts = [
-        { name: "Doğal Zeytinyağı 1L", price: 299 },
-        { name: "Organik Bal 500g", price: 189 }
-    ];
-    let references = [
-        { text: "Harika bir danışmanlık deneyimi!", author: "Ahmet K." },
-        { text: "Liderlik analizi çok faydalıydı.", author: "Zeynep T." }
-    ];
-    let cart = [];
-    let chartInstance = null;
-
     function formatMoney(val) { return new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY' }).format(val); }
+    
     function logAction(name, plan, action) {
         let logs = JSON.parse(localStorage.getItem("anadolu_logs") || "[]");
         logs.push({ name: name || "Misafir", plan: plan || "Free", action: action, date: new Date().toLocaleString('tr-TR') });
@@ -490,6 +415,8 @@ ${result}`;
     }
 
     function calculateFIRE() {
+        updateDebtTotal();
+        
         let income = +document.getElementById("fire_income").value;
         let expense = +document.getElementById("fire_expense").value;
         let passive = +document.getElementById("fire_passive").value;
@@ -497,24 +424,58 @@ ${result}`;
         let capital = +document.getElementById("fire_capital").value;
         let ret = +document.getElementById("fire_return").value / 100;
         let inf = +document.getElementById("fire_inflation").value / 100;
+        let totalDebt = getTotalDebt();
+        
+        // Net birikim = mevcut birikim - toplam borç
+        let netCapital = capital - totalDebt;
         let monthlySave = income - expense;
         let annualExp = expense * 12;
         let netAnnual = Math.max(0, annualExp - (passive*12));
         let target = netAnnual * 25;
         let realReturn = (1+ret)/(1+inf)-1;
         if(realReturn<0) realReturn=0;
-        let years=0, bal=capital;
-        if(target>capital && monthlySave>0){
+        
+        let years=0, bal=netCapital;
+        if(target>netCapital && monthlySave>0){
             let mr = realReturn/12;
             while(bal<target && years<60){ bal = bal*(1+mr) + monthlySave*((Math.pow(1+mr,12)-1)/mr); years++; }
-        } else if(capital>=target) years=0;
+        } else if(netCapital>=target) years=0;
         else years=99;
+        
         let fireAge = age+years;
-        document.getElementById("fireResult").innerHTML = `🎯 Hedef: ${formatMoney(target)}\n📆 FIRE Yaşı: ${fireAge>99?'>90':fireAge}\n⏳ Kalan: ${years>60?'60+ yıl':Math.round(years)+' yıl'}\n📈 Aylık Tasarruf: ${formatMoney(monthlySave)}`;
-        logAction(localStorage.getItem("current_user"), localStorage.getItem("current_plan"), "FIRE");
+        
+        let resultHTML = `🎯 FIRE Hedefi: ${formatMoney(target)}\n`;
+        resultHTML += `💰 Mevcut Birikim: ${formatMoney(capital)}\n`;
+        resultHTML += `💳 Toplam Borç: ${formatMoney(totalDebt)}\n`;
+        resultHTML += `📊 Net Birikim (Birikim - Borç): ${formatMoney(netCapital)}\n`;
+        resultHTML += `📆 Tahmini FIRE Yaşı: ${fireAge>99?'90+ yaş':fireAge}\n`;
+        resultHTML += `⏳ Kalan Süre: ${years>60?'60+ yıl':Math.round(years)+' yıl'}\n`;
+        resultHTML += `📈 Aylık Tasarruf: ${formatMoney(monthlySave)}\n`;
+        
+        if(totalDebt > 0) {
+            resultHTML += `\n⚠️ Borç Analizi:\n`;
+            resultHTML += `- Borç/Birikim Oranı: %${((totalDebt/capital)*100).toFixed(1)}\n`;
+            if(totalDebt > capital * 0.5) resultHTML += `- 🔴 Borç yükünüz yüksek! Önce borçları azaltın.\n`;
+            else if(totalDebt > capital * 0.2) resultHTML += `- 🟡 Orta düzey borç. Borç ödemesi ve yatırım dengesi kurun.\n`;
+            else resultHTML += `- 🟢 Borç seviyeniz yönetilebilir düzeyde.\n`;
+            resultHTML += `- Borçlar olmasaydı FIRE yaşınız: ${calculateFireAgeWithoutDebt(capital, target, monthlySave, realReturn, age)} yaş olurdu.\n`;
+        }
+        
+        document.getElementById("fireResult").innerHTML = resultHTML;
+        logAction(localStorage.getItem("current_user"), localStorage.getItem("current_plan"), "FIRE (Borçlu)");
+    }
+    
+    function calculateFireAgeWithoutDebt(capital, target, monthlySave, realReturn, age) {
+        if(capital >= target) return age;
+        let bal = capital, years = 0;
+        let mr = realReturn/12;
+        while(bal < target && years < 60){ bal = bal*(1+mr) + monthlySave*((Math.pow(1+mr,12)-1)/mr); years++; }
+        return age + years;
     }
     
     function calculateAllFIRE() {
+        updateDebtTotal();
+        
         let income = +document.getElementById("fire_income").value;
         let expense = +document.getElementById("fire_expense").value;
         let passive = +document.getElementById("fire_passive").value;
@@ -522,8 +483,11 @@ ${result}`;
         let capital = +document.getElementById("fire_capital").value;
         let ret = +document.getElementById("fire_return").value / 100;
         let inf = +document.getElementById("fire_inflation").value / 100;
+        let totalDebt = getTotalDebt();
+        let netCapital = capital - totalDebt;
         let monthlySave = income - expense;
         let annualNetExpense = Math.max(0, (expense * 12) - (passive * 12));
+        
         let multipliers = { lean: 25, fat: 35, barista: 20, coast: 15 };
         let targets = {
             lean: annualNetExpense * multipliers.lean,
@@ -531,11 +495,13 @@ ${result}`;
             barista: annualNetExpense * multipliers.barista,
             coast: annualNetExpense * multipliers.coast
         };
+        
         let realReturn = (1+ret)/(1+inf)-1;
         if(realReturn < 0) realReturn = 0;
+        
         function yearsToTarget(target) {
-            if(target <= capital) return 0;
-            let bal = capital, years = 0;
+            if(target <= netCapital) return 0;
+            let bal = netCapital, years = 0;
             let monthlyRate = realReturn / 12;
             while(bal < target && years < 60) {
                 bal = bal * (1 + monthlyRate) + monthlySave * ((Math.pow(1+monthlyRate,12)-1)/monthlyRate);
@@ -543,10 +509,12 @@ ${result}`;
             }
             return years;
         }
+        
         let yLean = yearsToTarget(targets.lean);
         let yFat = yearsToTarget(targets.fat);
         let yBarista = yearsToTarget(targets.barista);
         let yCoast = yearsToTarget(targets.coast);
+        
         document.getElementById("leanTarget").innerHTML = formatMoney(targets.lean);
         document.getElementById("fatTarget").innerHTML = formatMoney(targets.fat);
         document.getElementById("baristaTarget").innerHTML = formatMoney(targets.barista);
@@ -555,12 +523,79 @@ ${result}`;
         document.getElementById("fatYears").innerHTML = yFat < 60 ? `${yFat} yıl (${age+yFat} yaş)` : ">60 yıl";
         document.getElementById("baristaYears").innerHTML = yBarista < 60 ? `${yBarista} yıl (${age+yBarista} yaş)` : ">60 yıl";
         document.getElementById("coastYears").innerHTML = yCoast < 60 ? `${yCoast} yıl (${age+yCoast} yaş)` : ">60 yıl";
-        document.getElementById("fireResultDetail").innerHTML = `📊 Yıllık net harcama: ${formatMoney(annualNetExpense)}. 4% kuralı ile hesaplanmıştır.`;
-        logAction(localStorage.getItem("current_user"), localStorage.getItem("current_plan"), "4 FIRE Hesaplama");
+        
+        let detailHTML = `📊 Net Birikim (Borçlar düşüldü): ${formatMoney(netCapital)}\n`;
+        detailHTML += `💳 Toplam Borç: ${formatMoney(totalDebt)}\n`;
+        detailHTML += `📈 Yıllık net harcama: ${formatMoney(annualNetExpense)}. 4% kuralı ile hesaplanmıştır.`;
+        document.getElementById("fireResultDetail").innerHTML = detailHTML;
+        
+        logAction(localStorage.getItem("current_user"), localStorage.getItem("current_plan"), "4 FIRE (Borçlu)");
     }
 
-    function getPortfolioTotal() { return portfolioData.reduce((s,i)=>s+(i.qty*i.price),0); }
+    // Borç inputları değiştiğinde toplamı güncelle
+    document.addEventListener('DOMContentLoaded', function() {
+        const debtInputs = ["debt_creditcard", "debt_personalLoan", "debt_mortgage", "debt_carLoan", "debt_other"];
+        debtInputs.forEach(id => {
+            const el = document.getElementById(id);
+            if(el) el.addEventListener('input', updateDebtTotal);
+        });
+    });
+
+    // ============ PORTFÖY & DİĞER FONKSİYONLAR ============
+    let portfolioData = [
+        { name: "BIST Hisse", qty: 1250, price: 42.5, class: "Hisse" },
+        { name: "Altın (Gram)", qty: 45, price: 2450, class: "Emltia" },
+        { name: "Fon/ETF", qty: 85, price: 50000, class: "Fon/ETF" },
+        { name: "Girişim", qty: 5, price: 150000, class: "Girişim" },
+        { name: "Kripto (BTC)", qty: 0.085, price: 1850000, class: "Kripto" },
+        { name: "Nakit", qty: 45, price: 5000, class: "Nakit" },
+        { name: "Eurobond", qty: 5000, price: 19.2, class: "Tahvil" },
+        { name: "Emlak Yatırım", qty: 1, price: 2500000, class: "Emlak" }
+    ];
     
+    function getPortfolioTotal() { return portfolioData.reduce((s,i)=>s+(i.qty*i.price),0); }
+    let chartInstance = null;
+    
+    function renderPortfolioTable() {
+        let total = 0, html = '';
+        portfolioData.forEach(i => {
+            let t = i.qty * i.price; total += t;
+            html += `<tr><td class="gold-text">${i.name}</td><td class="gold-text">${i.qty}</td><td class="gold-text">₺${i.price.toFixed(2)}</td><td class="gold-text">₺${t.toFixed(0)}</td><td class="gold-text">${i.class}</td></tr>`;
+        });
+        document.getElementById("portfolioBody").innerHTML = html;
+        document.getElementById("portfolioTotal").innerText = formatMoney(total);
+        updatePortfolioChart(); updateFinancialHealth(); generatePortfolioAdvice();
+    }
+    
+    function updatePortfolioChart() {
+        let classMap = new Map();
+        portfolioData.forEach(a => { let v = a.qty * a.price; classMap.set(a.class, (classMap.get(a.class) || 0) + v); });
+        let total = getPortfolioTotal();
+        let labels = [...classMap.keys()], data = [...classMap.values()];
+        if (chartInstance) chartInstance.destroy();
+        let ctx = document.getElementById("portfolioChart").getContext("2d");
+        chartInstance = new Chart(ctx, {
+            type: 'pie', data: { labels, datasets: [{ data, backgroundColor: ['#d4af37', '#1e3a8a', '#10b981', '#f97316', '#a855f7', '#ec489a', '#06b6d4'] }] },
+            options: { responsive: true, plugins: { legend: { position: 'bottom', labels: { color: '#f0f0f0', font: { size: 10 } } } } }
+        });
+        let percentHtml = '';
+        for (let [cls, val] of classMap.entries()) percentHtml += `<div>${cls}: ${((val / total) * 100).toFixed(1)}% (${formatMoney(val)})</div>`;
+        document.getElementById("allocationPercent").innerHTML = percentHtml;
+    }
+    
+    function generatePortfolioAdvice() {
+        let classMap = new Map();
+        portfolioData.forEach(a => { let v = a.qty * a.price; classMap.set(a.class, (classMap.get(a.class) || 0) + v); });
+        let total = getPortfolioTotal();
+        let hisse = classMap.get("Hisse") || 0;
+        let advice = (hisse/total) > 0.6 ? "📈 Hisse ağırlığınız yüksek. Daha dengeli dağılım için tahvil/altın ekleyin." :
+                     (hisse/total) < 0.2 ? "📉 Hisse oranınız düşük, büyüme için hisse/ETF artırın." :
+                     "✅ Portföy dağılımınız dengeli.";
+        document.getElementById("portfolioAdvice").innerHTML = `📊 AI Önerisi: ${advice}`;
+    }
+    
+    function refreshPrices() { portfolioData.forEach(a => { a.price = Math.max(1, a.price * (1 + (Math.random() * 0.08 - 0.03))); }); renderPortfolioTable(); }
+
     function updateFinancialHealth() {
         let debt = +document.getElementById("debt").value;
         let rec = +document.getElementById("receivables").value;
@@ -577,61 +612,11 @@ ${result}`;
         score = Math.min(100, Math.max(0, score));
         document.getElementById("healthScore").innerHTML = `Skor: ${Math.round(score)}/100 ${score>=70?'✅ İyi':(score>=40?'⚠️ Orta':'❌ Kritik')}`;
         let advice = "";
-        if(savingsRate < 30) advice += "📉 Tasarruf oranınız düşük. Giderlerinizi gözden geçirin. ";
+        if(savingsRate < 30) advice += "📉 Tasarruf oranınız düşük. ";
         if(emergencyMonths < 6) advice += "🛡️ Acil durum fonunuzu 6 aylık gidere çıkarın. ";
-        if(debt > monthlyIncome*12) advice += "⚖️ Borç yükünüz yüksek, borç yapılandırma düşünün. ";
-        if(advice === "") advice = "✅ Finansal sağlığınız iyi, mevcut stratejinizi koruyun.";
+        if(debt > monthlyIncome*12) advice += "⚖️ Borç yükünüz yüksek. ";
+        if(advice === "") advice = "✅ Finansal sağlığınız iyi.";
         document.getElementById("healthAdvice").innerHTML = `💡 AI Önerisi: ${advice}`;
-        logAction(localStorage.getItem("current_user"), localStorage.getItem("current_plan"), "Finansal Sağlık");
-    }
-
-    function renderPortfolioTable() {
-        let total = 0, html = '';
-        portfolioData.forEach(i => {
-            let t = i.qty * i.price;
-            total += t;
-            html += `<tr><td class="gold-text">${i.name}</td><td class="gold-text">${i.qty}</td><td class="gold-text">₺${i.price.toFixed(2)}</td><td class="gold-text">₺${t.toFixed(0)}</td><td class="gold-text">${i.class}</td></tr>`;
-        });
-        document.getElementById("portfolioBody").innerHTML = html;
-        document.getElementById("portfolioTotal").innerText = formatMoney(total);
-        updatePortfolioChart();
-        updateFinancialHealth();
-        generatePortfolioAdvice();
-        return total;
-    }
-    
-    function updatePortfolioChart() {
-        let classMap = new Map();
-        portfolioData.forEach(a => { let v = a.qty * a.price; classMap.set(a.class, (classMap.get(a.class) || 0) + v); });
-        let total = getPortfolioTotal();
-        let labels = [...classMap.keys()], data = [...classMap.values()];
-        if (chartInstance) chartInstance.destroy();
-        let ctx = document.getElementById("portfolioChart").getContext("2d");
-        chartInstance = new Chart(ctx, {
-            type: 'pie', data: { labels, datasets: [{ data, backgroundColor: ['#d4af37', '#1e3a8a', '#10b981', '#f97316', '#a855f7', '#ec489a', '#06b6d4'] }] },
-            options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { position: 'bottom', labels: { color: '#f0f0f0', font: { size: 10 } } } } }
-        });
-        let percentHtml = '';
-        for (let [cls, val] of classMap.entries()) percentHtml += `<div>${cls}: ${((val / total) * 100).toFixed(1)}% (${formatMoney(val)})</div>`;
-        document.getElementById("allocationPercent").innerHTML = percentHtml;
-    }
-    
-    function generatePortfolioAdvice() {
-        let classMap = new Map();
-        portfolioData.forEach(a => { let v = a.qty * a.price; classMap.set(a.class, (classMap.get(a.class) || 0) + v); });
-        let total = getPortfolioTotal();
-        let hisse = classMap.get("Hisse") || 0;
-        let ratio = hisse / total;
-        let advice = "";
-        if (ratio > 0.6) advice = "📈 Hisse ağırlığınız yüksek (%" + (ratio * 100).toFixed(0) + "). Daha dengeli bir dağılım için tahvil/altın ekleyin.";
-        else if (ratio < 0.2) advice = "📉 Hisse oranınız düşük, büyüme potansiyeli için hisse senedi/ETF oranını artırın.";
-        else advice = "✅ Portföy dağılımınız dengeli, düzenli olarak yeniden dengelemeyi unutmayın.";
-        document.getElementById("portfolioAdvice").innerHTML = `📊 AI Portföy Önerisi: ${advice}`;
-    }
-    
-    function refreshPrices() {
-        portfolioData.forEach(a => { a.price = Math.max(1, a.price * (1 + (Math.random() * 0.08 - 0.03))); });
-        renderPortfolioTable();
     }
 
     function calculateCFO() {
@@ -644,62 +629,21 @@ ${result}`;
         let profitMargin = (profit / revenue) * 100;
         let debtRatio = (liabilities / assets) * 100;
         let roa = (profit / assets) * 100;
-        let result = `📊 CFO Analizi:\n- Kâr Marjı: ${profitMargin.toFixed(1)}%\n- Borçluluk Oranı: ${debtRatio.toFixed(1)}%\n- Aktif Karlılık (ROA): ${roa.toFixed(1)}%\n- İşletme Sermayesi: ${formatMoney(workingCapital)}\n- Yıllık Nakit Akışı: ${formatMoney(cashflow)}`;
-        document.getElementById("cfoResult").innerHTML = result;
+        document.getElementById("cfoResult").innerHTML = `📊 CFO Analizi:\n- Kâr Marjı: ${profitMargin.toFixed(1)}%\n- Borçluluk: ${debtRatio.toFixed(1)}%\n- ROA: ${roa.toFixed(1)}%\n- İşletme Sermayesi: ${formatMoney(workingCapital)}\n- Nakit Akışı: ${formatMoney(cashflow)}`;
         let advice = "";
-        if (profitMargin < 10) advice += "🔻 Kâr marjınız düşük. Maliyetleri gözden geçirin. ";
-        if (debtRatio > 50) advice += "⚠️ Borçluluk oranınız yüksek. ";
-        if (workingCapital < revenue * 0.1) advice += "💧 İşletme sermayeniz yetersiz. ";
-        if (cashflow < 0) advice += "❗ Negatif nakit akışı! ";
-        if (advice === "") advice = "✅ Finansal yapınız sağlıklı.";
-        document.getElementById("cfoAdvice").innerHTML = `🤖 AI CFO Önerisi: ${advice}`;
-        logAction(localStorage.getItem("current_user"), localStorage.getItem("current_plan"), "CFO Analizi");
-    }
-
-    // Dijital Market ve diğer fonksiyonlar (öncekiyle aynı)
-    function renderDigitalMarket() {
-        let container = document.getElementById("digitalMarketList");
-        if (!container) return;
-        let html = '';
-        for (let cat in marketProducts) {
-            let catName = cat === "danismanlik" ? "📘 Danışmanlık" : (cat === "egitim" ? "🎓 Eğitim" : "💻 Dijital Ürün");
-            html += `<div style="margin-top:10px;"><strong>${catName}</strong>`;
-            marketProducts[cat].forEach(p => {
-                html += `<div class="product-item"><span>${p.name}</span><span>${formatMoney(p.price)}</span><button class="whatsapp-btn" onclick="addToCart('${p.name}',${p.price})">Sepete Ekle</button></div>`;
-            });
-            html += `</div>`;
-        }
-        container.innerHTML = html;
-    }
-    
-    function addToCart(name, price) { cart.push({ name, price }); updateCartUI(); alert(`${name} sepete eklendi`); }
-    
-    function updateCartUI() {
-        document.getElementById("cartCount").innerText = cart.length;
-        let total = cart.reduce((s, i) => s + i.price, 0);
-        document.getElementById("cartTotal").innerText = formatMoney(total);
-        let itemsHtml = cart.map((item, idx) => `<div>${item.name} - ${formatMoney(item.price)} <button onclick="removeFromCart(${idx})">❌</button></div>`).join('');
-        document.getElementById("cartItems").innerHTML = itemsHtml || "Sepet boş";
-    }
-    
-    function removeFromCart(idx) { cart.splice(idx, 1); updateCartUI(); }
-    function showCart() { document.getElementById("cartModal").style.display = 'block'; }
-    function closeCart() { document.getElementById("cartModal").style.display = 'none'; }
-    function sendWhatsAppOrder() {
-        if (cart.length === 0) { alert("Sepet boş"); return; }
-        let msg = "Merhaba, Anadolu Network ürün siparişi:%0A";
-        cart.forEach(i => msg += `- ${i.name} : ${formatMoney(i.price)}%0A`);
-        msg += `Toplam: ${formatMoney(cart.reduce((s, i) => s + i.price, 0))}`;
-        window.open(`https://wa.me/905418660202?text=${encodeURIComponent(msg)}`, '_blank');
+        if(profitMargin < 10) advice += "🔻 Kâr marjı düşük. ";
+        if(debtRatio > 50) advice += "⚠️ Borçluluk yüksek. ";
+        if(workingCapital < revenue * 0.1) advice += "💧 İşletme sermayesi yetersiz. ";
+        if(cashflow < 0) advice += "❗ Negatif nakit akışı! ";
+        document.getElementById("cfoAdvice").innerHTML = `🤖 AI CFO Önerisi: ${advice || "✅ Finansal yapınız sağlıklı."}`;
     }
 
     function analyzeMentalHealth() {
         let stress = +document.getElementById("mental_stress").value, sleep = +document.getElementById("mental_sleep").value, mot = +document.getElementById("mental_motivation").value, anx = +document.getElementById("mental_anxiety").value, sup = document.getElementById("mental_support").value;
         let score = (stress + (10 - sleep) + (10 - mot) + anx) / 4;
-        let advice = score > 7 ? "⚠️ Yüksek mental yük. Profesyonel destek, egzersiz ve nefes teknikleri önerilir." : (score > 4 ? "📉 Orta düzey. Meditasyon ve uyku düzenine odaklanın." : "✅ İyi durumdasınız, rutininizi koruyun.");
+        let advice = score > 7 ? "⚠️ Profesyonel destek önerilir." : (score > 4 ? "📉 Meditasyon ve uyku düzenine odaklanın." : "✅ İyi durumdasınız.");
         if (sup.includes("Hayır")) advice += " Sosyal destek ağınızı genişletin.";
-        document.getElementById("mentalHealthOut").innerHTML = `Stres:${stress}, Uyku:${sleep}, Motivasyon:${mot}, Kaygı:${anx}\n📝 ${advice}`;
-        logAction(localStorage.getItem("current_user"), localStorage.getItem("current_plan"), "Mental Sağlık");
+        document.getElementById("mentalHealthOut").innerHTML = `📝 ${advice}`;
     }
 
     function analyzeLeadership() {
@@ -709,24 +653,18 @@ ${result}`;
         let conflict = +document.getElementById("lead_conflict").value;
         let vision = document.getElementById("lead_vision").value;
         let styleDesc = style <= 3 ? "Otokratik" : (style <= 7 ? "Demokratik" : "Katılımcı");
-        let advice = `🧭 Liderlik Stiliniz: ${styleDesc}. `;
-        if (team > 0 && team < 5) advice += "Küçük ekiplerde birebir iletişim önemli. Haftalık birebir toplantılar ekleyin.";
-        else if (team >= 5) advice += "Büyüyen ekipte delegasyon ve süreç yönetimi kritik. Scrum veya Kanban metodlarını değerlendirin.";
-        if (change < 4) advice += " Değişime direnç yüksek olabilir. Değişim yönetimi eğitimi almanız faydalı.";
-        if (conflict > 6) advice += " Ekip içi çatışmalar sık. Arabuluculuk teknikleri öğrenin ve düzenli geri bildirim oturumları yapın.";
-        if (vision === "Zayıf") advice += " Vizyon oluşturma becerinizi geliştirmek için stratejik planlama atölyelerine katılın.";
-        else if (vision === "Güçlü") advice += " Vizyonunuzu ekip üyelerine daha iyi anlatmak için hikaye anlatıcılığını kullanın.";
+        let advice = `🧭 Stiliniz: ${styleDesc}. `;
+        if(team < 5) advice += "Birebir iletişim önemli.";
+        else advice += "Delegasyon ve süreç yönetimi kritik.";
+        if(change < 4) advice += " Değişim yönetimi eğitimi alın.";
+        if(conflict > 6) advice += " Arabuluculuk teknikleri öğrenin.";
         document.getElementById("leadershipOut").innerHTML = advice;
-        logAction(localStorage.getItem("current_user"), localStorage.getItem("current_plan"), "Liderlik");
     }
 
     function analyzeBusiness() {
         let sector = document.getElementById("biz_sector").value || "Belirtilmemiş";
         let capital = +document.getElementById("biz_capital").value;
-        let market = +document.getElementById("biz_market").value;
-        let out = `🚀 Girişim Raporu:\n- Sektör: ${sector}\n- Sermaye: ${formatMoney(capital)}\n- Pazar Skoru: ${market}/10\n📌 Öneri: ${capital < 100000 ? 'Mikro yatırım ve hibe araştırın.' : 'Ölçeklenebilir modele odaklanın.'}`;
-        document.getElementById("bizOut").innerText = out;
-        logAction(localStorage.getItem("current_user"), localStorage.getItem("current_plan"), "İş Analizi");
+        document.getElementById("bizOut").innerText = `🚀 Girişim Raporu:\n- Sektör: ${sector}\n- Sermaye: ${formatMoney(capital)}\n📌 ${capital < 100000 ? 'Mikro yatırım ve hibe araştırın.' : 'Ölçeklenebilir modele odaklanın.'}`;
     }
 
     function analyzeTargetAudience() {
@@ -734,172 +672,46 @@ ${result}`;
         let age = document.getElementById("target_age").value;
         let inc = document.getElementById("target_income").value;
         let region = document.getElementById("target_region").value.trim() || "Türkiye geneli";
-        let plan = localStorage.getItem("current_plan") || "Free";
         let demo = `${age} yaş, ${inc} gelir, ${region}`;
-        let psycho = age.includes("18") ? "Dijital yerliler, trend takipçisi" : (age.includes("26") ? "Kariyer odaklı, kalite arayan" : (age.includes("36") ? "Aile bütçesine duyarlı, güvenilir" : "Sağlık ve konfor ön planda"));
-        let behavior = cat == "Teknoloji" ? "Erken benimseyici, inceleme okur" : (cat == "Eğitim" ? "Kendini geliştirmeye açık, referanslara önem verir" : "Alışverişte kampanya takipçisi");
-        let strategy = `🎯 Hedef Kitle Raporu:\n- Kategori: ${cat}\n- Demografik: ${demo}\n- Psikografik: ${psycho}\n- Davranışsal: ${behavior}\n📢 Pazarlama Önerisi: `;
-        if (plan == "Pro" || plan == "VIP") strategy += `Instagram/LinkedIn reklamları, influencer işbirlikleri, içerik pazarlaması yapın. A/B test ile optimize edin.`;
-        else strategy += `Sosyal medyada düzenli paylaşım yapın, müşteri yorumlarını öne çıkarın.`;
-        if (region != "Türkiye geneli") strategy += ` ${region} bölgesinde yerel etkinlikler düzenleyin.`;
-        document.getElementById("targetOut").innerHTML = strategy;
-        logAction(localStorage.getItem("current_user"), localStorage.getItem("current_plan"), "Hedef Kitle");
+        document.getElementById("targetOut").innerHTML = `🎯 Hedef Kitle Raporu:\n- Kategori: ${cat}\n- Demografik: ${demo}`;
     }
 
     function renderWheel() {
         let areas = ["Kariyer", "Finans", "Sağlık", "Aile", "Kişisel Gelişim", "Sosyal Hayat", "Hobi", "Ruhsal"];
         let html = `<div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">`;
-        areas.forEach((a, idx) => {
-            html += `<div class="wheel-input"><label>${a}</label><input type="range" id="wheel_${idx}" min="1" max="10" value="5"><span id="wheelVal_${idx}">5</span></div>`;
-        });
+        areas.forEach((a, idx) => { html += `<div class="wheel-input"><label>${a}</label><input type="range" id="wheel_${idx}" min="1" max="10" value="5"><span id="wheelVal_${idx}">5</span></div>`; });
         html += `</div>`;
         document.getElementById("wheelContainer").innerHTML = html;
-        for (let i = 0; i < areas.length; i++) {
+        for(let i=0; i<areas.length; i++) {
             let slider = document.getElementById(`wheel_${i}`);
-            if (slider) slider.oninput = function () { document.getElementById(`wheelVal_${i}`).innerText = this.value; };
+            if(slider) slider.oninput = function() { document.getElementById(`wheelVal_${i}`).innerText = this.value; };
         }
     }
     
     function analyzeLifeWheel() {
-        let areas = ["Kariyer", "Finans", "Sağlık", "Aile", "Kişisel Gelişim", "Sosyal Hayat", "Hobi", "Ruhsal"];
+        let areas = ["Kariyer", "Finans", "Sağlık", "Aile", "Kişisel Gelişim", "Sosyal Hayat", "Hobi", "Ruhsal", "Yetenek"];
         let scores = [];
-        for (let i = 0; i < areas.length; i++) scores.push(+document.getElementById(`wheel_${i}`).value);
-        let avg = scores.reduce((a, b) => a + b, 0) / scores.length;
+        for(let i=0; i<areas.length; i++) scores.push(+document.getElementById(`wheel_${i}`).value);
+        let avg = scores.reduce((a,b)=>a+b,0)/scores.length;
         let minIdx = scores.indexOf(Math.min(...scores));
-        let advice = `Yaşam Çarkı Ortalama: ${avg.toFixed(1)}/10. En düşük puanlı alan: ${areas[minIdx]}. Bu alana odaklanarak haftalık küçük adımlar belirleyin.`;
-        document.getElementById("lifeWheelOut").innerHTML = advice;
-        logAction(localStorage.getItem("current_user"), localStorage.getItem("current_plan"), "Yaşam Çarkı");
+        document.getElementById("lifeWheelOut").innerHTML = `Ortalama: ${avg.toFixed(1)}/10. En düşük: ${areas[minIdx]}. Bu alana odaklanın.`;
     }
     
     function saveLifePlan() {
         let vision = document.getElementById("vision").value;
         let action = document.getElementById("weeklyAction").value;
-        if (vision || action) {
-            document.getElementById("lifePlanOut").innerHTML = `✅ Vizyon ve haftalık aksiyon kaydedildi. Hedeflerinize bir adım daha yaklaştınız.`;
-            logAction(localStorage.getItem("current_user"), localStorage.getItem("current_plan"), "Yaşam Planı");
-        } else alert("Lütfen vizyon veya aksiyon girin");
+        if(vision || action) document.getElementById("lifePlanOut").innerHTML = `✅ Plan kaydedildi.`;
+        else alert("Lütfen vizyon veya aksiyon girin");
     }
-
-    function renderNaturalProducts() {
-        let container = document.getElementById("naturalProductsList");
-        if (!container) return;
-        let html = '';
-        naturalProducts.forEach(p => {
-            html += `<div class="product-item"><span>${p.name}</span><span>${formatMoney(p.price)}</span><button class="whatsapp-btn" onclick="addToCartNatural('${p.name}',${p.price})">Sepete Ekle</button></div>`;
-        });
-        container.innerHTML = html;
-    }
-    
-    function addToCartNatural(name, price) { cart.push({ name, price }); updateCartUI(); alert(`${name} sepete eklendi`); }
-
-    function renderReferences() {
-        let container = document.getElementById("referencesList");
-        if (!container) return;
-        let html = '';
-        references.forEach(ref => {
-            html += `<div class="reference-item"><div><strong>${ref.author}</strong><br>${ref.text}</div></div>`;
-        });
-        container.innerHTML = html || "Henüz referans yok.";
-    }
-
-    // Admin Panel
-    function accessAdmin() {
-        let pwd = document.getElementById("adminPass").value;
-        if (pwd === "admin2026") {
-            document.getElementById("adminPanel").classList.remove("hidden");
-            renderAdminProductList(); renderAdminAssetList(); renderAdminNaturalList(); renderAdminRefList(); renderLogTable();
-        } else alert("Şifre hatalı!");
-    }
-    
-    function renderAdminProductList() {
-        let container = document.getElementById("adminProductList");
-        if (!container) return;
-        let html = '';
-        for (let cat in marketProducts) marketProducts[cat].forEach((p, idx) => { html += `<div>${cat} - ${p.name} (${formatMoney(p.price)}) <button onclick="deleteProduct('${cat}',${idx})">🗑️ Sil</button></div>`; });
-        container.innerHTML = html || "Ürün yok";
-    }
-    
-    function deleteProduct(cat, idx) { marketProducts[cat].splice(idx, 1); renderAdminProductList(); localStorage.setItem("anadolu_products", JSON.stringify(marketProducts)); renderDigitalMarket(); }
-    
-    function addProduct() {
-        let name = document.getElementById("newProdName").value.trim(), price = +document.getElementById("newProdPrice").value, cat = document.getElementById("prodCategory").value;
-        if (!name || isNaN(price)) { alert("Geçerli ürün girin"); return; }
-        marketProducts[cat].push({ name, price }); renderAdminProductList(); localStorage.setItem("anadolu_products", JSON.stringify(marketProducts)); renderDigitalMarket();
-        document.getElementById("newProdName").value = ""; document.getElementById("newProdPrice").value = "";
-    }
-    
-    function renderAdminAssetList() {
-        let container = document.getElementById("adminAssetList");
-        if (!container) return;
-        let html = '';
-        portfolioData.forEach((a, idx) => { html += `<div>${a.name} | ${a.qty} | ${formatMoney(a.price)} | ${a.class} <button onclick="deleteAsset(${idx})">🗑️ Sil</button></div>`; });
-        container.innerHTML = html;
-    }
-    
-    function deleteAsset(idx) { portfolioData.splice(idx, 1); renderPortfolioTable(); renderAdminAssetList(); localStorage.setItem("anadolu_portfolio", JSON.stringify(portfolioData)); }
-    
-    function addAsset() {
-        let name = document.getElementById("newAssetName").value.trim(), qty = +document.getElementById("newAssetQty").value, price = +document.getElementById("newAssetPrice").value, cls = document.getElementById("newAssetClass").value.trim();
-        if (!name || isNaN(qty) || isNaN(price) || !cls) { alert("Tüm alanları doldurun"); return; }
-        portfolioData.push({ name, qty, price, class: cls }); renderPortfolioTable(); renderAdminAssetList(); localStorage.setItem("anadolu_portfolio", JSON.stringify(portfolioData));
-        document.getElementById("newAssetName").value = ""; document.getElementById("newAssetQty").value = ""; document.getElementById("newAssetPrice").value = ""; document.getElementById("newAssetClass").value = "";
-    }
-    
-    function renderAdminNaturalList() {
-        let container = document.getElementById("adminNaturalList");
-        if (!container) return;
-        let html = '';
-        naturalProducts.forEach((p, idx) => { html += `<div>${p.name} - ${formatMoney(p.price)} <button onclick="deleteNatural(${idx})">🗑️ Sil</button></div>`; });
-        container.innerHTML = html;
-    }
-    
-    function deleteNatural(idx) { naturalProducts.splice(idx, 1); renderNaturalProducts(); renderAdminNaturalList(); localStorage.setItem("anadolu_natural", JSON.stringify(naturalProducts)); }
-    
-    function addNaturalProduct() {
-        let name = document.getElementById("newNaturalName").value.trim(), price = +document.getElementById("newNaturalPrice").value;
-        if (!name || isNaN(price)) { alert("Geçerli ürün girin"); return; }
-        naturalProducts.push({ name, price }); renderNaturalProducts(); renderAdminNaturalList(); localStorage.setItem("anadolu_natural", JSON.stringify(naturalProducts));
-        document.getElementById("newNaturalName").value = ""; document.getElementById("newNaturalPrice").value = "";
-    }
-    
-    function renderAdminRefList() {
-        let container = document.getElementById("adminRefList");
-        if (!container) return;
-        let html = '';
-        references.forEach((ref, idx) => { html += `<div><strong>${ref.author}</strong>: ${ref.text} <button onclick="deleteRef(${idx})">🗑️ Sil</button></div>`; });
-        container.innerHTML = html;
-    }
-    
-    function deleteRef(idx) { references.splice(idx, 1); renderReferences(); renderAdminRefList(); localStorage.setItem("anadolu_refs", JSON.stringify(references)); }
-    
-    function addReference() {
-        let text = document.getElementById("newRefText").value.trim(), author = document.getElementById("newRefName").value.trim();
-        if (!text || !author) { alert("Yorum ve isim girin"); return; }
-        references.push({ text, author }); renderReferences(); renderAdminRefList(); localStorage.setItem("anadolu_refs", JSON.stringify(references));
-        document.getElementById("newRefText").value = ""; document.getElementById("newRefName").value = "";
-    }
-    
-    function renderLogTable() {
-        let logs = JSON.parse(localStorage.getItem("anadolu_logs") || "[]");
-        let body = document.getElementById("dataBody");
-        body.innerHTML = logs.reverse().map(l => `<tr><td class="gold-text">${l.name}</td><td class="gold-text">${l.plan}</td><td class="gold-text">${l.action}</td><td class="gold-text">${l.date}</td>`).join('');
-    }
-    
-    function clearAllData() { if (confirm("Tüm loglar silinecek?")) { localStorage.removeItem("anadolu_logs"); renderLogTable(); } }
 
     function loadSaved() {
-        let savedProducts = localStorage.getItem("anadolu_products"); if (savedProducts) marketProducts = JSON.parse(savedProducts);
-        let savedPortfolio = localStorage.getItem("anadolu_portfolio"); if (savedPortfolio) portfolioData = JSON.parse(savedPortfolio);
-        let savedNatural = localStorage.getItem("anadolu_natural"); if (savedNatural) naturalProducts = JSON.parse(savedNatural);
-        let savedRefs = localStorage.getItem("anadolu_refs"); if (savedRefs) references = JSON.parse(savedRefs);
-        let savedApiKey = localStorage.getItem("geminiApiKey"); if (savedApiKey) geminiApiKey = savedApiKey;
-        if(document.getElementById("geminiApiKey")) document.getElementById("geminiApiKey").value = geminiApiKey;
-        renderPortfolioTable(); renderDigitalMarket(); renderNaturalProducts(); renderReferences(); renderWheel();
-        updateFinancialHealth();
-        let ranges = ["mental_stress", "mental_sleep", "mental_motivation", "mental_anxiety", "lead_style", "lead_change", "lead_conflict", "biz_market"];
-        ranges.forEach(id => { let el = document.getElementById(id); if (el) el.addEventListener("input", function () { let spanId = id + "Val"; if (document.getElementById(spanId)) document.getElementById(spanId).innerText = this.value; }); });
-        for (let i = 0; i < 8; i++) { let s = document.getElementById(`wheel_${i}`); if (s) s.oninput = function () { document.getElementById(`wheelVal_${i}`).innerText = this.value; }; }
+        renderPortfolioTable(); renderWheel();
+        updateFinancialHealth(); updateDebtTotal();
+        let ranges = ["mental_stress","mental_sleep","mental_motivation","mental_anxiety","lead_style","lead_change","lead_conflict","biz_market"];
+        ranges.forEach(id => { let el = document.getElementById(id); if(el) el.addEventListener("input", function() { let spanId = id+"Val"; if(document.getElementById(spanId)) document.getElementById(spanId).innerText = this.value; }); });
+        for(let i=0; i<8; i++) { let s = document.getElementById(`wheel_${i}`); if(s) s.oninput = function() { document.getElementById(`wheelVal_${i}`).innerText = this.value; }; }
     }
+    
     loadSaved();
 </script>
 </body>
