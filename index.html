@@ -139,7 +139,8 @@
             <button onclick="saveProfile()">Profili Kaydet</button>
             <div id="profileStatus" class="analysis-box">Profil oluşturulmadı.</div>
             <div class="flex-between"><div><strong>🚀 Pro (1.499₺)</strong></div><button class="whatsapp-btn" onclick="buyPlan('Pro',1499)">📲 Satın Al</button></div>
-            <div class="flex-between"><div><strong>👑 VIP (3.999₺)</strong></div><button class="whatsapp-btn" onclick="buyPlan('VIP',3999)">📲 Satın Al</button></div>
+            <div class="flex-between"><div><strong>🚀 Premıum (2.499₺)</strong></div><button class="whatsapp-btn" onclick="buyPlan('Premıum',2499)">📲 Satın Al</button></div>
+            <div class="flex-between"><div><strong>👑 VIP (4.999₺)</strong></div><button class="whatsapp-btn" onclick="buyPlan('VIP',4999)">📲 Satın Al</button></div>
         </div>
 
         <!-- Gemini API Ayarları -->
@@ -172,13 +173,15 @@
             <div id="aiOutput" class="analysis-box">İçerik burada görünecek...</div>
             <div class="flex-between" style="margin-top:10px;">
                 <button onclick="copyAiContent()" style="width:auto;">📋 Kopyala</button>
+                <button onclick="downloadAiContent()" style="width:auto;">PDF İndir</button>
+            </div>
                 <button onclick="downloadAiContent()" style="width:auto;">💾 TXT İndir</button>
             </div>
         </div>
 
         <!-- FIRE Hesaplama + Borç + 4 Tür -->
         <div class="card">
-            <h3 style="color:#d4af37;">🔥 FIRE Hesaplama (Borç Dahil)</h3>
+            <h3 style="color:#d4af37;">🔥 FIRE Türünü Hesaplama</h3>
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
                 <div><label>Aylık Gelir</label><input type="number" id="fire_income" value="45000"></div>
                 <div><label>Aylık Gider</label><input type="number" id="fire_expense" value="25000"></div>
@@ -189,9 +192,9 @@
                 <div><label>Yıllık Getiri %</label><input type="number" id="fire_return" value="9.5" step="0.5"></div>
                 <div><label>Enflasyon %</label><input type="number" id="fire_inflation" value="6.0" step="0.5"></div>
             </div>
-            <button onclick="calculateFIRE()">FIRE Hesapla (Borç Dahil)</button>
+            <button onclick="calculateFIRE()">FIRE Hesapla</button>
             <div id="fireResult" class="analysis-box"></div>
-            <button onclick="calculateAllFIRE()" style="margin-top:5px;">4 FIRE Türünü Hesapla (Borç Dahil)</button>
+            <button onclick="calculateAllFIRE()" style="margin-top:5px;">4 FIRE Türünü Hesapla</button>
             <div class="fire-types-grid">
                 <div class="fire-type-card"><h4>Lean FIRE (25X)</h4><div id="leanTarget" class="target">-</div><div id="leanYears" class="years">-</div></div>
                 <div class="fire-type-card"><h4>Fat FIRE (35X)</h4><div id="fatTarget" class="target">-</div><div id="fatYears" class="years">-</div></div>
@@ -287,7 +290,7 @@
 
         <!-- İş & Girişim -->
         <div class="card">
-            <h3 style="color:#d4af37;">🚀 İş Kurma & Girişim</h3>
+            <h3 style="color:#d4af37;">🚀 İş Kurmak & Girişim</h3>
             <label>Sektör</label><input type="text" id="biz_sector" placeholder="Örn: E-ticaret, Yazılım">
             <label>Sermaye (₺)</label><input type="number" id="biz_capital">
             <label>Pazar bilgisi (1-10)</label><input type="range" id="biz_market" min="1" max="10"><span id="marketVal">5</span>
@@ -310,7 +313,7 @@
         <div class="card">
             <h3 style="color:#d4af37;">🎯 Yaşam Tasarımı & Mentörlük</h3>
             <div id="wheelContainer"></div>
-            <button onclick="analyzeLifeWheel()">Yaşam Çarkı Analizi</button>
+            <button onclick="analyzeLifeWheel()">Yaşam Tasarımı Analizi</button>
             <div id="lifeWheelOut" class="analysis-box"></div>
             <label>3 yıl sonraki vizyonunuz:</label>
             <textarea id="vision" rows="2" placeholder="Hayal ettiğiniz yaşam..."></textarea>
@@ -351,7 +354,7 @@
 </div>
 
 <footer>
-    <div><a href="#">Anadolu Network Websitem</a> | <a href="#">Odak Dijital Yazılım Websitem</a> | <a href="#">Ortak Markets E-Tic.Websitem</a></div>
+    <div><a href="#">Anadolu Network Websitem: https://anadolunetwork.tr</a> | <a href="#">Odak Dijital Yazılım Websitem: www.odakdijital.com.tr</a> | <a href="#">Ortak Markets E-Tic.Websitem: www.ortakmarkets.com.tr</a></div>
     <div>📲 İletişim: <a href="https://wa.me/905418660202">0541 866 02 02</a> | 📧 orhanboyraz0216@gmail.com | Adres: Doğal Gıda Marketi Agora Çarşısı Nilüfer/BURSA</div>
     <div style="font-size:0.7rem;">Bu platformdan danışmanlık alabilirsiniz, eğitim ve bilgi amaçlıdır, yatırım tavsiyesi değildir. © 2025</div>
 </footer>
@@ -395,7 +398,7 @@
     function copyAiContent() { if(lastAiContent) { navigator.clipboard.writeText(lastAiContent); alert("Kopyalandı!"); } else alert("Önce içerik üretin!"); }
     function downloadAiContent() { if(lastAiContent) { const blob = new Blob([lastAiContent], {type:"text/plain"}); const link = document.createElement("a"); link.href = URL.createObjectURL(blob); link.download = `gemini_icerik_${Date.now()}.txt`; link.click(); } else alert("Önce içerik üretin!"); }
 
-    // ============ FIRE HESAPLAMA (BORÇ DAHİL) ============
+    // ============ FIRE HESAPLAMA ============
     function formatMoney(val) { return new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY' }).format(val); }
     
     function logAction(name, plan, action) {
@@ -533,7 +536,7 @@
     let portfolioData = [
         { name: "BIST Hisse", qty: 1250, price: 42.5, class: "Hisse" },
         { name: "Altın (Gram)", qty: 45, price: 2450, class: "Emltia" },
-        { name: "Fon/ETF", qty: 85, price: 50000, class: "Fon" },
+        { name: "Fon/ETF", qty: 8500, price: 50000, class: "Fon" },
         { name: "Bitcoin", qty: 0.085, price: 1850000, class: "Kripto" },
         { name: "Nakit TL", qty: 225000, price: 1, class: "Nakit" },
         { name: "Eurobond", qty: 5000, price: 19.2, class: "Tahvil" },
@@ -653,7 +656,7 @@
     }
 
     function renderWheel() {
-        let areas = ["Kariyer", "Finans", "Sağlık", "Aile", "Kişisel Gelişim", "Sosyal Hayat", "Hobi", "Ruhsal"];
+        let areas = ["Kariyer", "Finans", "Sağlık", "Aile", "Kişisel Gelişim", "Sosyal Hayat", "Hobi", "Ruhsal","Yetenek"];
         let html = `<div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">`;
         areas.forEach((a, idx) => { html += `<div class="wheel-input"><label>${a}</label><input type="range" id="wheel_${idx}" min="1" max="10" value="5"><span id="wheelVal_${idx}">5</span></div>`; });
         html += `</div>`;
