@@ -15,14 +15,12 @@
         input, select, textarea { background: #07152e; border: 1px solid #2a456b; color: #d4af37; border-radius: 16px; padding: 8px 12px; width: 100%; margin: 6px 0; font-size: 0.85rem; }
         button { background: #d4af37; color: #0a1a3a; font-weight: bold; border: none; border-radius: 40px; padding: 10px; width: 100%; cursor: pointer; transition: 0.2s; margin-top: 6px; font-size: 0.8rem; }
         button:hover { background: #b8962e; transform: scale(1.01); }
-        .analysis-box { background: #07152e80; border-left: 4px solid #d4af37; border-radius: 16px; padding: 10px; margin-top: 12px; font-size: 0.8rem; white-space: pre-line; max-height: 300px; overflow-y: auto; }
+        .analysis-box { background: #07152e80; border-left: 4px solid #d4af37; border-radius: 16px; padding: 10px; margin-top: 12px; font-size: 0.8rem; white-space: pre-line; max-height: 400px; overflow-y: auto; }
         .sub-badge { display: inline-block; padding: 3px 8px; border-radius: 40px; font-size: 0.65rem; margin-bottom: 6px; }
         .free { background: #94a3b8; color: white; } .pro { background: #d4af37; color: black; } .premium { background: #8b5cf6; color: white; } .vip { background: #1a1a2e; color: #d4af37; border: 1px solid #d4af37; }
         .flex-between { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 4px; }
         .product-item { background: #1e3a5f; border-radius: 16px; padding: 8px; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; }
         .whatsapp-btn { background: #25D366; color: white; width: auto; padding: 4px 8px; font-size: 0.65rem; border-radius: 20px; }
-        .mail-btn { background: #ea4335; color: white; width: auto; padding: 4px 8px; font-size: 0.65rem; border-radius: 20px; }
-        .print-btn { background: #6b7280; color: white; width: auto; padding: 4px 8px; font-size: 0.65rem; border-radius: 20px; }
         .delete-btn { background: #dc2626; color: white; width: auto; padding: 3px 6px; font-size: 0.55rem; border-radius: 20px; }
         footer { position: fixed; bottom: 0; width: 100%; background: #0f2a4a; border-top: 4px solid #d4af37; padding: 10px 20px; text-align: center; font-size: 0.7rem; z-index: 100; }
         footer a { color: #d4af37; text-decoration: none; }
@@ -40,8 +38,6 @@
         .chapter-item { background: #07152e; border-radius: 12px; padding: 6px; margin-bottom: 4px; font-size: 0.7rem; display: flex; justify-content: space-between; align-items: center; }
         .inline-btn { display: inline-block; width: auto; margin: 2px; }
         .api-box { background: #07152e; border-radius: 12px; padding: 8px; margin-top: 6px; font-size: 0.7rem; }
-        
-        /* MODÜL İKONLARI STİLİ */
         .top-nav { position: fixed; top: 10px; right: 80px; z-index: 101; display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
         .module-icon { background: #0f2a4a; border: 1px solid #d4af37; color: #d4af37; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s; font-size: 0.9rem; text-decoration: none; }
         .module-icon:hover { background: #d4af37; color: #0a1a3a; transform: scale(1.1); }
@@ -49,7 +45,6 @@
 </head>
 <body>
 
-<!-- MODÜL İKONLARI - ÜST SAĞ -->
 <div class="top-nav">
     <a href="#profile" class="module-icon" title="Profil">👤</a>
     <a href="#ai" class="module-icon" title="AI İçerik">✨</a>
@@ -113,7 +108,7 @@
             <div class="flex-between"><span>👑 VIP</span><button class="whatsapp-btn inline-btn" onclick="buyPlan('VIP',4999)">Satın Al</button></div>
         </div>
 
-        <!-- Gemini API + E-Kitap + İçerik Üret -->
+        <!-- Gemini AI İçerik Üret -->
         <div class="card" id="ai">
             <h3 style="color:#d4af37;">✨ Gemini AI İçerik & E-Kitap Üretimi</h3>
             <div class="api-box">
@@ -128,21 +123,12 @@
                 <option value="akademik">📚 Akademik / Eğitici</option>
                 <option value="motivasyonel">🔥 Motivasyonel</option>
             </select>
-            <label>İçerik Türü</label>
-            <select id="aiContentType">
-                <option value="Blog Metni">📄 Blog / Makale</option>
-                <option value="Sosyal Medya">📱 Sosyal Medya</option>
-                <option value="SEO Metni">🔍 SEO</option>
-                <option value="E-Kitap Bölümü">📘 E-Kitap Bölümü</option>
-                <option value="Video Senaryosu">🎥 Video</option>
-            </select>
             <label>Konu</label>
-            <input type="text" id="aiTopic" placeholder="Örn: Finansal Özgürlük">
-            <textarea id="aiNotes" rows="2" placeholder="Ek notlar..."></textarea>
+            <input type="text" id="aiTopic" placeholder="Örn: Finansal Özgürlük Nedir?">
+            <textarea id="aiNotes" rows="2" placeholder="Ek notlar (isteğe bağlı)..."></textarea>
             <button onclick="generateWithGemini()">✨ İçerik Üret</button>
-            <div id="aiOutput" class="analysis-box">İçerik burada görünecek...</div>
+            <div id="aiOutput" class="analysis-box">⏳ İçerik üretmek için konu yazın ve butona tıklayın...</div>
             
-            <!-- Çıktı Butonları -->
             <div class="flex-between" style="margin-top:8px;">
                 <button onclick="copyAiContent()" style="width:auto;" class="inline-btn">📋 Kopyala</button>
                 <button onclick="downloadAiTXT()" style="width:auto;" class="inline-btn">💾 TXT</button>
@@ -152,9 +138,9 @@
                 <button onclick="sendEmailContent()" style="width:auto; background:#ea4335; color:white;" class="inline-btn">📧 E-posta</button>
             </div>
             
-            <!-- E-Kitap Bölüm Yönetimi -->
+            <!-- E-Kitap -->
             <div style="margin-top:12px; border-top:1px solid #d4af37; padding-top:10px;">
-                <h4 style="color:#d4af37;">📘 E-Kitap Oluştur (50 Sayfa)</h4>
+                <h4 style="color:#d4af37;">📘 E-Kitap Oluştur</h4>
                 <div id="ebookChapters" style="max-height:150px; overflow-y:auto; margin:8px 0;"></div>
                 <div class="flex-between">
                     <button onclick="addChapter()" style="width:auto;" class="inline-btn">➕ Bölüm Ekle</button>
@@ -191,7 +177,7 @@
 
         <!-- Finansal Sağlık -->
         <div class="card" id="health">
-            <h3 style="color:#d4af37;">💰 Finansal Sağlık</h3>
+            <h3 style="color:#d4af37;">💰 Finansal Sağlık Durumu</h3>
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
                 <div><label>Borç</label><input type="number" id="debt" value="80000"></div>
                 <div><label>Alacak</label><input type="number" id="receivables" value="25000"></div>
@@ -210,7 +196,7 @@
 
         <!-- Portföy -->
         <div class="card" id="portfolio">
-            <h3 style="color:#d4af37;">📈 Portföy (8 Varlık)</h3>
+            <h3 style="color:#d4af37;">📈 Portföy Yönetimi</h3>
             <div class="flex-between"><span>Toplam: <strong id="portfolioTotal">0 ₺</strong></span><button onclick="refreshPrices()" style="width:auto;" class="inline-btn">🔄</button></div>
             <table id="portfolioTable"><thead><tr><th>Varlık</th><th>Miktar</th><th>Fiyat</th><th>Toplam</th><th></th></tr></thead><tbody id="portfolioBody"></tbody></table>
             <canvas id="portfolioChart" width="150" height="150"></canvas>
@@ -256,7 +242,7 @@
 
         <!-- Mental Sağlık -->
         <div class="card" id="mental">
-            <h3 style="color:#d4af37;">🧠 Mental Sağlık</h3>
+            <h3 style="color:#d4af37;">🧠 Mental Sağlık Danışmmanlığı</h3>
             <label>Stres</label><input type="range" id="mental_stress" min="1" max="10" value="5"><span id="stressVal">5</span>
             <label>Uyku</label><input type="range" id="mental_sleep" min="1" max="10" value="5"><span id="sleepVal">5</span>
             <label>Motivasyon</label><input type="range" id="mental_motivation" min="1" max="10" value="5"><span id="motivationVal">5</span>
@@ -267,7 +253,7 @@
 
         <!-- Liderlik -->
         <div class="card" id="leadership">
-            <h3 style="color:#d4af37;">🧭 Liderlik</h3>
+            <h3 style="color:#d4af37;">🧭 Liderlik & Yöneticilik Danışmanlığı</h3>
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:4px;">
                 <div><label>Ekip</label><input type="number" id="lead_teamSize" value="5"></div>
                 <div><label>Tecrübe(yıl)</label><input type="number" id="lead_experience" value="8"></div>
@@ -284,7 +270,7 @@
 
         <!-- Yaşam Çarkı -->
         <div class="card" id="life">
-            <h3 style="color:#d4af37;">🎯 Yaşam Tasarımı</h3>
+            <h3 style="color:#d4af37;">🎯 Yaşam Tasarımı & Mentörlük</h3>
             <div id="wheelContainer"></div>
             <button onclick="analyzeLifeWheel()">Analiz</button>
             <div id="lifeWheelOut" class="analysis-box" style="max-height:40px;"></div>
@@ -327,7 +313,7 @@
 <footer>
     <div><a href="https://anadolunetwork.tr" target="_blank">🌐 Anadolu Network</a> | <a href="https://www.odakdijital.com.tr" target="_blank">Odak Dijital</a> | <a href="https://www.ortakmarkets.com.tr" target="_blank">Ortak Markets</a></div>
     <div>📲 <a href="https://wa.me/905418660202">0541 866 02 02</a> | 📧 orhanboyraz0216@gmail.com | Nilüfer/BURSA</div>
-    <div style="font-size:0.6rem;">© 2025 Anadolu Network - Eğitim amaçlıdır, yatırım tavsiyesi değildir.</div>
+    <div style="font-size:0.6rem;">© 2025 Anadolu Network - Eğitim ve Bilgi Amaçlıdır, Yatırım Tavsiyesi Değildir.</div>
 </footer>
 
 <script>
@@ -337,11 +323,10 @@ const S = {
     set(k, v) { localStorage.setItem('an_'+k, JSON.stringify(v)); }
 };
 
-// ============ INIT DATA ============
 if (!S.get('portfolio')) S.set('portfolio', [
     { id:1, name:'BIST 100 Hisse', qty:1250, price:42.5, cls:'Hisse', color:'#4ade80' },
     { id:2, name:'Gram Altın', qty:45, price:2450, cls:'Altın', color:'#fbbf24' },
-    { id:3, name:'Fon/ETF', qty:85, price:50000, cls:'Fon', color:'#60a5fa' },
+    { id:3, name:'Fon/ETF', qty:850, price:50000, cls:'Fon', color:'#60a5fa' },
     { id:4, name:'Bitcoin', qty:0.085, price:1850000, cls:'Kripto', color:'#f7931a' },
     { id:5, name:'Eurobond', qty:5000, price:19.2, cls:'Tahvil', color:'#a78bfa' },
     { id:6, name:'BES Fonu', qty:32000, price:1, cls:'BES', color:'#34d399' },
@@ -353,7 +338,7 @@ if (!S.get('marketProducts')) S.set('marketProducts', [
     { id:1, name:'Bütçe Excel Şablonu', price:49, cat:'dijital', icon:'📊' },
     { id:2, name:'FIRE E-Kitap', price:79, cat:'dijital', icon:'📘' },
     { id:3, name:'FIRE Hesaplayıcı', price:0, cat:'dijital', icon:'🧮' },
-    { id:4, name:'FIRE Koçluğu', price:1500, cat:'danismanlik', icon:'🎯' },
+    { id:4, name:'FIRE Danışmanlığı', price:1500, cat:'danismanlik', icon:'🎯' },
     { id:5, name:'Yatırım Danışmanlığı', price:2500, cat:'danismanlik', icon:'💼' },
     { id:6, name:'FIRE Eğitimi', price:499, cat:'egitim', icon:'🎓' },
     { id:7, name:'İleri Yatırım Eğitimi', price:899, cat:'egitim', icon:'📈' },
@@ -364,7 +349,6 @@ if (!S.get('naturalProducts')) S.set('naturalProducts', [
     { id:2, name:'Organik Bal 500g', price:189, icon:'🍯' },
 ]);
 
-// ============ STATE ============
 let portfolio = S.get('portfolio');
 let goals = S.get('goals');
 let marketProducts = S.get('marketProducts');
@@ -390,43 +374,83 @@ async function callGemini(prompt) {
     try {
         const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiApiKey}`, {
             method:"POST", headers:{"Content-Type":"application/json"},
-            body:JSON.stringify({contents:[{parts:[{text:prompt}]}], generationConfig:{temperature:0.7, maxOutputTokens:2000}})
+            body:JSON.stringify({
+                contents:[{parts:[{text:prompt}]}],
+                generationConfig:{
+                    temperature:0.9,
+                    maxOutputTokens:8192,
+                    topP:0.95,
+                    topK:40
+                }
+            })
         });
         const data = await res.json();
         if(data.error) throw new Error(data.error.message);
         return data.candidates[0].content.parts[0].text;
-    } catch(e) { return null; }
+    } catch(e) {
+        console.error("API Hatası:", e);
+        return null;
+    }
 }
 
 async function generateWithGemini() {
     const topic = document.getElementById("aiTopic").value.trim();
     const style = document.getElementById("aiStyle").value;
-    if(!topic) return alert("Konu girin!");
-    document.getElementById("aiOutput").innerHTML = "<i>⏳ İçerik üretiliyor...</i>";
+    const notes = document.getElementById("aiNotes").value.trim();
     
-    const stylePrompts = { profesyonel:"kurumsal ve profesyonel", samimi:"samimi ve günlük", akademik:"akademik ve eğitici", motivasyonel:"motivasyonel ve ilham verici" };
-    const prompt = `${topic} konusunda Türkçe, ${stylePrompts[style]} bir dille detaylı içerik üret.`;
+    if(!topic) return alert("Lütfen bir konu girin!");
+    
+    document.getElementById("aiOutput").innerHTML = "<i>⏳ Gemini AI içerik üretiyor... Lütfen bekleyin (5-10 saniye)...</i>";
+    document.getElementById("aiOutput").scrollIntoView({ behavior: 'smooth' });
+    
+    const stylePrompts = {
+        profesyonel: "profesyonel, kurumsal ve resmi bir dille",
+        samimi: "samimi, günlük konuşma dilinde, arkadaşça ve sıcak bir dille",
+        akademik: "akademik, eğitici, bilimsel ve detaylı bir dille",
+        motivasyonel: "motivasyonel, ilham verici, enerjik ve coşkulu bir dille"
+    };
+    
+    const prompt = `Sen profesyonel bir içerik üreticisi ve finansal danışmansın.
+
+KONU: ${topic}
+${notes ? 'EK NOTLAR: ' + notes : ''}
+
+Lütfen bu konuda Türkçe, ${stylePrompts[style]} KAPSAMLI ve DETAYLI bir içerik üret.
+
+ÖNEMLİ KURALLAR:
+- Minimum 500 kelime yaz
+- Konuyu derinlemesine ele al
+- Alt başlıklar kullan
+- Örnekler ve açıklamalar ekle
+- Okuyucuya değerli bilgiler sun
+- Sadece tek kelime veya tek cümle yazma, mutlaka uzun ve detaylı içerik üret!
+- En az 4-5 paragraf yaz.`;
     
     const result = await callGemini(prompt);
-    if(result) { lastAiContent = result; }
-    else { const texts = { profesyonel:`📊 ${topic}\n\nStratejik öneme sahiptir.`, samimi:`😊 ${topic}\n\nDostum, bu konu harika!`, akademik:`📚 ${topic}\n\nAkademik inceleme.`, motivasyonel:`🔥 ${topic}\n\nBaşarıya ulaş!` }; lastAiContent = texts[style]; }
-    document.getElementById("aiOutput").innerHTML = lastAiContent.replace(/\n/g,'<br>');
+    
+    if(result && result.length > 50) {
+        lastAiContent = result;
+        document.getElementById("aiOutput").innerHTML = `<strong>✅ ${topic} - İçerik Üretildi (${result.split(' ').length} kelime)</strong><br><br>` + result.replace(/\n/g,'<br>');
+    } else {
+        lastAiContent = `📊 ${topic} - Kapsamlı İçerik\n\nBu konu finansal danışmanlık açısından büyük önem taşımaktadır. ${topic} hakkında bilinmesi gereken temel noktalar şunlardır:\n\n1. ${topic} kavramının temel prensipleri\n2. Uygulama stratejileri ve yöntemler\n3. Başarı için kritik faktörler\n4. Sık yapılan hatalar ve çözümleri\n5. Uzun vadeli planlama ve sürdürülebilirlik\n\nBu konuda profesyonel danışmanlık almak için Anadolu Network ile iletişime geçebilirsiniz.`;
+        document.getElementById("aiOutput").innerHTML = lastAiContent.replace(/\n/g,'<br>');
+    }
 }
 
 // ============ ÇIKTI BUTONLARI ============
-function copyAiContent() { if(lastAiContent) { navigator.clipboard.writeText(lastAiContent); alert("✅ Panoya kopyalandı! (Ctrl+V ile yapıştırın)"); } else alert("Önce içerik üretin!"); }
+function copyAiContent() { if(lastAiContent) { navigator.clipboard.writeText(lastAiContent); alert("✅ Panoya kopyalandı! Word'e Ctrl+V ile yapıştırabilirsiniz."); } else alert("Önce içerik üretin!"); }
 function downloadAiTXT() { if(lastAiContent) { const b=new Blob([lastAiContent],{type:"text/plain"}); const a=document.createElement("a"); a.href=URL.createObjectURL(b); a.download="icerik_"+Date.now()+".txt"; a.click(); alert("✅ TXT indirildi!"); } else alert("Önce içerik üretin!"); }
 function downloadAiPDF() { if(!lastAiContent) return alert("Önce içerik üretin!"); const {jsPDF}=window.jspdf; const d=new jsPDF(); d.setFontSize(14); d.text("Anadolu Network - AI İçerik",20,20); d.setFontSize(9); const lines=d.splitTextToSize(lastAiContent,170); d.text(lines,20,35); d.save("icerik_"+Date.now()+".pdf"); alert("✅ PDF indirildi!"); }
 function printAiContent() { if(!lastAiContent) return alert("Önce içerik üretin!"); const w=window.open('','','width=800,height=600'); w.document.write(`<html><head><title>Anadolu Network</title></head><body style="font-family:Arial; padding:20px;"><pre>${lastAiContent}</pre></body></html>`); w.document.close(); w.print(); }
-function sendWhatsAppContent() { if(!lastAiContent) return alert("Önce içerik üretin!"); window.open(`https://wa.me/905418660202?text=${encodeURIComponent(lastAiContent.substring(0,1000))}`,'_blank'); }
-function sendEmailContent() { if(!lastAiContent) return alert("Önce içerik üretin!"); window.open(`mailto:?subject=Anadolu Network İçerik&body=${encodeURIComponent(lastAiContent.substring(0,1500))}`,'_blank'); }
+function sendWhatsAppContent() { if(!lastAiContent) return alert("Önce içerik üretin!"); window.open(`https://wa.me/905418660202?text=${encodeURIComponent(lastAiContent.substring(0,800))}`,'_blank'); }
+function sendEmailContent() { if(!lastAiContent) return alert("Önce içerik üretin!"); window.open(`mailto:?subject=Anadolu Network İçerik&body=${encodeURIComponent(lastAiContent.substring(0,1000))}`,'_blank'); }
 
 // ============ E-KİTAP ============
 function addChapter() { const title = prompt("Bölüm başlığı:"); if(title) { ebookChapters.push({title, content:''}); renderEbookChapters(); } }
-function renderEbookChapters() { document.getElementById("ebookChapters").innerHTML = ebookChapters.map((ch,i) => `<div class="chapter-item"><span>📘 Bölüm ${i+1}: ${ch.title} ${ch.content?'✅':'⏳'}</span><button onclick="generateChapter(${i})" class="inline-btn" style="width:auto; font-size:0.6rem;">🤖 Üret</button><button onclick="ebookChapters.splice(${i},1);renderEbookChapters();" class="delete-btn inline-btn" style="width:auto;">🗑️</button></div>`).join('') || '<p style="font-size:0.7rem;">Henüz bölüm eklenmedi.</p>'; }
-async function generateChapter(i) { if(!ebookChapters[i]) return; document.getElementById("ebookChapters").innerHTML += "<p style='font-size:0.65rem;'>⏳ Bölüm "+(i+1)+" üretiliyor...</p>"; const result = await callGemini(`"${ebookChapters[i].title}" konusunda Türkçe, detaylı bir e-kitap bölümü yaz. 3-5 sayfa uzunluğunda olsun.`); ebookChapters[i].content = result || `"${ebookChapters[i].title}" bölümü - içerik oluşturuldu.`; renderEbookChapters(); }
+function renderEbookChapters() { document.getElementById("ebookChapters").innerHTML = ebookChapters.map((ch,i) => `<div class="chapter-item"><span>📘 Bölüm ${i+1}: ${ch.title} ${ch.content?'✅':'⏳'}</span><button onclick="generateChapter(${i})" class="inline-btn" style="width:auto; font-size:0.6rem;">🤖 Üret</button><button onclick="ebookChapters.splice(${i},1);renderEbookChapters();" class="delete-btn inline-btn" style="width:auto;">🗑️</button></div>`).join('') || '<p style="font-size:0.7rem;">Henüz bölüm eklenmedi. + Bölüm Ekle butonuna tıklayın.</p>'; }
+async function generateChapter(i) { if(!ebookChapters[i]) return; document.getElementById("ebookChapters").innerHTML += "<p style='font-size:0.65rem;'>⏳ Bölüm "+(i+1)+" üretiliyor...</p>"; const result = await callGemini(`"${ebookChapters[i].title}" konusunda Türkçe, detaylı, en az 500 kelimelik bir e-kitap bölümü yaz. Alt başlıklar, örnekler ve açıklamalar içersin.`); ebookChapters[i].content = result || `${ebookChapters[i].title} - detaylı içerik.`; renderEbookChapters(); }
 async function generateAllChapters() { for(let i=0; i<ebookChapters.length; i++) { if(!ebookChapters[i].content) await generateChapter(i); } alert("✅ Tüm bölümler üretildi! PDF indirebilirsiniz."); }
-function downloadEbookPDF() { if(!ebookChapters.length) return alert("En az 1 bölüm ekleyin!"); const {jsPDF}=window.jspdf; const d=new jsPDF(); d.setFontSize(16); d.text("Anadolu Network - E-Kitap",20,20); d.setFontSize(8); d.text("anadolunetwork.tr",20,28); let y=40; ebookChapters.forEach((ch,i) => { if(y>270) { d.addPage(); y=20; } d.setFontSize(12); d.text(`Bölüm ${i+1}: ${ch.title}`,20,y); y+=8; d.setFontSize(9); const lines = d.splitTextToSize(ch.content||'İçerik üretiliyor...',170); lines.forEach(l => { if(y>280) { d.addPage(); y=20; } d.text(l,20,y); y+=5; }); y+=10; }); d.save("EKitap_Anadolu_"+Date.now()+".pdf"); alert("✅ E-Kitap PDF indirildi!"); }
+function downloadEbookPDF() { if(!ebookChapters.length) return alert("En az 1 bölüm ekleyin!"); const {jsPDF}=window.jspdf; const d=new jsPDF(); d.setFontSize(16); d.text("Anadolu Network - E-Kitap",20,20); let y=35; ebookChapters.forEach((ch,i) => { if(y>270) { d.addPage(); y=20; } d.setFontSize(13); d.text(`Bölüm ${i+1}: ${ch.title}`,20,y); y+=8; d.setFontSize(9); const lines = d.splitTextToSize(ch.content||'İçerik üretiliyor...',170); lines.forEach(l => { if(y>280) { d.addPage(); y=20; } d.text(l,20,y); y+=5; }); y+=10; }); d.save("EKitap_"+Date.now()+".pdf"); alert("✅ E-Kitap PDF indirildi!"); }
 
 // ============ PROFİL ============
 function saveProfile() { let name = document.getElementById("userName").value; let email = document.getElementById("userEmail").value; let plan = document.getElementById("userPlan").value; if(!name) return alert("Adınızı girin!"); document.getElementById("profileStatus").innerHTML = `<span class="sub-badge ${plan.toLowerCase()}">${plan}</span> 👤 ${name} 📧 ${email||'—'}`; }
@@ -434,8 +458,8 @@ function buyPlan(plan, price) { let name = document.getElementById("userName").v
 
 // ============ FIRE ============
 function calculateFIRE() { let inc=+document.getElementById("fire_income").value, exp=+document.getElementById("fire_expense").value; let pas=+document.getElementById("fire_passive").value, age=+document.getElementById("fire_age").value; let cap=+document.getElementById("fire_capital").value, debt=+document.getElementById("fire_debt").value||0; let ret=+document.getElementById("fire_return").value/100, inf=+document.getElementById("fire_inflation").value/100; let net=cap-debt, ms=inc-exp, ann=Math.max(0,exp*12-pas*12), target=ann*25; let rr=(1+ret)/(1+inf)-1; if(rr<0) rr=0; let y=0, bal=net; if(target>net&&ms>0){ let mr=rr/12; while(bal<target&&y<60){ bal=bal*(1+mr)+ms*((Math.pow(1+mr,12)-1)/mr); y++; } } else if(net>=target) y=0; else y=99; document.getElementById("fireResult").innerHTML = `🎯 Hedef: ${fmt(target)}\n💰 Birikim: ${fmt(cap)}\n💳 Borç: ${fmt(debt)}\n📊 Net: ${fmt(net)}\n📆 FIRE Yaşı: ${age+y>99?'90+':age+y} (${y>60?'60+':y}y)\n📈 Tasarruf: ${fmt(ms)}/ay`; window.lastFIRE = {target,cap,debt,net,fireAge:age+y,years:y,ms}; }
-function calculateAllFIRE() { let inc=+document.getElementById("fire_income").value, exp=+document.getElementById("fire_expense").value; let pas=+document.getElementById("fire_passive").value, age=+document.getElementById("fire_age").value; let cap=+document.getElementById("fire_capital").value, debt=+document.getElementById("fire_debt").value||0; let ret=+document.getElementById("fire_return").value/100, inf=+document.getElementById("fire_inflation").value/100; let net=cap-debt, ms=inc-exp, ann=Math.max(0,exp*12-pas*12); let rr=(1+ret)/(1+inf)-1; if(rr<0) rr=0; function yt(t){ if(t<=net) return 0; let b=net,y=0,mr=rr/12; while(b<t&&y<60){ b=b*(1+mr)+ms*((Math.pow(1+mr,12)-1)/mr); y++; } return y; } let targets={lean:ann*25,fat:ann*35,barista:ann*20,coast:ann*15}; let yl=yt(targets.lean), yf=yt(targets.fat), yb=yt(targets.barista), yc=yt(targets.coast); document.getElementById("leanTarget").innerHTML=fmt(targets.lean); document.getElementById("leanYears").innerHTML=yl<60?`${yl}y`:'60y+'; document.getElementById("fatTarget").innerHTML=fmt(targets.fat); document.getElementById("fatYears").innerHTML=yf<60?`${yf}y`:'60y+'; document.getElementById("baristaTarget").innerHTML=fmt(targets.barista); document.getElementById("baristaYears").innerHTML=yb<60?`${yb}y`:'60y+'; document.getElementById("coastTarget").innerHTML=fmt(targets.coast); document.getElementById("coastYears").innerHTML=yc<60?`${yc}y`:'60y+'; }
-function downloadFIREPDF() { if(!window.lastFIRE) return alert("Önce hesaplayın!"); const {jsPDF}=window.jspdf; const d=new jsPDF(); const f=window.lastFIRE; d.text("FIRE Raporu - Anadolu Network",20,20); d.text(`Hedef: ${fmt(f.target)} | Net: ${fmt(f.net)} | FIRE Yaşı: ${f.fireAge} (${f.years}y)`,20,35); d.save("FIRE.pdf"); alert("✅ PDF indirildi!"); }
+function calculateAllFIRE() { calculateFIRE(); let inc=+document.getElementById("fire_income").value, exp=+document.getElementById("fire_expense").value; let pas=+document.getElementById("fire_passive").value; let cap=+document.getElementById("fire_capital").value, debt=+document.getElementById("fire_debt").value||0; let ret=+document.getElementById("fire_return").value/100, inf=+document.getElementById("fire_inflation").value/100; let net=cap-debt, ms=inc-exp, ann=Math.max(0,exp*12-pas*12); let rr=(1+ret)/(1+inf)-1; if(rr<0) rr=0; function yt(t){ if(t<=net) return 0; let b=net,y=0,mr=rr/12; while(b<t&&y<60){ b=b*(1+mr)+ms*((Math.pow(1+mr,12)-1)/mr); y++; } return y; } let targets={lean:ann*25,fat:ann*35,barista:ann*20,coast:ann*15}; let yl=yt(targets.lean), yf=yt(targets.fat), yb=yt(targets.barista), yc=yt(targets.coast); document.getElementById("leanTarget").innerHTML=fmt(targets.lean); document.getElementById("leanYears").innerHTML=yl<60?`${yl}y`:'60y+'; document.getElementById("fatTarget").innerHTML=fmt(targets.fat); document.getElementById("fatYears").innerHTML=yf<60?`${yf}y`:'60y+'; document.getElementById("baristaTarget").innerHTML=fmt(targets.barista); document.getElementById("baristaYears").innerHTML=yb<60?`${yb}y`:'60y+'; document.getElementById("coastTarget").innerHTML=fmt(targets.coast); document.getElementById("coastYears").innerHTML=yc<60?`${yc}y`:'60y+'; }
+function downloadFIREPDF() { if(!window.lastFIRE) return alert("Önce hesaplayın!"); const {jsPDF}=window.jspdf; const d=new jsPDF(); const f=window.lastFIRE; d.text("FIRE Raporu - Anadolu Network",20,20); d.text(`Hedef: ${fmt(f.target)} | Net: ${fmt(f.net)} | FIRE: ${f.fireAge} yaş (${f.years}y)`,20,35); d.save("FIRE.pdf"); alert("✅ PDF indirildi!"); }
 
 // ============ FİNANSAL SAĞLIK ============
 function updateFinancialHealth() { let debt=+document.getElementById("debt").value, rec=+document.getElementById("receivables").value; let em=+document.getElementById("emergency").value, oth=+document.getElementById("otherAssets").value; let pt=portfolio.reduce((s,a)=>s+a.qty*a.price,0), nw=pt+rec+em+oth-debt; document.getElementById("netWorthDisplay").innerHTML=`Net Servet: ${fmt(nw)}`; let inc=+document.getElementById("fire_income").value, exp=+document.getElementById("fire_expense").value; let sr=inc?((inc-exp)/inc*100):0, sc=Math.min(100,Math.max(0,40+Math.min(30,sr*.8))); document.getElementById("healthScore").innerHTML=`Skor: ${Math.round(sc)}/100 ${sc>=70?'✅':sc>=40?'⚠️':'❌'}`; document.getElementById("healthAdvice").innerHTML=`💡 ${sr<30?'Tasarrufu artırın.':'✅ Sağlıklı!'}`; }
@@ -466,7 +490,7 @@ function analyzeMentalHealth() { let s=+document.getElementById("mental_stress")
 function analyzeLeadership() { let style=+document.getElementById("lead_style").value; document.getElementById("leadershipOut").innerHTML=`🧭 ${style<=3?'Otokratik':style<=7?'Demokratik':'Katılımcı'} lider.`; }
 
 // ============ YAŞAM ÇARKI ============
-function renderWheel() { let areas=["Kariyer","Finans","Sağlık","Aile","Gelişim","Sosyal","Hobi","Ruhsal"]; let h='<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">'; areas.forEach((a,i)=>{ h+=`<div><label>${a}</label><input type="range" id="wheel_${i}" min="1" max="10" value="5"><span id="wheelVal_${i}">5</span></div>`; }); h+='</div>'; document.getElementById("wheelContainer").innerHTML=h; for(let i=0;i<8;i++){ let s=document.getElementById(`wheel_${i}`); if(s) s.oninput=function(){document.getElementById(`wheelVal_${i}`).innerText=this.value;}; } }
+function renderWheel() { let areas=["Kariyer","Finans","Sağlık","Aile","Gelişim","Sosyal","Hobi","Ruhsal","Yetenek", "İstek"]; let h='<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">'; areas.forEach((a,i)=>{ h+=`<div><label>${a}</label><input type="range" id="wheel_${i}" min="1" max="10" value="5"><span id="wheelVal_${i}">5</span></div>`; }); h+='</div>'; document.getElementById("wheelContainer").innerHTML=h; for(let i=0;i<8;i++){ let s=document.getElementById(`wheel_${i}`); if(s) s.oninput=function(){document.getElementById(`wheelVal_${i}`).innerText=this.value;}; } }
 function analyzeLifeWheel() { let s=0; for(let i=0;i<8;i++) s+=+document.getElementById(`wheel_${i}`).value; document.getElementById("lifeWheelOut").innerHTML=`Ort: ${(s/8).toFixed(1)}/10`; }
 
 // ============ DOĞAL ÜRÜNLER ============
@@ -486,7 +510,6 @@ function clearAllData() { if(confirm("Tüm loglar silinecek!")){ localStorage.re
 function init() {
     if(geminiApiKey) document.getElementById("geminiApiKeyInput").value = geminiApiKey;
     renderPortfolio(); renderMarket(); renderNatural(); renderWheel(); renderEbookChapters();
-    ["mental_stress","mental_sleep","mental_motivation","mental_anxiety","lead_style","lead_change","lead_conflict","lead_communication","lead_strategy","lead_crisis"].forEach(id=>{ let el=document.getElementById(id); if(el) el.addEventListener("input",function(){let s=id+"Val"; if(document.getElementById(s)) document.getElementById(s).innerText=this.value;}); });
     updateFinancialHealth();
 }
 init();
