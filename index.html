@@ -139,7 +139,8 @@
             <button onclick="saveProfile()">Profili Kaydet</button>
             <div id="profileStatus" class="analysis-box">Profil oluşturulmadı.</div>
             <div class="flex-between"><div><strong>🚀 Pro (1.499₺)</strong></div><button class="whatsapp-btn" onclick="buyPlan('Pro',1499)">📲 Satın Al</button></div>
-            <div class="flex-between"><div><strong>👑 VIP (3.999₺)</strong></div><button class="whatsapp-btn" onclick="buyPlan('VIP',3999)">📲 Satın Al</button></div>
+ <div class="flex-between"><div><strong>🚀 Premıum (2.499₺)</strong></div><button class="whatsapp-btn" onclick="buyPlan('Pro',2499)">📲 Satın Al</button></div>
+            <div class="flex-between"><div><strong>👑 VIP (4.999₺)</strong></div><button class="whatsapp-btn" onclick="buyPlan('VIP',4999)">📲 Satın Al</button></div>
         </div>
 
         <!-- Gemini API Ayarları -->
@@ -172,6 +173,8 @@
             <div id="aiOutput" class="analysis-box">İçerik burada görünecek...</div>
             <div class="flex-between" style="margin-top:10px;">
                 <button onclick="copyAiContent()" style="width:auto;">📋 Kopyala</button>
+                <button onclick="downloadAiContent()" style="width:auto;">💾 PDF İndir</button>
+            </div>
                 <button onclick="downloadAiContent()" style="width:auto;">💾 TXT İndir</button>
             </div>
         </div>
@@ -353,7 +356,7 @@
 <footer>
     <div><a href="#">Anadolu Network Websitem</a> | <a href="#">Odak Dijital Yazılım Websitem</a> | <a href="#">Ortak Markets E-Tic.Websitem</a></div>
     <div>📲 İletişim: <a href="https://wa.me/905418660202">0541 866 02 02</a> | 📧 orhanboyraz0216@gmail.com | Adres: Doğal Gıda Marketi Agora Çarşısı Nilüfer/BURSA</div>
-    <div style="font-size:0.7rem;">Bu platformdan danışmanlık alabilirsiniz, eğitim ve bilgi amaçlıdır, yatırım tavsiyesi değildir. © 2025</div>
+    <div style="font-size:0.7rem;">Bu platformdan danışmanlık alabilirsiniz, anlatılanlar eğitim ve bilgi amaçlıdır, yatırım tavsiyesi değildir. © 2025</div>
 </footer>
 
 <script>
@@ -653,7 +656,7 @@
     }
 
     function renderWheel() {
-        let areas = ["Kariyer", "Finans", "Sağlık", "Aile", "Kişisel Gelişim", "Sosyal Hayat", "Hobi", "Ruhsal"];
+        let areas = ["Kariyer", "Finans", "Sağlık", "Aile", "Kişisel Gelişim", "Sosyal Hayat", "Hobi", "Ruhsal","Yetenek"];
         let html = `<div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">`;
         areas.forEach((a, idx) => { html += `<div class="wheel-input"><label>${a}</label><input type="range" id="wheel_${idx}" min="1" max="10" value="5"><span id="wheelVal_${idx}">5</span></div>`; });
         html += `</div>`;
