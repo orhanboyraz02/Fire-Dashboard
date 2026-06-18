@@ -2,517 +2,505 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Anadolu Network | Profesyonel Danışmanlık & FIRE Platformu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Yatırım AI | Tam Sürüm Yapay Zeka Yatırım Platformu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background: #0a1a3a; font-family: 'Segoe UI', Tahoma, sans-serif; color: #f0f0f0; padding-bottom: 200px; }
-        .gold-text { color: #d4af37 !important; }
-        .card { background: #0f2a4a; border-radius: 24px; padding: 18px; margin-bottom: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); border: 1px solid rgba(212, 175, 55, 0.3); transition: 0.2s; }
-        .card:hover { border-color: #d4af37; }
-        input, select, textarea { background: #07152e; border: 1px solid #2a456b; color: #d4af37; border-radius: 16px; padding: 8px 12px; width: 100%; margin: 6px 0; font-size: 0.85rem; }
-        button { background: #d4af37; color: #0a1a3a; font-weight: bold; border: none; border-radius: 40px; padding: 10px; width: 100%; cursor: pointer; transition: 0.2s; margin-top: 6px; font-size: 0.8rem; }
-        button:hover { background: #b8962e; transform: scale(1.01); }
-        .analysis-box { background: #07152e80; border-left: 4px solid #d4af37; border-radius: 16px; padding: 10px; margin-top: 12px; font-size: 0.8rem; white-space: pre-line; max-height: 400px; overflow-y: auto; }
-        .sub-badge { display: inline-block; padding: 3px 8px; border-radius: 40px; font-size: 0.65rem; margin-bottom: 6px; }
-        .free { background: #94a3b8; color: white; } .pro { background: #d4af37; color: black; } .premium { background: #8b5cf6; color: white; } .vip { background: #1a1a2e; color: #d4af37; border: 1px solid #d4af37; }
-        .flex-between { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 4px; }
-        .product-item { background: #1e3a5f; border-radius: 16px; padding: 8px; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; }
-        .whatsapp-btn { background: #25D366; color: white; width: auto; padding: 4px 8px; font-size: 0.65rem; border-radius: 20px; }
-        .delete-btn { background: #dc2626; color: white; width: auto; padding: 3px 6px; font-size: 0.55rem; border-radius: 20px; }
-        footer { position: fixed; bottom: 0; width: 100%; background: #0f2a4a; border-top: 4px solid #d4af37; padding: 10px 20px; text-align: center; font-size: 0.7rem; z-index: 100; }
-        footer a { color: #d4af37; text-decoration: none; }
-        .hidden { display: none; }
-        table { width: 100%; border-collapse: collapse; font-size: 0.65rem; }
-        th, td { border: 1px solid #334155; padding: 4px; text-align: left; }
-        th { background: #1e293b; color: #d4af37; }
-        .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 18px; }
-        .fire-types-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-top: 12px; }
-        .fire-type-card { background: #07152e; border-radius: 18px; padding: 8px; text-align: center; border: 1px solid #d4af37; font-size: 0.75rem; }
-        .plan-features { font-size: 0.65rem; color: #cbd5e1; line-height: 1.4; margin-top: 4px; }
-        .plan-features li { list-style: none; padding: 1px 0; }
-        .plan-features li::before { content: "✓ "; color: #d4af37; font-weight: bold; }
-        .price-tag { font-size: 0.9rem; color: #d4af37; font-weight: bold; }
-        .chapter-item { background: #07152e; border-radius: 12px; padding: 6px; margin-bottom: 4px; font-size: 0.7rem; display: flex; justify-content: space-between; align-items: center; }
-        .inline-btn { display: inline-block; width: auto; margin: 2px; }
-        .api-box { background: #07152e; border-radius: 12px; padding: 8px; margin-top: 6px; font-size: 0.7rem; }
-        .top-nav { position: fixed; top: 10px; right: 80px; z-index: 101; display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
-        .module-icon { background: #0f2a4a; border: 1px solid #d4af37; color: #d4af37; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s; font-size: 0.9rem; text-decoration: none; }
-        .module-icon:hover { background: #d4af37; color: #0a1a3a; transform: scale(1.1); }
+        * { font-family: 'Inter', sans-serif; }
+        body { background: linear-gradient(135deg, #0a0f2c 0%, #12173f 100%); min-height: 100vh; }
+        .text-gold { color: #f5b042 !important; }
+        .border-gold { border-color: #f5b042; }
+        .bg-gold { background-color: #f5b042; }
+        .btn-gold { background: linear-gradient(135deg, #f5b042 0%, #e09d2c 100%); color: #0a0f2c; font-weight: 700; transition: 0.2s; border: none; cursor: pointer; padding: 8px 20px; border-radius: 12px; }
+        .btn-gold:hover { transform: scale(1.02); opacity: 0.95; }
+        .sidebar-link { transition: all 0.2s; cursor: pointer; border-radius: 0.75rem; padding: 0.6rem 1rem; display: flex; align-items: center; gap: 12px; }
+        .sidebar-link:hover { background: rgba(245, 176, 66, 0.15); transform: translateX(4px); color: #f5b042; }
+        .active-page { background: linear-gradient(135deg, #f5b042 0%, #e09d2c 100%); color: #0a0f2c; }
+        .card { background: rgba(18, 23, 63, 0.95); backdrop-filter: blur(2px); border-radius: 1.5rem; border: 1px solid #1e2556; transition: 0.2s; padding: 20px; margin-bottom: 20px; }
+        .card:hover { border-color: #f5b042; transform: translateY(-2px); }
+        .signal-buy { background: #10b98120; border-left: 4px solid #10b981; padding: 15px; border-radius: 12px; margin-bottom: 15px; }
+        .signal-sell { background: #ef444420; border-left: 4px solid #ef4444; padding: 15px; border-radius: 12px; margin-bottom: 15px; }
+        .signal-hold { background: #6b728020; border-left: 4px solid #f5b042; padding: 15px; border-radius: 12px; margin-bottom: 15px; }
+        .alert-danger { background: #ef444420; border-left: 4px solid #ef4444; padding: 12px; border-radius: 12px; margin-bottom: 12px; }
+        .metric-card { text-align: center; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 1rem; }
+        .modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; z-index: 1000; }
+        .modal-content { background: #0f1338; border-radius: 1.5rem; max-width: 500px; width: 90%; padding: 2rem; border: 1px solid #f5b042; }
+        .input-dark { background: #0f1338; border: 1px solid #f5b04260; color: white; border-radius: 0.75rem; padding: 0.5rem 0.75rem; width: 100%; }
+        .admin-badge { background: #f5b04220; color: #f5b042; border-radius: 999px; padding: 4px 12px; font-size: 0.7rem; font-weight: 600; cursor: pointer; transition: 0.2s; display: inline-block; }
+        .admin-badge:hover { background: #f5b04240; }
+        .white-text { color: white !important; }
+        .footer-link { color: #f5b042; text-decoration: none; }
+        .footer-link:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
 
-<div class="top-nav">
-    <a href="#profile" class="module-icon" title="Profil">👤</a>
-    <a href="#ai" class="module-icon" title="AI İçerik">✨</a>
-    <a href="#fire" class="module-icon" title="FIRE">🔥</a>
-    <a href="#health" class="module-icon" title="Finansal Sağlık">💰</a>
-    <a href="#portfolio" class="module-icon" title="Portföy">📈</a>
-    <a href="#cfo" class="module-icon" title="CFO">📊</a>
-    <a href="#market" class="module-icon" title="Market">🛒</a>
-    <a href="#mental" class="module-icon" title="Mental">🧠</a>
-    <a href="#leadership" class="module-icon" title="Liderlik">🧭</a>
-    <a href="#life" class="module-icon" title="Yaşam">🎯</a>
-    <a href="#natural" class="module-icon" title="Doğal">🌿</a>
-    <a href="#admin" class="module-icon" title="Yönetim">🔐</a>
-</div>
-
-<div style="max-width: 1500px; margin: auto; padding: 15px;">
-    <header style="text-align: center; margin-bottom: 20px;">
-        <h1 style="color: #d4af37; font-size: 1.6rem;">🔥 ANADOLU NETWORK | FIRE FİNANS & DANIŞMANLIK MERKEZİ</h1>
-        <p style="color: #e0e0e0; font-size:0.85rem;">Finansal Özgürlük • Yaşam Tasarımı • Liderlik • Mental Sağlık • CFO • Gemini AI • E-Kitap</p>
-        <div style="display: flex; gap: 8px; justify-content: center; margin-top: 10px;">
-            <a href="https://wa.me/905418660202" target="_blank" class="whatsapp-btn" style="display: inline-block; text-decoration: none; padding:6px 14px; font-size:0.75rem;">📲 WhatsApp</a>
-        </div>
-    </header>
-
-    <div class="dashboard-grid">
-        <!-- Profil & Abonelik -->
-        <div class="card" id="profile">
-            <h3 style="color:#d4af37;">👤 Kullanıcı & Abonelik</h3>
-            <input type="text" id="userName" placeholder="Adınız Soyadınız">
-            <input type="email" id="userEmail" placeholder="E-posta Adresiniz">
-            <select id="userPlan">
-                <option value="Free">Standart (Ücretsiz)</option>
-                <option value="Pro">Pro Plan - 1.499₺/yıl</option>
-                <option value="Premium">Premium Plan - 2.499₺/yıl</option>
-                <option value="VIP">Elite VIP - 4.999₺/yıl</option>
-            </select>
-            <button onclick="saveProfile()">Kaydet & Abone Ol</button>
-            <div id="profileStatus" class="analysis-box" style="max-height:80px;">Profil oluşturulmadı.</div>
-            
-            <div style="margin-top: 12px;">
-                <h4 style="color:#d4af37; margin-bottom: 8px;">📋 Paket İçerikleri</h4>
-                <div style="background:#0f2a4a; border-radius:10px; padding:8px; margin-bottom:5px; border:1px solid #94a3b8;">
-                    <div class="flex-between"><strong>🆓 Standart</strong><span class="price-tag">0₺</span></div>
-                    <ul class="plan-features"><li>Temel FIRE</li><li>Sağlık Skoru</li><li>1 Portföy</li><li>Mental Test</li></ul>
-                </div>
-                <div style="background:#0f2a4a; border-radius:10px; padding:8px; margin-bottom:5px; border:1px solid #d4af37;">
-                    <div class="flex-between"><strong>🚀 Pro</strong><span class="price-tag">1.499₺</span></div>
-                    <ul class="plan-features"><li>Sınırsız FIRE</li><li>4 FIRE Türü</li><li>8 Varlık Portföy</li><li>AI Öneriler</li></ul>
-                </div>
-                <div style="background:#0f2a4a; border-radius:10px; padding:8px; margin-bottom:5px; border:1px solid #8b5cf6;">
-                    <div class="flex-between"><strong>💎 Premium</strong><span class="price-tag">2.499₺</span></div>
-                    <ul class="plan-features"><li>Tüm Pro</li><li>Gemini AI</li><li>Yaşam Tasarımı</li><li>WhatsApp Destek</li></ul>
-                </div>
-                <div style="background:#0f2a4a; border-radius:10px; padding:8px; border:1px solid #1a1a2e;">
-                    <div class="flex-between"><strong>👑 Elite VIP</strong><span class="price-tag">4.999₺</span></div>
-                    <ul class="plan-features"><li>Tüm Premium</li><li>Birebir Danışmanlık</li><li>Özel Portföy</li><li>Kişisel Strateji</li></ul>
-                </div>
-            </div>
-            <div class="flex-between" style="margin-top:8px;"><span>🚀 Pro</span><button class="whatsapp-btn inline-btn" onclick="buyPlan('Pro',1499)">Satın Al</button></div>
-            <div class="flex-between"><span>💎 Premium</span><button class="whatsapp-btn inline-btn" onclick="buyPlan('Premium',2499)">Satın Al</button></div>
-            <div class="flex-between"><span>👑 VIP</span><button class="whatsapp-btn inline-btn" onclick="buyPlan('VIP',4999)">Satın Al</button></div>
-        </div>
-
-        <!-- Gemini AI İçerik Üret -->
-        <div class="card" id="ai">
-            <h3 style="color:#d4af37;">✨ Gemini AI İçerik & E-Kitap Üretimi</h3>
-            <div class="api-box">
-                <p>🔑 <strong>Gemini API Anahtarı</strong> <a href="https://aistudio.google.com/apikey" target="_blank" style="color:#d4af37;font-size:0.65rem;">(ücretsiz al)</a></p>
-                <input type="password" id="geminiApiKeyInput" placeholder="AIzaSy..." style="font-size:0.7rem;">
-                <button onclick="saveGeminiKey()" style="font-size:0.7rem;">💾 Anahtarı Kaydet</button>
-            </div>
-            <label style="margin-top:8px;">Yazma Stili</label>
-            <select id="aiStyle">
-                <option value="profesyonel">🎯 Profesyonel / Kurumsal</option>
-                <option value="samimi">😊 Samimi / Günlük</option>
-                <option value="akademik">📚 Akademik / Eğitici</option>
-                <option value="motivasyonel">🔥 Motivasyonel</option>
-            </select>
-            <label>Konu</label>
-            <input type="text" id="aiTopic" placeholder="Örn: Finansal Özgürlük Nedir?">
-            <textarea id="aiNotes" rows="2" placeholder="Ek notlar (isteğe bağlı)..."></textarea>
-            <button onclick="generateWithGemini()">✨ İçerik Üret</button>
-            <div id="aiOutput" class="analysis-box">⏳ İçerik üretmek için konu yazın ve butona tıklayın...</div>
-            
-            <div class="flex-between" style="margin-top:8px;">
-                <button onclick="copyAiContent()" style="width:auto;" class="inline-btn">📋 Kopyala</button>
-                <button onclick="downloadAiTXT()" style="width:auto;" class="inline-btn">💾 TXT</button>
-                <button onclick="downloadAiPDF()" style="width:auto; background:#ef4444; color:white;" class="inline-btn">📄 PDF</button>
-                <button onclick="printAiContent()" style="width:auto; background:#6b7280; color:white;" class="inline-btn">🖨️ Yazdır</button>
-                <button onclick="sendWhatsAppContent()" style="width:auto; background:#25D366; color:white;" class="inline-btn">📲 WhatsApp</button>
-                <button onclick="sendEmailContent()" style="width:auto; background:#ea4335; color:white;" class="inline-btn">📧 E-posta</button>
-            </div>
-            
-            <!-- E-Kitap -->
-            <div style="margin-top:12px; border-top:1px solid #d4af37; padding-top:10px;">
-                <h4 style="color:#d4af37;">📘 E-Kitap Oluştur</h4>
-                <div id="ebookChapters" style="max-height:150px; overflow-y:auto; margin:8px 0;"></div>
-                <div class="flex-between">
-                    <button onclick="addChapter()" style="width:auto;" class="inline-btn">➕ Bölüm Ekle</button>
-                    <button onclick="generateAllChapters()" style="width:auto; background:#8b5cf6; color:white;" class="inline-btn">🤖 Tümünü Üret</button>
-                    <button onclick="downloadEbookPDF()" style="width:auto; background:#ef4444; color:white;" class="inline-btn">📘 E-Kitap PDF</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- FIRE Hesaplama -->
-        <div class="card" id="fire">
-            <h3 style="color:#d4af37;">🔥 FIRE Hesaplama</h3>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
-                <div><label>Aylık Gelir</label><input type="number" id="fire_income" value="45000"></div>
-                <div><label>Aylık Gider</label><input type="number" id="fire_expense" value="25000"></div>
-                <div><label>Pasif Gelir</label><input type="number" id="fire_passive" value="5000"></div>
-                <div><label>Yaş</label><input type="number" id="fire_age" value="32"></div>
-                <div><label>Birikim</label><input type="number" id="fire_capital" value="450000"></div>
-                <div><label>Toplam Borç</label><input type="number" id="fire_debt" value="80000"></div>
-                <div><label>Getiri %</label><input type="number" id="fire_return" value="9.5" step="0.5"></div>
-                <div><label>Enflasyon %</label><input type="number" id="fire_inflation" value="6.0" step="0.5"></div>
-            </div>
-            <button onclick="calculateFIRE()">Hesapla</button>
-            <div id="fireResult" class="analysis-box" style="max-height:120px;"></div>
-            <button onclick="calculateAllFIRE()" style="margin-top:4px;">4 FIRE Türü</button>
-            <div class="fire-types-grid">
-                <div class="fire-type-card"><h4>Lean (25X)</h4><div id="leanTarget">-</div><div id="leanYears">-</div></div>
-                <div class="fire-type-card"><h4>Fat (35X)</h4><div id="fatTarget">-</div><div id="fatYears">-</div></div>
-                <div class="fire-type-card"><h4>Barista (20X)</h4><div id="baristaTarget">-</div><div id="baristaYears">-</div></div>
-                <div class="fire-type-card"><h4>Coast (15X)</h4><div id="coastTarget">-</div><div id="coastYears">-</div></div>
-            </div>
-            <button onclick="downloadFIREPDF()" style="width:auto; background:#ef4444; color:white;" class="inline-btn">📄 PDF</button>
-        </div>
-
-        <!-- Finansal Sağlık -->
-        <div class="card" id="health">
-            <h3 style="color:#d4af37;">💰 Finansal Sağlık Durumu</h3>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
-                <div><label>Borç</label><input type="number" id="debt" value="80000"></div>
-                <div><label>Alacak</label><input type="number" id="receivables" value="25000"></div>
-                <div><label>Acil Fon</label><input type="number" id="emergency" value="75000"></div>
-                <div><label>Diğer Varlık</label><input type="number" id="otherAssets" value="150000"></div>
-                <div><label>Kredi Ödeme</label><input type="number" id="monthlyLoan" value="3500"></div>
-                <div><label>Sigorta</label><input type="number" id="monthlyInsurance" value="1200"></div>
-                <div><label>Vergi %</label><input type="number" id="taxRate" value="20"></div>
-                <div><label>Emeklilik Yaş</label><input type="number" id="retirementAge" value="60"></div>
-            </div>
-            <button onclick="updateFinancialHealth()">Güncelle</button>
-            <div id="netWorthDisplay" class="analysis-box" style="max-height:60px;">Net Servet: --</div>
-            <div id="healthScore" class="analysis-box" style="max-height:60px;">Skor: --</div>
-            <div id="healthAdvice" class="analysis-box" style="max-height:60px;">💡 --</div>
-        </div>
-
-        <!-- Portföy -->
-        <div class="card" id="portfolio">
-            <h3 style="color:#d4af37;">📈 Portföy Yönetimi</h3>
-            <div class="flex-between"><span>Toplam: <strong id="portfolioTotal">0 ₺</strong></span><button onclick="refreshPrices()" style="width:auto;" class="inline-btn">🔄</button></div>
-            <table id="portfolioTable"><thead><tr><th>Varlık</th><th>Miktar</th><th>Fiyat</th><th>Toplam</th><th></th></tr></thead><tbody id="portfolioBody"></tbody></table>
-            <canvas id="portfolioChart" width="150" height="150"></canvas>
-            <div id="allocationPercent" class="analysis-box" style="max-height:80px;"></div>
-            <button onclick="addPortfolioAsset()" style="margin-top:6px;">➕ Varlık Ekle</button>
-        </div>
-
-        <!-- CFO -->
-        <div class="card" id="cfo">
-            <h3 style="color:#d4af37;">📊 CFO Danışmanlığı</h3>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
-                <div><label>Ciro</label><input type="number" id="cf_revenue" value="5000000"></div>
-                <div><label>Kâr</label><input type="number" id="cf_profit" value="750000"></div>
-                <div><label>Aktif</label><input type="number" id="cf_assets" value="3000000"></div>
-                <div><label>Borç</label><input type="number" id="cf_liabilities" value="1200000"></div>
-                <div><label>Nakit Akış</label><input type="number" id="cf_cashflow" value="400000"></div>
-                <div><label>İşletme Ser.</label><input type="number" id="cf_workingCapital" value="800000"></div>
-                <div><label>Personel</label><input type="number" id="cf_employees" value="25"></div>
-                <div><label>Pazar %</label><input type="number" id="cf_marketShare" value="15"></div>
-            </div>
-            <button onclick="calculateCFO()">Analiz Yap</button>
-            <div id="cfoResult" class="analysis-box" style="max-height:80px;"></div>
-            <div id="cfoAdvice" class="analysis-box" style="max-height:60px;">🤖 --</div>
-        </div>
-
-        <!-- Market -->
-        <div class="card" id="market">
-            <h3 style="color:#d4af37;">🛒 Dijital Market</h3>
-            <div id="digitalMarketList" style="max-height:200px; overflow-y:auto;"></div>
-            <div style="background:#07152e; border-radius:10px; padding:8px; margin-top:8px;">
-                <input type="text" id="newMarketName" placeholder="Ürün Adı" style="font-size:0.7rem;">
-                <input type="number" id="newMarketPrice" placeholder="Fiyat" style="font-size:0.7rem;">
-                <select id="newMarketCat" style="font-size:0.7rem;"><option value="danismanlik">Danışmanlık</option><option value="egitim">Eğitim</option><option value="dijital">Dijital</option></select>
-                <button onclick="addMarketProduct()" style="font-size:0.7rem;">➕ Ekle</button>
-            </div>
-            <button onclick="showCart()" style="margin-top:6px;">🛍️ Sepet (<span id="cartCount">0</span>)</button>
-            <div id="cartModal" class="hidden" style="background:#0f2a4a; border:2px solid #d4af37; border-radius:16px; padding:12px; margin-top:10px;">
-                <h4>Sepet</h4><div id="cartItems"></div>
-                <p><strong>Toplam: <span id="cartTotal">0 ₺</span></strong></p>
-                <button onclick="sendWhatsAppOrder()">WhatsApp Sipariş</button><button onclick="closeCart()">Kapat</button>
-            </div>
-        </div>
-
-        <!-- Mental Sağlık -->
-        <div class="card" id="mental">
-            <h3 style="color:#d4af37;">🧠 Mental Sağlık Danışmmanlığı</h3>
-            <label>Stres</label><input type="range" id="mental_stress" min="1" max="10" value="5"><span id="stressVal">5</span>
-            <label>Uyku</label><input type="range" id="mental_sleep" min="1" max="10" value="5"><span id="sleepVal">5</span>
-            <label>Motivasyon</label><input type="range" id="mental_motivation" min="1" max="10" value="5"><span id="motivationVal">5</span>
-            <label>Kaygı</label><input type="range" id="mental_anxiety" min="1" max="10" value="5"><span id="anxietyVal">5</span>
-            <button onclick="analyzeMentalHealth()">Değerlendir</button>
-            <div id="mentalHealthOut" class="analysis-box" style="max-height:60px;"></div>
-        </div>
-
-        <!-- Liderlik -->
-        <div class="card" id="leadership">
-            <h3 style="color:#d4af37;">🧭 Liderlik & Yöneticilik Danışmanlığı</h3>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:4px;">
-                <div><label>Ekip</label><input type="number" id="lead_teamSize" value="5"></div>
-                <div><label>Tecrübe(yıl)</label><input type="number" id="lead_experience" value="8"></div>
-                <div><label>Karar</label><input type="range" id="lead_style" min="1" max="10" value="5"><span id="styleVal">5</span></div>
-                <div><label>Değişim</label><input type="range" id="lead_change" min="1" max="10" value="5"><span id="changeVal">5</span></div>
-                <div><label>Çatışma</label><input type="range" id="lead_conflict" min="1" max="10" value="5"><span id="conflictVal">5</span></div>
-                <div><label>İletişim</label><input type="range" id="lead_communication" min="1" max="10" value="7"><span id="commVal">7</span></div>
-                <div><label>Strateji</label><input type="range" id="lead_strategy" min="1" max="10" value="6"><span id="stratVal">6</span></div>
-                <div><label>Kriz</label><input type="range" id="lead_crisis" min="1" max="10" value="5"><span id="crisisVal">5</span></div>
-            </div>
-            <button onclick="analyzeLeadership()">Rapor Al</button>
-            <div id="leadershipOut" class="analysis-box" style="max-height:80px;"></div>
-        </div>
-
-        <!-- Yaşam Çarkı -->
-        <div class="card" id="life">
-            <h3 style="color:#d4af37;">🎯 Yaşam Tasarımı & Mentörlük</h3>
-            <div id="wheelContainer"></div>
-            <button onclick="analyzeLifeWheel()">Analiz</button>
-            <div id="lifeWheelOut" class="analysis-box" style="max-height:40px;"></div>
-        </div>
-
-        <!-- Doğal Ürünler -->
-        <div class="card" id="natural">
-            <h3 style="color:#d4af37;">🌿 Doğal Ürünler</h3>
-            <div id="naturalProductsList"></div>
-        </div>
-
-        <!-- Yönetim Paneli -->
-        <div class="card" id="admin" style="grid-column: span 3;">
-            <h3 style="color:#d4af37;">🔐 Yönetim Paneli</h3>
-            <div class="flex-between"><input type="password" id="adminPass" placeholder="Şifre: admin2026"><button onclick="accessAdmin()" style="width:auto;" class="inline-btn">Giriş</button></div>
-            <div id="adminPanel" class="hidden">
-                <div style="display:flex; flex-wrap:wrap; gap:10px;">
-                    <div style="flex:1; min-width:200px;">
-                        <h4>📦 Market Yönetimi</h4>
-                        <div id="adminMarketList" style="max-height:200px; overflow-y:auto; font-size:0.65rem;"></div>
-                        <input id="adminMarketName" placeholder="Ürün Adı"><input id="adminMarketPrice" type="number" placeholder="Fiyat">
-                        <select id="adminMarketCat"><option value="danismanlik">Danışmanlık</option><option value="egitim">Eğitim</option><option value="dijital">Dijital</option></select>
-                        <button onclick="adminAddMarket()">➕ Ekle</button>
-                    </div>
-                    <div style="flex:1; min-width:200px;">
-                        <h4>📈 Portföy Yönetimi</h4>
-                        <div id="adminPortfolioList" style="max-height:200px; overflow-y:auto; font-size:0.65rem;"></div>
-                        <input id="adminAssetName" placeholder="Ad"><input id="adminAssetQty" type="number" placeholder="Miktar">
-                        <input id="adminAssetPrice" type="number" placeholder="Fiyat"><input id="adminAssetClass" placeholder="Sınıf">
-                        <button onclick="adminAddPortfolio()">➕ Ekle</button>
-                    </div>
-                </div>
-                <hr><h4>📋 Loglar</h4><table id="dataTable"><thead><tr><th>Ad</th><th>Plan</th><th>İşlem</th><th>Tarih</th></tr></thead><tbody id="dataBody"></tbody></table>
-                <button onclick="clearAllData()" style="background:#be123c;">Logları Sil</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<footer>
-    <div><a href="https://anadolunetwork.tr" target="_blank">🌐 Anadolu Network</a> | <a href="https://www.odakdijital.com.tr" target="_blank">Odak Dijital</a> | <a href="https://www.ortakmarkets.com.tr" target="_blank">Ortak Markets</a></div>
-    <div>📲 <a href="https://wa.me/905418660202">0541 866 02 02</a> | 📧 orhanboyraz0216@gmail.com | Nilüfer/BURSA</div>
-    <div style="font-size:0.6rem;">© 2025 Anadolu Network - Eğitim ve Bilgi Amaçlıdır, Yatırım Tavsiyesi Değildir.</div>
-</footer>
+<div id="app"></div>
 
 <script>
-// ============ STORAGE ============
-const S = {
-    get(k, d) { try { const i = localStorage.getItem('an_'+k); return i ? JSON.parse(i) : d; } catch(e) { return d; } },
-    set(k, v) { localStorage.setItem('an_'+k, JSON.stringify(v)); }
-};
-
-if (!S.get('portfolio')) S.set('portfolio', [
-    { id:1, name:'BIST 100 Hisse', qty:1250, price:42.5, cls:'Hisse', color:'#4ade80' },
-    { id:2, name:'Gram Altın', qty:45, price:2450, cls:'Altın', color:'#fbbf24' },
-    { id:3, name:'Fon/ETF', qty:850, price:50000, cls:'Fon', color:'#60a5fa' },
-    { id:4, name:'Bitcoin', qty:0.085, price:1850000, cls:'Kripto', color:'#f7931a' },
-    { id:5, name:'Eurobond', qty:5000, price:19.2, cls:'Tahvil', color:'#a78bfa' },
-    { id:6, name:'BES Fonu', qty:32000, price:1, cls:'BES', color:'#34d399' },
-    { id:7, name:'Gayrimenkul', qty:1, price:2500000, cls:'Emlak', color:'#f472b6' },
-    { id:8, name:'Nakit TL', qty:225000, price:1, cls:'Nakit', color:'#94a3b8' }
-]);
-if (!S.get('goals')) S.set('goals', [{ target:5000000, current:895000, monthlyContribution:20000, annualReturn:12, inflation:18, age:35, targetAge:50, monthlyExpense:30000 }]);
-if (!S.get('marketProducts')) S.set('marketProducts', [
-    { id:1, name:'Bütçe Excel Şablonu', price:49, cat:'dijital', icon:'📊' },
-    { id:2, name:'FIRE E-Kitap', price:79, cat:'dijital', icon:'📘' },
-    { id:3, name:'FIRE Hesaplayıcı', price:0, cat:'dijital', icon:'🧮' },
-    { id:4, name:'FIRE Danışmanlığı', price:1500, cat:'danismanlik', icon:'🎯' },
-    { id:5, name:'Yatırım Danışmanlığı', price:2500, cat:'danismanlik', icon:'💼' },
-    { id:6, name:'FIRE Eğitimi', price:499, cat:'egitim', icon:'🎓' },
-    { id:7, name:'İleri Yatırım Eğitimi', price:899, cat:'egitim', icon:'📈' },
-    { id:8, name:'Portföy Paneli', price:299, cat:'dijital', icon:'📋' }
-]);
-if (!S.get('naturalProducts')) S.set('naturalProducts', [
-    { id:1, name:'Doğal Zeytinyağı 1L', price:299, icon:'🫒' },
-    { id:2, name:'Organik Bal 500g', price:189, icon:'🍯' },
-]);
-
-let portfolio = S.get('portfolio');
-let goals = S.get('goals');
-let marketProducts = S.get('marketProducts');
-let naturalProducts = S.get('naturalProducts');
-let cart = [];
-let chartInstance = null;
-let geminiApiKey = localStorage.getItem("gemini_api_key") || "";
-let lastAiContent = "";
-let ebookChapters = [];
-
-function fmt(n) { return new Intl.NumberFormat('tr-TR', { style:'currency', currency:'TRY', minimumFractionDigits:0 }).format(n); }
-function save() { S.set('portfolio',portfolio); S.set('goals',goals); S.set('marketProducts',marketProducts); S.set('naturalProducts',naturalProducts); }
-
-// ============ GEMINI API ============
-function saveGeminiKey() {
-    geminiApiKey = document.getElementById("geminiApiKeyInput").value.trim();
-    localStorage.setItem("gemini_api_key", geminiApiKey);
-    alert(geminiApiKey ? "✅ API anahtarı kaydedildi!" : "⚠️ Anahtar silindi!");
-}
-
-async function callGemini(prompt) {
-    if(!geminiApiKey) return null;
-    try {
-        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiApiKey}`, {
-            method:"POST", headers:{"Content-Type":"application/json"},
-            body:JSON.stringify({
-                contents:[{parts:[{text:prompt}]}],
-                generationConfig:{
-                    temperature:0.9,
-                    maxOutputTokens:8192,
-                    topP:0.95,
-                    topK:40
-                }
-            })
-        });
-        const data = await res.json();
-        if(data.error) throw new Error(data.error.message);
-        return data.candidates[0].content.parts[0].text;
-    } catch(e) {
-        console.error("API Hatası:", e);
-        return null;
-    }
-}
-
-async function generateWithGemini() {
-    const topic = document.getElementById("aiTopic").value.trim();
-    const style = document.getElementById("aiStyle").value;
-    const notes = document.getElementById("aiNotes").value.trim();
+    // ============================================================
+    // 1. KULLANICI VERİTABANI (Çok Kullanıcılı, Abonelikli)
+    // ============================================================
+    let users = [
+        { id: 1, email: "admin@finans.com", password: "Admin123!", name: "Orhan BOYRAZ", role: "admin", subscription: "premium", avatar: "O" },
+        { id: 2, email: "demo@finans.com", password: "demo123", name: "Demo Kullanıcı", role: "user", subscription: "basic", avatar: "D" },
+        { id: 3, email: "mehmet@finans.com", password: "mehmet123", name: "Mehmet Demir", role: "user", subscription: "pro", avatar: "M" },
+        { id: 4, email: "ayse@finans.com", password: "ayse123", name: "Ayse Yılmaz", role: "user", subscription: "basic", avatar: "A" }
+    ];
     
-    if(!topic) return alert("Lütfen bir konu girin!");
+    let currentUser = null;
+    let isAdmin = false;
+    let currentPage = "overview";
     
-    document.getElementById("aiOutput").innerHTML = "<i>⏳ Gemini AI içerik üretiyor... Lütfen bekleyin (5-10 saniye)...</i>";
-    document.getElementById("aiOutput").scrollIntoView({ behavior: 'smooth' });
+    // ============================================================
+    // 2. ABONELİK PAKETLERİ (WhatsApp ile satın alma)
+    // ============================================================
+    const subscriptionPlans = [
+        { id: 1, name: "Basic", price: 199, features: ["3 Varlık Takibi", "Temel Analiz", "Haftalık Rapor"], icon: "fa-user", whatsapp: "Basic paketini satın almak istiyorum" },
+        { id: 2, name: "Pro", price: 499, features: ["10 Varlık Takibi", "Teknik Analiz", "AI Tahminleri", "Günlük Rapor"], icon: "fa-chart-line", whatsapp: "Pro paketini satın almak istiyorum", popular: true },
+        { id: 3, name: "Premium", price: 999, features: ["Sınırsız Varlık", "Gerçek Zamanlı Veri", "AI Asistan", "7/24 Destek"], icon: "fa-crown", whatsapp: "Premium paketini satın almak istiyorum" },
+        { id: 4, name: "Kurumsal", price: 2499, features: ["Özel API", "Dedike Sunucu", "Sınırsız Kullanıcı", "Öncelikli Destek"], icon: "fa-building", whatsapp: "Kurumsal paket için bilgi almak istiyorum" }
+    ];
     
-    const stylePrompts = {
-        profesyonel: "profesyonel, kurumsal ve resmi bir dille",
-        samimi: "samimi, günlük konuşma dilinde, arkadaşça ve sıcak bir dille",
-        akademik: "akademik, eğitici, bilimsel ve detaylı bir dille",
-        motivasyonel: "motivasyonel, ilham verici, enerjik ve coşkulu bir dille"
+    // ============================================================
+    // 3. VARLIKLAR (Admin ekleyip silebilir)
+    // ============================================================
+    let assets = [
+        { id: 1, name: "ALTIN", symbol: "XAUUSD", price: 3365, change: "+1.2%", rsi: 62, trend: "↑", confidence: 87, volume: 12450 },
+        { id: 2, name: "GÜMÜŞ", symbol: "XAGUSD", price: 31.2, change: "+0.8%", rsi: 58, trend: "↑", confidence: 74, volume: 8900 },
+        { id: 3, name: "BIST 100", symbol: "XU100", price: 10850, change: "-0.3%", rsi: 42, trend: "↓", confidence: 45, volume: 45600 },
+        { id: 4, name: "S&P 500", symbol: "SPX", price: 5230, change: "+0.5%", rsi: 65, trend: "↑", confidence: 79, volume: 23400 },
+        { id: 5, name: "BITCOIN", symbol: "BTC", price: 68500, change: "+2.1%", rsi: 71, trend: "↑", confidence: 68, volume: 12300 },
+        { id: 6, name: "DOLAR", symbol: "DXY", price: 104.2, change: "-0.2%", rsi: 48, trend: "↓", confidence: 52, volume: 56700 },
+        { id: 7, name: "HAM PETROL", symbol: "WTI", price: 78.5, change: "+0.3%", rsi: 55, trend: "↑", confidence: 61, volume: 23400 },
+        { id: 8, name: "DOĞALGAZ", symbol: "NG", price: 2.85, change: "-1.2%", rsi: 38, trend: "↓", confidence: 43, volume: 8900 }
+    ];
+    
+    // ============================================================
+    // 4. DİĞER VERİLER
+    // ============================================================
+    let alerts = [
+        { id: 1, type: "warning", title: "Likidite Riski", desc: "Piyasa derinliği azalıyor, volatilite artabilir." },
+        { id: 2, type: "danger", title: "Jeopolitik Risk", desc: "Orta Doğu'da gerilim yükseliyor, petrol fiyatları etkilenebilir." },
+        { id: 3, type: "info", title: "Merkez Bankası", desc: "Fed faiz kararını bu hafta açıklayacak." }
+    ];
+    
+    let news = [
+        { title: "Fed faiz kararını açıkladı: Beklendiği gibi sabit kaldı", sentiment: "positive", score: 72, date: "2025-06-15" },
+        { title: "Çin ekonomisi yavaşlıyor, emtia fiyatları baskı altında", sentiment: "negative", score: 35, date: "2025-06-14" },
+        { title: "Altın rekor seviyeye yaklaştı, güvenli liman talebi artıyor", sentiment: "positive", score: 85, date: "2025-06-13" },
+        { title: "Bitcoin ETF onayı sonrası kurumlar piyasaya giriyor", sentiment: "positive", score: 78, date: "2025-06-12" },
+        { title: "Avrupa Merkez Bankası faiz indirim sinyali verdi", sentiment: "positive", score: 68, date: "2025-06-11" }
+    ];
+    
+    let pastSignals = [
+        { asset: "ALTIN", signal: "AL", date: "2025-06-10", result: "+3.2%", entry: 3320, exit: 3425 },
+        { asset: "BIST", signal: "BEKLE", date: "2025-06-09", result: "0%", entry: 10850, exit: 10850 },
+        { asset: "BITCOIN", signal: "SAT", date: "2025-06-08", result: "-1.5%", entry: 69500, exit: 68450 },
+        { asset: "GÜMÜŞ", signal: "AL", date: "2025-06-07", result: "+0.8%", entry: 30.8, exit: 31.0 }
+    ];
+    
+    // AI Tahminleri
+    let aiForecast = { hour1: 72, hour4: 68, day1: 76, week1: 64, month1: 58 };
+    
+    // Portföy Dağılım Önerisi
+    let portfolioAllocation = { gold: 25, stocks: 20, etf: 15, bonds: 15, cash: 10, crypto: 10, alternative: 5 };
+    
+    // Makroekonomik Veriler
+    let macroData = {
+        inflation: 3.2,
+        fedRate: 5.5,
+        unemployment: 3.8,
+        gdp: 2.1,
+        geopoliticalRisk: "Yüksek"
     };
     
-    const prompt = `Sen profesyonel bir içerik üreticisi ve finansal danışmansın.
-
-KONU: ${topic}
-${notes ? 'EK NOTLAR: ' + notes : ''}
-
-Lütfen bu konuda Türkçe, ${stylePrompts[style]} KAPSAMLI ve DETAYLI bir içerik üret.
-
-ÖNEMLİ KURALLAR:
-- Minimum 500 kelime yaz
-- Konuyu derinlemesine ele al
-- Alt başlıklar kullan
-- Örnekler ve açıklamalar ekle
-- Okuyucuya değerli bilgiler sun
-- Sadece tek kelime veya tek cümle yazma, mutlaka uzun ve detaylı içerik üret!
-- En az 4-5 paragraf yaz.`;
+    // ============================================================
+    // 5. YARDIMCI FONKSİYONLAR
+    // ============================================================
+    function formatMoney(amount) { return new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY', minimumFractionDigits: 0 }).format(amount); }
+    function formatUSD(amount) { return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }).format(amount); }
+    function showToast(msg) { alert(msg); }
+    function whatsappLink(text) { window.open(`https://wa.me/905418660202?text=${encodeURIComponent(text)}`, '_blank'); }
     
-    const result = await callGemini(prompt);
-    
-    if(result && result.length > 50) {
-        lastAiContent = result;
-        document.getElementById("aiOutput").innerHTML = `<strong>✅ ${topic} - İçerik Üretildi (${result.split(' ').length} kelime)</strong><br><br>` + result.replace(/\n/g,'<br>');
-    } else {
-        lastAiContent = `📊 ${topic} - Kapsamlı İçerik\n\nBu konu finansal danışmanlık açısından büyük önem taşımaktadır. ${topic} hakkında bilinmesi gereken temel noktalar şunlardır:\n\n1. ${topic} kavramının temel prensipleri\n2. Uygulama stratejileri ve yöntemler\n3. Başarı için kritik faktörler\n4. Sık yapılan hatalar ve çözümleri\n5. Uzun vadeli planlama ve sürdürülebilirlik\n\nBu konuda profesyonel danışmanlık almak için Anadolu Network ile iletişime geçebilirsiniz.`;
-        document.getElementById("aiOutput").innerHTML = lastAiContent.replace(/\n/g,'<br>');
+    // AI Sinyal Üretme (RSI ve teknik göstergelere göre)
+    function generateSignal(asset) {
+        let rsi = asset.rsi || 50;
+        let trend = asset.trend;
+        if (rsi < 35) return { action: "AL", confidence: 85, entry: asset.price, stop: asset.price * 0.98, target: asset.price * 1.05, riskReward: "1:2.5", reason: "RSI aşırı satım bölgesinde, teknik toparlanma bekleniyor." };
+        if (rsi > 70) return { action: "SAT", confidence: 78, entry: asset.price, stop: asset.price * 1.02, target: asset.price * 0.95, riskReward: "1:2", reason: "RSI aşırı alım bölgesinde, kar realizasyonu gelebilir." };
+        if (trend === "↑") return { action: "AL", confidence: 65, entry: asset.price, stop: asset.price * 0.99, target: asset.price * 1.03, riskReward: "1:3", reason: "Yükseliş trendi devam ediyor, momentum güçlü." };
+        if (trend === "↓") return { action: "SAT", confidence: 60, entry: asset.price, stop: asset.price * 1.01, target: asset.price * 0.98, riskReward: "1:2", reason: "Düşüş trendi devam ediyor, satış baskısı var." };
+        return { action: "BEKLE", confidence: 50, entry: asset.price, stop: null, target: null, riskReward: "-", reason: "Piyasa belirsiz, net sinyal yok." };
     }
-}
-
-// ============ ÇIKTI BUTONLARI ============
-function copyAiContent() { if(lastAiContent) { navigator.clipboard.writeText(lastAiContent); alert("✅ Panoya kopyalandı! Word'e Ctrl+V ile yapıştırabilirsiniz."); } else alert("Önce içerik üretin!"); }
-function downloadAiTXT() { if(lastAiContent) { const b=new Blob([lastAiContent],{type:"text/plain"}); const a=document.createElement("a"); a.href=URL.createObjectURL(b); a.download="icerik_"+Date.now()+".txt"; a.click(); alert("✅ TXT indirildi!"); } else alert("Önce içerik üretin!"); }
-function downloadAiPDF() { if(!lastAiContent) return alert("Önce içerik üretin!"); const {jsPDF}=window.jspdf; const d=new jsPDF(); d.setFontSize(14); d.text("Anadolu Network - AI İçerik",20,20); d.setFontSize(9); const lines=d.splitTextToSize(lastAiContent,170); d.text(lines,20,35); d.save("icerik_"+Date.now()+".pdf"); alert("✅ PDF indirildi!"); }
-function printAiContent() { if(!lastAiContent) return alert("Önce içerik üretin!"); const w=window.open('','','width=800,height=600'); w.document.write(`<html><head><title>Anadolu Network</title></head><body style="font-family:Arial; padding:20px;"><pre>${lastAiContent}</pre></body></html>`); w.document.close(); w.print(); }
-function sendWhatsAppContent() { if(!lastAiContent) return alert("Önce içerik üretin!"); window.open(`https://wa.me/905418660202?text=${encodeURIComponent(lastAiContent.substring(0,800))}`,'_blank'); }
-function sendEmailContent() { if(!lastAiContent) return alert("Önce içerik üretin!"); window.open(`mailto:?subject=Anadolu Network İçerik&body=${encodeURIComponent(lastAiContent.substring(0,1000))}`,'_blank'); }
-
-// ============ E-KİTAP ============
-function addChapter() { const title = prompt("Bölüm başlığı:"); if(title) { ebookChapters.push({title, content:''}); renderEbookChapters(); } }
-function renderEbookChapters() { document.getElementById("ebookChapters").innerHTML = ebookChapters.map((ch,i) => `<div class="chapter-item"><span>📘 Bölüm ${i+1}: ${ch.title} ${ch.content?'✅':'⏳'}</span><button onclick="generateChapter(${i})" class="inline-btn" style="width:auto; font-size:0.6rem;">🤖 Üret</button><button onclick="ebookChapters.splice(${i},1);renderEbookChapters();" class="delete-btn inline-btn" style="width:auto;">🗑️</button></div>`).join('') || '<p style="font-size:0.7rem;">Henüz bölüm eklenmedi. + Bölüm Ekle butonuna tıklayın.</p>'; }
-async function generateChapter(i) { if(!ebookChapters[i]) return; document.getElementById("ebookChapters").innerHTML += "<p style='font-size:0.65rem;'>⏳ Bölüm "+(i+1)+" üretiliyor...</p>"; const result = await callGemini(`"${ebookChapters[i].title}" konusunda Türkçe, detaylı, en az 500 kelimelik bir e-kitap bölümü yaz. Alt başlıklar, örnekler ve açıklamalar içersin.`); ebookChapters[i].content = result || `${ebookChapters[i].title} - detaylı içerik.`; renderEbookChapters(); }
-async function generateAllChapters() { for(let i=0; i<ebookChapters.length; i++) { if(!ebookChapters[i].content) await generateChapter(i); } alert("✅ Tüm bölümler üretildi! PDF indirebilirsiniz."); }
-function downloadEbookPDF() { if(!ebookChapters.length) return alert("En az 1 bölüm ekleyin!"); const {jsPDF}=window.jspdf; const d=new jsPDF(); d.setFontSize(16); d.text("Anadolu Network - E-Kitap",20,20); let y=35; ebookChapters.forEach((ch,i) => { if(y>270) { d.addPage(); y=20; } d.setFontSize(13); d.text(`Bölüm ${i+1}: ${ch.title}`,20,y); y+=8; d.setFontSize(9); const lines = d.splitTextToSize(ch.content||'İçerik üretiliyor...',170); lines.forEach(l => { if(y>280) { d.addPage(); y=20; } d.text(l,20,y); y+=5; }); y+=10; }); d.save("EKitap_"+Date.now()+".pdf"); alert("✅ E-Kitap PDF indirildi!"); }
-
-// ============ PROFİL ============
-function saveProfile() { let name = document.getElementById("userName").value; let email = document.getElementById("userEmail").value; let plan = document.getElementById("userPlan").value; if(!name) return alert("Adınızı girin!"); document.getElementById("profileStatus").innerHTML = `<span class="sub-badge ${plan.toLowerCase()}">${plan}</span> 👤 ${name} 📧 ${email||'—'}`; }
-function buyPlan(plan, price) { let name = document.getElementById("userName").value || "Misafir"; window.open(`https://wa.me/905418660202?text=${encodeURIComponent(`${plan} planı almak istiyorum. ${fmt(price)}. ${name}`)}`,'_blank'); }
-
-// ============ FIRE ============
-function calculateFIRE() { let inc=+document.getElementById("fire_income").value, exp=+document.getElementById("fire_expense").value; let pas=+document.getElementById("fire_passive").value, age=+document.getElementById("fire_age").value; let cap=+document.getElementById("fire_capital").value, debt=+document.getElementById("fire_debt").value||0; let ret=+document.getElementById("fire_return").value/100, inf=+document.getElementById("fire_inflation").value/100; let net=cap-debt, ms=inc-exp, ann=Math.max(0,exp*12-pas*12), target=ann*25; let rr=(1+ret)/(1+inf)-1; if(rr<0) rr=0; let y=0, bal=net; if(target>net&&ms>0){ let mr=rr/12; while(bal<target&&y<60){ bal=bal*(1+mr)+ms*((Math.pow(1+mr,12)-1)/mr); y++; } } else if(net>=target) y=0; else y=99; document.getElementById("fireResult").innerHTML = `🎯 Hedef: ${fmt(target)}\n💰 Birikim: ${fmt(cap)}\n💳 Borç: ${fmt(debt)}\n📊 Net: ${fmt(net)}\n📆 FIRE Yaşı: ${age+y>99?'90+':age+y} (${y>60?'60+':y}y)\n📈 Tasarruf: ${fmt(ms)}/ay`; window.lastFIRE = {target,cap,debt,net,fireAge:age+y,years:y,ms}; }
-function calculateAllFIRE() { calculateFIRE(); let inc=+document.getElementById("fire_income").value, exp=+document.getElementById("fire_expense").value; let pas=+document.getElementById("fire_passive").value; let cap=+document.getElementById("fire_capital").value, debt=+document.getElementById("fire_debt").value||0; let ret=+document.getElementById("fire_return").value/100, inf=+document.getElementById("fire_inflation").value/100; let net=cap-debt, ms=inc-exp, ann=Math.max(0,exp*12-pas*12); let rr=(1+ret)/(1+inf)-1; if(rr<0) rr=0; function yt(t){ if(t<=net) return 0; let b=net,y=0,mr=rr/12; while(b<t&&y<60){ b=b*(1+mr)+ms*((Math.pow(1+mr,12)-1)/mr); y++; } return y; } let targets={lean:ann*25,fat:ann*35,barista:ann*20,coast:ann*15}; let yl=yt(targets.lean), yf=yt(targets.fat), yb=yt(targets.barista), yc=yt(targets.coast); document.getElementById("leanTarget").innerHTML=fmt(targets.lean); document.getElementById("leanYears").innerHTML=yl<60?`${yl}y`:'60y+'; document.getElementById("fatTarget").innerHTML=fmt(targets.fat); document.getElementById("fatYears").innerHTML=yf<60?`${yf}y`:'60y+'; document.getElementById("baristaTarget").innerHTML=fmt(targets.barista); document.getElementById("baristaYears").innerHTML=yb<60?`${yb}y`:'60y+'; document.getElementById("coastTarget").innerHTML=fmt(targets.coast); document.getElementById("coastYears").innerHTML=yc<60?`${yc}y`:'60y+'; }
-function downloadFIREPDF() { if(!window.lastFIRE) return alert("Önce hesaplayın!"); const {jsPDF}=window.jspdf; const d=new jsPDF(); const f=window.lastFIRE; d.text("FIRE Raporu - Anadolu Network",20,20); d.text(`Hedef: ${fmt(f.target)} | Net: ${fmt(f.net)} | FIRE: ${f.fireAge} yaş (${f.years}y)`,20,35); d.save("FIRE.pdf"); alert("✅ PDF indirildi!"); }
-
-// ============ FİNANSAL SAĞLIK ============
-function updateFinancialHealth() { let debt=+document.getElementById("debt").value, rec=+document.getElementById("receivables").value; let em=+document.getElementById("emergency").value, oth=+document.getElementById("otherAssets").value; let pt=portfolio.reduce((s,a)=>s+a.qty*a.price,0), nw=pt+rec+em+oth-debt; document.getElementById("netWorthDisplay").innerHTML=`Net Servet: ${fmt(nw)}`; let inc=+document.getElementById("fire_income").value, exp=+document.getElementById("fire_expense").value; let sr=inc?((inc-exp)/inc*100):0, sc=Math.min(100,Math.max(0,40+Math.min(30,sr*.8))); document.getElementById("healthScore").innerHTML=`Skor: ${Math.round(sc)}/100 ${sc>=70?'✅':sc>=40?'⚠️':'❌'}`; document.getElementById("healthAdvice").innerHTML=`💡 ${sr<30?'Tasarrufu artırın.':'✅ Sağlıklı!'}`; }
-
-// ============ PORTFÖY ============
-function getPortfolioTotal() { return portfolio.reduce((s,a)=>s+a.qty*a.price,0); }
-function renderPortfolio() { let t=0, h=''; portfolio.forEach(a=>{ let v=a.qty*a.price; t+=v; h+=`<tr><td>${a.name}</td><td>${a.qty}</td><td>₺${a.price.toFixed(2)}</td><td>₺${v.toFixed(0)}</td><td><button onclick="delPortfolio(${a.id})" class="delete-btn">🗑️</button></td></tr>`; }); document.getElementById("portfolioBody").innerHTML=h; document.getElementById("portfolioTotal").innerText=fmt(t); updateChart(); }
-function updateChart() { let cm=new Map(); portfolio.forEach(a=>{ cm.set(a.cls,(cm.get(a.cls)||0)+a.qty*a.price); }); if(chartInstance) chartInstance.destroy(); let ctx=document.getElementById("portfolioChart").getContext("2d"); chartInstance=new Chart(ctx,{type:'doughnut',data:{labels:[...cm.keys()],datasets:[{data:[...cm.values()],backgroundColor:['#4ade80','#fbbf24','#60a5fa','#f7931a','#a78bfa','#34d399','#f472b6','#94a3b8']}]}}); document.getElementById("allocationPercent").innerHTML=[...cm].map(([c,v])=>`${c}: ${((v/getPortfolioTotal())*100).toFixed(1)}%`).join(' | '); }
-function addPortfolioAsset() { let n=prompt("Varlık:"), q=+prompt("Miktar:"), p=+prompt("Fiyat:"), c=prompt("Sınıf:"); if(n&&q>0&&p>0&&c){ portfolio.push({id:Date.now(),name:n,qty:q,price:p,cls:c,color:'#'+Math.floor(Math.random()*16777215).toString(16)}); save(); renderPortfolio(); } }
-function delPortfolio(id) { if(confirm("Sil?")){ portfolio=portfolio.filter(a=>a.id!==id); save(); renderPortfolio(); } }
-function refreshPrices() { portfolio.forEach(a=>{ a.price=Math.max(1,a.price*(1+(Math.random()*.08-.03))); }); renderPortfolio(); }
-
-// ============ CFO ============
-function calculateCFO() { let r=+document.getElementById("cf_revenue").value, p=+document.getElementById("cf_profit").value; let pm=(p/r)*100; document.getElementById("cfoResult").innerHTML=`Kâr: %${pm.toFixed(1)} | ROA: %${((p/+document.getElementById("cf_assets").value)*100).toFixed(1)}`; document.getElementById("cfoAdvice").innerHTML=`🤖 ${pm<10?'Kâr marjı düşük.':'✅ Sağlıklı.'}`; }
-
-// ============ MARKET ============
-function renderMarket() { let h=''; let cats={danismanlik:'📘 Danışmanlık',egitim:'🎓 Eğitim',dijital:'💻 Dijital'}; for(let c in cats){ h+=`<strong>${cats[c]}</strong>`; marketProducts.filter(p=>p.cat===c).forEach(p=>{ h+=`<div class="product-item"><span>${p.icon||'📦'} ${p.name}</span><span>${p.price?fmt(p.price):'Ücretsiz'}</span><div><button class="whatsapp-btn inline-btn" onclick="addToCart('${p.name}',${p.price})">Sepet</button><button class="delete-btn inline-btn" onclick="deleteMarketProduct(${p.id})">🗑️</button></div></div>`; }); } document.getElementById("digitalMarketList").innerHTML=h; }
-function addMarketProduct() { let n=document.getElementById("newMarketName").value.trim(), p=+document.getElementById("newMarketPrice").value, c=document.getElementById("newMarketCat").value; if(!n) return alert("Ürün adı girin!"); marketProducts.push({id:Date.now(),name:n,price:isNaN(p)?0:p,cat:c,icon:'📦'}); save(); renderMarket(); }
-function deleteMarketProduct(id) { if(confirm("Sil?")){ marketProducts=marketProducts.filter(p=>p.id!==id); save(); renderMarket(); } }
-function addToCart(n,p) { cart.push({n,p}); updateCartUI(); }
-function updateCartUI() { document.getElementById("cartCount").innerText=cart.length; document.getElementById("cartTotal").innerText=fmt(cart.reduce((s,i)=>s+i.p,0)); document.getElementById("cartItems").innerHTML=cart.map((i,idx)=>`<div>${i.n} - ${fmt(i.p)} <button onclick="cart.splice(${idx},1);updateCartUI();">❌</button></div>`).join('')||'Boş'; }
-function showCart() { document.getElementById("cartModal").classList.toggle("hidden"); }
-function closeCart() { document.getElementById("cartModal").classList.add("hidden"); }
-function sendWhatsAppOrder() { if(!cart.length) return alert("Sepet boş!"); let m="Sipariş:%0A"; cart.forEach(i=>m+=`- ${i.n}: ${fmt(i.p)}%0A`); window.open(`https://wa.me/905418660202?text=${encodeURIComponent(m+'Toplam: '+fmt(cart.reduce((s,i)=>s+i.p,0)))}`,'_blank'); }
-
-// ============ MENTAL & LİDERLİK ============
-function analyzeMentalHealth() { let s=+document.getElementById("mental_stress").value, sl=+document.getElementById("mental_sleep").value; document.getElementById("mentalHealthOut").innerHTML=((s+(10-sl))/2)>7?'⚠️ Destek önerilir.':'✅ İyi.'; }
-function analyzeLeadership() { let style=+document.getElementById("lead_style").value; document.getElementById("leadershipOut").innerHTML=`🧭 ${style<=3?'Otokratik':style<=7?'Demokratik':'Katılımcı'} lider.`; }
-
-// ============ YAŞAM ÇARKI ============
-function renderWheel() { let areas=["Kariyer","Finans","Sağlık","Aile","Gelişim","Sosyal","Hobi","Ruhsal","Yetenek", "İstek"]; let h='<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">'; areas.forEach((a,i)=>{ h+=`<div><label>${a}</label><input type="range" id="wheel_${i}" min="1" max="10" value="5"><span id="wheelVal_${i}">5</span></div>`; }); h+='</div>'; document.getElementById("wheelContainer").innerHTML=h; for(let i=0;i<8;i++){ let s=document.getElementById(`wheel_${i}`); if(s) s.oninput=function(){document.getElementById(`wheelVal_${i}`).innerText=this.value;}; } }
-function analyzeLifeWheel() { let s=0; for(let i=0;i<8;i++) s+=+document.getElementById(`wheel_${i}`).value; document.getElementById("lifeWheelOut").innerHTML=`Ort: ${(s/8).toFixed(1)}/10`; }
-
-// ============ DOĞAL ÜRÜNLER ============
-function renderNatural() { document.getElementById("naturalProductsList").innerHTML=naturalProducts.map(p=>`<div class="product-item"><span>${p.icon} ${p.name}</span><span>${fmt(p.price)}</span><button class="whatsapp-btn inline-btn" onclick="addToCart('${p.name}',${p.price})">Sepet</button></div>`).join(''); }
-
-// ============ ADMIN ============
-function accessAdmin() { if(document.getElementById("adminPass").value==="admin2026"){ document.getElementById("adminPanel").classList.remove("hidden"); renderAdminMarket(); renderAdminPortfolio(); let logs=JSON.parse(localStorage.getItem("anadolu_logs")||"[]"); document.getElementById("dataBody").innerHTML=logs.reverse().slice(0,20).map(l=>`<tr><td>${l.name}</td><td>${l.plan}</td><td>${l.action}</td><td>${l.date}</td></tr>`).join(''); } else alert("Şifre: admin2026"); }
-function renderAdminMarket() { document.getElementById("adminMarketList").innerHTML=marketProducts.map(p=>`<div class="flex-between"><span>${p.icon||'📦'} ${p.name} - ${fmt(p.price)}</span><button class="delete-btn" onclick="adminDeleteMarket(${p.id})">🗑️</button></div>`).join(''); }
-function renderAdminPortfolio() { document.getElementById("adminPortfolioList").innerHTML=portfolio.map(a=>`<div class="flex-between"><span>${a.name} | ${a.qty} | ₺${a.price}</span><button class="delete-btn" onclick="adminDeletePortfolio(${a.id})">🗑️</button></div>`).join(''); }
-function adminAddMarket() { let n=document.getElementById("adminMarketName").value.trim(), p=+document.getElementById("adminMarketPrice").value, c=document.getElementById("adminMarketCat").value; if(!n) return alert("Ürün adı girin!"); marketProducts.push({id:Date.now(),name:n,price:isNaN(p)?0:p,cat:c,icon:'📦'}); save(); renderMarket(); renderAdminMarket(); }
-function adminDeleteMarket(id) { if(confirm("Sil?")){ marketProducts=marketProducts.filter(p=>p.id!==id); save(); renderMarket(); renderAdminMarket(); } }
-function adminAddPortfolio() { let n=document.getElementById("adminAssetName").value.trim(), q=+document.getElementById("adminAssetQty").value; let p=+document.getElementById("adminAssetPrice").value, c=document.getElementById("adminAssetClass").value.trim(); if(!n||!q||!p||!c) return alert("Tüm alanları doldurun!"); portfolio.push({id:Date.now(),name:n,qty:q,price:p,cls:c,color:'#'+Math.floor(Math.random()*16777215).toString(16)}); save(); renderPortfolio(); renderAdminPortfolio(); }
-function adminDeletePortfolio(id) { if(confirm("Sil?")){ portfolio=portfolio.filter(a=>a.id!==id); save(); renderPortfolio(); renderAdminPortfolio(); } }
-function clearAllData() { if(confirm("Tüm loglar silinecek!")){ localStorage.removeItem("anadolu_logs"); accessAdmin(); } }
-
-// ============ INIT ============
-function init() {
-    if(geminiApiKey) document.getElementById("geminiApiKeyInput").value = geminiApiKey;
-    renderPortfolio(); renderMarket(); renderNatural(); renderWheel(); renderEbookChapters();
-    updateFinancialHealth();
-}
-init();
+    
+    // Toplam portföy değeri hesaplama
+    function calculateTotalPortfolio() {
+        return assets.reduce((sum, a) => sum + a.price, 0) * 100;
+    }
+    
+    // Risk skoru hesaplama
+    function calculateRiskScore() {
+        let avgRsi = assets.reduce((sum, a) => sum + a.rsi, 0) / assets.length;
+        if (avgRsi > 70) return { score: 75, level: "Yüksek Risk", color: "red" };
+        if (avgRsi > 60) return { score: 55, level: "Orta Risk", color: "yellow" };
+        if (avgRsi > 40) return { score: 35, level: "Düşük Risk", color: "green" };
+        return { score: 25, level: "Çok Düşük Risk", color: "green" };
+    }
+    
+    // ============================================================
+    // 6. YÖNETİM PANELİ (Admin)
+    // ============================================================
+    const adminPassword = "admin123";
+    
+    function openAdminPanel() {
+        if (!currentUser || currentUser.role !== "admin") {
+            alert("Yönetici değilsiniz! Lütfen admin hesabıyla giriş yapın.\nAdmin: admin@finans.com / Admin123!");
+            return;
+        }
+        const modal = document.createElement("div");
+        modal.className = "modal";
+        modal.innerHTML = `
+            <div class="modal-content">
+                <h2 class="text-2xl font-bold text-gold mb-4">👑 Yönetici Paneli</h2>
+                <input type="password" id="adminPass" placeholder="Şifre" class="input-dark mb-4">
+                <button id="verifyAdmin" class="w-full btn-gold py-2 rounded-lg">Giriş</button>
+            </div>
+        `;
+        document.body.appendChild(modal);
+        document.getElementById("verifyAdmin").onclick = () => {
+            if (document.getElementById("adminPass").value === adminPassword) {
+                modal.remove();
+                renderAdminModal();
+            } else { alert("Şifre yanlış!"); }
+        };
+    }
+    
+    function renderAdminModal() {
+        const modal = document.createElement("div");
+        modal.className = "modal";
+        modal.innerHTML = `
+            <div class="modal-content">
+                <h2 class="text-2xl font-bold text-gold mb-4">📦 Varlık Yönetimi</h2>
+                <div class="mb-4">
+                    <input type="text" id="assetName" placeholder="Varlık Adı" class="input-dark mb-2">
+                    <input type="text" id="assetSymbol" placeholder="Sembol (örn: BTC, XAUUSD)" class="input-dark mb-2">
+                    <input type="number" id="assetPrice" placeholder="Fiyat ($)" class="input-dark mb-2">
+                    <input type="number" id="assetRsi" placeholder="RSI (0-100)" class="input-dark mb-2">
+                    <select id="assetTrend" class="input-dark mb-2">
+                        <option value="↑">Yükseliş ↑</option>
+                        <option value="↓">Düşüş ↓</option>
+                        <option value="→">Yatay →</option>
+                    </select>
+                    <button id="addAssetBtn" class="w-full btn-gold py-2 rounded-lg">➕ Varlık Ekle</button>
+                </div>
+                <hr class="border-gold/30 my-3">
+                <h3 class="text-gold font-bold mb-2">Mevcut Varlıklar (${assets.length})</h3>
+                <div id="assetList" class="max-h-60 overflow-y-auto"></div>
+                <button class="mt-4 w-full py-2 rounded-lg border border-gray-500 text-gray-300" onclick="this.closest('.modal').remove()">Kapat</button>
+            </div>
+        `;
+        document.body.appendChild(modal);
+        renderAssetListInModal();
+        document.getElementById("addAssetBtn").onclick = () => {
+            let name = document.getElementById("assetName").value;
+            let symbol = document.getElementById("assetSymbol").value;
+            let price = parseFloat(document.getElementById("assetPrice").value);
+            let rsi = parseInt(document.getElementById("assetRsi").value);
+            let trend = document.getElementById("assetTrend").value;
+            if (name && price) {
+                let newId = assets.length + 1;
+                assets.push({ id: newId, name, symbol, price, change: "0%", rsi: rsi || 50, trend: trend, confidence: 50, volume: 0 });
+                showToast("✅ Varlık eklendi!");
+                renderAssetListInModal();
+                document.getElementById("assetName").value = "";
+                document.getElementById("assetSymbol").value = "";
+                document.getElementById("assetPrice").value = "";
+                document.getElementById("assetRsi").value = "";
+                render();
+            } else { alert("En az Ad ve Fiyat girmelisiniz!"); }
+        };
+    }
+    
+    function renderAssetListInModal() {
+        const container = document.getElementById("assetList");
+        if (!container) return;
+        container.innerHTML = assets.map(a => `
+            <div class="flex justify-between items-center p-2 border-b border-gray-600">
+                <span><span class="text-gold">${a.name}</span> (${a.symbol}) - ${formatUSD(a.price)}</span>
+                <button onclick="deleteAsset(${a.id})" class="text-red-400 text-sm">🗑️ Sil</button>
+            </div>
+        `).join('');
+    }
+    
+    function deleteAsset(id) {
+        if (confirm("Bu varlığı silmek istediğinize emin misiniz?")) {
+            assets = assets.filter(a => a.id !== id);
+            showToast("🗑️ Varlık silindi!");
+            if(document.getElementById("assetList")) renderAssetListInModal();
+            render();
+        }
+    }
+    
+    // ============================================================
+    // 7. KULLANICI GİRİŞ / KAYIT / ABONELİK
+    // ============================================================
+    function handleLogin(email, password) {
+        let user = users.find(u => u.email === email && u.password === password);
+        if (user) {
+            currentUser = user;
+            isAdmin = user.role === "admin";
+            localStorage.setItem("yatirim_user", JSON.stringify(user));
+            render();
+            return true;
+        }
+        return false;
+    }
+    
+    function handleRegister(name, email, password) {
+        if (users.find(u => u.email === email)) return false;
+        let newUser = { id: users.length + 1, email, password, name, role: "user", subscription: "basic", avatar: name[0] };
+        users.push(newUser);
+        return handleLogin(email, password);
+    }
+    
+    function handleLogout() { currentUser = null; isAdmin = false; localStorage.removeItem("yatirim_user"); render(); }
+    
+    function upgradeSubscription(planName) {
+        if (currentUser) {
+            currentUser.subscription = planName.toLowerCase();
+            let userIndex = users.findIndex(u => u.id === currentUser.id);
+            if (userIndex !== -1) users[userIndex].subscription = planName.toLowerCase();
+            localStorage.setItem("yatirim_user", JSON.stringify(currentUser));
+            showToast(`✅ Aboneliğiniz ${planName} paketine yükseltildi!`);
+            render();
+        } else {
+            alert("Lütfen önce giriş yapın!");
+            openLoginModal();
+        }
+    }
+    
+    function openLoginModal() {
+        const modal = document.createElement("div");
+        modal.className = "modal";
+        modal.innerHTML = `
+            <div class="modal-content">
+                <div class="flex gap-2 mb-4 border-b border-gray-700">
+                    <button id="loginTab" class="flex-1 py-2 text-gold border-b-2 border-gold">Giriş</button>
+                    <button id="registerTab" class="flex-1 py-2 text-gray-400">Kayıt Ol</button>
+                </div>
+                <div id="loginForm">
+                    <input type="email" id="loginEmail" placeholder="E-posta" class="input-dark mb-3">
+                    <input type="password" id="loginPassword" placeholder="Şifre" class="input-dark mb-4">
+                    <button id="doLogin" class="w-full btn-gold py-2 rounded-lg">Giriş Yap</button>
+                </div>
+                <div id="registerForm" class="hidden">
+                    <input type="text" id="regName" placeholder="Ad Soyad" class="input-dark mb-3">
+                    <input type="email" id="regEmail" placeholder="E-posta" class="input-dark mb-3">
+                    <input type="password" id="regPassword" placeholder="Şifre (min 6 karakter)" class="input-dark mb-4">
+                    <button id="doRegister" class="w-full btn-gold py-2 rounded-lg">Kayıt Ol</button>
+                </div>
+                <p class="text-center text-gray-400 text-sm mt-4">Demo: demo@finans.com / demo123<br>Admin: admin@finans.com / Admin123!</p>
+            </div>
+        `;
+        document.body.appendChild(modal);
+        
+        document.getElementById("loginTab").onclick = () => {
+            document.getElementById("loginForm").classList.remove("hidden");
+            document.getElementById("registerForm").classList.add("hidden");
+            document.getElementById("loginTab").classList.add("border-b-2", "border-gold", "text-gold");
+            document.getElementById("registerTab").classList.remove("border-b-2", "border-gold", "text-gold");
+            document.getElementById("registerTab").classList.add("text-gray-400");
+        };
+        document.getElementById("registerTab").onclick = () => {
+            document.getElementById("registerForm").classList.remove("hidden");
+            document.getElementById("loginForm").classList.add("hidden");
+            document.getElementById("registerTab").classList.add("border-b-2", "border-gold", "text-gold");
+            document.getElementById("loginTab").classList.remove("border-b-2", "border-gold", "text-gold");
+            document.getElementById("loginTab").classList.add("text-gray-400");
+        };
+        document.getElementById("doLogin").onclick = () => {
+            if (handleLogin(document.getElementById("loginEmail").value, document.getElementById("loginPassword").value)) modal.remove();
+            else alert("Hatalı giriş!");
+        };
+        document.getElementById("doRegister").onclick = () => {
+            if (handleRegister(document.getElementById("regName").value, document.getElementById("regEmail").value, document.getElementById("regPassword").value)) modal.remove();
+            else alert("Kayıt başarısız! E-posta kullanımda olabilir.");
+        };
+    }
+    
+    // ============================================================
+    // 8. TÜM MODÜLLER (13 Modül)
+    // ============================================================
+    
+    // 1. GENEL BAKIŞ
+    function renderOverview() {
+        let totalPortfolio = calculateTotalPortfolio();
+        let goldSignal = generateSignal(assets[0]);
+        let risk = calculateRiskScore();
+        return `
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                <div class="card p-4 text-center"><p class="text-gray-400">Toplam Portföy Değeri</p><h2 class="text-2xl font-bold text-gold">${formatMoney(totalPortfolio)}</h2><p class="text-emerald-400 text-sm">+%12.4 bu ay</p></div>
+                <div class="card p-4 text-center"><p class="text-gray-400">Risk Skoru</p><h2 class="text-2xl font-bold text-gold">${risk.score}/100</h2><p class="text-yellow-400">${risk.level}</p></div>
+                <div class="card p-4 text-center"><p class="text-gray-400">AI Güven Skoru</p><h2 class="text-2xl font-bold text-gold">${goldSignal.confidence}/100</h2><p class="text-emerald-400">Sinyal: ${goldSignal.action}</p></div>
+                <div class="card p-4 text-center"><p class="text-gray-400">Aktif Abonelik</p><h2 class="text-2xl font-bold text-gold">${currentUser?.subscription?.toUpperCase() || "BASIC"}</h2><p class="text-gray-400">${currentUser?.name || "Misafir"}</p></div>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="card"><h3 class="text-gold font-bold mb-3">📊 Öne Çıkan Varlıklar</h3>${assets.slice(0,4).map(a => `<div class="flex justify-between p-2 border-b border-gray-700"><span>${a.name}</span><span class="text-gold">${formatUSD(a.price)}</span><span class="${a.change.includes('+') ? 'text-emerald-400' : 'text-red-400'}">${a.change}</span></div>`).join('')}</div>
+                <div class="card"><h3 class="text-gold font-bold mb-3">🤖 AI Sinyali (ALTIN)</h3><div class="bg-gold-light p-3 rounded-lg"><p class="text-gold text-sm">📊 ${goldSignal.reason}</p><p class="mt-2"><span class="text-gold">Öneri:</span> <strong class="text-white">${goldSignal.action}</strong> (Güven: ${goldSignal.confidence}%)</p></div></div>
+            </div>
+            <div class="card mt-6"><h3 class="text-gold font-bold mb-3">📰 Son Haberler</h3><div class="space-y-2">${news.slice(0,3).map(n => `<div class="flex justify-between items-center p-2 border-b border-gray-700"><span>${n.title}</span><span class="${n.sentiment === 'positive' ? 'text-emerald-400' : 'text-red-400'} text-sm">${n.sentiment === 'positive' ? 'Olumlu' : 'Olumsuz'}</span></div>`).join('')}</div></div>
+        `;
+    }
+    
+    // 2. VARLIK İZLEME
+    function renderAssetsModule() {
+        return `<div class="card"><h3 class="text-gold font-bold mb-3">📈 Tüm Varlıklar</h3><div class="overflow-x-auto"><table class="w-full"><thead><tr class="border-b border-gray-700"><th class="text-left p-2">Varlık</th><th class="text-left p-2">Sembol</th><th class="text-left p-2">Fiyat</th><th class="text-left p-2">Değişim</th><th class="text-left p-2">RSI</th><th class="text-left p-2">Trend</th><th class="text-left p-2">Güven</th><th class="text-left p-2">Hacim</th></tr></thead><tbody>${assets.map(a => `<tr class="border-b border-gray-800"><td class="p-2 font-medium">${a.name}<td class="p-2 text-gray-400">${a.symbol}<td class="p-2">${formatUSD(a.price)}<td class="p-2 ${a.change.includes('+') ? 'text-emerald-400' : 'text-red-400'}">${a.change}<td class="p-2">${a.rsi}<td class="p-2">${a.trend}<td class="p-2"><div class="w-full bg-gray-700 rounded-full h-2"><div class="bg-gold h-2 rounded-full" style="width: ${a.confidence}%"></div></div><span class="text-xs">${a.confidence}%</span><td class="p-2">${(a.volume/1000).toFixed(0)}K</tr>`).join('')}</tbody></table></div>${isAdmin ? `<button onclick="openAdminPanel()" class="mt-4 btn-gold px-4 py-2 rounded-lg w-full">+ Varlık Yönetimi</button>` : ''}</div>`;
+    }
+    
+    // 3. TEKNİK ANALİZ
+    function renderTechnicalModule() {
+        setTimeout(() => { let ctx = document.getElementById('techChart')?.getContext('2d'); if(ctx) new Chart(ctx, { type: 'line', data: { labels: ['1 Gün', '2 Gün', '3 Gün', '4 Gün', '5 Gün', '6 Gün'], datasets: [{ label: 'ALTIN (XAUUSD)', data: [3300,3320,3340,3360,3350,3365], borderColor: '#f5b042', fill: false }] } }); }, 100);
+        return `<div class="card"><h3 class="text-gold font-bold mb-3">📉 Teknik Analiz (ALTIN)</h3><div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">${assets.slice(0,4).map(a => `<div class="text-center p-3 bg-[#0f2c44] rounded-lg"><p class="font-bold">${a.name}</p><p>RSI: ${a.rsi}</p><p>${a.rsi > 70 ? '🔴 Aşırı Alım' : (a.rsi < 30 ? '🟢 Aşırı Satım' : '⚪ Nötr')}</p><p class="text-xs text-gray-400">Momentum: ${a.trend}</p></div>`).join('')}</div><canvas id="techChart" height="200"></canvas><div class="mt-4 bg-gold-light p-3 rounded-lg"><p class="text-gold text-sm">📊 Teknik Özet: RSI 62 seviyesinde (nötr), EMA20/50 altın kesişim yaptı, yükseliş trendi devam ediyor. Bollinger Bandı üst banda yakın, kısa vadeli düzeltme gelebilir.</p></div></div>`;
+    }
+    
+    // 4. AI TAHMİNLERİ
+    function renderAIForecastModule() {
+        return `<div class="card"><h3 class="text-gold font-bold mb-3">🤖 AI Yön Tahminleri (ALTIN)</h3><div class="grid grid-cols-5 gap-4 mb-6">${Object.entries(aiForecast).map(([k,v]) => `<div class="metric-card"><p class="text-gray-400 text-sm">${k === 'hour1' ? '1 Saat' : k === 'hour4' ? '4 Saat' : k === 'day1' ? '1 Gün' : k === 'week1' ? '1 Hafta' : '1 Ay'}</p><p class="text-2xl font-bold text-gold">%${v}</p><div class="w-full bg-gray-700 rounded-full h-1"><div class="bg-gold h-1 rounded-full" style="width: ${v}%"></div></div><span class="text-xs text-gray-400">Yükseliş Olasılığı</span></div>`).join('')}</div><div class="bg-[#0f2c44] p-4 rounded-lg"><p class="text-gold font-semibold">🧠 AI Model Yorumu:</p><p class="text-sm">Makine öğrenmesi modelimiz (XGBoost + LSTM ensemble) son 30 günlük verileri analiz etti. Teknik göstergeler ve makro veriler yükselişi destekliyor. RSI aşırı alım bölgesine yaklaşsa da momentum devam ediyor. Jeopolitik riskler altın talebini artırıyor. Hedef fiyat: 3450$</p></div></div>`;
+    }
+    
+    // 5. AI SİNYALLER
+    function renderSignalsModule() {
+        let goldSignal = generateSignal(assets[0]);
+        let signalClass = goldSignal.action === "AL" ? "signal-buy" : (goldSignal.action === "SAT" ? "signal-sell" : "signal-hold");
+        return `<div class="card"><h3 class="text-gold font-bold mb-3">📢 AI Sinyaller</h3><div class="${signalClass}"><h2 class="text-3xl font-bold white-text">${goldSignal.action}</h2><p class="text-gold">Güven Skoru: ${goldSignal.confidence}/100</p><p class="text-sm mt-2">${goldSignal.reason}</p>${goldSignal.action !== "BEKLE" ? `<div class="grid grid-cols-3 gap-4 mt-3"><div><p class="text-gray-400 text-sm">Giriş Fiyatı</p><p class="text-xl font-bold">${formatUSD(goldSignal.entry)}</p></div><div><p class="text-gray-400 text-sm">Stop Loss</p><p class="text-xl font-bold text-red-400">${formatUSD(goldSignal.stop)}</p></div><div><p class="text-gray-400 text-sm">Take Profit</p><p class="text-xl font-bold text-emerald-400">${formatUSD(goldSignal.target)}</p></div></div><p class="mt-2">Risk/Ödül Oranı: ${goldSignal.riskReward}</p>` : '<p class="mt-2">Piyasa belirsiz, yeni sinyal bekleniyor.</p>}</div><h4 class="text-gold font-semibold mb-2 mt-4">📜 Geçmiş Sinyaller</h4><div class="overflow-x-auto"><table class="w-full text-sm"><thead><tr class="border-b border-gray-700"><th>Tarih</th><th>Varlık</th><th>Sinyal</th><th>Giriş</th><th>Çıkış</th><th>Getiri</th></table></thead><tbody>${pastSignals.map(s => `<tr class="border-b border-gray-800"><td class="p-2">${s.date}<td>${s.asset}<td class="${s.signal === 'AL' ? 'text-emerald-400' : (s.signal === 'SAT' ? 'text-red-400' : 'text-yellow-400')}">${s.signal}<td class="p-2">${formatUSD(s.entry)}<td class="p-2">${formatUSD(s.exit)}<td class="${s.result.includes('+') ? 'text-emerald-400' : 'text-red-400'}">${s.result}</tr>`).join('')}</tbody>}</div></div>`;
+    }
+    
+    // 6. RİSK YÖNETİMİ
+    function renderRiskModule() {
+        let risk = calculateRiskScore();
+        return `<div class="card"><h3 class="text-gold font-bold mb-3">⚠️ Risk Yönetimi</h3><div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6"><div class="metric-card"><p class="text-gray-400">Stop Loss Kuralı</p><p class="text-lg font-bold">Sermaye %2'si</p><p class="text-xs text-gray-400">Maksimum risk limiti</p></div><div class="metric-card"><p class="text-gray-400">Maksimum Kayıp</p><p class="text-2xl font-bold">%1.5</p><p class="text-xs text-gray-400">Günlük tolerans</p></div><div class="metric-card"><p class="text-gray-400">Risk/Ödül Oranı</p><p class="text-2xl font-bold">1:2.5</p><p class="text-xs text-gray-400">Minimum oran</p></div></div><div class="bg-[#0f2c44] p-4 rounded-lg"><p class="text-gold font-semibold">📋 Pozisyon Risk Tablosu</p><div class="overflow-x-auto"><table class="w-full text-sm mt-2"><thead><tr><th class="text-left">Varlık</th><th class="text-left">Önerilen Poz.</th><th class="text-left">Stop Loss</th><th class="text-left">Risk/Ödül</th></tr></thead><tbody>${assets.slice(0,5).map(a => { let signal = generateSignal(a); return `<tr><td class="p-2">${a.name}<td class="p-2">%${Math.floor(Math.random()*5)+1}<td class="p-2">${formatUSD(a.price * 0.98)}<td class="p-2">1:2.2</tr>`; }).join('')}</tbody></table></div><p class="text-xs text-gray-400 mt-3">⚠️ Not: Tek bir pozisyonda maksimum sermaye %2'sini riske atmayın. Portföyünüzü çeşitlendirin.</p></div></div>`;
+    }
+    
+    // 7. PORTFÖY OPTİMİZASYONU
+    function renderPortfolioModule() {
+        setTimeout(() => { let ctx = document.getElementById('portfolioAllocChart')?.getContext('2d'); if(ctx) new Chart(ctx, { type: 'doughnut', data: { labels: ['Altın', 'Hisse', 'ETF', 'Tahvil', 'Nakit', 'Kripto', 'Alternatif'], datasets: [{ data: [25,20,15,15,10,10,5], backgroundColor: ['#f5b042','#e09d2c','#d48a1f','#c27818','#b0680d','#a05a10','#904c0a'] }] }, options: { responsive: true } }); }, 100);
+        return `<div class="card"><h3 class="text-gold font-bold mb-3">📊 Portföy Optimizasyonu</h3><div class="grid md:grid-cols-2 gap-6"><div><canvas id="portfolioAllocChart" height="250"></canvas></div><div><div class="space-y-2">${Object.entries(portfolioAllocation).map(([k,v]) => `<div><div class="flex justify-between"><span class="capitalize">${k === 'gold' ? 'Altın' : k === 'stocks' ? 'Hisse' : k === 'etf' ? 'ETF' : k === 'bonds' ? 'Tahvil' : k === 'cash' ? 'Nakit' : k === 'crypto' ? 'Kripto' : 'Alternatif'}</span><span class="text-gold">%${v}</span></div><div class="w-full bg-gray-700 rounded-full h-2"><div class="bg-gold h-2 rounded-full" style="width: ${v}%"></div></div></div>`).join('')}</div><p class="mt-4 text-sm text-gray-400">✅ Modern Portfolio Theory (MPT) ile optimize edilmiş dağılım. Risk seviyenize göre ayarlanabilir.</p><button class="mt-3 btn-gold w-full py-2 rounded-lg text-sm" onclick="showToast('Portföy optimizasyonu yenilendi')">🔄 Portföyü Optimize Et</button></div></div></div>`;
+    }
+    
+    // 8. ERKEN UYARI SİSTEMİ
+    function renderAlertsModule() {
+        return `<div class="card"><h3 class="text-gold font-bold mb-3">🚨 Erken Uyarı Sistemi</h3>${alerts.map(a => `<div class="alert-danger"><i class="fas fa-exclamation-triangle text-gold mr-2"></i><strong>${a.title}</strong><p class="text-sm mt-1">${a.desc}</p><span class="text-xs text-gray-400">Risk Seviyesi: ${a.type === 'danger' ? 'Yüksek' : (a.type === 'warning' ? 'Orta' : 'Düşük')}</span></div>`).join('')}<div class="bg-yellow-500/10 border-l-4 border-yellow-500 p-3 rounded-lg mt-3"><i class="fas fa-chart-line text-yellow-500 mr-2"></i><strong>Resesyon Riski</strong><p class="text-sm mt-1">ABD tahvil getirileri (10Y-2Y) ters dönüş sinyali veriyor. 6-12 ay içinde resesyon olasılığı artıyor.</p></div><div class="bg-blue-500/10 border-l-4 border-blue-500 p-3 rounded-lg mt-3"><i class="fas fa-university text-blue-500 mr-2"></i><strong>Likidite İzleme</strong><p class="text-sm mt-1">Piyasa likiditesi normal seviyelerde, ani çöküş riski düşük.</p></div></div>`;
+    }
+    
+    // 9. MAKRO EKONOMİ
+    function renderMacroModule() {
+        return `<div class="card"><h3 class="text-gold font-bold mb-3">🌍 Makro Ekonomi</h3><div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-4"><div class="metric-card"><p class="text-gray-400">Enflasyon (ABD)</p><p class="text-2xl font-bold text-gold">%${macroData.inflation}</p><span class="text-emerald-400 text-xs">Düşüş trendi</span></div><div class="metric-card"><p class="text-gray-400">Fed Faiz Oranı</p><p class="text-2xl font-bold text-gold">%${macroData.fedRate}</p><span class="text-yellow-400 text-xs">Sabit</span></div><div class="metric-card"><p class="text-gray-400">İşsizlik</p><p class="text-2xl font-bold text-gold">%${macroData.unemployment}</p><span class="text-emerald-400 text-xs">Düşük</span></div><div class="metric-card"><p class="text-gray-400">GSYH Büyüme</p><p class="text-2xl font-bold text-gold">%${macroData.gdp}</p><span class="text-emerald-400 text-xs">Pozitif</span></div><div class="metric-card"><p class="text-gray-400">Jeopolitik Risk</p><p class="text-2xl font-bold text-red-400">${macroData.geopoliticalRisk}</p><span class="text-red-400 text-xs">Dikkat</span></div></div><div class="bg-[#0f2c44] p-4 rounded-lg"><p class="text-gold font-semibold">🧠 AI Ekonomist Yorumu:</p><p class="text-sm">Enflasyon hedefine yaklaşırken Fed'in Eylül ayında faiz indirimine başlaması bekleniyor. İşsizlik verileri güçlü seyrediyor. Ancak jeopolitik riskler ve ABD seçim belirsizliği piyasalarda oynaklığı artırabilir. Altın ve dolar endeksi yakından takip edilmeli.</p></div></div>`;
+    }
+    
+    // 10. HABER & DUYGU ANALİZİ
+    function renderNewsModule() {
+        let avgSentiment = news.reduce((sum,n) => sum + n.score, 0) / news.length;
+        return `<div class="card"><h3 class="text-gold font-bold mb-3">📰 Haber & Duygu Analizi</h3><div class="space-y-3">${news.map(n => `<div class="flex justify-between items-center p-3 bg-[#0f2c44] rounded-lg"><div><p class="font-medium">${n.title}</p><div class="flex items-center gap-2 mt-1"><span class="text-xs text-gray-400">${n.date}</span><span class="text-xs ${n.sentiment === 'positive' ? 'text-emerald-400' : 'text-red-400'} ml-2">${n.sentiment === 'positive' ? 'Olumlu' : 'Olumsuz'}</span><div class="w-24 bg-gray-700 rounded-full h-1"><div class="${n.sentiment === 'positive' ? 'bg-emerald-400' : 'bg-red-400'} h-1 rounded-full" style="width: ${n.score}%"></div></div><span class="text-xs text-gray-400">Skor: ${n.score}</span></div></div><i class="fas ${n.sentiment === 'positive' ? 'fa-smile text-emerald-400' : 'fa-frown text-red-400'} text-xl"></i></div>`).join('')}</div><div class="mt-4 bg-[#0f2c44] p-3 rounded-lg"><p class="text-gold text-sm">📊 Genel Piyasa Duygusu: <strong class="text-gold">%${Math.round(avgSentiment)} Olumlu</strong></p><div class="w-full bg-gray-700 rounded-full h-2 mt-1"><div class="bg-gold h-2 rounded-full" style="width: ${avgSentiment}%"></div></div><p class="text-xs text-gray-400 mt-2">Son 30 günlük haber analizine göre piyasa duyarlılığı olumlu yönde seyrediyor. Olumlu haberlerin sayısı son haftada arttı.</p></div></div>`;
+    }
+    
+    // 11. YÖNETİCİ PANELİ
+    function renderAdminModule() {
+        if (!isAdmin && currentUser?.role !== "admin") return `<div class="card"><p class="text-red-400">Bu sayfaya erişim yetkiniz yok. Admin girişi yapın.</p></div>`;
+        let totalVolume = assets.reduce((sum,a) => sum + (a.volume || 0), 0);
+        return `<div class="card"><h3 class="text-gold font-bold mb-3">👑 Yönetici Paneli</h3><div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6"><div class="metric-card"><p class="text-gray-400">Toplam Kullanıcı</p><p class="text-2xl font-bold text-gold">${users.length}</p><p class="text-xs text-emerald-400">+2 bu ay</p></div><div class="metric-card"><p class="text-gray-400">Aktif Kullanıcı</p><p class="text-2xl font-bold text-gold">${users.filter(u => u.id !== 1).length}</p><p class="text-xs text-gray-400">Son 30 gün</p></div><div class="metric-card"><p class="text-gray-400">Toplam Varlık</p><p class="text-2xl font-bold text-gold">${assets.length}</p><p class="text-xs text-emerald-400">+2 yeni</p></div><div class="metric-card"><p class="text-gray-400">İşlem Hacmi</p><p class="text-2xl font-bold text-gold">${(totalVolume/1000).toFixed(0)}K</p><p class="text-xs text-gray-400">Son 24s</p></div></div><div class="grid grid-cols-1 md:grid-cols-2 gap-4"><div class="bg-[#0f2c44] p-4 rounded-lg"><p class="text-gold font-semibold">📈 En Karlı Varlık</p><p class="text-2xl font-bold">ALTIN</p><p class="text-emerald-400">+%18.2 (YTD)</p><p class="text-xs text-gray-400">Yıllık performans lideri</p></div><div class="bg-[#0f2c44] p-4 rounded-lg"><p class="text-gold font-semibold">⚠️ En Riskli Varlık</p><p class="text-2xl font-bold">BITCOIN</p><p class="text-red-400">Volatilite: %45</p><p class="text-xs text-gray-400">Yüksek risk, yüksek getiri</p></div></div><div class="mt-4 p-3 bg-gold/10 rounded-lg"><p class="text-gold text-sm">📊 Günlük Rapor Özeti: Bugün ${assets.length} varlık takip ediliyor, ${users.length} aktif kullanıcı, ortalama getiri +%0.8, başarı oranı %71.</p></div><button onclick="openAdminPanel()" class="mt-4 btn-gold px-4 py-2 rounded-lg w-full"><i class="fas fa-plus mr-2"></i>Varlık Yönetimine Git</button></div>`;
+    }
+    
+    // 12. RAPORLAR & GEÇMİŞ
+    function renderReportsModule() {
+        let totalProfit = 8.5;
+        let maxDrawdown = -2.1;
+        let sharpeRatio = 1.42;
+        return `<div class="card"><h3 class="text-gold font-bold mb-3">📑 Raporlar & Geçmiş</h3><div class="flex justify-between items-center mb-4"><button class="btn-gold px-4 py-2 rounded-lg text-sm" onclick="showToast('PDF raporu hazırlanıyor...')"><i class="fas fa-file-pdf mr-2"></i>PDF Raporu İndir</button><button class="btn-gold px-4 py-2 rounded-lg text-sm" onclick="whatsappLink('Günlük rapor talebi')"><i class="fab fa-whatsapp mr-2"></i>WhatsApp ile Gönder</button></div><div class="overflow-x-auto"><table class="w-full text-sm"><thead><tr class="border-b border-gray-700"><th>Tarih</th><th>Varlık</th><th>İşlem</th><th>Giriş</th><th>Çıkış</th><th>Getiri</th></tr></thead><tbody>${pastSignals.map(s => `<tr class="border-b border-gray-800"><td class="p-2">${s.date}<td>${s.asset}<td class="${s.signal === 'AL' ? 'text-emerald-400' : (s.signal === 'SAT' ? 'text-red-400' : 'text-yellow-400')}">${s.signal}<td class="p-2">${formatUSD(s.entry)}<td class="p-2">${formatUSD(s.exit)}<td class="${s.result.includes('+') ? 'text-emerald-400' : 'text-red-400'}">${s.result}</tr>`).join('')}</tbody></table></div><div class="mt-4 bg-[#0f2c44] p-3 rounded-lg"><p class="text-gold text-sm">📊 30 Günlük Performans Özeti:</p><div class="grid grid-cols-3 gap-4 mt-2"><div><p class="text-gray-400 text-xs">Toplam Getiri</p><p class="text-emerald-400 font-bold">+%${totalProfit}</p></div><div><p class="text-gray-400 text-xs">Maks. Düşüş</p><p class="text-red-400 font-bold">%${maxDrawdown}</p></div><div><p class="text-gray-400 text-xs">Sharpe Oranı</p><p class="text-gold font-bold">${sharpeRatio}</p></div></div></div><button class="mt-4 btn-gold w-full py-2 rounded-lg text-sm" onclick="showToast('Detaylı rapor hazırlanıyor...')"><i class="fas fa-chart-line mr-2"></i>Detaylı Performans Raporu</button></div>`;
+    }
+    
+    // 13. ABONELİK PAKETLERİ
+    function renderPricingModule() {
+        return `<div class="card"><h3 class="text-gold font-bold mb-4">📦 Abonelik Paketleri</h3><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">${subscriptionPlans.map(p => `<div class="bg-[#0f2c44] rounded-xl p-4 text-center ${p.popular ? 'border-2 border-gold' : ''}">${p.popular ? '<span class="bg-gold text-[#0a0f2c] text-xs px-2 py-1 rounded-full absolute -mt-8 left-1/2 transform -translate-x-1/2">Popüler</span>' : ''}<i class="fas ${p.icon} text-gold text-3xl my-2"></i><h3 class="text-xl font-bold white-text">${p.name}</h3><p class="text-2xl font-bold text-gold">${formatMoney(p.price)}<span class="text-sm">/ay</span></p><ul class="text-sm text-gray-300 text-left mt-3 space-y-1">${p.features.map(f => `<li><i class="fas fa-check text-gold mr-1"></i>${f}</li>`).join('')}</ul><button onclick="upgradeSubscription('${p.name}')" class="mt-4 w-full btn-gold py-2 rounded-lg"><i class="fab fa-whatsapp mr-1"></i>WhatsApp ile Satın Al</button></div>`).join('')}</div><div class="mt-4 text-center text-gray-400 text-xs">Tüm paketlerde 7 gün para iade garantisi. İptal ve iade koşulları için WhatsApp destek hattımızla iletişime geçin.</div></div>`;
+    }
+    
+    // ============================================================
+    // 9. SIDEBAR MENÜ (13 Modül)
+    // ============================================================
+    function renderSidebar() {
+        const menu = [
+            { id: "overview", icon: "fa-chart-pie", label: "Genel Bakış" },
+            { id: "assets", icon: "fa-chart-line", label: "Varlık İzleme" },
+            { id: "technical", icon: "fa-waveform", label: "Teknik Analiz" },
+            { id: "ai", icon: "fa-robot", label: "AI Tahminleri" },
+            { id: "signals", icon: "fa-bullhorn", label: "AI Sinyaller" },
+            { id: "risk", icon: "fa-shield-alt", label: "Risk Yönetimi" },
+            { id: "portfolio", icon: "fa-chart-simple", label: "Portföy Optimizasyonu" },
+            { id: "alerts", icon: "fa-bell", label: "Erken Uyarı" },
+            { id: "macro", icon: "fa-globe", label: "Makro Ekonomi" },
+            { id: "news", icon: "fa-newspaper", label: "Haber & Duygu" },
+            { id: "pricing", icon: "fa-tag", label: "Abonelik" },
+            { id: "admin", icon: "fa-crown", label: "Yönetici" },
+            { id: "reports", icon: "fa-file-alt", label: "Raporlar" }
+        ];
+        return `<aside class="fixed left-0 top-0 h-full w-72 bg-[#0a0f2c] shadow-2xl border-r border-[#1e2556] p-4 overflow-y-auto z-10"><div class="flex items-center justify-between mb-8"><div class="flex items-center gap-3"><i class="fas fa-robot text-gold text-2xl"></i><h1 class="text-2xl font-bold text-gold">Yatırım AI</h1></div>${isAdmin ? `<div class="admin-badge" onclick="openAdminPanel()"><i class="fas fa-shield-alt mr-1"></i>Yönetim</div>` : ''}</div><nav class="space-y-1">${menu.map(item => `<div onclick="currentPage='${item.id}'; render()" class="sidebar-link ${currentPage === item.id ? 'active-page' : 'text-gray-300'}"><i class="fas ${item.icon} w-5"></i><span>${item.label}</span></div>`).join('')}</nav><div class="absolute bottom-0 left-0 right-0 p-4 border-t border-[#1e2556]">${!currentUser ? `<button onclick="openLoginModal()" class="w-full btn-gold py-2 rounded-lg"><i class="fas fa-user mr-2"></i>Giriş Yap / Kayıt Ol</button>` : `<div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-gold flex items-center justify-center"><span class="font-bold text-[#0a0f2c]">${currentUser.name[0]}</span></div><div><p class="font-medium white-text">${currentUser.name}</p><p class="text-xs text-gold">${currentUser.subscription?.toUpperCase() || 'BASIC'}</p></div><button onclick="handleLogout()" class="ml-auto text-red-400 text-sm">Çıkış</button></div></div>`}</div></aside>`;
+    }
+    
+    // ============================================================
+    // 10. FOOTER (Bilgileriniz)
+    // ============================================================
+    function renderFooter() {
+        return `<footer class="mt-8 pt-4 border-t border-gold/30 text-center text-gray-400 text-xs"><div class="flex flex-wrap justify-center gap-4 mb-1"><span><i class="fas fa-user-circle text-gold mr-1"></i> CFO.MÜH. Orhan BOYRAZ</span><span><i class="fab fa-whatsapp text-gold mr-1"></i> 0541 866 0202</span><span><i class="fas fa-phone text-gold mr-1"></i> 05409666602</span><span><i class="fas fa-envelope text-gold mr-1"></i> orhanboyraz0216@gmail.com</span><span><i class="fas fa-map-marker-alt text-gold mr-1"></i> Nilüfer / BURSA</span><span><i class="fas fa-globe text-gold mr-1"></i> anadolunetwork.tr</span></div><p>© 2025 Yatırım AI – Yapay Zeka Destekli Yatırım Platformu | Yatırım tavsiyesi değildir. Tüm hakları saklıdır.</p></footer>`;
+    }
+    
+    // ============================================================
+    // 11. ANA RENDER
+    // ============================================================
+    function render() {
+        let content = "";
+        if (currentPage === "overview") content = renderOverview();
+        else if (currentPage === "assets") content = renderAssetsModule();
+        else if (currentPage === "technical") content = renderTechnicalModule();
+        else if (currentPage === "ai") content = renderAIForecastModule();
+        else if (currentPage === "signals") content = renderSignalsModule();
+        else if (currentPage === "risk") content = renderRiskModule();
+        else if (currentPage === "portfolio") content = renderPortfolioModule();
+        else if (currentPage === "alerts") content = renderAlertsModule();
+        else if (currentPage === "macro") content = renderMacroModule();
+        else if (currentPage === "news") content = renderNewsModule();
+        else if (currentPage === "pricing") content = renderPricingModule();
+        else if (currentPage === "admin") content = renderAdminModule();
+        else if (currentPage === "reports") content = renderReportsModule();
+        else content = renderOverview();
+        
+        const html = `<div class="flex min-h-screen">${renderSidebar()}<main class="flex-1 ml-72 p-6"><div class="max-w-7xl mx-auto">${content}${renderFooter()}</div></main></div>`;
+        document.getElementById("app").innerHTML = html;
+        
+        setTimeout(() => {
+            if (currentPage === "technical") { let ctx = document.getElementById('techChart')?.getContext('2d'); if(ctx) new Chart(ctx, { type: 'line', data: { labels: ['1 Gün', '2 Gün', '3 Gün', '4 Gün', '5 Gün', '6 Gün'], datasets: [{ label: 'ALTIN (XAUUSD)', data: [3300,3320,3340,3360,3350,3365], borderColor: '#f5b042', fill: false }] } }); }
+            if (currentPage === "portfolio") { let ctx = document.getElementById('portfolioAllocChart')?.getContext('2d'); if(ctx) new Chart(ctx, { type: 'doughnut', data: { labels: ['Altın', 'Hisse', 'ETF', 'Tahvil', 'Nakit', 'Kripto', 'Alternatif'], datasets: [{ data: [25,20,15,15,10,10,5], backgroundColor: ['#f5b042','#e09d2c','#d48a1f','#c27818','#b0680d','#a05a10','#904c0a'] }] }, options: { responsive: true } }); }
+        }, 100);
+    }
+    
+    // Başlangıç
+    let savedUser = localStorage.getItem("yatirim_user");
+    if (savedUser) {
+        try {
+            currentUser = JSON.parse(savedUser);
+            isAdmin = currentUser.role === "admin";
+        } catch(e) {}
+    }
+    render();
+    
+    window.whatsappLink = whatsappLink;
+    window.openAdminPanel = openAdminPanel;
+    window.deleteAsset = deleteAsset;
+    window.openLoginModal = openLoginModal;
+    window.upgradeSubscription = upgradeSubscription;
+    window.showToast = showToast;
 </script>
 </body>
 </html>
